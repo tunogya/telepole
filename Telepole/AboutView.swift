@@ -51,6 +51,7 @@ struct AboutView_Previews: PreviewProvider {
     }
 }
 
+// 宠物信息卡
 struct PetInfoCard: View {
     let name: String
     let variety: String
@@ -96,6 +97,7 @@ struct PetInfoCard: View {
     }
 }
 
+// 家长信息卡
 struct OwnerInfo: View {
     let name: String
     let date: String
@@ -141,6 +143,7 @@ struct OwnerInfo: View {
     }
 }
 
+// 宠物画廊
 struct PetAvator: View {
     var body: some View {
         Image("pet-avator")
@@ -150,16 +153,21 @@ struct PetAvator: View {
     }
 }
 
+// 顶部的按钮：返回、分享
 struct ButtonsTop: View {
     var body: some View {
         HStack {
+            // 返回按钮
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                 Image(systemName: "arrow.left.circle.fill")
                     .resizable()
                     .frame(width: 40, height: 40, alignment: .center)
                 
             }
+            
             Spacer()
+            
+            // 分享按钮
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                 Image(systemName: "paperplane.circle.fill")
                     .resizable()
@@ -171,10 +179,13 @@ struct ButtonsTop: View {
     }
 }
 
+// 底部的按钮：喜欢、联系
 struct ButtonsButtom: View {
     var body: some View {
         HStack(spacing: 16.0) {
             Spacer()
+            
+            // 喜欢按钮
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                 Image(systemName: "heart.circle")
                     .resizable()
@@ -182,6 +193,7 @@ struct ButtonsButtom: View {
                     .foregroundColor(Color("GrayColor"))
             }
             
+            // 联系按钮
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                 HStack {
                     Spacer()
@@ -194,6 +206,7 @@ struct ButtonsButtom: View {
                 .background(Color("AccentColor"), alignment: .center)
                 .cornerRadius(20)
             }
+            
             Spacer()
         }
     }
