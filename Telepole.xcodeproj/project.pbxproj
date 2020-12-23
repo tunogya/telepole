@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17322AE02593644600A0049B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* HomeView.swift */; };
+		17322AE52593645500A0049B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* AboutView.swift */; };
 		173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 		173F05C6259324B300E662B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C5259324B300E662B8 /* ContentView.swift */; };
 		173F05C8259324B600E662B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05C7259324B600E662B8 /* Assets.xcassets */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		17322AE42593645500A0049B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		173F05C0259324B300E662B8 /* Telepole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05C3259324B300E662B8 /* TelepoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleApp.swift; sourceTree = "<group>"; };
 		173F05C5259324B300E662B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				173F05C7259324B600E662B8 /* Assets.xcassets */,
 				173F05CC259324B600E662B8 /* Info.plist */,
 				173F05C9259324B600E662B8 /* Preview Content */,
+				17322ADF2593644600A0049B /* HomeView.swift */,
+				17322AE42593645500A0049B /* AboutView.swift */,
 			);
 			path = Telepole;
 			sourceTree = "<group>";
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17322AE52593645500A0049B /* AboutView.swift in Sources */,
+				17322AE02593644600A0049B /* HomeView.swift in Sources */,
 				173F05C6259324B300E662B8 /* ContentView.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
