@@ -17,9 +17,9 @@ struct AboutView: View {
                 PetAvator()
                 
                 Group {
-                    PetInfoCard()
+                    PetInfoCard(name: "贝贝", variety: "杜宾犬", age: "4岁", gender: "Boy", location: "江苏省，南通市")
                     
-                    OwnerInfo()
+                    OwnerInfo(name: "丁浩", date: "2020.01.01", job: "开发", avator: "avator地址", content: "Hellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHello")
                     
                 }
                 .offset(y: -80)
@@ -52,31 +52,38 @@ struct AboutView_Previews: PreviewProvider {
 }
 
 struct PetInfoCard: View {
+    let name: String
+    let variety: String
+    let age: String
+    let gender: String
+    let location: String
+    
     var body: some View {
         VStack(spacing: 16.0) {
             HStack {
-                Text("贝贝")
+                Text(name)
                     .bold()
                     .font(.title2)
                 Spacer()
-                Image(systemName: "infinity.circle.fill")
+                Image(systemName: "infinity.circle")
                     .font(.title3)
             }
             
             HStack(spacing: 4.0) {
-                Text("杜宾犬")
+                Text(variety)
                     .font(.body)
                 Spacer()
-                Image(systemName: "clock.fill")
+                Image(systemName: "clock")
                     .font(.footnote)
-                Text("1岁")
+                Text(age)
                     .font(.footnote)
             }
            
             
             HStack(spacing: 4.0) {
                 Image(systemName: "paperplane.fill")
-                Text("江苏省，南通市")
+                Text(location)
+                    .foregroundColor(Color("GrayColor"))
                 Spacer()
             }
             .font(.footnote)
@@ -84,39 +91,47 @@ struct PetInfoCard: View {
         .padding(20)
         .background(Color.white)
         .cornerRadius(30)
-        .shadow(color: Color.gray, radius: 2, x: 2, y: 2)
+        .shadow(color: Color.gray, radius: 1, x: 1, y: 1)
         .padding(.horizontal, 20)
     }
 }
 
 struct OwnerInfo: View {
+    let name: String
+    let date: String
+    let job: String
+    let avator: String
+    let content: String
+    
     var body: some View {
         VStack {
-            HStack {
+            HStack(spacing: 16.0) {
                 Image("pet-avator")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 75, height: 75, alignment: .center)
                     .cornerRadius(75)
+                    .shadow(color: Color.gray, radius: 1, x: 1, y: 1)
                 
                 VStack(alignment: .leading, spacing: 12.0) {
                     HStack {
-                        Text("丁浩")
+                        Text(name)
                             .font(.body)
                             .bold()
                         Spacer()
-                        Text("2020.12.20")
+                        Text(date)
                             .font(.footnote)
                     }
-                    Text("家长")
+                    Text(job)
                         .font(.footnote)
+                        .foregroundColor(Color("GrayColor"))
                 }
             }
             .padding(.horizontal)
             .padding(.top, 20)
             
             HStack {
-                Text("你好啊")
+                Text(content)
                     .font(.body)
                 Spacer()
             }
@@ -146,7 +161,7 @@ struct ButtonsTop: View {
             }
             Spacer()
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
-                Image(systemName: "arrow.left.circle.fill")
+                Image(systemName: "paperplane.circle.fill")
                     .resizable()
                     .frame(width: 40, height: 40, alignment: .center)
             }
@@ -164,7 +179,7 @@ struct ButtonsButtom: View {
                 Image(systemName: "heart.circle")
                     .resizable()
                     .frame(width: 44, height: 44, alignment: .center)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color("GrayColor"))
             }
             
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
