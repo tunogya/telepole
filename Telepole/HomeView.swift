@@ -11,31 +11,14 @@ struct HomeView: View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-            HStack(spacing: 20.0) {
-                TextField("Placeholder", text: $searchText)
-                    .padding()
-                    .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .cornerRadius(20)
-                    .frame(height: 50, alignment: .center)
-                
-                Circle()
-                    .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .frame(width: 50, height: 50, alignment: .center)
+            HomeHeader(searchText: $searchText)
+            
+            ScrollView(showsIndicators: false) {
+                PetCards()
             }
             
-            
-//            PetPicker()
-            
-            
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(0 ..< 6) { item in
-                    PetShowCard()
-                }
-            }
-            .padding(.top)
             
             Spacer()
-            
             
         }
         .padding()
@@ -48,7 +31,7 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-struct PetShowCard: View {
+struct PetCardItem: View {
     let cardWidth = (SCREENWIDTH - 60)/2
     var cardHeight: CGFloat {
         return cardWidth * 1.4
@@ -87,5 +70,33 @@ struct PetPicker: View {
             Spacer()
         }
         .padding()
+    }
+}
+
+struct PetCards: View {
+    var body: some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            ForEach(0 ..< 6) { item in
+                PetCardItem()
+            }
+        }
+        .padding(.top)
+    }
+}
+
+struct HomeHeader: View {
+    @Binding var searchText: String
+    var body: some View {
+        HStack(spacing: 20.0) {
+            TextField("Placeholder", text: $searchText)
+                .padding()
+                .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .cornerRadius(20)
+                .frame(height: 50, alignment: .center)
+            
+            Circle()
+                .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(width: 50, height: 50, alignment: .center)
+        }
     }
 }
