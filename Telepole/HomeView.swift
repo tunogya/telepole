@@ -11,7 +11,7 @@ struct HomeView: View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-            HomeHeader(searchText: $searchText)
+            HomeHeader(searchText: $searchText, avator: "")
             
             ScrollView(showsIndicators: false) {
                 PetCards()
@@ -37,19 +37,25 @@ struct PetCardItem: View {
         return cardWidth * 1.4
     }
     
+    let name: String
+    let variety: String
+    let age: String
+    let avator: String
+    let gender: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12.0) {
             Spacer()
-            Text("Cherry")
+            Text(name)
                 .font(.title3)
                 .bold()
-            Text("杜宾犬")
+            Text(variety)
                 .font(.body)
             HStack(spacing: 4.0) {
                 Image(systemName: "clock")
-                Text("8月")
+                Text(age)
                 Image("")
-                Text("Girl")
+                Text(gender)
                 Spacer()
             }.font(.body)
         }
@@ -77,7 +83,7 @@ struct PetCards: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             ForEach(0 ..< 6) { item in
-                PetCardItem()
+                PetCardItem(name: "cherry", variety: "杜宾犬", age: "5岁", avator: "", gender: "Girl")
             }
         }
         .padding(.top)
@@ -86,6 +92,8 @@ struct PetCards: View {
 
 struct HomeHeader: View {
     @Binding var searchText: String
+    var avator: String
+    
     var body: some View {
         HStack(spacing: 20.0) {
             TextField("Placeholder", text: $searchText)
