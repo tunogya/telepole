@@ -22,7 +22,7 @@ struct AboutView: View {
                     OwnerInfo(name: "丁浩", date: "2020.01.01", job: "开发", avator: "avator地址", content: "Hellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHello")
                     
                 }
-                .offset(y: -80)
+                .offset(y: -70)
       
                 Spacer()
                 
@@ -60,15 +60,16 @@ struct PetInfoCard: View {
     let location: String
     
     var body: some View {
-        VStack(spacing: 16.0) {
+        VStack(spacing: 10.0) {
             HStack {
                 Text(name)
                     .bold()
-                    .font(.title2)
+                    .font(.title)
                 Spacer()
                 Image(systemName: "infinity.circle")
-                    .font(.title3)
+                    .font(.title2)
             }
+            .padding(.bottom, 8)
             
             HStack(spacing: 4.0) {
                 Text(variety)
@@ -78,13 +79,14 @@ struct PetInfoCard: View {
                     .font(.footnote)
                 Text(age)
                     .font(.footnote)
+                    .foregroundColor(.secondary)
             }
            
             
             HStack(spacing: 4.0) {
                 Image(systemName: "paperplane.fill")
                 Text(location)
-                    .foregroundColor(Color("GrayColor"))
+                    .foregroundColor(.secondary)
                 Spacer()
             }
             .font(.footnote)
@@ -123,10 +125,11 @@ struct OwnerInfo: View {
                         Spacer()
                         Text(date)
                             .font(.footnote)
+                            .foregroundColor(.secondary)
                     }
                     Text(job)
                         .font(.footnote)
-                        .foregroundColor(Color("GrayColor"))
+                        .foregroundColor(.secondary)
                 }
             }
             .padding(.horizontal)
@@ -190,7 +193,7 @@ struct ButtonsButtom: View {
                 Image(systemName: "heart.circle")
                     .resizable()
                     .frame(width: 44, height: 44, alignment: .center)
-                    .foregroundColor(Color("GrayColor"))
+                    .foregroundColor(.secondary)
             }
             
             // 联系按钮
@@ -201,8 +204,8 @@ struct ButtonsButtom: View {
                         .font(.body)
                     Spacer()
                 }
-                .foregroundColor(.white)
-                .frame(width: 220, height: 44, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .foregroundColor(Color("GrayColor"))
+                .frame(width: 220, height: 44, alignment: .center)
                 .background(Color("AccentColor"), alignment: .center)
                 .cornerRadius(20)
             }
