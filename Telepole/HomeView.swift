@@ -22,28 +22,23 @@ struct HomeView: View {
                     .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .frame(width: 50, height: 50, alignment: .center)
             }
-            .padding()
             
-            HStack(spacing: 15.0) {
-                ForEach(0 ..< 5) { item in
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 60, height: 60, alignment: .center)
-                }
-                Spacer()
-            }
-            .padding()
             
-            LazyVGrid(columns: [GridItem(), GridItem()]) {
-                
-                ForEach(0 ..< 5) { item in
+//            PetPicker()
+            
+            
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                ForEach(0 ..< 6) { item in
                     PetShowCard()
                 }
             }
+            .padding(.top)
             
             Spacer()
             
             
         }
+        .padding()
     }
 }
 
@@ -54,6 +49,11 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct PetShowCard: View {
+    let cardWidth = (SCREENWIDTH - 60)/2
+    var cardHeight: CGFloat {
+        return cardWidth * 1.4
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12.0) {
             Spacer()
@@ -71,8 +71,21 @@ struct PetShowCard: View {
             }.font(.body)
         }
         .padding()
-        .frame(width:180 ,height: 240, alignment: .center)
+        .frame(width: cardWidth ,height: 240, alignment: .center)
         .background(Color.yellow)
         .cornerRadius(20)
+    }
+}
+
+struct PetPicker: View {
+    var body: some View {
+        HStack(spacing: 15.0) {
+            ForEach(0 ..< 5) { item in
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 60, height: 60, alignment: .center)
+            }
+            Spacer()
+        }
+        .padding()
     }
 }
