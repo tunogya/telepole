@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		17322AE42593645500A0049B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		173F05C0259324B300E662B8 /* Telepole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05C3259324B300E662B8 /* TelepoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleApp.swift; sourceTree = "<group>"; };
 		173F05C7259324B600E662B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
+				173EF4AF2596E7FC0059E467 /* README.md */,
 				173F05C2259324B300E662B8 /* Telepole */,
 				173F05D4259324B600E662B8 /* TelepoleTests */,
 				173F05DF259324B600E662B8 /* TelepoleUITests */,
