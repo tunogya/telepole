@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		17322AE02593644600A0049B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* HomeView.swift */; };
 		17322AE52593645500A0049B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* AboutView.swift */; };
+		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
+		173EF4BB259750320059E467 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4BA259750320059E467 /* SDWebImage */; };
+		173EF4BD259750320059E467 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4BC259750320059E467 /* SDWebImageMapKit */; };
 		173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 		173F05C8259324B600E662B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05C7259324B600E662B8 /* Assets.xcassets */; };
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
@@ -55,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173EF4BB259750320059E467 /* SDWebImage in Frameworks */,
+				173EF4BD259750320059E467 /* SDWebImageMapKit in Frameworks */,
+				173EF4B525974FBD0059E467 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +157,11 @@
 			dependencies = (
 			);
 			name = Telepole;
+			packageProductDependencies = (
+				173EF4B425974FBD0059E467 /* Alamofire */,
+				173EF4BA259750320059E467 /* SDWebImage */,
+				173EF4BC259750320059E467 /* SDWebImageMapKit */,
+			);
 			productName = Telepole;
 			productReference = 173F05C0259324B300E662B8 /* Telepole.app */;
 			productType = "com.apple.product-type.application";
@@ -222,6 +233,10 @@
 				Base,
 			);
 			mainGroup = 173F05B7259324B300E662B8;
+			packageReferences = (
+				173EF4B325974FBD0059E467 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 173F05C1259324B300E662B8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -586,6 +601,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		173EF4B325974FBD0059E467 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitee.com/tunogya/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
+		173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitee.com/tunogya/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		173EF4B425974FBD0059E467 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4B325974FBD0059E467 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		173EF4BA259750320059E467 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		173EF4BC259750320059E467 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 173F05B8259324B300E662B8 /* Project object */;
 }

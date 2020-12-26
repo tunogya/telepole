@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://gitee.com/tunogya/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": "5.4.1"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://gitee.com/tunogya/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "f5fd53b2d23a60f52e8aaf206cbc0751f79a6a02",
+          "version": "5.10.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
