@@ -44,18 +44,21 @@ struct PetCardItem: View {
     let gender: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12.0) {
+        VStack(alignment: .leading, spacing: 4.0) {
             Spacer()
             Text(name)
-                .font(.title3)
+                .font(.body)
                 .bold()
             Text(variety)
-                .font(.body)
+                .font(.callout)
             HStack(spacing: 4.0) {
                 Image(systemName: "clock")
+                    .font(.footnote)
                 Text(age)
+                    .font(.footnote)
                 Image("")
                 Text(gender)
+                    .font(.footnote)
                 Spacer()
             }.font(.body)
         }
@@ -97,14 +100,16 @@ struct HomeHeader: View {
     var body: some View {
         HStack(spacing: 20.0) {
             TextField("Placeholder", text: $searchText)
-                .padding()
+                .font(.body)
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+                .frame(height: 44, alignment: .center)
                 .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .cornerRadius(20)
-                .frame(height: 50, alignment: .center)
+                .cornerRadius(10)
+           
             
             Circle()
-                .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 40, height: 40, alignment: .center)
         }
     }
 }

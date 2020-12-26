@@ -60,7 +60,7 @@ struct PetInfoCard: View {
     let location: String
     
     var body: some View {
-        VStack(spacing: 10.0) {
+        VStack(spacing: 6.0) {
             HStack {
                 Text(name)
                     .bold()
