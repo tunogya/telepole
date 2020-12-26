@@ -22,7 +22,7 @@ struct AboutView: View {
                     OwnerInfo(name: "丁浩", date: "2020.01.01", job: "开发", avator: "avator地址", content: "Hellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHellow，worldHello")
                     
                 }
-                .offset(y: -70)
+                .offset(y: -60)
       
                 Spacer()
                 
@@ -69,7 +69,7 @@ struct PetInfoCard: View {
                 Image(systemName: "infinity.circle")
                     .font(.title2)
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, 2)
             
             HStack(spacing: 4.0) {
                 Text(variety)
@@ -91,9 +91,9 @@ struct PetInfoCard: View {
             }
             .font(.footnote)
         }
-        .padding(20)
+        .padding(16)
         .background(Color.white)
-        .cornerRadius(30)
+        .cornerRadius(24)
         .shadow(color: Color.gray, radius: 1, x: 1, y: 1)
         .padding(.horizontal, 20)
     }
@@ -137,7 +137,7 @@ struct OwnerInfo: View {
             
             HStack {
                 Text(content)
-                    .font(.body)
+                    .font(.subheadline)
                 Spacer()
             }
             .padding(.top, 16)
