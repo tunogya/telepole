@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17054B34259867CE001DE66A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* Pet.swift */; };
+		17054B3C25986A85001DE66A /* PetsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B3B25986A85001DE66A /* PetsFetcher.swift */; };
 		17322AE02593644600A0049B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* HomeView.swift */; };
 		17322AE52593645500A0049B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* AboutView.swift */; };
 		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
 		173EF4BB259750320059E467 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4BA259750320059E467 /* SDWebImage */; };
 		173EF4BD259750320059E467 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4BC259750320059E467 /* SDWebImageMapKit */; };
+		173EF4C325975BEC0059E467 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4C225975BEC0059E467 /* SwiftyJSON */; };
 		173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 		173F05C8259324B600E662B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05C7259324B600E662B8 /* Assets.xcassets */; };
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
@@ -37,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17054B33259867CE001DE66A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		17054B3B25986A85001DE66A /* PetsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsFetcher.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		17322AE42593645500A0049B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 			files = (
 				173EF4BB259750320059E467 /* SDWebImage in Frameworks */,
 				173EF4BD259750320059E467 /* SDWebImageMapKit in Frameworks */,
+				173EF4C325975BEC0059E467 /* SwiftyJSON in Frameworks */,
 				173EF4B525974FBD0059E467 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17054B32259867AE001DE66A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				17054B33259867CE001DE66A /* Pet.swift */,
+				17054B3B25986A85001DE66A /* PetsFetcher.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +120,7 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
+				17054B32259867AE001DE66A /* Models */,
 				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
 				173F05C7259324B600E662B8 /* Assets.xcassets */,
 				173F05CC259324B600E662B8 /* Info.plist */,
@@ -161,6 +177,7 @@
 				173EF4B425974FBD0059E467 /* Alamofire */,
 				173EF4BA259750320059E467 /* SDWebImage */,
 				173EF4BC259750320059E467 /* SDWebImageMapKit */,
+				173EF4C225975BEC0059E467 /* SwiftyJSON */,
 			);
 			productName = Telepole;
 			productReference = 173F05C0259324B300E662B8 /* Telepole.app */;
@@ -236,6 +253,7 @@
 			packageReferences = (
 				173EF4B325974FBD0059E467 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				173EF4C125975BEC0059E467 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 173F05C1259324B300E662B8 /* Products */;
 			projectDirPath = "";
@@ -280,7 +298,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				17322AE52593645500A0049B /* AboutView.swift in Sources */,
+				17054B34259867CE001DE66A /* Pet.swift in Sources */,
 				17322AE02593644600A0049B /* HomeView.swift in Sources */,
+				17054B3C25986A85001DE66A /* PetsFetcher.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +639,14 @@
 				minimumVersion = 5.10.1;
 			};
 		};
+		173EF4C125975BEC0059E467 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://gitee.com/tunogya/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -636,6 +664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 173EF4B9259750320059E467 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
+		};
+		173EF4C225975BEC0059E467 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4C125975BEC0059E467 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

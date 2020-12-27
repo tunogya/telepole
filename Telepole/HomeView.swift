@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText = ""
+    
     var body: some View {
         VStack {
             HomeHeader(searchText: $searchText, avator: "")
@@ -23,6 +24,9 @@ struct HomeView: View {
         }
         .padding()
     }
+    
+    
+
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -83,10 +87,12 @@ struct PetPicker: View {
 }
 
 struct PetCards: View {
+    @ObservedObject var fetcher = PetsFetcher()
+    
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-            ForEach(0 ..< 6) { item in
-                PetCardItem(name: "cherry", variety: "杜宾犬", age: "5岁", avator: "", gender: "Girl")
+            ForEach(fetcher.pets) { pet in
+                PetCardItem(name: pet.name, variety: pet.variety, age: "5岁", avator: pet.avators[0], gender: pet.gender)
             }
         }
         .padding(.top)

@@ -18,6 +18,15 @@
           "revision": "f5fd53b2d23a60f52e8aaf206cbc0751f79a6a02",
           "version": "5.10.1"
         }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://gitee.com/tunogya/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "2b6054efa051565954e1d2b9da831680026cd768",
+          "version": "5.0.0"
+        }
       }
     ]
   },
