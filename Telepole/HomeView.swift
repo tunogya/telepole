@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
     @State private var searchText = ""
@@ -64,7 +65,8 @@ struct PetCardItem: View {
         }
         .padding()
         .frame(width: cardWidth ,height: 240, alignment: .center)
-        .background(Color.yellow)
+        .background(WebImage(url: pet.avator)
+)
         .cornerRadius(20)
     }
 }
