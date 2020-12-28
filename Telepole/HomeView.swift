@@ -92,7 +92,7 @@ struct PetCards: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             ForEach(fetcher.pets) { pet in
-                PetCardItem(name: pet.name, variety: pet.variety, age: "5岁", avator: pet.avators[0], gender: pet.gender)
+                PetCardItem(name: pet.name, variety: pet.variety, age: "5岁", avator: "", gender: pet.gender)
             }
         }
         .padding(.top)

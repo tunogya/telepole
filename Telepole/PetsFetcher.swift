@@ -22,8 +22,10 @@ public class PetsFetcher: ObservableObject {
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
+                let jsonData = JSON(value)["data"]
+                for (_, petJson):(String, JSON) in jsonData {
+                    self.pets.append(Pet(jsonData: petJson))
+                }
             case .failure(let error):
                 print(error)
             }

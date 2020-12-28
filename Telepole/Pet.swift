@@ -6,28 +6,24 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-// Decodable用于解析JSON, Identifiable用于list呈现
-struct Pet: Decodable, Identifiable {
-    var _id: String
+struct Pet: Identifiable {
     var id: String
     var name: String
     var variety: String
     var address: String
-    var avators: [String]
-    var birthday: Data
+    var avator: String
+    var birthday: String
     var gender: String
     
-//    CoadingKey用于Json与模型键值对应
-    enum CodingKeys: String, CodingKey {
-        case _id = "_id"
-        case id = "id"
-        case name = "name"
-        case variety = "variety"
-        case address = "address"
-        case avators = "avators"
-        case birthday = "birthday"
-        case gender = "gender"
-        
+    init(jsonData: JSON) {
+        id = jsonData["_id"].stringValue
+        name = jsonData["name"].stringValue
+        variety = jsonData["variety"].stringValue
+        address = jsonData["address"].stringValue
+        birthday = jsonData["birthday"].stringValue
+        gender = jsonData["gender"].stringValue
+        avator = jsonData["avators"].stringValue
     }
 }
