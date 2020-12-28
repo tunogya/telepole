@@ -13,7 +13,7 @@ struct Pet: Identifiable {
     var name: String
     var variety: String
     var address: String
-    var avator: String
+    var avator: URL
     var birthday: String
     var gender: String
     
@@ -24,6 +24,6 @@ struct Pet: Identifiable {
         address = jsonData["address"].stringValue
         birthday = jsonData["birthday"].stringValue
         gender = jsonData["gender"].stringValue
-        avator = jsonData["avators"].stringValue
+        avator = URL(string: jsonData["avator"].stringValue)!
     }
 }

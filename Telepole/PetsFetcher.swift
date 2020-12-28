@@ -26,6 +26,7 @@ public class PetsFetcher: ObservableObject {
                 for (_, petJson):(String, JSON) in jsonData {
                     self.pets.append(Pet(jsonData: petJson))
                 }
+                print(self.pets)
             case .failure(let error):
                 print(error)
             }

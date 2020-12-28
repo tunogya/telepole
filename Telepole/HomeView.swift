@@ -41,27 +41,23 @@ struct PetCardItem: View {
         return cardWidth * 1.4
     }
     
-    let name: String
-    let variety: String
-    let age: String
-    let avator: String
-    let gender: String
+    let pet: Pet
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4.0) {
             Spacer()
-            Text(name)
+            Text(pet.name)
                 .font(.body)
                 .bold()
-            Text(variety)
+            Text(pet.variety)
                 .font(.callout)
             HStack(spacing: 4.0) {
                 Image(systemName: "clock")
                     .font(.footnote)
-                Text(age)
+                Text(pet.birthday)
                     .font(.footnote)
-                Image("")
-                Text(gender)
+//                Image("")
+                Text(pet.gender)
                     .font(.footnote)
                 Spacer()
             }.font(.body)
@@ -92,7 +88,7 @@ struct PetCards: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             ForEach(fetcher.pets) { pet in
-                PetCardItem(name: pet.name, variety: pet.variety, age: "5岁", avator: "", gender: pet.gender)
+                PetCardItem(pet: pet)
             }
         }
         .padding(.top)
