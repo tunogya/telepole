@@ -45,29 +45,33 @@ struct PetCardItem: View {
     let pet: Pet
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4.0) {
-            Spacer()
-            Text(pet.name)
-                .font(.body)
-                .bold()
-            Text(pet.variety)
-                .font(.callout)
-            HStack(spacing: 4.0) {
-                Image(systemName: "clock")
-                    .font(.footnote)
-                Text(pet.birthday)
-                    .font(.footnote)
-//                Image("")
-                Text(pet.gender)
-                    .font(.footnote)
+        ZStack{
+            WebImage(url: pet.avator)
+                .resizable()
+                .scaledToFill()
+            VStack(alignment: .leading, spacing: 4.0) {
                 Spacer()
-            }.font(.body)
+                Text(pet.name)
+                    .font(.body)
+                    .bold()
+                Text(pet.variety)
+                    .font(.callout)
+                HStack(spacing: 4.0) {
+                    Image(systemName: "clock")
+                        .font(.footnote)
+                    Text(pet.birthday)
+                        .font(.footnote)
+                    //                Image("")s
+                    Text(pet.gender)
+                        .font(.footnote)
+                    Spacer()
+                }.font(.body)
+            }
+            .padding()
         }
-        .padding()
+        .foregroundColor(.white)
         .frame(width: cardWidth ,height: 240, alignment: .center)
-        .background(WebImage(url: pet.avator)
-)
-        .cornerRadius(20)
+        .cornerRadius(24)
     }
 }
 
