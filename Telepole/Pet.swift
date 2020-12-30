@@ -16,14 +16,7 @@ struct Pet: Identifiable {
     var avator: URL
     var birthday: String
     var gender: String
-    
-    init(jsonData: JSON) {
-        id = jsonData["_id"].stringValue
-        name = jsonData["name"].stringValue
-        variety = jsonData["variety"].stringValue
-        address = jsonData["address"].stringValue
-        birthday = jsonData["birthday"].stringValue
-        gender = jsonData["gender"].stringValue
-        avator = URL(string: jsonData["avator"].stringValue)!
+    var shortbirthday: String {
+        return String(birthday.prefix(7))
     }
 }

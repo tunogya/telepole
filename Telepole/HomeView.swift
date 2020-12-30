@@ -12,22 +12,14 @@ struct HomeView: View {
     @State private var searchText = ""
     
     var body: some View {
-        VStack {
-            HomeHeader(searchText: $searchText, avator: "")
-            
+        NavigationView{
             ScrollView(showsIndicators: false) {
                 PetCards()
             }
-            
-            
-            Spacer()
-            
+            .padding()
+            .navigationTitle("Telepole")
         }
-        .padding()
     }
-    
-    
-
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -45,46 +37,30 @@ struct PetCardItem: View {
     let pet: Pet
     
     var body: some View {
-        ZStack{
-            WebImage(url: pet.avator)
-                .resizable()
-                .scaledToFill()
-            VStack(alignment: .leading, spacing: 4.0) {
-                Spacer()
-                Text(pet.name)
-                    .font(.body)
-                    .bold()
-                Text(pet.variety)
-                    .font(.callout)
-                HStack(spacing: 4.0) {
-                    Image(systemName: "clock")
-                        .font(.footnote)
-                    Text(pet.birthday)
-                        .font(.footnote)
-                    //                Image("")s
-                    Text(pet.gender)
-                        .font(.footnote)
-                    Spacer()
-                }.font(.body)
-            }
-            .padding()
-        }
-        .foregroundColor(.white)
-        .frame(width: cardWidth ,height: 240, alignment: .center)
-        .cornerRadius(24)
-    }
-}
-
-struct PetPicker: View {
-    var body: some View {
-        HStack(spacing: 15.0) {
-            ForEach(0 ..< 5) { item in
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 60, height: 60, alignment: .center)
-            }
+        VStack(alignment: .leading, spacing: 4.0) {
             Spacer()
+            Text(pet.name)
+                .font(.body)
+                .bold()
+            Text(pet.variety)
+                .font(.callout)
+            HStack(spacing: 4.0) {
+                Image(systemName: "clock")
+                    .font(.footnote)
+                Text(pet.shortbirthday)
+                    .font(.footnote)
+                Text(pet.gender)
+                    .font(.footnote)
+                Spacer()
+            }.font(.body)
         }
         .padding()
+        .foregroundColor(.white)
+        .frame(width: cardWidth ,height: 240, alignment: .center)
+        .background(WebImage(url: pet.avator)
+                            .resizable()
+                            .scaledToFill())
+        .cornerRadius(24)
     }
 }
 
@@ -94,30 +70,10 @@ struct PetCards: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             ForEach(fetcher.pets) { pet in
-                PetCardItem(pet: pet)
+                NavigationLink(destination: AboutView(pet: pet)) { PetCardItem(pet: pet)
+                }
             }
         }
         .padding(.top)
-    }
-}
-
-struct HomeHeader: View {
-    @Binding var searchText: String
-    var avator: String
-    
-    var body: some View {
-        HStack(spacing: 20.0) {
-            TextField("Placeholder", text: $searchText)
-                .font(.body)
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-                .frame(height: 44, alignment: .center)
-                .background(Color("GrayColor"), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .cornerRadius(10)
-           
-            
-            Circle()
-                .frame(width: 40, height: 40, alignment: .center)
-        }
     }
 }

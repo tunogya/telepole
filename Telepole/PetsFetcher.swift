@@ -24,7 +24,7 @@ public class PetsFetcher: ObservableObject {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
                 for (_, petJson):(String, JSON) in jsonData {
-                    self.pets.append(Pet(jsonData: petJson))
+                    self.pets.append(Pet(id: petJson["_id"].stringValue, name: petJson["name"].stringValue, variety: petJson["variety"].stringValue, address: petJson["address"].stringValue, avator: URL(string: petJson["avator"].stringValue)!, birthday: petJson["birthday"].stringValue, gender: petJson["gender"].stringValue))
                 }
                 print(self.pets)
             case .failure(let error):
@@ -32,6 +32,4 @@ public class PetsFetcher: ObservableObject {
             }
         }
     }
-    
-    
 }
