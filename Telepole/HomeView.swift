@@ -9,15 +9,52 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct HomeView: View {
-    @State private var searchText = ""
+    @State var isShareMyLocation: Bool = false
+    @State var isAnonymous: Bool = false
     
     var body: some View {
         NavigationView{
-            ScrollView(showsIndicators: false) {
-                PetCards()
+            ZStack{
+                Form{
+                    Section{
+                        Toggle(isOn: $isShareMyLocation) {
+                            Text("共享我的位置")
+                                .font(.body)
+                        }
+                    }
+                    
+                    Section{
+                        Toggle(isOn: $isAnonymous) {
+                            Text("匿名登陆")
+                                .font(.body)
+                        }
+                        if isAnonymous{
+                            TipsAnonymous()
+                        }else{
+                            Button(action: {
+                                print("注册一个宠物")
+                            }) {
+                                Text("注册一个宠物")
+                                    .font(.body)
+                                    .foregroundColor(.accentColor)
+                            }
+                        }
+                       
+                    }
+                  
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    ButtonEnter()
+                 
+                }
             }
-            .padding()
+         
             .navigationTitle("Telepole")
+            .navigationBarItems(trailing: StatusBar(isShareMyLocation: $isShareMyLocation, isAnonymous: $isAnonymous))
+            .ignoresSafeArea(.all)
         }
     }
 }
@@ -28,52 +65,47 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-struct PetCardItem: View {
-    let cardWidth = (SCREENWIDTH - 60)/2
-    var cardHeight: CGFloat {
-        return cardWidth * 1.4
-    }
-    
-    let pet: Pet
-    
+struct StatusBar: View {
+    @Binding var isShareMyLocation: Bool
+    @Binding var isAnonymous: Bool
     var body: some View {
-        VStack(alignment: .leading, spacing: 4.0) {
-            Spacer()
-            Text(pet.name)
-                .font(.body)
-                .bold()
-            Text(pet.variety)
-                .font(.callout)
-            HStack(spacing: 4.0) {
-                Image(systemName: "clock")
-                    .font(.footnote)
-                Text(pet.shortbirthday)
-                    .font(.footnote)
-                Text(pet.gender)
-                    .font(.footnote)
-                Spacer()
-            }.font(.body)
+        HStack{
+            // 如果是访客身份
+            Image(systemName: isShareMyLocation ? "location.fill" : "location.slash.fill")
+                .opacity(isShareMyLocation ? 1 : 0.2)
+                .animation(.easeOut)
+            
+            Image(systemName: isAnonymous ? "face.smiling.fill" : "face.dashed")
+                .opacity(isAnonymous ? 1 : 0.2)
+                .animation(.easeOut)
         }
-        .padding()
-        .foregroundColor(.white)
-        .frame(width: cardWidth ,height: 240, alignment: .center)
-        .background(WebImage(url: pet.avator)
-                            .resizable()
-                            .scaledToFill())
-        .cornerRadius(24)
+        .font(.body)
     }
 }
 
-struct PetCards: View {
-    @ObservedObject var fetcher = PetsFetcher()
-    
+struct ButtonEnter: View {
     var body: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-            ForEach(fetcher.pets) { pet in
-                NavigationLink(destination: AboutView(pet: pet)) { PetCardItem(pet: pet)
-                }
+        Button(action: {
+            print("进入世界")
+        }) {
+            HStack{
+                Spacer()
+                Text("进入")
+                    .font(.body)
+                    .foregroundColor(.white)
+                    .frame(height: 60)
+                Spacer()
             }
+            .padding(.bottom, 20)
+            .background(Color.accentColor)
         }
-        .padding(.top)
+    }
+}
+
+struct TipsAnonymous: View {
+    var body: some View {
+        Text("Session:")
+            .font(.body)
+            .foregroundColor(.secondary)
     }
 }
