@@ -18,6 +18,7 @@
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
 		173F05D6259324B600E662B8 /* TelepoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05D5259324B600E662B8 /* TelepoleTests.swift */; };
 		173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05E0259324B600E662B8 /* TelepoleUITests.swift */; };
+		177D1721259F269A00C75B4A /* AddPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* AddPetView.swift */; };
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
 		17D1D38A259A1C4C001B9CD2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D389259A1C4C001B9CD2 /* SDWebImageMapKit */; };
 		17D1D390259A1C69001B9CD2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D38F259A1C69001B9CD2 /* SDWebImageSwiftUI */; };
@@ -57,6 +58,7 @@
 		173F05DC259324B600E662B8 /* TelepoleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelepoleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
 		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		177D1720259F269A00C75B4A /* AddPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,13 +124,12 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
+				177D1714259CD26400C75B4A /* Views */,
 				17054B32259867AE001DE66A /* Models */,
 				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
 				173F05C7259324B600E662B8 /* Assets.xcassets */,
 				173F05CC259324B600E662B8 /* Info.plist */,
 				173F05C9259324B600E662B8 /* Preview Content */,
-				17322ADF2593644600A0049B /* HomeView.swift */,
-				17322AE42593645500A0049B /* MapView.swift */,
 			);
 			path = Telepole;
 			sourceTree = "<group>";
@@ -157,6 +158,16 @@
 				173F05E2259324B600E662B8 /* Info.plist */,
 			);
 			path = TelepoleUITests;
+			sourceTree = "<group>";
+		};
+		177D1714259CD26400C75B4A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				17322ADF2593644600A0049B /* HomeView.swift */,
+				17322AE42593645500A0049B /* MapView.swift */,
+				177D1720259F269A00C75B4A /* AddPetView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
 				17054B34259867CE001DE66A /* Pet.swift in Sources */,
 				17322AE02593644600A0049B /* HomeView.swift in Sources */,
+				177D1721259F269A00C75B4A /* AddPetView.swift in Sources */,
 				17054B3C25986A85001DE66A /* PetsFetcher.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);

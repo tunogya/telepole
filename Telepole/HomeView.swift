@@ -11,47 +11,49 @@ import SDWebImageSwiftUI
 struct HomeView: View {
     @State var isShareMyLocation: Bool = false
     @State var isAnonymous: Bool = false
+    var pets = ["贝贝", "七喜"]
+    @State private var selectedPets = 0
     
     var body: some View {
         NavigationView{
             ZStack{
                 Form{
-                    Section{
+                    Section {
                         Toggle(isOn: $isShareMyLocation) {
                             Text("共享我的位置")
                                 .font(.body)
                         }
                     }
                     
-                    Section{
+                    Section {
                         Toggle(isOn: $isAnonymous) {
-                            Text("匿名登陆")
+                            Text(isAnonymous ? "匿名登陆" : "实名登陆")
                                 .font(.body)
                         }
                         if isAnonymous{
+                            // 显示匿名登录的 Session
                             TipsAnonymous()
                         }else{
-                            Button(action: {
-                                print("注册一个宠物")
-                            }) {
-                                Text("注册一个宠物")
-                                    .font(.body)
-                                    .foregroundColor(.accentColor)
+                            // 呈现宠物集合
+                            Picker(selection: $selectedPets, label: Text("已注册宠物")) {
+                                ForEach(0 ..< pets.count) {
+                                    Text(self.pets[$0])
+                                }
                             }
+                            ButtonRegister()
                         }
-                       
                     }
-                  
+                    
                 }
                 
                 VStack {
                     Spacer()
                     
                     ButtonEnter()
-                 
+                    
                 }
             }
-         
+            
             .navigationTitle("Telepole")
             .navigationBarItems(trailing: StatusBar(isShareMyLocation: $isShareMyLocation, isAnonymous: $isAnonymous))
             .ignoresSafeArea(.all)
@@ -96,7 +98,7 @@ struct ButtonEnter: View {
                     .frame(height: 60)
                 Spacer()
             }
-            .padding(.bottom, 20)
+            .padding(.bottom, 23)
             .background(Color.accentColor)
         }
     }
@@ -109,3 +111,21 @@ struct TipsAnonymous: View {
             .foregroundColor(.secondary)
     }
 }
+
+struct ButtonRegister: View {
+    @State var isShowAddPetView: Bool = false
+    var body: some View {
+        Button(action: {
+            debugPrint("跳转到AddPetView:\(isShowAddPetView)")
+            isShowAddPetView.toggle()
+        }) {
+            Text("添加一个宠物")
+                .font(.body)
+                .foregroundColor(.accentColor)
+                .sheet(isPresented: $isShowAddPetView, content: {
+                    AddPetView(isShowAddPetView: $isShowAddPetView)
+                })
+        }
+    }
+}
+
