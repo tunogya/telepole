@@ -113,7 +113,7 @@ struct TipsAnonymous: View {
 }
 
 struct ButtonRegister: View {
-    @State var isShowAddPetView: Bool = false
+    @State var isShowAddPetView: Bool = true
     var body: some View {
         Button(action: {
             debugPrint("跳转到AddPetView:\(isShowAddPetView)")
