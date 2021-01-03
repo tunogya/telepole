@@ -42,8 +42,7 @@ struct HomeView: View {
                             }
                             ButtonRegister()
                         }
-                    }
-                    
+                    } 
                 }
                 
                 VStack {

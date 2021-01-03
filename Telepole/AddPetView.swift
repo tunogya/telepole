@@ -13,8 +13,6 @@ struct AddPetView: View {
     @State var selectedIndex: Int = 1
     @State var isShowCode: Bool = false
     
-    
-    
     var body: some View {
         NavigationView{
             Form {
