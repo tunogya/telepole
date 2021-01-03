@@ -19,6 +19,7 @@ struct MapView: View {
             Map(coordinateRegion: $region)
             
             DetailView()
+                .offset(y: 600)
             
             
         }
@@ -36,14 +37,20 @@ struct MapView_Previews: PreviewProvider {
 struct DetailView: View {
     var body: some View {
         VStack{
+            RoundedRectangle(cornerRadius: 6)
+                .foregroundColor(.black)
+                .frame(width: 60, height: 6, alignment: .center)
+                .padding(.vertical, 10)
             HStack {
                 Text("周围的人")
-                    .font(.title3)
+                    .font(.title2)
+                    .bold()
                 Spacer()
             }
             .padding(.horizontal)
             Spacer()
         }
-        .padding(.top, 30)
+        .background(Color.white)
+        .cornerRadius(20)
     }
 }

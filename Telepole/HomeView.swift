@@ -49,12 +49,12 @@ struct HomeView: View {
                 VStack {
                     Spacer()
                     
-                    ButtonEnter()
-                    
+                    NavigationLink(destination: MapView()) {
+                        ButtonEnterMap()
+                    }
                 }
             }
-            
-            .navigationTitle("Telepole")
+            .navigationBarTitle("Telepole", displayMode: .large)
             .navigationBarItems(trailing: StatusBar(isShareMyLocation: $isShareMyLocation, isAnonymous: $isAnonymous))
             .ignoresSafeArea(.all)
         }
@@ -85,24 +85,6 @@ struct StatusBar: View {
     }
 }
 
-struct ButtonEnter: View {
-    var body: some View {
-        Button(action: {
-            print("进入世界")
-        }) {
-            HStack{
-                Spacer()
-                Text("进入")
-                    .font(.body)
-                    .foregroundColor(.white)
-                    .frame(height: 60)
-                Spacer()
-            }
-            .padding(.bottom, 23)
-            .background(Color.accentColor)
-        }
-    }
-}
 
 struct TipsAnonymous: View {
     var body: some View {
@@ -113,7 +95,7 @@ struct TipsAnonymous: View {
 }
 
 struct ButtonRegister: View {
-    @State var isShowAddPetView: Bool = true
+    @State var isShowAddPetView: Bool = false
     var body: some View {
         Button(action: {
             debugPrint("跳转到AddPetView:\(isShowAddPetView)")
@@ -129,3 +111,18 @@ struct ButtonRegister: View {
     }
 }
 
+
+struct ButtonEnterMap: View {
+    var body: some View {
+        HStack{
+            Spacer()
+            Text("进入")
+                .font(.body)
+                .foregroundColor(.white)
+                .frame(height: 60)
+            Spacer()
+        }
+        .padding(.bottom, 23)
+        .background(Color.accentColor)
+    }
+}
