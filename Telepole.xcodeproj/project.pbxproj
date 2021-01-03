@@ -19,6 +19,7 @@
 		173F05D6259324B600E662B8 /* TelepoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05D5259324B600E662B8 /* TelepoleTests.swift */; };
 		173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05E0259324B600E662B8 /* TelepoleUITests.swift */; };
 		177D1721259F269A00C75B4A /* AddPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* AddPetView.swift */; };
+		177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D172825A2043A00C75B4A /* VisualEffectBlur.swift */; };
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
 		17D1D38A259A1C4C001B9CD2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D389259A1C4C001B9CD2 /* SDWebImageMapKit */; };
 		17D1D390259A1C69001B9CD2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D38F259A1C69001B9CD2 /* SDWebImageSwiftUI */; };
@@ -59,6 +60,7 @@
 		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
 		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* AddPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPetView.swift; sourceTree = "<group>"; };
+		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		177D1714259CD26400C75B4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				177D172825A2043A00C75B4A /* VisualEffectBlur.swift */,
 				17322ADF2593644600A0049B /* HomeView.swift */,
 				17322AE42593645500A0049B /* MapView.swift */,
 				177D1720259F269A00C75B4A /* AddPetView.swift */,
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */,
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
 				17054B34259867CE001DE66A /* Pet.swift in Sources */,
 				17322AE02593644600A0049B /* HomeView.swift in Sources */,
