@@ -19,10 +19,10 @@ struct MapView: View {
             Map(coordinateRegion: $region)
             
             PetListView()
-                .offset(y: 80)
+                .offset(y: 200)
             
             PetDetailView()
-                .offset(y: 80)
+                .offset(y: 200)
             
         }
             .ignoresSafeArea(.all)
@@ -37,24 +37,12 @@ struct MapView_Previews: PreviewProvider {
 
 
 struct PetListView: View {
-    let title = "注册宠物列表"
-    
     var body: some View {
         VStack{
             RoundedRectangle(cornerRadius: 6)
                 .foregroundColor(.secondary)
                 .frame(width: 46, height: 6, alignment: .center)
                 .padding(.top, 12)
-            
-            HStack {
-                Text(title)
-                    .bold()
-
-                Spacer()
-            }
-            .foregroundColor(.secondary)
-            .font(.title2)
-            .padding(.horizontal)
             
             Form {
                 Section(header: Text("附近")) {
@@ -67,7 +55,7 @@ struct PetListView: View {
                 
             }
         }
-        .background(Color.accentColor)
+        .background(Color(.systemGroupedBackground))
         .cornerRadius(20)
     }
 }
@@ -113,7 +101,7 @@ struct PetDetailView: View {
             
             Spacer()
         }
-        .background(Color.white)
+        .background(Color(.systemGroupedBackground))
         .cornerRadius(20)
     }
 }
