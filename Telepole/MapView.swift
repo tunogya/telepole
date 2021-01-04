@@ -18,9 +18,11 @@ struct MapView: View {
         ZStack {
             Map(coordinateRegion: $region)
             
-            DetailView()
+            PetListView()
                 .offset(y: 80)
             
+            PetDetailView()
+                .offset(y: 80)
             
         }
             .ignoresSafeArea(.all)
@@ -34,32 +36,145 @@ struct MapView_Previews: PreviewProvider {
 }
 
 
-struct DetailView: View {
-    let title = "附近的宠物"
+struct PetListView: View {
+    let title = "注册宠物列表"
     
     var body: some View {
         VStack{
             RoundedRectangle(cornerRadius: 6)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
                 .frame(width: 46, height: 6, alignment: .center)
                 .padding(.top, 12)
+            
             HStack {
                 Text(title)
-                    .font(.title2)
                     .bold()
-                    .foregroundColor(.black)
+
                 Spacer()
             }
+            .foregroundColor(.secondary)
+            .font(.title2)
             .padding(.horizontal)
             
-            Divider()
-                .background(Color.white)
-            
             Form {
-                Text("七喜")
+                Section(header: Text("附近")) {
+                    Text("七喜")
+                }
+                
+                Section(header: Text("更远")) {
+                    Text("贝贝")
+                }
+                
             }
         }
+        .background(Color.accentColor)
         .cornerRadius(20)
-        
+    }
+}
+
+
+struct PetDetailView: View {
+    var body: some View {
+        VStack{
+            RoundedRectangle(cornerRadius: 6)
+                .foregroundColor(.secondary)
+                .frame(width: 46, height: 6, alignment: .center)
+                .padding(.top, 12)
+            
+            // 标题
+            HStack(spacing: 20) {
+                Text("贝贝")
+                    .bold()
+                    .foregroundColor(.black)
+                
+                Text("关注")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+                Spacer()
+                
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundColor(.secondary)
+            }
+            .font(.title2)
+            .padding(.horizontal)
+            
+            
+            Divider()
+                
+            // 信息介绍
+            PetInfo()
+                .padding(.horizontal)
+            
+            // 我的动态
+            MyLife()
+                .padding(.horizontal)
+            
+            
+            
+            Spacer()
+        }
+        .background(Color.white)
+        .cornerRadius(20)
+    }
+}
+
+struct PetInfo: View {
+    var body: some View {
+        VStack(spacing: 10) {
+            Text("贝贝的介绍")
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.body)
+            
+            VStack(spacing: 10) {
+                HStack {
+                    Image(systemName: "location")
+                    Text("距离你25km")
+                        .padding(.leading, -4)
+                        .padding(.trailing, 6)
+                    Image(systemName: "calendar")
+                    Text("2020年8月加入")
+                        .padding(.leading, -4)
+                    Spacer()
+                }
+                HStack {
+                    Group {
+                        Text("500")
+                            .bold()
+                            .foregroundColor(.accentColor)
+                        Text("喵喵币")
+                            .padding(.leading, -4)
+                            .padding(.trailing, 6)
+                    }
+                    
+                    Group {
+                        Text("2000")
+                            .bold()
+                            .foregroundColor(.accentColor)
+                        Text("关注者")
+                            .padding(.leading, -4)
+                    }
+                    
+                    Spacer()
+                }
+            }
+            .font(.footnote)
+            .foregroundColor(.secondary)
+            
+        }
+        .padding(.vertical, 10)
+    }
+}
+
+struct MyLife: View {
+    @State var pickerIndex = 1
+    
+    var body: some View {
+        Picker(selection: $pickerIndex, label: Text("Picker")) {
+            Text("朋友圈").tag(1)
+            Text("照片").tag(2)
+            Text("直播").tag(3)
+        }
+        .pickerStyle(SegmentedPickerStyle())
     }
 }

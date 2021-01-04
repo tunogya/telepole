@@ -113,15 +113,12 @@ struct ButtonRegister: View {
 
 struct ButtonEnterMap: View {
     var body: some View {
-        HStack{
-            Spacer()
-            Text("进入")
-                .font(.body)
-                .foregroundColor(.white)
-                .frame(height: 60)
-            Spacer()
-        }
-        .padding(.bottom, 23)
-        .background(Color.accentColor)
+        Text("进入")
+            .font(.body)
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .padding(.bottom, 23)
+            .background(Color.accentColor)
     }
 }
