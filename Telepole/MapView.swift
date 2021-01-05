@@ -11,18 +11,83 @@ import MapKit
 var SCREENWIDTH = UIScreen.main.bounds.width
 var SCREENHEIGHT = UIScreen.main.bounds.height
 
+private let OFFSET_S = CGSize(width: 0, height: SCREENHEIGHT - 240)
+// 半屏显示
+private let OFFSET_M = CGSize(width: 0, height: 200)
+
+// 触摸保持距离
+private let KeepDistance: CGFloat = 100
+
+
+
 struct MapView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    @State var dragOffset = OFFSET_M                    // 每次拖拽
+    @State var varOffset = CGSize.zero
+    @State var currentOffset = OFFSET_M
+    
+    var drag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                varOffset = value.translation
+                
+                if currentOffset == OFFSET_M {
+                    if varOffset.height < 0 {
+                        dragOffset.height = currentOffset.height
+                    }else{
+                        dragOffset.height = currentOffset.height + varOffset.height
+                    }
+                }else if currentOffset == OFFSET_S {
+                    if varOffset.height > 0 {
+                        dragOffset.height = currentOffset.height
+                    }else{
+                        dragOffset.height = currentOffset.height + varOffset.height
+                    }
+                }
+                
+                
+            }
+            .onEnded { value in
+                // 控制滑动
+                if currentOffset == OFFSET_M {
+                    if varOffset.height <= KeepDistance && varOffset.height >= 0{
+                        dragOffset = OFFSET_M
+                    }else if varOffset.height > KeepDistance {
+                        dragOffset = OFFSET_S
+                    }else{
+                        dragOffset = OFFSET_M
+                    }
+                }else if currentOffset == OFFSET_S {
+                    if varOffset.height >= -KeepDistance && varOffset.height <= 0 {
+                        dragOffset = OFFSET_S
+                    }else if varOffset.height < -KeepDistance {
+                        dragOffset = OFFSET_M
+                    }else{
+                        dragOffset = OFFSET_S
+                    }
+                }else{
+                    dragOffset = OFFSET_S
+                }
+                // 将滑动写入当前的Offset
+                currentOffset = dragOffset
+            }
+    }
     
     var body: some View {
         ZStack {
             Map(coordinateRegion: $region)
             
             PetListView()
-                .offset(y: 200)
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
             
             PetDetailView()
-                .offset(y: 200)
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
             
         }
             .ignoresSafeArea(.all)
@@ -34,7 +99,6 @@ struct MapView_Previews: PreviewProvider {
         MapView()
     }
 }
-
 
 struct PetListView: View {
     var body: some View {
@@ -59,7 +123,6 @@ struct PetListView: View {
         .cornerRadius(20)
     }
 }
-
 
 struct PetDetailView: View {
     var body: some View {
@@ -97,7 +160,7 @@ struct PetDetailView: View {
             MyLife()
                 .padding(.horizontal)
             
-            
+        
             
             Spacer()
         }
@@ -129,7 +192,7 @@ struct PetInfo: View {
                     Group {
                         Text("500")
                             .bold()
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(.black)
                         Text("喵喵币")
                             .padding(.leading, -4)
                             .padding(.trailing, 6)
@@ -138,7 +201,7 @@ struct PetInfo: View {
                     Group {
                         Text("2000")
                             .bold()
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(.black)
                         Text("关注者")
                             .padding(.leading, -4)
                     }

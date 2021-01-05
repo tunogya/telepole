@@ -84,7 +84,6 @@ struct StatusBar: View {
     }
 }
 
-
 struct TipsAnonymous: View {
     var body: some View {
         Text("Session:")
@@ -109,7 +108,6 @@ struct ButtonRegister: View {
         }
     }
 }
-
 
 struct ButtonEnterMap: View {
     var body: some View {
