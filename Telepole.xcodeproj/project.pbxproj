@@ -46,7 +46,7 @@
 		17054B33259867CE001DE66A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		17054B3B25986A85001DE66A /* PetsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsFetcher.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		17322AE42593645500A0049B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		17322AE42593645500A0049B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		173F05C0259324B300E662B8 /* Telepole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05C3259324B300E662B8 /* TelepoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleApp.swift; sourceTree = "<group>"; };

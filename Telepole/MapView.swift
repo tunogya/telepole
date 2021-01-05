@@ -13,7 +13,7 @@ var SCREENHEIGHT = UIScreen.main.bounds.height
 
 private let OFFSET_S = CGSize(width: 0, height: SCREENHEIGHT - 240)
 // 半屏显示
-private let OFFSET_M = CGSize(width: 0, height: 200)
+private let OFFSET_M = CGSize(width: 0, height: 160)
 
 // 触摸保持距离
 private let KeepDistance: CGFloat = 100
@@ -22,9 +22,10 @@ private let KeepDistance: CGFloat = 100
 
 struct MapView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    @State var dragOffset = OFFSET_M                    // 每次拖拽
+    @State var dragOffset = OFFSET_S                // 每次拖拽
     @State var varOffset = CGSize.zero
-    @State var currentOffset = OFFSET_M
+    @State var currentOffset = OFFSET_S
+    @State var isShowDetail = true
     
     var drag: some Gesture {
         DragGesture()
@@ -77,20 +78,23 @@ struct MapView: View {
         ZStack {
             Map(coordinateRegion: $region)
             
-            PetListView()
+            PetListView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
+                .animation(.spring())
             
-            PetDetailView()
+            PetDetailView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
+                .offset(y: isShowDetail ? 0 : SCREENHEIGHT)
+                .animation(.spring())
             
         }
-            .ignoresSafeArea(.all)
+        .ignoresSafeArea(.all)
     }
 }
 
@@ -101,6 +105,8 @@ struct MapView_Previews: PreviewProvider {
 }
 
 struct PetListView: View {
+    @Binding var isShowDetail: Bool
+    
     var body: some View {
         VStack{
             RoundedRectangle(cornerRadius: 6)
@@ -110,11 +116,19 @@ struct PetListView: View {
             
             Form {
                 Section(header: Text("附近")) {
-                    Text("七喜")
+                    Button(action: {
+                        isShowDetail = true
+                    }) {
+                        Text("七喜")
+                    }
                 }
                 
                 Section(header: Text("更远")) {
-                    Text("贝贝")
+                    Button(action: {
+                        isShowDetail = true
+                    }) {
+                        Text("贝贝")
+                    }
                 }
                 
             }
@@ -125,6 +139,8 @@ struct PetListView: View {
 }
 
 struct PetDetailView: View {
+    @Binding var isShowDetail: Bool
+    
     var body: some View {
         VStack{
             RoundedRectangle(cornerRadius: 6)
@@ -143,8 +159,12 @@ struct PetDetailView: View {
                     .foregroundColor(.accentColor)
                 Spacer()
                 
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.secondary)
+                Button(action: {
+                    isShowDetail = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.secondary)
+                }
             }
             .font(.title2)
             .padding(.horizontal)
