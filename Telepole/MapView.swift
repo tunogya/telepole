@@ -11,21 +11,18 @@ import MapKit
 var SCREENWIDTH = UIScreen.main.bounds.width
 var SCREENHEIGHT = UIScreen.main.bounds.height
 
+// 显示
 private let OFFSET_S = CGSize(width: 0, height: SCREENHEIGHT - 240)
-// 半屏显示
 private let OFFSET_M = CGSize(width: 0, height: 160)
-
 // 触摸保持距离
-private let KeepDistance: CGFloat = 100
-
-
+private let KEEPDISTENCE: CGFloat = 100
 
 struct MapView: View {
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var dragOffset = OFFSET_S                // 每次拖拽
     @State var varOffset = CGSize.zero
     @State var currentOffset = OFFSET_S
-    @State var isShowDetail = true
+    @State var isShowDetail = false
     
     var drag: some Gesture {
         DragGesture()
@@ -51,17 +48,17 @@ struct MapView: View {
             .onEnded { value in
                 // 控制滑动
                 if currentOffset == OFFSET_M {
-                    if varOffset.height <= KeepDistance && varOffset.height >= 0{
+                    if varOffset.height <= KEEPDISTENCE && varOffset.height >= 0{
                         dragOffset = OFFSET_M
-                    }else if varOffset.height > KeepDistance {
+                    }else if varOffset.height > KEEPDISTENCE {
                         dragOffset = OFFSET_S
                     }else{
                         dragOffset = OFFSET_M
                     }
                 }else if currentOffset == OFFSET_S {
-                    if varOffset.height >= -KeepDistance && varOffset.height <= 0 {
+                    if varOffset.height >= -KEEPDISTENCE && varOffset.height <= 0 {
                         dragOffset = OFFSET_S
-                    }else if varOffset.height < -KeepDistance {
+                    }else if varOffset.height < -KEEPDISTENCE {
                         dragOffset = OFFSET_M
                     }else{
                         dragOffset = OFFSET_S
