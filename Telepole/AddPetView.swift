@@ -10,8 +10,29 @@ import SwiftUI
 struct AddPetView: View {
     @State var codeInput: String = ""
     @Binding var isShowAddPetView: Bool
-    @State var selectedIndex: Int = 1
+    @State var selectedIndex: Int = 2
     @State var isShowCode: Bool = false
+    
+    @State var name = ""
+    @State var username = ""
+    @State var birthday = Date.init()
+    @State var color = Color.red
+    
+    var is_name_valid: Bool {
+        if name.isEmpty{
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    var is_username_valid: Bool  {
+        if username.isEmpty{
+            return false
+        }else{
+            return true
+        }
+    }
     
     var body: some View {
         NavigationView{
@@ -20,8 +41,7 @@ struct AddPetView: View {
                     Text("已注册").tag(1)
                     Text("新注册").tag(2)
                 }
-                .padding(.horizontal)
-                .padding(.top)
+                .padding()
                 .pickerStyle(SegmentedPickerStyle())
                 .background(Color(.systemGroupedBackground))
                 
@@ -46,7 +66,6 @@ struct AddPetView: View {
                             }
                             .font(.body)
                             
-                            
                             Button(action: {
                                 debugPrint("提交信息")
                             }) {
@@ -54,14 +73,36 @@ struct AddPetView: View {
                             }
                         }
                     }else if selectedIndex == 2 {
+                        Section(header: Text("宠物信息")) {
+                            TextField("请输入宠物姓名", text: $name)
+                            HStack {
+                                Text("@")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                                TextField("请输入唯一标识的域名", text: $username)
+                            }
+                            DatePicker(selection: $birthday, label: { Text("生日") })
+                        }
+                        
+                        Section(header: Text("地图设置")) {
+                            ColorPicker("自定义标识色", selection: $color)
+                        }
+                        
                         Section {
-                            //                        TextField("Placeholder", text: )
+                            Button(action: {
+                                print("\(name)")
+                                print("\(username)")
+                                print("\(birthday)")
+                                print("\(color)")
+                            }) {
+                                Text("立即注册该宠物")
+                            }
                         }
                     }
                     
                 }
             }
-            .navigationBarTitle(Text("增加宠物信息"), displayMode: .inline)
+            .navigationBarTitle(Text("增加宠物"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 print("Dismissing sheet view...")
                 self.isShowAddPetView = false
@@ -70,10 +111,19 @@ struct AddPetView: View {
             })
         }
     }
+    
+    
 }
 
-//struct AddPetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddPetView(isShowAddPetView: )
-//    }
-//}
+struct AddPetView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddPetView_Previews_Test()
+    }
+}
+
+struct AddPetView_Previews_Test: View {
+    @State var isShowAddPetView = true
+    var body: some View {
+        AddPetView(isShowAddPetView: $isShowAddPetView)
+    }
+}

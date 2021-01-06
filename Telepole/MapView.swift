@@ -106,9 +106,7 @@ struct PetListView: View {
     
     var body: some View {
         VStack{
-            RoundedRectangle(cornerRadius: 6)
-                .foregroundColor(.secondary)
-                .frame(width: 46, height: 6, alignment: .center)
+            SliderIndicator()
                 .padding(.top, 12)
             
             Form {
@@ -140,20 +138,16 @@ struct PetDetailView: View {
     
     var body: some View {
         VStack{
-            RoundedRectangle(cornerRadius: 6)
-                .foregroundColor(.secondary)
-                .frame(width: 46, height: 6, alignment: .center)
+            SliderIndicator()
                 .padding(.top, 12)
-            
             // 标题
             HStack(spacing: 20) {
                 Text("贝贝")
                     .bold()
-                    .foregroundColor(.black)
                 
-                Text("关注")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+//                Text("关注")
+//                    .font(.body)
+//                    .foregroundColor(Color("GrayColor"))
                 Spacer()
                 
                 Button(action: {
@@ -244,5 +238,13 @@ struct MyLife: View {
             Text("直播").tag(3)
         }
         .pickerStyle(SegmentedPickerStyle())
+    }
+}
+
+struct SliderIndicator: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 6)
+            .foregroundColor(.secondary)
+            .frame(width: 46, height: 6, alignment: .center)
     }
 }

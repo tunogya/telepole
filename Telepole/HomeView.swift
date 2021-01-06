@@ -113,7 +113,7 @@ struct ButtonEnterMap: View {
     var body: some View {
         Text("进入")
             .font(.body)
-            .foregroundColor(.white)
+            .foregroundColor(Color("GrayColor"))
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .padding(.bottom, 23)
