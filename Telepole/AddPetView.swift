@@ -18,6 +18,17 @@ struct AddPetView: View {
     @State var birthday = Date.init()
     @State var color = Color.red
     
+    var birthdayRange: PartialRangeThrough<Date> = {
+        let calendar = Calendar.current
+        var today = Date()
+        var today_year = calendar.component(.year, from: today);
+        var today_month = calendar.component(.month, from: today);
+        var today_day = calendar.component(.day, from: today);
+        let endComponents = DateComponents(year: today_year, month: today_month, day: today_day)
+        return
+            ...calendar.date(from:endComponents)!
+    }()
+    
     var is_name_valid: Bool {
         if name.isEmpty{
             return false
@@ -81,7 +92,12 @@ struct AddPetView: View {
                                     .foregroundColor(.secondary)
                                 TextField("请输入唯一标识的域名", text: $username)
                             }
-                            DatePicker(selection: $birthday, label: { Text("生日") })
+                            DatePicker(
+                                "生日",
+                                selection: $birthday,
+                                in: birthdayRange,
+                                displayedComponents: [.date]
+                            )
                         }
                         
                         Section(header: Text("地图设置")) {
