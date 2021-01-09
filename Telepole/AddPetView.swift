@@ -31,7 +31,7 @@ struct AddPetView: View {
             return false
         }else{
             return true
-        }
+        }   
     }
     
     var body: some View {

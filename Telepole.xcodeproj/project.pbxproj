@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17054B34259867CE001DE66A /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* Pet.swift */; };
-		17054B3C25986A85001DE66A /* PetsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B3B25986A85001DE66A /* PetsFetcher.swift */; };
+		17054B34259867CE001DE66A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* User.swift */; };
 		17322AE02593644600A0049B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* HomeView.swift */; };
 		17322AE52593645500A0049B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* MapView.swift */; };
 		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
@@ -43,8 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17054B33259867CE001DE66A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
-		17054B3B25986A85001DE66A /* PetsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsFetcher.swift; sourceTree = "<group>"; };
+		17054B33259867CE001DE66A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		17322AE42593645500A0049B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -96,8 +94,7 @@
 		17054B32259867AE001DE66A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				17054B33259867CE001DE66A /* Pet.swift */,
-				17054B3B25986A85001DE66A /* PetsFetcher.swift */,
+				17054B33259867CE001DE66A /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -317,10 +314,9 @@
 			files = (
 				177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */,
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
-				17054B34259867CE001DE66A /* Pet.swift in Sources */,
+				17054B34259867CE001DE66A /* User.swift in Sources */,
 				17322AE02593644600A0049B /* HomeView.swift in Sources */,
 				177D1721259F269A00C75B4A /* AddPetView.swift in Sources */,
-				17054B3C25986A85001DE66A /* PetsFetcher.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
