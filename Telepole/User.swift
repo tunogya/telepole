@@ -26,32 +26,22 @@ struct User: Identifiable {
     }
 }
 
-public class UserFetcherById: ObservableObject {
-    @Published var user = User(
-        id: "",
-        name: "",
-        username: "",
-        description: "",
-        profile_image_url: URL(string: "")!,
-        protected: false,
-        verified: false,
-        variety: "",
-        birthday: "",
-        gender: ""
-    )
+// 根据ID获取用户数据
+public class UserFetcherById {
+    var user = User(id: <#T##String#>, name: <#T##String#>, username: <#T##String#>, description: <#T##String#>, profile_image_url: <#T##URL#>, protected: <#T##Bool#>, verified: <#T##Bool#>, variety: <#T##String#>, birthday: <#T##String#>, gender: <#T##String#>)
     
     init(id: String) {
-        self.getInfoById(id: id)
+        self.load(id: id)
     }
     
-    func getInfoById(id: String) {
+    func load(id: String) {
         let url = URL(string: "\(HOSTNAME)/telepole/v1.0/User/\(id)")!
         
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
-                self.user = User(
+                self.user =  User(
                     id: jsonData["_id"].stringValue,
                     name: jsonData["description"].stringValue,
                     username: jsonData["name"].stringValue,
@@ -70,4 +60,3 @@ public class UserFetcherById: ObservableObject {
         }
     }
 }
-
