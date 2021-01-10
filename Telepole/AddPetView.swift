@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddPetView: View {
-    @State var codeInput: String = "b45a21d55ff9c845043f6ce61eaba5de"
+    @State var IdInput: String = "b45a21d55ff9c845043f6ce61eaba5de"
     @Binding var isShowAddPetView: Bool
     @State var selectedIndex: Int = 2
     @State var isShowCode: Bool = false
@@ -53,10 +53,10 @@ struct AddPetView: View {
                         Section {
                             HStack {
                                 if isShowCode {
-                                    TextField("请输入已注册宠物的Code地址", text: $codeInput)
+                                    TextField("请输入已注册宠物的Id地址", text: $IdInput)
                                         .foregroundColor(.black)
                                 } else {
-                                    SecureField("请输入已注册宠物的Code地址", text: $codeInput)
+                                    SecureField("请输入已注册宠物的Id地址", text: $IdInput)
                                         .foregroundColor(.black)
                                 }
                                 
@@ -70,7 +70,7 @@ struct AddPetView: View {
                             .font(.body)
                             
                             Button(action: {
-                                UserApi().getUserById(id: codeInput) { (user) in
+                                UserApi().getUserById(id: IdInput) { (user) in
                                     print(user)
                                 }
                             }) {

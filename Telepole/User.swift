@@ -23,6 +23,7 @@ struct User: Identifiable {
 }
 
 class UserApi {
+//    根据用户id查询用户信息
     func getUserById(id: String, completion: @escaping (User) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
         AF.request(url).responseJSON { response in
