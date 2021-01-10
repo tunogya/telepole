@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import Telepole
+import Alamofire
+import SwiftyJSON
 
 class TelepoleTests: XCTestCase {
 
@@ -19,9 +21,23 @@ class TelepoleTests: XCTestCase {
     }
 
     func testExample() throws {
-        print("Hello")
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // 注册用户
+        let url = URL(string: "\(HOSTNAME)/telepole/v1.0/User/")!
+        
+        print(url)
+        
+//        AF.request(url,
+//                   method: .post,
+//                   parameters: data,
+//                   encoder: JSONParameterEncoder.default).response { response in
+//            debugPrint(response)
+//        }
+        
+        
+        
+        
+        
+        
     }
 
     func testPerformanceExample() throws {

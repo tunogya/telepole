@@ -24,17 +24,6 @@ struct User: Identifiable {
    
 }
 
-struct UserCreateParameters: Encodable {
-    let name: String
-    let username: String
-    let description: String
-//    let profile_image: FILE
-    let protected: Bool
-    let verified: Bool
-    let variety: String
-    let gender: String
-}
-
 // 根据ID获取用户数据
 public class UserFetcherById {
     var user = User(code: "", name: "", username: "", description: "", profile_image_url: "", protected: false, verified: false, variety: "", gender: "boy")
@@ -44,8 +33,8 @@ public class UserFetcherById {
     }
     
     func load(id: String) {
-        let url = URL(string: "\(HOSTNAME)/telepole/v1.0/User/\(id)")!
-        
+        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
+    
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -61,24 +50,11 @@ public class UserFetcherById {
                     variety: jsonData["variety"].stringValue,
                     gender: jsonData["gender"].stringValue
                 )
+                print("网络请求")
                 print(self.user)
             case .failure(let error):
                 print(error)
             }
-        }
-    }
-}
-
-// 注册用户
-public class UserCreate {
-    func create(data: UserCreateParameters) {
-        let url = URL(string: "\(HOSTNAME)/telepole/v1.0/User/")!
-        
-        AF.request(url,
-                   method: .post,
-                   parameters: data,
-                   encoder: JSONParameterEncoder.default).response { response in
-            debugPrint(response)
         }
     }
 }

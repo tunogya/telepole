@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddPetView: View {
-    @State var codeInput: String = ""
+    @State var codeInput: String = "b45a21d55ff9c845043f6ce61eaba5de"
     @Binding var isShowAddPetView: Bool
     @State var selectedIndex: Int = 2
     @State var isShowCode: Bool = false
@@ -17,7 +17,7 @@ struct AddPetView: View {
     @State var username = ""
     @State var genderIndex = 1
     @State var variety = ""
-    @State var color = Color.red
+//    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
     
     var is_name_valid: Bool {
         if name.isEmpty{
@@ -70,7 +70,8 @@ struct AddPetView: View {
                             .font(.body)
                             
                             Button(action: {
-                                debugPrint("提交信息")
+                                print("codeInput=\(codeInput)")
+                                print(UserFetcherById.init(id: codeInput))
                             }) {
                                 Text("提交")
                             }
@@ -92,16 +93,17 @@ struct AddPetView: View {
                             TextField("品种", text: $variety)
                         }
                         
-                        Section(header: Text("地图设置")) {
-                            ColorPicker("自定义标识色", selection: $color)
-                        }
+//                        Section(header: Text("地图设置")) {
+//                            ColorPicker("自定义标识色", selection: $color)
+//                        }
                         
                         Section {
                             Button(action: {
                                 print("\(name)")
                                 print("\(username)")
                                 print("\(genderIndex)")
-                                print("\(color)")
+                                
+//                                print("\(color.description)")
                             }) {
                                 Text("立即注册该宠物")
                             }
