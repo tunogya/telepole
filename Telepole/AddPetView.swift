@@ -77,11 +77,7 @@ struct AddPetView: View {
                                 }
                                 
                             }) {
-                                HStack {
-                                    Text("提交")
-                                    Spacer()
-                                    Text("加载")
-                                }
+                                Text("提交")
                             }
                         }
                     }else if pageIndex == 1 {
