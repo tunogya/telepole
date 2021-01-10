@@ -15,7 +15,8 @@ struct AddPetView: View {
     
     @State var name = ""
     @State var username = ""
-    @State var birthday = Date.init()
+    @State var genderIndex = 1
+    @State var variety = ""
     @State var color = Color.red
     
     var is_name_valid: Bool {
@@ -33,6 +34,8 @@ struct AddPetView: View {
             return true
         }   
     }
+    
+    let gender: [String] = ["boy", "girl"]
     
     var body: some View {
         NavigationView{
@@ -81,12 +84,12 @@ struct AddPetView: View {
                                     .foregroundColor(.secondary)
                                 TextField("请输入唯一标识的域名", text: $username)
                             }
-                            DatePicker(
-                                "生日",
-                                selection: $birthday,
-                                in: ...Date(),
-                                displayedComponents: [.date]
-                            )
+                            Picker(selection: $genderIndex, label: Text("性别")) {
+                                ForEach(0 ..< gender.count) {
+                                    Text(self.gender[$0])
+                                }
+                            }.pickerStyle(SegmentedPickerStyle())
+                            TextField("品种", text: $variety)
                         }
                         
                         Section(header: Text("地图设置")) {
@@ -97,7 +100,7 @@ struct AddPetView: View {
                             Button(action: {
                                 print("\(name)")
                                 print("\(username)")
-                                print("\(birthday)")
+                                print("\(genderIndex)")
                                 print("\(color)")
                             }) {
                                 Text("立即注册该宠物")
