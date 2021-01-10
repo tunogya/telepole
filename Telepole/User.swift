@@ -21,25 +21,16 @@ struct User: Identifiable {
     var verified: Bool
     var variety: String
     var gender: String
-   
 }
 
-// 根据ID获取用户数据
-public class UserFetcherById {
-    var user = User(code: "", name: "", username: "", description: "", profile_image_url: "", protected: false, verified: false, variety: "", gender: "boy")
-    
-    init(id: String) {
-        self.load(id: id)
-    }
-    
-    func load(id: String) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
-    
+class UsersApi {
+    func getUserByCode(code: String, completion: @escaping (User) -> ()) {
+        let url = "\(HOSTNAME)/telepole/v1.0/users/\(code)"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
-                self.user =  User(
+                completion(User(
                     code: jsonData["_id"].stringValue,
                     name: jsonData["description"].stringValue,
                     username: jsonData["name"].stringValue,
@@ -49,11 +40,10 @@ public class UserFetcherById {
                     verified: jsonData["verified"].boolValue,
                     variety: jsonData["variety"].stringValue,
                     gender: jsonData["gender"].stringValue
-                )
-                print("网络请求")
-                print(self.user)
+                ))
             case .failure(let error):
                 print(error)
+                return
             }
         }
     }

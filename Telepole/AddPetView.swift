@@ -70,8 +70,9 @@ struct AddPetView: View {
                             .font(.body)
                             
                             Button(action: {
-                                print("codeInput=\(codeInput)")
-                                print(UserFetcherById.init(id: codeInput))
+                                UsersApi().getUserByCode(code: codeInput) { (user) in
+                                    print(user)
+                                }
                             }) {
                                 Text("提交")
                             }
