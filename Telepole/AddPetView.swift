@@ -70,7 +70,7 @@ struct AddPetView: View {
                             .font(.body)
                             
                             Button(action: {
-                                UsersApi().getUserByCode(code: codeInput) { (user) in
+                                UserApi().getUserById(id: codeInput) { (user) in
                                     print(user)
                                 }
                             }) {

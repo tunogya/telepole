@@ -11,8 +11,7 @@ import SwiftyJSON
 let HOSTNAME = "https://app.wakanda.vip"
 
 struct User: Identifiable {
-    var id = UUID()
-    var code: String
+    var id: String
     var name: String
     var username: String
     var description: String
@@ -23,15 +22,15 @@ struct User: Identifiable {
     var gender: String
 }
 
-class UsersApi {
-    func getUserByCode(code: String, completion: @escaping (User) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(code)"
+class UserApi {
+    func getUserById(id: String, completion: @escaping (User) -> ()) {
+        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
                 completion(User(
-                    code: jsonData["_id"].stringValue,
+                    id: jsonData["_id"].stringValue,
                     name: jsonData["description"].stringValue,
                     username: jsonData["name"].stringValue,
                     description: jsonData["variety"].stringValue,
