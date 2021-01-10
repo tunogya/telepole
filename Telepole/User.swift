@@ -47,4 +47,14 @@ class UserApi {
             }
         }
     }
+    
+//    用户注册
+    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String) {
+        
+    }
+    
+//    照片上传
+    func uploadProfileImage() {
+        
+    }
 }

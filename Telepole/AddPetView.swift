@@ -10,13 +10,16 @@ import SwiftUI
 struct AddPetView: View {
     @State var IdInput: String = "b45a21d55ff9c845043f6ce61eaba5de"
     @Binding var isShowAddPetView: Bool
-    @State var selectedIndex: Int = 2
+    @State var pageIndex: Int = 0
+    let page: [String] = ["已注册", "新注册"]
     @State var isShowCode: Bool = false
     
     @State var name = ""
     @State var username = ""
-    @State var genderIndex = 1
+    @State var genderIndex = 0
+    let gender: [String] = ["boy", "girl"]
     @State var variety = ""
+    @State var description = ""
 //    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
     
     var is_name_valid: Bool {
@@ -35,21 +38,20 @@ struct AddPetView: View {
         }   
     }
     
-    let gender: [String] = ["boy", "girl"]
-    
     var body: some View {
         NavigationView{
             VStack(spacing: 0) {
-                Picker(selection: $selectedIndex, label: Text("Picker")) {
-                    Text("已注册").tag(1)
-                    Text("新注册").tag(2)
+                Picker(selection: $pageIndex, label: Text("Picker")) {
+                    ForEach(0 ..< page.count) {
+                        Text(self.page[$0])
+                    }
                 }
                 .padding()
                 .pickerStyle(SegmentedPickerStyle())
                 .background(Color(.systemGroupedBackground))
                 
                 Form {
-                    if selectedIndex == 1 {
+                    if pageIndex == 0 {
                         Section {
                             HStack {
                                 if isShowCode {
@@ -73,11 +75,16 @@ struct AddPetView: View {
                                 UserApi().getUserById(id: IdInput) { (user) in
                                     print(user)
                                 }
+                                
                             }) {
-                                Text("提交")
+                                HStack {
+                                    Text("提交")
+                                    Spacer()
+                                    Text("加载")
+                                }
                             }
                         }
-                    }else if selectedIndex == 2 {
+                    }else if pageIndex == 1 {
                         Section(header: Text("宠物信息")) {
                             TextField("请输入宠物姓名", text: $name)
                             HStack {
@@ -92,6 +99,7 @@ struct AddPetView: View {
                                 }
                             }.pickerStyle(SegmentedPickerStyle())
                             TextField("品种", text: $variety)
+                            TextField("请输入描述", text: $description)
                         }
                         
 //                        Section(header: Text("地图设置")) {
