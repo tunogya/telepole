@@ -48,24 +48,22 @@ class UserApi {
     }
     
 //    用户注册
-    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String) {
+    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String, variety: String, completion: @escaping (User) -> ()) {
         
-        let parameters: [String: Array<[String: Any]>] = ["data": [["name": name, "username": username, "description": description, "profile_image_url": profile_image_url, "protected": protected, "verified": verified, "gender": gender]]]
-        print(parameters)
+        let parameters: [String: Array<Any>] = ["data": [["name": name, "username": username, "description": description, "profile_image_url": profile_image_url, "protected": protected, "verified": verified, "gender": gender, "variety": variety]]]
         
         let url = "\(HOSTNAME)/telepole/v1.0/users"
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                print(value)
+                let id = JSON(value)["ids"][0].stringValue
+                self.getUserById(id: id) { (User) in
+                    completion(User)
+                }
             case .failure(let error):
                 print(error)
             }
         }
-        
-        
-        
-        
         
     }
     

@@ -20,6 +20,7 @@ struct AddPetView: View {
     let gender: [String] = ["boy", "girl"]
     @State var variety = ""
     @State var description = ""
+    @State var profile_image_url = ""
 //    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
     
     var is_name_valid: Bool {
@@ -104,11 +105,9 @@ struct AddPetView: View {
                         
                         Section {
                             Button(action: {
-                                print("\(name)")
-                                print("\(username)")
-                                print("\(genderIndex)")
-                                
-//                                print("\(color.description)")
+                                UserApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (User) in
+                                    print(User)
+                                }
                             }) {
                                 Text("立即注册该宠物")
                             }
