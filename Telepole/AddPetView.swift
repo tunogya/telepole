@@ -57,10 +57,8 @@ struct AddPetView: View {
                             HStack {
                                 if isShowCode {
                                     TextField("请输入已注册宠物的Id地址", text: $IdInput)
-                                        .foregroundColor(.black)
                                 } else {
                                     SecureField("请输入已注册宠物的Id地址", text: $IdInput)
-                                        .foregroundColor(.black)
                                 }
                                 
                                 Button(action: {

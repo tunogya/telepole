@@ -18,6 +18,16 @@ private let OFFSET_M = CGSize(width: 0, height: 160)
 private let KEEPDISTENCE: CGFloat = 100
 
 struct MapView: View {
+    @ObservedObject var locationManager = LocationManager()
+    
+    var userLatitude: String {
+        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    }
+    
+    var userLongitude: String {
+        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    }
+    
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var dragOffset = OFFSET_S                // 每次拖拽
     @State var varOffset = CGSize.zero
@@ -74,6 +84,14 @@ struct MapView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion: $region)
+            
+            VStack {
+                Text("location status: \(locationManager.statusString)")
+                HStack {
+                    Text("latitude: \(userLatitude)")
+                    Text("longitude: \(userLongitude)")
+                }
+            }
             
             PetListView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
