@@ -244,7 +244,7 @@ struct MyLife: View {
 struct SliderIndicator: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 6)
-            .foregroundColor(.secondary)
+            .foregroundColor(Color("GrayColor"))
             .frame(width: 46, height: 6, alignment: .center)
     }
 }

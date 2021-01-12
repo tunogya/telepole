@@ -73,10 +73,12 @@ struct StatusBar: View {
         HStack{
             // 如果是访客身份
             Image(systemName: isShareMyLocation ? "location.fill" : "location.slash.fill")
+                .foregroundColor(Color("GrayColor"))
                 .opacity(isShareMyLocation ? 1 : 0.2)
                 .animation(.easeOut)
             
             Image(systemName: isAnonymous ? "face.smiling.fill" : "face.dashed")
+                .foregroundColor(Color("GrayColor"))
                 .opacity(isAnonymous ? 1 : 0.2)
                 .animation(.easeOut)
         }
@@ -88,7 +90,7 @@ struct TipsAnonymous: View {
     var body: some View {
         Text("Session:")
             .font(.body)
-            .foregroundColor(.secondary)
+            .foregroundColor(Color("GrayColor"))
     }
 }
 
@@ -99,9 +101,9 @@ struct ButtonRegister: View {
             debugPrint("跳转到AddPetView:\(isShowAddPetView)")
             isShowAddPetView.toggle()
         }) {
-            Text("添加一个宠物")
+            Text("增加一个宠物")
+                .foregroundColor(Color("AccentColor"))
                 .font(.body)
-                .foregroundColor(.accentColor)
                 .sheet(isPresented: $isShowAddPetView, content: {
                     AddPetView(isShowAddPetView: $isShowAddPetView)
                 })
