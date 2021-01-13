@@ -52,17 +52,45 @@ class LocationManager: NSObject, ObservableObject {
     
 }
 
+
 extension LocationManager: CLLocationManagerDelegate {
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        self.locationStatus = status
+//    Responding to Authorization Changes
+//    Tells the delegate when the app creates the location manager and when the authorization status changes.
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print(#function, statusString)
     }
     
+//    Handling Errors
+//    Tells the delegate that the location manager was unable to retrieve a location value.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+    }
+    
+//    Responding to Location Events
+//    Tells the delegate that new location data is available.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.lastLocation = location
         print(#function, location)
+    }
+    
+//    Pausing Location Updates
+//    Tells the delegate that location updates were paused.
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        
+    }
+    
+//    Tells the delegate that the delivery of location updates has resumed.
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+        
+    }
+    
+    
+//    Responding to Visit Events
+//    Tells the delegate that a new visit-related event was received.
+    func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
+        
     }
     
 }

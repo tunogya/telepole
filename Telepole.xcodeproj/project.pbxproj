@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17054B34259867CE001DE66A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* User.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
+		172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */; };
 		17322AE02593644600A0049B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* HomeView.swift */; };
 		17322AE52593645500A0049B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* MapView.swift */; };
 		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		17054B33259867CE001DE66A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCloudCOSXMLManager.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		17322AE42593645500A0049B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				172D929625ADD27300DC14B8 /* LocationManager.swift */,
+				172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				17054B34259867CE001DE66A /* User.swift in Sources */,
 				17322AE02593644600A0049B /* HomeView.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
+				172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */,
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
 				177D1721259F269A00C75B4A /* AddPetView.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
