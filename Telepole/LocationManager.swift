@@ -36,9 +36,9 @@ class LocationManager: NSObject, ObservableObject {
         }
         
         switch status {
-        case .notDetermined: return "notDetermined"
-        case .authorizedWhenInUse: return "authorizedWhenInUse"
+        case .notDetermined : return "notDetermined"
         case .authorizedAlways: return "authorizedAlways"
+        case .authorizedWhenInUse: return "authorizedWhenInUse"
         case .restricted: return "restricted"
         case .denied: return "denied"
         default: return "unknown"

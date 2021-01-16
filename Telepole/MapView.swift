@@ -30,7 +30,7 @@ struct MapView: View {
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.00001, longitude: 0.00001),
-        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
     @State var dragOffset = OFFSET_S
@@ -100,13 +100,20 @@ struct MapView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
-            PetListView(isShowDetail: $isShowDetail)
+            VStack {
+                Text("\(region.center.latitude)")
+                Text("\(region.center.longitude)")
+            }
+            
+            // 关心的地区列表
+            AddressListView(regin: $region)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
                 .animation(.spring())
             
+            // 宠物信息
             PetDetailView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
@@ -126,8 +133,15 @@ struct MapView_Previews: PreviewProvider {
     }
 }
 
-struct PetListView: View {
-    @Binding var isShowDetail: Bool
+struct AddressListView: View {
+    @Binding var regin: MKCoordinateRegion
+    
+    fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        regin = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
+    }
     
     var body: some View {
         VStack{
@@ -135,16 +149,23 @@ struct PetListView: View {
                 .padding(.top, 12)
             
             Form {
-                Section(header: Text("我的关注")) {
+                Section(header: Text("我的关注地区")) {
                     Button(action: {
-                        isShowDetail = true
+//                        isShowDetail = true
+                        let latitude: Double = 12.001
+                        let longitude: Double = 120.03
+                        updateMapCenter(latitude: latitude, longitude: longitude)
                     }) {
-                        Text("七喜")
+                        Text("地区1")
                     }
+                    
                     Button(action: {
-                        isShowDetail = true
+//                        isShowDetail = true
+                        let latitude: Double = 30.001
+                        let longitude: Double = 100.03
+                        updateMapCenter(latitude: latitude, longitude: longitude)
                     }) {
-                        Text("七喜")
+                        Text("地区2")
                     }
                 }
             }
