@@ -20,19 +20,25 @@ private let KEEPDISTENCE: CGFloat = 100
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager()
     
-    var userLatitude: String {
-        return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
+    var userLatitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
     }
     
-    var userLongitude: String {
-        return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
+    var userLongitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
     
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    @State var dragOffset = OFFSET_S                // 每次拖拽
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 0.00001, longitude: 0.00001),
+        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+    )
+    
+    @State var dragOffset = OFFSET_S
     @State var varOffset = CGSize.zero
     @State var currentOffset = OFFSET_S
     @State var isShowDetail = false
+    
+    @State private var trackingMode = MapUserTrackingMode.follow
     
     var drag: some Gesture {
         DragGesture()
@@ -52,8 +58,6 @@ struct MapView: View {
                         dragOffset.height = currentOffset.height + varOffset.height
                     }
                 }
-                
-                
             }
             .onEnded { value in
                 // 控制滑动
@@ -81,17 +85,20 @@ struct MapView: View {
             }
     }
     
+    fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
+    }
+    
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $region)
-            
-            VStack {
-                Text("location status: \(locationManager.statusString)")
-                HStack {
-                    Text("latitude: \(userLatitude)")
-                    Text("longitude: \(userLongitude)")
-                }
-            }
+            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
+                .onAppear(perform: {
+                    debugPrint("la: \(userLatitude), lo: \(userLongitude)")
+                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
+                })
             
             PetListView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
@@ -128,22 +135,18 @@ struct PetListView: View {
                 .padding(.top, 12)
             
             Form {
-                Section(header: Text("附近")) {
+                Section(header: Text("我的关注")) {
+                    Button(action: {
+                        isShowDetail = true
+                    }) {
+                        Text("七喜")
+                    }
                     Button(action: {
                         isShowDetail = true
                     }) {
                         Text("七喜")
                     }
                 }
-                
-                Section(header: Text("更远")) {
-                    Button(action: {
-                        isShowDetail = true
-                    }) {
-                        Text("贝贝")
-                    }
-                }
-                
             }
         }
         .background(Color(.systemGroupedBackground))
