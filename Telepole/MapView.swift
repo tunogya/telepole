@@ -100,13 +100,16 @@ struct MapView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
+            MapToolBar()
+           
+            
             VStack {
                 Text("\(region.center.latitude)")
                 Text("\(region.center.longitude)")
             }
             
             // 关心的地区列表
-            AddressListView(regin: $region)
+            AreaListView(regin: $region)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
@@ -133,7 +136,7 @@ struct MapView_Previews: PreviewProvider {
     }
 }
 
-struct AddressListView: View {
+struct AreaListView: View {
     @Binding var regin: MKCoordinateRegion
     
     fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -151,7 +154,6 @@ struct AddressListView: View {
             Form {
                 Section(header: Text("我的关注地区")) {
                     Button(action: {
-//                        isShowDetail = true
                         let latitude: Double = 12.001
                         let longitude: Double = 120.03
                         updateMapCenter(latitude: latitude, longitude: longitude)
@@ -160,7 +162,6 @@ struct AddressListView: View {
                     }
                     
                     Button(action: {
-//                        isShowDetail = true
                         let latitude: Double = 30.001
                         let longitude: Double = 100.03
                         updateMapCenter(latitude: latitude, longitude: longitude)
@@ -288,5 +289,34 @@ struct SliderIndicator: View {
         RoundedRectangle(cornerRadius: 6)
             .foregroundColor(Color("GrayColor"))
             .frame(width: 46, height: 6, alignment: .center)
+    }
+}
+
+struct MapToolBar: View {
+    var body: some View {
+        VStack{
+            HStack{
+                Spacer()
+                VStack(spacing: 0){
+                    Image(systemName: "person.circle")
+                        .padding(10)
+                    
+                    Divider()
+                        .frame(width: 40, height: 2)
+                    
+                    Image(systemName: "location")
+                        .padding(10)
+                    
+                }
+                .background(VisualEffectBlur(){
+                    Color(.systemGroupedBackground)
+                })
+                .cornerRadius(8)
+                .font(.title2)
+            }
+            Spacer()
+        }
+        .padding(.top, 50)
+        .padding(.horizontal)
     }
 }
