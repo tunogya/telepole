@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct TelepoleApp: App {
-    let regionPersistence = RegionPersistence.shared
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
             MapView()
-                .environment(\.managedObjectContext, regionPersistence.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

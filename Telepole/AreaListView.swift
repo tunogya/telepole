@@ -115,6 +115,15 @@ struct AreaListView: View {
                         }
                     }
                     .onDelete(perform: deleteRegions)
+                    
+                    if items.isEmpty{
+                        Button(action: {
+                            addRegion(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
+                        }) {
+                            Text("增加一个兴趣点")
+                                .font(.body)
+                        }
+                    }
                 }
             }
         }

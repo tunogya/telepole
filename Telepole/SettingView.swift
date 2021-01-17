@@ -9,11 +9,54 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SettingView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Pet>
+    
     @State private var isShareMyLocation: Bool = false
-    @State private var isAnonymous: Bool = false
     @Binding var isShowSetting: Bool
-    var pets = ["贝贝", "七喜"]
-    @State private var selectedPets = 0
+    
+    private func addPet(name: String, description: String, username: String, id: String, profile_image_url: String, protected: Bool, verified: Bool, variety: String, gender: String) {
+        withAnimation {
+            let newPet = Pet(context: viewContext)
+            newPet.name = name
+            newPet.username = username
+            newPet.desc = description
+            newPet.id = id
+            newPet.profile_image_url = profile_image_url
+            newPet.protected = protected
+            newPet.verified = verified
+            newPet.variety = variety
+            newPet.gender = gender
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    private func deletePets(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { items[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
     
     var body: some View {
         VStack(spacing: 0){
@@ -30,20 +73,17 @@ struct SettingView: View {
                         }
                     }
                     
-                    Section {
-                        Toggle(isOn: $isAnonymous) {
-                            Text(isAnonymous ? "匿名登陆" : "宠物登陆")
-                                .font(.body)
+                    Section(header: Text("我的宠物列表")) {
+                        // 呈现宠物集合
+                        List {
+                            ForEach(items) { item in
+                                Text("Item at \(item.name ?? "神秘宝贝")")
+                            }
+                            .onDelete(perform: deletePets)
                         }
-                        if isAnonymous{
-                            // 显示匿名登录的 Session
-                            TipsAnonymous()
-                        }else{
-                            // 呈现宠物集合
-                       
-                            
+//                        if items.isEmpty{
                             ButtonRegister()
-                        }
+//                        }
                     } 
                 }
             }
@@ -73,7 +113,6 @@ struct ButtonRegister: View {
             isShowAddPetView.toggle()
         }) {
             Text("增加一个宠物")
-                .foregroundColor(Color("AccentColor"))
                 .font(.body)
                 .sheet(isPresented: $isShowAddPetView, content: {
                     SettingAddPetView(isShowAddPetView: $isShowAddPetView)

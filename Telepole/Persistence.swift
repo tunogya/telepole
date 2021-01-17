@@ -7,8 +7,8 @@
 
 import CoreData
 
-struct RegionPersistence {
-    static let shared = RegionPersistence()
+struct PersistenceController {
+    static let shared = PersistenceController()
 
     let container: NSPersistentContainer
 
