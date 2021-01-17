@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PetDetailView: View {
+struct PetView: View {
     @Binding var isShowDetail: Bool
     
     var body: some View {

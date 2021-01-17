@@ -76,7 +76,7 @@ struct ButtonRegister: View {
                 .foregroundColor(Color("AccentColor"))
                 .font(.body)
                 .sheet(isPresented: $isShowAddPetView, content: {
-                    AddPetView(isShowAddPetView: $isShowAddPetView)
+                    SettingAddPetView(isShowAddPetView: $isShowAddPetView)
                 })
         }
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyLife: View {
+struct PetTelepole: View {
     @State var pickerIndex = 1
     
     var body: some View {
@@ -20,8 +20,8 @@ struct MyLife: View {
     }
 }
 
-struct MyLife_Previews: PreviewProvider {
+struct PetTelepole_Previews: PreviewProvider {
     static var previews: some View {
-        MyLife()
+        PetTelepole()
     }
 }

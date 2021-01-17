@@ -101,7 +101,7 @@ struct MapView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
-            MapToolBar(isShowSetting: $isShowSetting)
+            MapToolSetting(isShowSetting: $isShowSetting)
            
             
             VStack {
@@ -118,7 +118,7 @@ struct MapView: View {
                 .animation(.spring())
             
             // 宠物信息
-            PetDetailView(isShowDetail: $isShowDetail)
+            PetView(isShowDetail: $isShowDetail)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
@@ -141,28 +141,5 @@ struct MapView: View {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
-    }
-}
-
-struct MapToolBar: View {
-    @Binding var isShowSetting: Bool
-    var body: some View {
-        HStack {
-            Spacer()
-            VStack{
-                Button(action: {
-                    isShowSetting.toggle()
-                }) {
-                    Image(systemName: "person.circle")
-                        .frame(width: 44, height: 44, alignment: .center)
-                        .font(.title)
-                        .background(Color("GrayColor"))
-                        .clipShape(Circle())
-                }
-                Spacer()
-            }
-        }
-        .padding()
-        .padding(.top, 30)
     }
 }
