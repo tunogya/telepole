@@ -29,15 +29,15 @@ struct MapView: View {
     }
     
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 0.00001, longitude: 0.00001),
+        center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
-    @State var dragOffset = OFFSET_S
-    @State var varOffset = CGSize.zero
-    @State var currentOffset = OFFSET_S
-    @State var isShowDetail = false
-    @State var isShowSetting = false
+    @State private var dragOffset = OFFSET_S
+    @State private var varOffset = CGSize.zero
+    @State private var currentOffset = OFFSET_S
+    @State private var isShowDetail = false
+    @State private var isShowSetting = false
     
     @State private var trackingMode = MapUserTrackingMode.follow
     
