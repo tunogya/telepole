@@ -32,6 +32,7 @@
 		17D7D3B325B3C17000C087C9 /* PetTelepole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B225B3C17000C087C9 /* PetTelepole.swift */; };
 		17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */; };
 		17D7D3BD25B3C20900C087C9 /* MapToolSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3BC25B3C20900C087C9 /* MapToolSetting.swift */; };
+		17D7D3D625B414F900C087C9 /* CardTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardTitle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		17D7D3B225B3C17000C087C9 /* PetTelepole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetTelepole.swift; sourceTree = "<group>"; };
 		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
 		17D7D3BC25B3C20900C087C9 /* MapToolSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapToolSetting.swift; sourceTree = "<group>"; };
+		17D7D3D525B414F800C087C9 /* CardTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTitle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				17D7D3AD25B3C15600C087C9 /* PetInfo.swift */,
 				17D7D3B225B3C17000C087C9 /* PetTelepole.swift */,
 				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
+				17D7D3D525B414F800C087C9 /* CardTitle.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
 				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
 				17054B34259867CE001DE66A /* User.swift in Sources */,
+				17D7D3D625B414F900C087C9 /* CardTitle.swift in Sources */,
 				17D7D3AE25B3C15600C087C9 /* PetInfo.swift in Sources */,
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,

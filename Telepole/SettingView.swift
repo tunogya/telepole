@@ -16,9 +16,12 @@ struct SettingView: View {
     @State private var selectedPets = 0
     
     var body: some View {
-            VStack{
+        VStack(spacing: 0){
                 SliderIndicator()
                     .padding(.top, 12)
+                
+                CardTitle(flag: $isShowSetting, title: "设置")
+                
                 Form{
                     Section {
                         Toggle(isOn: $isShareMyLocation) {

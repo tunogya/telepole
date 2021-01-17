@@ -19,9 +19,23 @@ struct AreaListView: View {
     }
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             SliderIndicator()
                 .padding(.top, 12)
+            
+            VStack{
+                HStack {
+                    Text("Telepole")
+                        .bold()
+                    Spacer()
+                }
+                .font(.title2)
+                .padding(.horizontal)
+                
+                Divider()
+            }
+            
+            
             
             Form {
                 Section(header: Text("我的关注地区")) {
