@@ -69,15 +69,31 @@ struct AreaListView: View {
             
             VStack {
                 HStack {
-                    Text("Telepole")
-                        .bold()
+                    // 标题及定位
+                    HStack {
+                        Text("Telepole")
+                            .bold()
+                        Button(action: {
+                            region = MKCoordinateRegion(
+                                center: CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude),
+                                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                            )
+                        }) {
+                            Image(systemName: "location.fill")
+                        }
+                    }
+                    
                     Spacer()
+                    
+                    // 增加按钮
                     Button(action: {
                         print(region.center.latitude)
                         addRegion(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
                     }) {
                         Image(systemName: "plus.circle.fill")
                     }
+                    
+                    EditButton()
                     
                 }
                 .font(.title2)
@@ -88,18 +104,6 @@ struct AreaListView: View {
             
             Form {
                 Section(header: Text("我的关注地区")) {
-                    Button(action: {
-                        region = MKCoordinateRegion(
-                            center: CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude),
-                            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                        )
-                    }) {
-                        HStack {
-                            Image(systemName: "location.fill")
-                            Text("我的位置")
-                        }
-                    }
-                    
                     ForEach(items) { item in
                         Button(action: {
                             region = MKCoordinateRegion(
@@ -107,9 +111,10 @@ struct AreaListView: View {
                                 span: MKCoordinateSpan(latitudeDelta: item.latitudeDelta, longitudeDelta: item.longitudeDelta)
                             )
                         }) {
-                            Text("地区")
+                            Text(item.title ?? "神秘地点")
                         }
                     }
+                    .onDelete(perform: deleteRegions)
                 }
             }
         }

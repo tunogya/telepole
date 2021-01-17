@@ -9,8 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SettingView: View {
-    @State var isShareMyLocation: Bool = false
-    @State var isAnonymous: Bool = false
+    @State private var isShareMyLocation: Bool = false
+    @State private var isAnonymous: Bool = false
     @Binding var isShowSetting: Bool
     var pets = ["贝贝", "七喜"]
     @State private var selectedPets = 0
@@ -32,7 +32,7 @@ struct SettingView: View {
                     
                     Section {
                         Toggle(isOn: $isAnonymous) {
-                            Text(isAnonymous ? "匿名登陆" : "实名登陆")
+                            Text(isAnonymous ? "匿名登陆" : "宠物登陆")
                                 .font(.body)
                         }
                         if isAnonymous{
@@ -40,11 +40,8 @@ struct SettingView: View {
                             TipsAnonymous()
                         }else{
                             // 呈现宠物集合
-                            Picker(selection: $selectedPets, label: Text("已注册宠物")) {
-                                ForEach(0 ..< pets.count) {
-                                    Text(self.pets[$0])
-                                }
-                            }
+                       
+                            
                             ButtonRegister()
                         }
                     } 

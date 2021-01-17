@@ -102,12 +102,6 @@ struct MapView: View {
                 })
             
             MapToolSetting(isShowSetting: $isShowSetting)
-           
-            
-            VStack {
-                Text("\(region.center.latitude)")
-                Text("\(region.center.longitude)")
-            }
             
             // 关心的地区列表
             AreaListView(region: $region)
