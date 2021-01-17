@@ -102,15 +102,19 @@ struct SettingAddPetView: View {
                             
                             Button(action: {
                                 PetApi().getPetById(id: IdInput) { (pet) in
-                                    addPet(name: pet.name,
-                                           description: pet.description,
-                                           username: pet.username,
-                                           id: pet.id,
-                                           profile_image_url: pet.profile_image_url,
-                                           protected: pet.protected,
-                                           verified: pet.verified,
-                                           variety: pet.variety,
-                                           gender: pet.gender)
+                                    if !pet.id.isEmpty{
+                                        addPet(name: pet.name,
+                                               description: pet.description,
+                                               username: pet.username,
+                                               id: pet.id,
+                                               profile_image_url: pet.profile_image_url,
+                                               protected: pet.protected,
+                                               verified: pet.verified,
+                                               variety: pet.variety,
+                                               gender: pet.gender)
+                                    }else{
+                                        debugPrint("添加失败")
+                                    }
                                 }
                             }) {
                                 Text("提交")
@@ -141,15 +145,19 @@ struct SettingAddPetView: View {
                         Section {
                             Button(action: {
                                 PetApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (pet) in
-                                    addPet(name: pet.name,
-                                           description: pet.description,
-                                           username: pet.username,
-                                           id: pet.id,
-                                           profile_image_url: pet.profile_image_url,
-                                           protected: pet.protected,
-                                           verified: pet.verified,
-                                           variety: pet.variety,
-                                           gender: pet.gender)
+                                    if !pet.id.isEmpty{
+                                        addPet(name: pet.name,
+                                               description: pet.description,
+                                               username: pet.username,
+                                               id: pet.id,
+                                               profile_image_url: pet.profile_image_url,
+                                               protected: pet.protected,
+                                               verified: pet.verified,
+                                               variety: pet.variety,
+                                               gender: pet.gender)
+                                    }else{
+                                        debugPrint("添加失败")
+                                    }
                                 }
                             }) {
                                 Text("立即注册该宠物")

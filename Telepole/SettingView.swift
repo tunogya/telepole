@@ -52,7 +52,7 @@ struct SettingView: View {
                         // 呈现宠物集合
                         List {
                             ForEach(items) { item in
-                                Text("Item at \(item.name ?? "神秘宝贝")")
+                                Text("\(item.name ?? "神秘宝贝")")
                             }
                             .onDelete(perform: deletePets)
                         }
