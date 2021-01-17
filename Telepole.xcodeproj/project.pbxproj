@@ -26,6 +26,11 @@
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
 		17D1D38A259A1C4C001B9CD2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D389259A1C4C001B9CD2 /* SDWebImageMapKit */; };
 		17D1D390259A1C69001B9CD2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D38F259A1C69001B9CD2 /* SDWebImageSwiftUI */; };
+		17D7D3A425B3C0CE00C087C9 /* AreaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */; };
+		17D7D3A925B3C13200C087C9 /* PetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3A825B3C13200C087C9 /* PetDetailView.swift */; };
+		17D7D3AE25B3C15600C087C9 /* PetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3AD25B3C15600C087C9 /* PetInfo.swift */; };
+		17D7D3B325B3C17000C087C9 /* MyLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B225B3C17000C087C9 /* MyLife.swift */; };
+		17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +71,11 @@
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* AddPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPetView.swift; sourceTree = "<group>"; };
 		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaListView.swift; sourceTree = "<group>"; };
+		17D7D3A825B3C13200C087C9 /* PetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDetailView.swift; sourceTree = "<group>"; };
+		17D7D3AD25B3C15600C087C9 /* PetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfo.swift; sourceTree = "<group>"; };
+		17D7D3B225B3C17000C087C9 /* MyLife.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLife.swift; sourceTree = "<group>"; };
+		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +203,11 @@
 				17322ADF2593644600A0049B /* SettingView.swift */,
 				17322AE42593645500A0049B /* MapView.swift */,
 				177D1720259F269A00C75B4A /* AddPetView.swift */,
+				17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */,
+				17D7D3A825B3C13200C087C9 /* PetDetailView.swift */,
+				17D7D3AD25B3C15600C087C9 /* PetInfo.swift */,
+				17D7D3B225B3C17000C087C9 /* MyLife.swift */,
+				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -342,12 +357,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */,
+				17D7D3A925B3C13200C087C9 /* PetDetailView.swift in Sources */,
+				17D7D3A425B3C0CE00C087C9 /* AreaListView.swift in Sources */,
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
+				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
 				17054B34259867CE001DE66A /* User.swift in Sources */,
+				17D7D3AE25B3C15600C087C9 /* PetInfo.swift in Sources */,
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
 				172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */,
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
+				17D7D3B325B3C17000C087C9 /* MyLife.swift in Sources */,
 				177D1721259F269A00C75B4A /* AddPetView.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
