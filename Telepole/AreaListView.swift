@@ -11,6 +11,16 @@ import MapKit
 struct AreaListView: View {
     @Binding var regin: MKCoordinateRegion
     
+    @ObservedObject var locationManager = LocationManager()
+    
+    var userLatitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
+    }
+    
+    var userLongitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
+    }
+    
     fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         regin = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
@@ -23,11 +33,17 @@ struct AreaListView: View {
             SliderIndicator()
                 .padding(.top, 12)
             
-            VStack{
+            VStack {
                 HStack {
                     Text("Telepole")
                         .bold()
                     Spacer()
+                    Button(action: {
+                        print(regin.center.latitude)
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                    }
+                    
                 }
                 .font(.title2)
                 .padding(.horizontal)
@@ -35,16 +51,17 @@ struct AreaListView: View {
                 Divider()
             }
             
-            
-            
             Form {
                 Section(header: Text("我的关注地区")) {
                     Button(action: {
-                        let latitude: Double = 12.001
-                        let longitude: Double = 120.03
+                        let latitude: Double = userLatitude
+                        let longitude: Double = userLongitude
                         updateMapCenter(latitude: latitude, longitude: longitude)
                     }) {
-                        Text("地区1")
+                        HStack {
+                            Image(systemName: "location.fill")
+                            Text("我的位置")
+                        }
                     }
                     
                     Button(action: {
