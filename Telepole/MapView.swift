@@ -110,7 +110,7 @@ struct MapView: View {
             }
             
             // 关心的地区列表
-            AreaListView(regin: $region)
+            AreaListView(region: $region)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
