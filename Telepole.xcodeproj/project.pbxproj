@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17054B34259867CE001DE66A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* User.swift */; };
+		17054B34259867CE001DE66A /* PetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* PetModel.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17054B33259867CE001DE66A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		17054B33259867CE001DE66A /* PetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModel.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCloudCOSXMLManager.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		17054B32259867AE001DE66A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				17054B33259867CE001DE66A /* User.swift */,
+				17054B33259867CE001DE66A /* PetModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -381,7 +381,7 @@
 				17D7D3A425B3C0CE00C087C9 /* AreaListView.swift in Sources */,
 				17322AE52593645500A0049B /* MapView.swift in Sources */,
 				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
-				17054B34259867CE001DE66A /* User.swift in Sources */,
+				17054B34259867CE001DE66A /* PetModel.swift in Sources */,
 				17D7D3D625B414F900C087C9 /* CardTitle.swift in Sources */,
 				17D7D3AE25B3C15600C087C9 /* PetInfo.swift in Sources */,
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,

@@ -17,31 +17,7 @@ struct SettingView: View {
     
     @State private var isShareMyLocation: Bool = false
     @Binding var isShowSetting: Bool
-    
-    private func addPet(name: String, description: String, username: String, id: String, profile_image_url: String, protected: Bool, verified: Bool, variety: String, gender: String) {
-        withAnimation {
-            let newPet = Pet(context: viewContext)
-            newPet.name = name
-            newPet.username = username
-            newPet.desc = description
-            newPet.id = id
-            newPet.profile_image_url = profile_image_url
-            newPet.protected = protected
-            newPet.verified = verified
-            newPet.variety = variety
-            newPet.gender = gender
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
+        
     private func deletePets(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
@@ -57,7 +33,6 @@ struct SettingView: View {
         }
     }
 
-    
     var body: some View {
         VStack(spacing: 0){
                 SliderIndicator()

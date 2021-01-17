@@ -10,7 +10,7 @@ import SwiftyJSON
 
 let HOSTNAME = "https://app.wakanda.vip"
 
-struct User: Identifiable {
+struct PetModel: Identifiable {
     var id: String
     var name: String
     var username: String
@@ -22,15 +22,15 @@ struct User: Identifiable {
     var gender: String
 }
 
-class UserApi {
+class PetApi {
 //    根据用户id查询用户信息
-    func getUserById(id: String, completion: @escaping (User) -> ()) {
+    func getPetById(id: String, completion: @escaping (PetModel) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
-                completion(User(
+                completion(PetModel(
                     id: jsonData["_id"].stringValue,
                     name: jsonData["description"].stringValue,
                     username: jsonData["name"].stringValue,
@@ -48,7 +48,7 @@ class UserApi {
     }
     
 //    用户注册
-    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String, variety: String, completion: @escaping (User) -> ()) {
+    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String, variety: String, completion: @escaping (PetModel) -> ()) {
         
         let parameters: [String: Array<Any>] = ["data": [["name": name, "username": username, "description": description, "profile_image_url": profile_image_url, "protected": protected, "verified": verified, "gender": gender, "variety": variety]]]
         
@@ -57,7 +57,7 @@ class UserApi {
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.getUserById(id: id) { (User) in
+                self.getPetById(id: id) { (User) in
                     completion(User)
                 }
             case .failure(let error):

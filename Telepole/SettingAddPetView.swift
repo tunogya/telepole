@@ -21,7 +21,37 @@ struct SettingAddPetView: View {
     @State var variety = ""
     @State var description = ""
     @State var profile_image_url = ""
-//    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
+    //    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<Pet>
+    
+    private func addPet(name: String, description: String, username: String, id: String, profile_image_url: String, protected: Bool, verified: Bool, variety: String, gender: String) {
+        withAnimation {
+            let newPet = Pet(context: viewContext)
+            newPet.name = name
+            newPet.username = username
+            newPet.desc = description
+            newPet.id = id
+            newPet.profile_image_url = profile_image_url
+            newPet.protected = protected
+            newPet.verified = verified
+            newPet.variety = variety
+            newPet.gender = gender
+            
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
     
     var is_name_valid: Bool {
         if name.isEmpty{
@@ -71,10 +101,17 @@ struct SettingAddPetView: View {
                             .font(.body)
                             
                             Button(action: {
-                                UserApi().getUserById(id: IdInput) { (user) in
-                                    print(user)
+                                PetApi().getPetById(id: IdInput) { (pet) in
+                                    addPet(name: pet.name,
+                                           description: pet.description,
+                                           username: pet.username,
+                                           id: pet.id,
+                                           profile_image_url: pet.profile_image_url,
+                                           protected: pet.protected,
+                                           verified: pet.verified,
+                                           variety: pet.variety,
+                                           gender: pet.gender)
                                 }
-                                
                             }) {
                                 Text("提交")
                             }
@@ -97,21 +134,28 @@ struct SettingAddPetView: View {
                             TextField("请输入描述", text: $description)
                         }
                         
-//                        Section(header: Text("地图设置")) {
-//                            ColorPicker("自定义标识色", selection: $color)
-//                        }
+                        //                        Section(header: Text("地图设置")) {
+                        //                            ColorPicker("自定义标识色", selection: $color)
+                        //                        }
                         
                         Section {
                             Button(action: {
-                                UserApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (User) in
-                                    print(User)
+                                PetApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (pet) in
+                                    addPet(name: pet.name,
+                                           description: pet.description,
+                                           username: pet.username,
+                                           id: pet.id,
+                                           profile_image_url: pet.profile_image_url,
+                                           protected: pet.protected,
+                                           verified: pet.verified,
+                                           variety: pet.variety,
+                                           gender: pet.gender)
                                 }
                             }) {
                                 Text("立即注册该宠物")
                             }
                         }
                     }
-                    
                 }
             }
             .navigationBarTitle(Text("增加宠物"), displayMode: .inline)
@@ -123,8 +167,6 @@ struct SettingAddPetView: View {
             })
         }
     }
-    
-    
 }
 
 struct AddPetView_Previews: PreviewProvider {
