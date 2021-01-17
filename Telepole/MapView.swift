@@ -37,6 +37,7 @@ struct MapView: View {
     @State var varOffset = CGSize.zero
     @State var currentOffset = OFFSET_S
     @State var isShowDetail = false
+    @State var isShowSetting = false
     
     @State private var trackingMode = MapUserTrackingMode.follow
     
@@ -100,7 +101,7 @@ struct MapView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
-            MapToolBar()
+            MapToolBar(isShowSetting: $isShowSetting)
            
             
             VStack {
@@ -125,6 +126,13 @@ struct MapView: View {
                 .offset(y: isShowDetail ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
+            SettingView(isShowSetting: $isShowSetting)
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
+                .offset(y: isShowSetting ? 0 : SCREENHEIGHT)
+                .animation(.spring())
         }
         .ignoresSafeArea(.all)
     }
@@ -293,30 +301,24 @@ struct SliderIndicator: View {
 }
 
 struct MapToolBar: View {
+    @Binding var isShowSetting: Bool
     var body: some View {
-        VStack{
-            HStack{
-                Spacer()
-                VStack(spacing: 0){
-                    Image(systemName: "person.circle")
-                        .padding(10)
-                    
-                    Divider()
-                        .frame(width: 40, height: 2)
-                    
-                    Image(systemName: "location")
-                        .padding(10)
-                    
-                }
-                .background(VisualEffectBlur(){
-                    Color(.systemGroupedBackground)
-                })
-                .cornerRadius(8)
-                .font(.title2)
-            }
+        HStack {
             Spacer()
+            VStack{
+                Button(action: {
+                    isShowSetting.toggle()
+                }) {
+                    Image(systemName: "person.circle")
+                        .frame(width: 44, height: 44, alignment: .center)
+                        .font(.title)
+                        .background(Color("GrayColor"))
+                        .clipShape(Circle())
+                }
+                Spacer()
+            }
         }
-        .padding(.top, 50)
-        .padding(.horizontal)
+        .padding()
+        .padding(.top, 30)
     }
 }

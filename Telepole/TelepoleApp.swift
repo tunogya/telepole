@@ -11,7 +11,7 @@ import SwiftUI
 struct TelepoleApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MapView()
         }
     }
 }

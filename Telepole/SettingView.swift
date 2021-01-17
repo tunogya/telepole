@@ -8,15 +8,17 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct HomeView: View {
+struct SettingView: View {
     @State var isShareMyLocation: Bool = false
     @State var isAnonymous: Bool = false
+    @Binding var isShowSetting: Bool
     var pets = ["贝贝", "七喜"]
     @State private var selectedPets = 0
     
     var body: some View {
-        NavigationView{
-            ZStack{
+            VStack{
+                SliderIndicator()
+                    .padding(.top, 12)
                 Form{
                     Section {
                         Toggle(isOn: $isShareMyLocation) {
@@ -44,47 +46,16 @@ struct HomeView: View {
                         }
                     } 
                 }
-                
-                VStack {
-                    Spacer()
-                    
-                    NavigationLink(destination: MapView()) {
-                        ButtonEnterMap()
-                    }
-                }
             }
-            .navigationBarTitle("Telepole", displayMode: .large)
-            .navigationBarItems(trailing: StatusBar(isShareMyLocation: $isShareMyLocation, isAnonymous: $isAnonymous))
             .ignoresSafeArea(.all)
         }
-    }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
-
-struct StatusBar: View {
-    @Binding var isShareMyLocation: Bool
-    @Binding var isAnonymous: Bool
-    var body: some View {
-        HStack{
-            // 如果是访客身份
-            Image(systemName: isShareMyLocation ? "location.fill" : "location.slash.fill")
-                .foregroundColor(Color("GrayColor"))
-                .opacity(isShareMyLocation ? 1 : 0.2)
-                .animation(.easeOut)
-            
-            Image(systemName: isAnonymous ? "face.smiling.fill" : "face.dashed")
-                .foregroundColor(Color("GrayColor"))
-                .opacity(isAnonymous ? 1 : 0.2)
-                .animation(.easeOut)
-        }
-        .font(.body)
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}
 
 struct TipsAnonymous: View {
     var body: some View {
@@ -108,17 +79,5 @@ struct ButtonRegister: View {
                     AddPetView(isShowAddPetView: $isShowAddPetView)
                 })
         }
-    }
-}
-
-struct ButtonEnterMap: View {
-    var body: some View {
-        Text("进入")
-            .font(.body)
-            .foregroundColor(Color("GrayColor"))
-            .frame(maxWidth: .infinity)
-            .frame(height: 60)
-            .padding(.bottom, 23)
-            .background(Color.accentColor)
     }
 }
