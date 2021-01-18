@@ -39,9 +39,9 @@ struct SettingView: View {
                     .padding(.top, 12)
                 
                 CardTitle(flag: $isShowSetting, title: "设置")
-                
+            
                 Form{
-                    Section {
+                    Section(header: Text("设置定位权限")) {
                         Toggle(isOn: $isShareMyLocation) {
                             Text("共享我的位置")
                                 .font(.body)

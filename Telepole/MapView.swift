@@ -38,6 +38,7 @@ struct MapView: View {
     @State private var currentOffset = OFFSET_S
     @State private var isShowDetail = false
     @State private var isShowSetting = false
+    @State private var isShowArea = false
     
     @State private var trackingMode = MapUserTrackingMode.follow
     
@@ -104,11 +105,19 @@ struct MapView: View {
             MapToolSetting(isShowSetting: $isShowSetting)
             
             // 关心的地区列表
-            AreaListView(region: $region)
+            AreaListView(region: $region, isShowArea: $isShowArea)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
+                .animation(.spring())
+            
+            AreaView(isShowArea: $isShowArea, regin: $region)
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
+                .offset(y: isShowArea ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
             // 宠物信息
