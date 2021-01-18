@@ -86,9 +86,9 @@ struct ButtonRegister: View {
         }) {
             Text("增加一个宠物")
                 .font(.body)
-                .sheet(isPresented: $isShowAddPetView, content: {
-                    SettingAddPetView(isShowAddPetView: $isShowAddPetView)
-                })
         }
+        .sheet(isPresented: $isShowAddPetView, content: {
+            SettingAddPetView(isShowAddPetView: $isShowAddPetView)
+        })
     }
 }
