@@ -12,26 +12,31 @@ struct CardTitle: View {
     let title: String
     
     var body: some View {
-        VStack{
-            HStack() {
-                Text(title)
-                    .bold()
-                
-                Spacer()
-                
-                Button(action: {
-                    flag = false
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.secondary)
-                }
-            }
-            .font(.title2)
-            .padding(.horizontal)
+        VStack(spacing: 0) {
+            SliderIndicator()
+                .padding(.top, 12)
             
-            Divider()
+            VStack {
+                HStack {
+                    Text(title)
+                        .bold()
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        flag = false
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .font(.title2)
+                .padding(.horizontal)
+                
+                Divider()
+            }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
     }
 }
 

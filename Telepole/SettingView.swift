@@ -34,10 +34,7 @@ struct SettingView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0){
-                SliderIndicator()
-                    .padding(.top, 12)
-                
+        VStack(spacing: 0) {
                 CardTitle(flag: $isShowSetting, title: "设置")
             
                 Form{

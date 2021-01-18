@@ -70,109 +70,102 @@ struct SettingAddPetView: View {
     }
     
     var body: some View {
-        NavigationView{
-            VStack(spacing: 0) {
-                Picker(selection: $pageIndex, label: Text("Picker")) {
-                    ForEach(0 ..< page.count) {
-                        Text(self.page[$0])
-                    }
+        VStack(spacing: 0) {
+            CardTitle(flag: $isShowAddPetView, title: "增加宠物")
+            
+            Picker(selection: $pageIndex, label: Text("Picker")) {
+                ForEach(0 ..< page.count) {
+                    Text(self.page[$0])
                 }
-                .padding()
-                .pickerStyle(SegmentedPickerStyle())
-                .background(Color(.systemGroupedBackground))
-                
-                Form {
-                    if pageIndex == 0 {
-                        Section {
-                            HStack {
-                                if isShowCode {
-                                    TextField("请输入已注册宠物的Id地址", text: $IdInput)
-                                } else {
-                                    SecureField("请输入已注册宠物的Id地址", text: $IdInput)
-                                }
-                                
-                                Button(action: {
-                                    isShowCode.toggle()
-                                }) {
-                                    Image(systemName: isShowCode ? "eye" : "eye.slash.fill")
-                                        .foregroundColor(.secondary)
-                                }
+            }
+            .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemGroupedBackground))
+            
+            Form {
+                if pageIndex == 0 {
+                    Section {
+                        HStack {
+                            if isShowCode {
+                                TextField("请输入已注册宠物的Id地址", text: $IdInput)
+                            } else {
+                                SecureField("请输入已注册宠物的Id地址", text: $IdInput)
                             }
-                            .font(.body)
                             
                             Button(action: {
-                                PetApi().getPetById(id: IdInput) { (pet) in
-                                    if !pet.id.isEmpty{
-                                        addPet(name: pet.name,
-                                               description: pet.description,
-                                               username: pet.username,
-                                               id: pet.id,
-                                               profile_image_url: pet.profile_image_url,
-                                               protected: pet.protected,
-                                               verified: pet.verified,
-                                               variety: pet.variety,
-                                               gender: pet.gender)
-                                    }else{
-                                        debugPrint("添加失败")
-                                    }
-                                }
+                                isShowCode.toggle()
                             }) {
-                                Text("提交")
-                            }
-                        }
-                    }else if pageIndex == 1 {
-                        Section(header: Text("宠物信息")) {
-                            TextField("请输入宠物姓名", text: $name)
-                            HStack {
-                                Text("@")
-                                    .font(.body)
+                                Image(systemName: isShowCode ? "eye" : "eye.slash.fill")
                                     .foregroundColor(.secondary)
-                                TextField("请输入唯一标识的域名", text: $username)
                             }
-                            Picker(selection: $genderIndex, label: Text("性别")) {
-                                ForEach(0 ..< gender.count) {
-                                    Text(self.gender[$0])
-                                }
-                            }.pickerStyle(SegmentedPickerStyle())
-                            TextField("品种", text: $variety)
-                            TextField("请输入描述", text: $description)
                         }
+                        .font(.body)
                         
-                        //                        Section(header: Text("地图设置")) {
-                        //                            ColorPicker("自定义标识色", selection: $color)
-                        //                        }
-                        
-                        Section {
-                            Button(action: {
-                                PetApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (pet) in
-                                    if !pet.id.isEmpty{
-                                        addPet(name: pet.name,
-                                               description: pet.description,
-                                               username: pet.username,
-                                               id: pet.id,
-                                               profile_image_url: pet.profile_image_url,
-                                               protected: pet.protected,
-                                               verified: pet.verified,
-                                               variety: pet.variety,
-                                               gender: pet.gender)
-                                    }else{
-                                        debugPrint("添加失败")
-                                    }
+                        Button(action: {
+                            PetApi().getPetById(id: IdInput) { (pet) in
+                                if !pet.id.isEmpty{
+                                    addPet(name: pet.name,
+                                           description: pet.description,
+                                           username: pet.username,
+                                           id: pet.id,
+                                           profile_image_url: pet.profile_image_url,
+                                           protected: pet.protected,
+                                           verified: pet.verified,
+                                           variety: pet.variety,
+                                           gender: pet.gender)
+                                }else{
+                                    debugPrint("添加失败")
                                 }
-                            }) {
-                                Text("立即注册该宠物")
                             }
+                        }) {
+                            Text("提交")
+                        }
+                    }
+                }else if pageIndex == 1 {
+                    Section(header: Text("宠物信息")) {
+                        TextField("请输入宠物姓名", text: $name)
+                        HStack {
+                            Text("@")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                            TextField("请输入唯一标识的域名", text: $username)
+                        }
+                        Picker(selection: $genderIndex, label: Text("性别")) {
+                            ForEach(0 ..< gender.count) {
+                                Text(self.gender[$0])
+                            }
+                        }.pickerStyle(SegmentedPickerStyle())
+                        TextField("品种", text: $variety)
+                        TextField("请输入描述", text: $description)
+                    }
+                    
+                    //                        Section(header: Text("地图设置")) {
+                    //                            ColorPicker("自定义标识色", selection: $color)
+                    //                        }
+                    
+                    Section {
+                        Button(action: {
+                            PetApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (pet) in
+                                if !pet.id.isEmpty{
+                                    addPet(name: pet.name,
+                                           description: pet.description,
+                                           username: pet.username,
+                                           id: pet.id,
+                                           profile_image_url: pet.profile_image_url,
+                                           protected: pet.protected,
+                                           verified: pet.verified,
+                                           variety: pet.variety,
+                                           gender: pet.gender)
+                                }else{
+                                    debugPrint("添加失败")
+                                }
+                            }
+                        }) {
+                            Text("立即注册该宠物")
                         }
                     }
                 }
             }
-            .navigationBarTitle(Text("增加宠物"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                print("Dismissing sheet view...")
-                self.isShowAddPetView = false
-            }) {
-                Text("完成").bold()
-            })
         }
     }
 }

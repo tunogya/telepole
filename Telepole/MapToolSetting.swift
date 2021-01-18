@@ -12,7 +12,7 @@ struct MapToolSetting: View {
     var body: some View {
         HStack {
             Spacer()
-            VStack{
+            VStack(spacing: 20) {
                 Button(action: {
                     isShowSetting.toggle()
                 }) {
@@ -22,6 +22,27 @@ struct MapToolSetting: View {
                         .background(Color("GrayColor"))
                         .clipShape(Circle())
                 }
+                
+                VStack {
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "location.fill")
+                            .frame(width: 40, height: 40, alignment: .center)
+                    }
+                    Divider()
+                        .frame(width: 44, height: 1, alignment: .center)
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .frame(width: 40, height: 40, alignment: .center)
+                    }
+                }
+                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                .cornerRadius(8)
+                
                 Spacer()
             }
         }

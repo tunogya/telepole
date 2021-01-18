@@ -64,7 +64,7 @@ struct AreaListView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: 0) {
             SliderIndicator()
                 .padding(.top, 12)
             
@@ -114,7 +114,8 @@ struct AreaListView: View {
                 }
             }
         }
-        .background(Color(.systemGroupedBackground))
+//        .background(Color(.systemGroupedBackground))
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
     }
 }

@@ -11,9 +11,7 @@ struct PetView: View {
     @Binding var isShowDetail: Bool
     
     var body: some View {
-        VStack{
-            SliderIndicator()
-                .padding(.top, 12)
+        VStack(spacing: 0) {
             // 标题
             CardTitle(flag: $isShowDetail, title: "贝贝")
                 
@@ -27,7 +25,8 @@ struct PetView: View {
             
             Spacer()
         }
-        .background(Color(.systemGroupedBackground))
+//        .background(Color(.systemGroupedBackground))
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
     }
 }

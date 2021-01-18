@@ -14,12 +14,11 @@ struct AreaView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SliderIndicator()
-                .padding(.top, 12)
             CardTitle(flag: $isShowArea, title: "\(regin.center.latitude)")
             Spacer()
         }
-        .background(Color(.systemGroupedBackground))
+//        .background(Color(.systemGroupedBackground))
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
     }
 }
