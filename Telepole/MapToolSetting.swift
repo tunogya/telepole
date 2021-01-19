@@ -13,6 +13,15 @@ struct MapToolSetting: View {
     
     @Binding var isShowSetting: Bool
     @Binding var region: MKCoordinateRegion
+    
+    @ObservedObject var locationManager = LocationManager()
+    var userLatitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
+    }
+    var userLongitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
+    }
+    
     var body: some View {
         HStack {
             Spacer()
@@ -29,7 +38,7 @@ struct MapToolSetting: View {
                 
                 VStack {
                     Button(action: {
-                        
+                        updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                     }) {
                         Image(systemName: "location.fill")
                             .frame(width: 40, height: 40, alignment: .center)
@@ -52,6 +61,13 @@ struct MapToolSetting: View {
         }
         .padding()
         .padding(.top, 30)
+    }
+    
+    fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
     }
     
     private func addRegion(title: String ,latitude: Double, longitude: Double, latitudeDelta: Double, longitudeDelta: Double) {
