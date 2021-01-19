@@ -8,20 +8,15 @@
 import SwiftUI
 
 struct SettingAddPetView: View {
-    @State var IdInput: String = "b45a21d55ff9c845043f6ce61eaba5de"
+    @State var IdInput: String = ""
     @Binding var isShowAddPetView: Bool
     @State var pageIndex: Int = 0
     let page: [String] = ["已注册", "新注册"]
     @State var isShowCode: Bool = false
     
-    @State var name = ""
-    @State var username = ""
+    @State var pet = PetModel(id: "", name: "", username: "", description: "", profile_image_url: "", protected: false, verified: false, variety: "", gender: "boy")
     @State var genderIndex = 0
     let gender: [String] = ["boy", "girl"]
-    @State var variety = ""
-    @State var description = ""
-    @State var profile_image_url = ""
-    //    @State var color = Color(red: 1.0, green: 1.0, blue: 1.0)
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -29,18 +24,19 @@ struct SettingAddPetView: View {
         animation: .default)
     private var items: FetchedResults<Pet>
     
-    private func addPet(name: String, description: String, username: String, id: String, profile_image_url: String, protected: Bool, verified: Bool, variety: String, gender: String) {
+    // 增加pet到数据库
+    private func addPet(_ pet: PetModel) {
         withAnimation {
             let newPet = Pet(context: viewContext)
-            newPet.name = name
-            newPet.username = username
-            newPet.desc = description
-            newPet.id = id
-            newPet.profile_image_url = profile_image_url
-            newPet.protected = protected
-            newPet.verified = verified
-            newPet.variety = variety
-            newPet.gender = gender
+            newPet.name = pet.name
+            newPet.username = pet.username
+            newPet.desc = pet.description
+            newPet.id = pet.id
+            newPet.profile_image_url = pet.profile_image_url
+            newPet.protected = pet.protected
+            newPet.verified = pet.verified
+            newPet.variety = pet.variety
+            newPet.gender = pet.gender
             
             do {
                 try viewContext.save()
@@ -54,7 +50,7 @@ struct SettingAddPetView: View {
     }
     
     var is_name_valid: Bool {
-        if name.isEmpty{
+        if pet.name.isEmpty{
             return false
         }else{
             return true
@@ -62,7 +58,7 @@ struct SettingAddPetView: View {
     }
     
     var is_username_valid: Bool  {
-        if username.isEmpty{
+        if pet.username.isEmpty{
             return false
         }else{
             return true
@@ -82,6 +78,7 @@ struct SettingAddPetView: View {
             .pickerStyle(SegmentedPickerStyle())
             
             Form {
+                // 已经注册页面
                 if pageIndex == 0 {
                     Section(header: Text("请确保宠物已经注册")) {
                         HStack {
@@ -100,18 +97,11 @@ struct SettingAddPetView: View {
                         }
                         .font(.body)
                         
+                        // 已经注册宠物添加按钮
                         Button(action: {
                             PetApi().getPetById(id: IdInput) { (pet) in
                                 if !pet.id.isEmpty{
-                                    addPet(name: pet.name,
-                                           description: pet.description,
-                                           username: pet.username,
-                                           id: pet.id,
-                                           profile_image_url: pet.profile_image_url,
-                                           protected: pet.protected,
-                                           verified: pet.verified,
-                                           variety: pet.variety,
-                                           gender: pet.gender)
+                                    addPet(pet)
                                 }else{
                                     debugPrint("添加失败")
                                 }
@@ -120,41 +110,34 @@ struct SettingAddPetView: View {
                             Text("提交")
                         }
                     }
+                    
+                // 未注册页面
                 }else if pageIndex == 1 {
                     Section(header: Text("宠物信息")) {
-                        TextField("请输入宠物姓名", text: $name)
+                        TextField("请输入宠物姓名", text: $pet.name)
                         HStack {
                             Text("@")
                                 .font(.body)
                                 .foregroundColor(.secondary)
-                            TextField("请输入唯一标识的域名", text: $username)
+                            TextField("请输入唯一标识的域名", text: $pet.username)
                         }
                         Picker(selection: $genderIndex, label: Text("性别")) {
                             ForEach(0 ..< gender.count) {
                                 Text(self.gender[$0])
                             }
                         }.pickerStyle(SegmentedPickerStyle())
-                        TextField("品种", text: $variety)
-                        TextField("请输入描述", text: $description)
+                        TextField("品种", text: $pet.variety)
+                        TextField("请输入描述", text: $pet.description)
                     }
                     
-                    //                        Section(header: Text("地图设置")) {
-                    //                            ColorPicker("自定义标识色", selection: $color)
-                    //                        }
-                    
                     Section {
+                        // 新注册按钮
                         Button(action: {
-                            PetApi().createUser(name: name, username: username, description: description, profile_image_url: profile_image_url, protected: false, verified: false, gender: gender[genderIndex], variety: variety) { (pet) in
+                            // 更新gender
+                            pet.gender = gender[genderIndex]
+                            PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
-                                    addPet(name: pet.name,
-                                           description: pet.description,
-                                           username: pet.username,
-                                           id: pet.id,
-                                           profile_image_url: pet.profile_image_url,
-                                           protected: pet.protected,
-                                           verified: pet.verified,
-                                           variety: pet.variety,
-                                           gender: pet.gender)
+                                    addPet(pet)
                                 }else{
                                     debugPrint("添加失败")
                                 }

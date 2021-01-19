@@ -10,6 +10,7 @@
 		17054B34259867CE001DE66A /* PetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* PetModel.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */; };
+		172F4FDF25B722A30091F044 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* UserModel.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
 		17322AE52593645500A0049B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322AE42593645500A0049B /* MapView.swift */; };
 		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
@@ -59,6 +60,8 @@
 		17054B33259867CE001DE66A /* PetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetModel.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QCloudCOSXMLManager.swift; sourceTree = "<group>"; };
+		172F4FDA25B715D40091F044 /* TelepoleDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TelepoleDebug.entitlements; sourceTree = "<group>"; };
+		172F4FDE25B722A30091F044 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		17322AE42593645500A0049B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				17054B33259867CE001DE66A /* PetModel.swift */,
+				172F4FDE25B722A30091F044 /* UserModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -168,6 +172,7 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
+				172F4FDA25B715D40091F044 /* TelepoleDebug.entitlements */,
 				172D929525ADD25C00DC14B8 /* Controller */,
 				175AAECC25AB40240009B862 /* LottieFiles */,
 				177D1714259CD26400C75B4A /* Views */,
@@ -405,6 +410,7 @@
 				17D7D3B325B3C17000C087C9 /* PetTelepole.swift in Sources */,
 				179E7F8F25B43E980002322A /* data.xcdatamodeld in Sources */,
 				177D1721259F269A00C75B4A /* SettingAddPetView.swift in Sources */,
+				172F4FDF25B722A30091F044 /* UserModel.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +568,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Telepole/TelepoleDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Telepole/Preview Content\"";
 				DEVELOPMENT_TEAM = GDG2N58DA2;

@@ -8,9 +8,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-let HOSTNAME = "https://app.wakanda.vip"
-
-struct PetModel: Identifiable {
+struct PetModel {
     var id: String
     var name: String
     var username: String
@@ -25,7 +23,7 @@ struct PetModel: Identifiable {
 class PetApi {
 //    根据用户id查询用户信息
     func getPetById(id: String, completion: @escaping (PetModel) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)"
+        let url = "\(HOSTNAME)/telepole/v1.0/pets/\(id)/"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -48,17 +46,17 @@ class PetApi {
     }
     
 //    用户注册
-    func createUser(name: String, username: String, description: String, profile_image_url: String, protected: Bool, verified: Bool, gender: String, variety: String, completion: @escaping (PetModel) -> ()) {
+    func createPet(_ pet: PetModel, completion: @escaping (PetModel) -> ()) {
         
-        let parameters: [String: Array<Any>] = ["data": [["name": name, "username": username, "description": description, "profile_image_url": profile_image_url, "protected": protected, "verified": verified, "gender": gender, "variety": variety]]]
+        let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "username": pet.username, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety]]]
         
-        let url = "\(HOSTNAME)/telepole/v1.0/users"
+        let url = "\(HOSTNAME)/telepole/v1.0/pets/"
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.getPetById(id: id) { (User) in
-                    completion(User)
+                self.getPetById(id: id) { (Pet) in
+                    completion(Pet)
                 }
             case .failure(let error):
                 print(error)

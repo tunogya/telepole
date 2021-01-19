@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import AuthenticationServices
 
 struct SettingView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -36,6 +37,34 @@ struct SettingView: View {
     var body: some View {
         VStack(spacing: 0) {
             CardTitleClosed(flag: $isShowSetting, title: "设置")
+            
+            SignInWithAppleButton(
+                onRequest: { request in
+                    request.requestedScopes = [.fullName, .email]
+                },
+                onCompletion: { result in
+                    switch result {
+                    case .success(let authResults):
+                        switch authResults.credential {
+                        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+                            print(appleIDCredential.fullName!, appleIDCredential.email!, appleIDCredential.user)
+                            
+                        case let passwordCredential as ASPasswordCredential:
+                            let username = passwordCredential.user
+                            let password = passwordCredential.password
+                            print(username, password)
+                        default:
+                            break
+                        }
+                    case .failure(let error):
+                        print("failure", error)
+                    }
+                }
+            )
+            .signInWithAppleButtonStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 44)
+            .padding()
             
             Form{
                 Section(header: Text("设置定位权限")) {
