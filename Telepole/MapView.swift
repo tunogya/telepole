@@ -106,7 +106,7 @@ struct MapView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
-            MapToolSetting(isShowSetting: $isShowSetting)
+            MapToolSetting(isShowSetting: $isShowSetting, region: $region)
             
             // 关心的地区列表
             AreaListView(region: $region, isShowArea: $isShowArea)

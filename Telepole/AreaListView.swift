@@ -74,13 +74,6 @@ struct AreaListView: View {
                     Text("Telepole")
                         .bold()
                     Spacer()
-                    Button(action: {
-                        print(region.center.latitude)
-                        addRegion(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.secondary)
-                    }
                 }
                 .font(.title2)
                 .padding(.horizontal)
