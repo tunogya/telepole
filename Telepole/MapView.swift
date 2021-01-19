@@ -18,6 +18,10 @@ private let OFFSET_M = CGSize(width: 0, height: 100)
 private let KEEPDISTENCE: CGFloat = 100
 
 struct MapView: View {
+    init(){
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
     @ObservedObject var locationManager = LocationManager()
     
     var userLatitude: CLLocationDegrees {

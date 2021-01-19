@@ -13,7 +13,7 @@ struct PetView: View {
     var body: some View {
         VStack(spacing: 0) {
             // 标题
-            CardTitle(flag: $isShowDetail, title: "贝贝")
+            CardTitleClosed(flag: $isShowDetail, title: "贝贝")
                 
             // 信息介绍
             PetInfo()
@@ -25,7 +25,6 @@ struct PetView: View {
             
             Spacer()
         }
-//        .background(Color(.systemGroupedBackground))
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
     }

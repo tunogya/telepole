@@ -114,7 +114,6 @@ struct AreaListView: View {
                 }
             }
         }
-//        .background(Color(.systemGroupedBackground))
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
     }

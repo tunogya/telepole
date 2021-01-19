@@ -49,7 +49,6 @@ struct PetInfo: View {
             }
             .font(.footnote)
             .foregroundColor(.secondary)
-            
         }
         .padding(.vertical, 10)
     }

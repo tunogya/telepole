@@ -17,11 +17,11 @@ struct SettingView: View {
     
     @State private var isShareMyLocation: Bool = false
     @Binding var isShowSetting: Bool
-        
+    
     private func deletePets(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -32,35 +32,36 @@ struct SettingView: View {
             }
         }
     }
-
+    
     var body: some View {
         VStack(spacing: 0) {
-                CardTitle(flag: $isShowSetting, title: "设置")
+            CardTitleClosed(flag: $isShowSetting, title: "设置")
             
-                Form{
-                    Section(header: Text("设置定位权限")) {
-                        Toggle(isOn: $isShareMyLocation) {
-                            Text("共享我的位置")
-                                .font(.body)
-                        }
+            Form{
+                Section(header: Text("设置定位权限")) {
+                    Toggle(isOn: $isShareMyLocation) {
+                        Text("共享我的位置")
+                            .font(.body)
                     }
-                    
-                    Section(header: Text("我的宠物列表")) {
-                        // 呈现宠物集合
-                        List {
-                            ForEach(items) { item in
-                                Text("\(item.name ?? "神秘宝贝")")
-                            }
-                            .onDelete(perform: deletePets)
+                }
+                
+                Section(header: Text("我的宠物列表")) {
+                    // 呈现宠物集合
+                    List {
+                        ForEach(items) { item in
+                            Text("\(item.name ?? "神秘宝贝")")
                         }
-//                        if items.isEmpty{
-                            ButtonRegister()
-//                        }
-                    } 
+                        .onDelete(perform: deletePets)
+                    }
+                    //                        if items.isEmpty{
+                    ButtonRegister()
+                    //                        }
                 }
             }
-            .ignoresSafeArea(.all)
         }
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+        .cornerRadius(20)
+    }
 }
 
 //struct HomeView_Previews: PreviewProvider {

@@ -19,7 +19,7 @@ struct MapToolSetting: View {
                     Image(systemName: "person.circle")
                         .frame(width: 44, height: 44, alignment: .center)
                         .font(.title)
-                        .background(Color("GrayColor"))
+                        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                         .clipShape(Circle())
                 }
                 

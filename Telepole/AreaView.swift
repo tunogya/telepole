@@ -14,7 +14,7 @@ struct AreaView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardTitle(flag: $isShowArea, title: "\(regin.center.latitude)")
+            CardTitleClosed(flag: $isShowArea, title: "\(regin.center.latitude)")
             Spacer()
         }
 //        .background(Color(.systemGroupedBackground))

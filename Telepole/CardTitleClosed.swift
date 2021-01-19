@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardTitle: View {
+struct CardTitleClosed: View {
     @Binding var flag: Bool
     let title: String
     
@@ -36,7 +36,6 @@ struct CardTitle: View {
                 Divider()
             }
         }
-        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
     }
 }
 

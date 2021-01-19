@@ -71,7 +71,7 @@ struct SettingAddPetView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardTitle(flag: $isShowAddPetView, title: "增加宠物")
+            CardTitleClosed(flag: $isShowAddPetView, title: "增加宠物")
             
             Picker(selection: $pageIndex, label: Text("Picker")) {
                 ForEach(0 ..< page.count) {
@@ -80,11 +80,10 @@ struct SettingAddPetView: View {
             }
             .padding()
             .pickerStyle(SegmentedPickerStyle())
-            .background(Color(.systemGroupedBackground))
             
             Form {
                 if pageIndex == 0 {
-                    Section {
+                    Section(header: Text("请确保宠物已经注册")) {
                         HStack {
                             if isShowCode {
                                 TextField("请输入已注册宠物的Id地址", text: $IdInput)
@@ -167,6 +166,7 @@ struct SettingAddPetView: View {
                 }
             }
         }
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
     }
 }
 
