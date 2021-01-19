@@ -29,7 +29,7 @@ class UserApi {
                     email: jsonData["email"].stringValue
                 ))
             case .failure(let error):
-                print(error)
+                debugPrint(error)
             }
         }
     }
@@ -43,11 +43,11 @@ class UserApi {
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.login(user: id) { (User) in
-                    completion(User)
+                self.login(user: id) { (user) in
+                    completion(user)
                 }
             case .failure(let error):
-                print(error)
+                debugPrint(error)
             }
         }
     }

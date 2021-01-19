@@ -40,7 +40,7 @@ class PetApi {
                     gender: jsonData["gender"].stringValue
                 ))
             case .failure(let error):
-                print(error)
+                debugPrint(error)
             }
         }
     }
@@ -49,17 +49,16 @@ class PetApi {
     func createPet(_ pet: PetModel, completion: @escaping (PetModel) -> ()) {
         
         let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "username": pet.username, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety]]]
-        
         let url = "\(HOSTNAME)/telepole/v1.0/pets/"
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.getPetById(id: id) { (Pet) in
-                    completion(Pet)
+                self.getPetById(id: id) { (pet) in
+                    completion(pet)
                 }
             case .failure(let error):
-                print(error)
+                debugPrint(error)
             }
         }
         

@@ -135,6 +135,7 @@ struct SettingAddPetView: View {
                         Button(action: {
                             // 更新gender
                             pet.gender = gender[genderIndex]
+                            print(pet)
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
