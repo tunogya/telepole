@@ -47,7 +47,7 @@ struct MapToolSetting: View {
                         .frame(width: 44, height: 1, alignment: .center)
                     
                     Button(action: {
-                        addRegion(RegionModel(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
+                        addRegion(RegionModel(title: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .frame(width: 40, height: 40, alignment: .center)

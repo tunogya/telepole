@@ -100,7 +100,7 @@ struct AreaListView: View {
                     
                     if items.isEmpty{
                         Button(action: {
-                            addRegion(RegionModel(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
+                            addRegion(RegionModel(title: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
                         }) {
                             Text("增加一个兴趣点")
                                 .font(.body)
