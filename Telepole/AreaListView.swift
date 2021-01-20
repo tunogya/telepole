@@ -29,14 +29,14 @@ struct AreaListView: View {
         return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
     
-    private func addRegion(title: String ,latitude: Double, longitude: Double, latitudeDelta: Double, longitudeDelta: Double) {
+    private func addRegion(_ region: RegionModel) {
         withAnimation {
             let newRegion = Region(context: viewContext)
-            newRegion.title = title
-            newRegion.latitude = latitude
-            newRegion.longitude = longitude
-            newRegion.latitudeDelta = latitudeDelta
-            newRegion.longitudeDelta = longitudeDelta
+            newRegion.title = region.title
+            newRegion.latitude = region.latitude
+            newRegion.longitude = region.longitude
+            newRegion.latitudeDelta = region.latitudeDelta
+            newRegion.longitudeDelta = region.longitudeDelta
             do {
                 try viewContext.save()
             } catch {
@@ -74,6 +74,8 @@ struct AreaListView: View {
                     Text("Telepole")
                         .bold()
                     Spacer()
+                    EditButton()
+                        .font(.body)
                 }
                 .font(.title2)
                 .padding(.horizontal)
@@ -98,7 +100,7 @@ struct AreaListView: View {
                     
                     if items.isEmpty{
                         Button(action: {
-                            addRegion(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
+                            addRegion(RegionModel(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
                         }) {
                             Text("增加一个兴趣点")
                                 .font(.body)

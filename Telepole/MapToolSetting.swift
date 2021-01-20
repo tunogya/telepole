@@ -47,7 +47,7 @@ struct MapToolSetting: View {
                         .frame(width: 44, height: 1, alignment: .center)
                     
                     Button(action: {
-                        addRegion(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta)
+                        addRegion(RegionModel(title: "测试", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .frame(width: 40, height: 40, alignment: .center)
@@ -70,14 +70,14 @@ struct MapToolSetting: View {
         )
     }
     
-    private func addRegion(title: String ,latitude: Double, longitude: Double, latitudeDelta: Double, longitudeDelta: Double) {
+    private func addRegion(_ region: RegionModel) {
         withAnimation {
             let newRegion = Region(context: viewContext)
-            newRegion.title = title
-            newRegion.latitude = latitude
-            newRegion.longitude = longitude
-            newRegion.latitudeDelta = latitudeDelta
-            newRegion.longitudeDelta = longitudeDelta
+            newRegion.title = region.title
+            newRegion.latitude = region.latitude
+            newRegion.longitude = region.longitude
+            newRegion.latitudeDelta = region.latitudeDelta
+            newRegion.longitudeDelta = region.longitudeDelta
             do {
                 try viewContext.save()
             } catch {
