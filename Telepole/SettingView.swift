@@ -62,7 +62,7 @@ struct SettingView: View {
                 }
             )
             .signInWithAppleButtonStyle(.white)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 375)
             .frame(height: 44)
             .padding()
             
