@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct MapToolSetting: View {
+struct Tool: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var isShowSetting: Bool
