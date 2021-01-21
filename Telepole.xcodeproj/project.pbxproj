@@ -140,13 +140,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		172F4FD325B7094C0091F044 /* Items */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Items;
-			sourceTree = "<group>";
-		};
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +218,6 @@
 				17E0E5A125B9D2D90066D0BA /* Setting */,
 				17E0E5A025B9D2C90066D0BA /* Area */,
 				17E0E59F25B9D2AD0066D0BA /* Map */,
-				172F4FD325B7094C0091F044 /* Items */,
 				17D7D3C125B3C22700C087C9 /* Library */,
 				17322AE42593645500A0049B /* ContentView.swift */,
 			);
