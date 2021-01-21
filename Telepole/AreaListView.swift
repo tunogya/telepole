@@ -12,9 +12,7 @@ struct AreaListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Region.latitude, ascending: true)],
-        animation: .default)
-    
-    private var items: FetchedResults<Region>
+        animation: .default) private var items: FetchedResults<Region>
     
     @Binding var region: MKCoordinateRegion
     @Binding var isShowArea: Bool

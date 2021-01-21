@@ -13,15 +13,17 @@ struct SettingView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Pet>
+        animation: .default) private var pets: FetchedResults<Pet>
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \User.user, ascending: true)],
+        animation: .default) private var users: FetchedResults<User>
     
     @State private var isShareMyLocation: Bool = false
     @Binding var isShowSetting: Bool
     
     private func deletePets(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { pets[$0] }.forEach(viewContext.delete)
             
             do {
                 try viewContext.save()
@@ -77,7 +79,7 @@ struct SettingView: View {
                 Section(header: Text("我的宠物列表")) {
                     // 呈现宠物集合
                     List {
-                        ForEach(items) { item in
+                        ForEach(pets) { item in
                             Text("\(item.name ?? "神秘宝贝")")
                         }
                         .onDelete(perform: deletePets)
