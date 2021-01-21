@@ -21,8 +21,7 @@ struct SettingAddPetView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Pet>
+        animation: .default) private var items: FetchedResults<Pet>
     
     // 增加pet到数据库
     private func addPet(_ pet: PetModel) {
