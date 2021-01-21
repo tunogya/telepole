@@ -124,15 +124,6 @@ struct MapView: View {
                 .offset(y: isShowArea ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            // 宠物信息
-            PetView(isShowDetail: $isShowDetail)
-                .ignoresSafeArea(.all)
-                .animation(.easeInOut)
-                .offset(y: dragOffset.height)
-                .gesture(drag)
-                .offset(y: isShowDetail ? 0 : SCREENHEIGHT)
-                .animation(.spring())
-            
             SettingView(isShowSetting: $isShowSetting)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
