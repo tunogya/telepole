@@ -17,7 +17,7 @@ private let OFFSET_M = CGSize(width: 0, height: 100)
 // 触摸保持距离
 private let KEEPDISTENCE: CGFloat = 100
 
-struct MapView: View {
+struct ContentView: View {
     init(){
         UITableView.appearance().backgroundColor = .clear
     }
@@ -138,6 +138,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        ContentView()
     }
 }
