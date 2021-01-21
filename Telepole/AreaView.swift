@@ -10,11 +10,11 @@ import MapKit
 
 struct AreaView: View {
     @Binding var isShowArea: Bool
-    @Binding var regin: MKCoordinateRegion
+    @Binding var mapRegin: MKCoordinateRegion
     
     var body: some View {
         VStack(spacing: 0) {
-            CardTitleClosed(flag: $isShowArea, title: "\(regin.center.latitude)")
+            CardTitleClosed(flag: $isShowArea, title: "\(mapRegin.center.latitude)")
             Spacer()
         }
 //        .background(Color(.systemGroupedBackground))

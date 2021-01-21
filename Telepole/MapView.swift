@@ -32,7 +32,7 @@ struct MapView: View {
         return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
     
-    @State private var region = MKCoordinateRegion(
+    @State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
@@ -92,7 +92,7 @@ struct MapView: View {
     }
     
     fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        region = MKCoordinateRegion(
+        mapRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         )
@@ -100,23 +100,23 @@ struct MapView: View {
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
                 .onAppear(perform: {
                     debugPrint("la: \(userLatitude), lo: \(userLongitude)")
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
             
-            MapToolSetting(isShowSetting: $isShowSetting, region: $region)
+            MapToolSetting(isShowSetting: $isShowSetting, region: $mapRegion)
             
             // 关心的地区列表
-            AreaListView(region: $region, isShowArea: $isShowArea)
+            AreaListView(mapRegion: $mapRegion, isShowArea: $isShowArea)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
                 .animation(.spring())
             
-            AreaView(isShowArea: $isShowArea, regin: $region)
+            AreaView(isShowArea: $isShowArea, mapRegin: $mapRegion)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)

@@ -14,7 +14,7 @@ struct AreaListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Region.latitude, ascending: true)],
         animation: .default) private var items: FetchedResults<Region>
     
-    @Binding var region: MKCoordinateRegion
+    @Binding var mapRegion: MKCoordinateRegion
     @Binding var isShowArea: Bool
     
     @ObservedObject var locationManager = LocationManager()
@@ -85,7 +85,7 @@ struct AreaListView: View {
                 Section(header: Text("我的关注地区")) {
                     ForEach(items) { item in
                         Button(action: {
-                            region = MKCoordinateRegion(
+                            mapRegion = MKCoordinateRegion(
                                 center: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude),
                                 span: MKCoordinateSpan(latitudeDelta: item.latitudeDelta, longitudeDelta: item.longitudeDelta)
                             )
@@ -98,7 +98,7 @@ struct AreaListView: View {
                     
                     if items.isEmpty{
                         Button(action: {
-                            addRegion(RegionModel(title: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
+                            addRegion(RegionModel(title: "\(mapRegion.center.latitude), \(mapRegion.center.longitude)", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude, latitudeDelta: mapRegion.span.latitudeDelta, longitudeDelta: mapRegion.span.longitudeDelta))
                         }) {
                             Text("增加一个兴趣点")
                                 .font(.body)
