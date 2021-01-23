@@ -13,7 +13,8 @@ class LocationManager: NSObject, ObservableObject {
     override init() {
         super.init()
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        // 定位级别
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
@@ -21,6 +22,27 @@ class LocationManager: NSObject, ObservableObject {
     @Published var lastLocation: CLLocation? {
         willSet {
             objectWillChange.send()
+        }
+    }
+    
+    @Published var locationStatus: CLAuthorizationStatus? {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    var statusString: String {
+        guard let status = locationStatus else {
+            return "unknown"
+        }
+        
+        switch status {
+        case .notDetermined : return "notDetermined"
+        case .authorizedAlways: return "authorizedAlways"
+        case .authorizedWhenInUse: return "authorizedWhenInUse"
+        case .restricted: return "restricted"
+        case .denied: return "denied"
+        default: return "unknown"
         }
     }
     
@@ -33,10 +55,11 @@ class LocationManager: NSObject, ObservableObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     
-//    Responding to Authorization Changes
-//    Tells the delegate when the app creates the location manager and when the authorization status changes.
+    //    Responding to Authorization Changes
+    //    Tells the delegate when the app creates the location manager and when the authorization status changes.
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        
+        self.locationStatus = manager.authorizationStatus
+//        print(#function, statusString)
     }
     
 //    Responding to Location Events
