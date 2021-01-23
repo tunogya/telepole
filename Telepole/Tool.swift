@@ -47,7 +47,7 @@ struct Tool: View {
                         .frame(width: 44, height: 1, alignment: .center)
                     
                     Button(action: {
-                        addRegion(RegionModel(title: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
+                        addRegion(RegionModel(name: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .frame(width: 40, height: 40, alignment: .center)
@@ -73,7 +73,7 @@ struct Tool: View {
     private func addRegion(_ region: RegionModel) {
         withAnimation {
             let newRegion = Region(context: viewContext)
-            newRegion.title = region.title
+            newRegion.title = region.name
             newRegion.latitude = region.latitude
             newRegion.longitude = region.longitude
             newRegion.latitudeDelta = region.latitudeDelta

@@ -30,7 +30,7 @@ struct AreaListView: View {
     private func addRegion(_ region: RegionModel) {
         withAnimation {
             let newRegion = Region(context: viewContext)
-            newRegion.title = region.title
+            newRegion.title = region.name
             newRegion.latitude = region.latitude
             newRegion.longitude = region.longitude
             newRegion.latitudeDelta = region.latitudeDelta
@@ -98,7 +98,7 @@ struct AreaListView: View {
                     
                     if items.isEmpty{
                         Button(action: {
-                            addRegion(RegionModel(title: "\(mapRegion.center.latitude), \(mapRegion.center.longitude)", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude, latitudeDelta: mapRegion.span.latitudeDelta, longitudeDelta: mapRegion.span.longitudeDelta))
+                            addRegion(RegionModel(name: "\(mapRegion.center.latitude), \(mapRegion.center.longitude)", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude, latitudeDelta: mapRegion.span.latitudeDelta, longitudeDelta: mapRegion.span.longitudeDelta))
                         }) {
                             Text("增加一个兴趣点")
                                 .font(.body)

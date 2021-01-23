@@ -8,7 +8,7 @@
 import Foundation
 
 struct RegionModel {
-    var title: String
+    var name: String
     var latitude: Double
     var longitude: Double
     var latitudeDelta: Double
