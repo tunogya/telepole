@@ -27,8 +27,7 @@ class UserApi {
                 let email = JSON(value)["data"][0]["email"].stringValue
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
-                let newUser = UserModel(user: user, fullName: fullName, email: email)
-                completion(newUser)
+                completion(UserModel(user: user, fullName: fullName, email: email))
             case .failure(let error):
                 debugPrint(error)
             }
