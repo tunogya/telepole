@@ -15,7 +15,7 @@ struct SettingView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
         animation: .default) private var pets: FetchedResults<Pet>
     
-    @State private var isShareMyLocation: Bool = false
+    @Binding var isShareMyLocation: Bool
     @Binding var isShowSetting: Bool
     
     private func deletePets(offsets: IndexSet) {

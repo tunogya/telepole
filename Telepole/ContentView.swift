@@ -46,6 +46,10 @@ struct ContentView: View {
     
     @State private var trackingMode = MapUserTrackingMode.follow
     
+    @State private var isShareMyLocation: Bool = false
+    
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    
     var drag: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -102,9 +106,15 @@ struct ContentView: View {
         ZStack {
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
                 .onAppear(perform: {
-                    debugPrint("la: \(userLatitude), lo: \(userLongitude)")
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
+                .onReceive(timer) { (time) in
+                    if isShareMyLocation{
+                        GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
+                    }else{
+                        print("no")
+                    }
+                }
             
             Tool(isShowSetting: $isShowSetting, region: $mapRegion)
             
@@ -137,7 +147,7 @@ struct ContentView: View {
                 .offset(y: isShowArea ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            SettingView(isShowSetting: $isShowSetting)
+            SettingView(isShareMyLocation: $isShareMyLocation, isShowSetting: $isShowSetting)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
