@@ -108,6 +108,19 @@ struct ContentView: View {
             
             Tool(isShowSetting: $isShowSetting, region: $mapRegion)
             
+            VStack{
+                Text("userLocation: ")
+                HStack {
+                    Text("\(userLatitude)")
+                    Text("\(userLongitude)")
+                }
+                Text("mapRegion:")
+                HStack {
+                    Text("\(mapRegion.center.latitude)")
+                    Text("\(mapRegion.center.longitude)")
+                }
+            }
+            
             // 关心的地区列表
             AreaListView(mapRegion: $mapRegion, isShowArea: $isShowArea)
                 .ignoresSafeArea(.all)

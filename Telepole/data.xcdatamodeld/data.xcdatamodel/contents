@@ -18,14 +18,8 @@
         <attribute name="longitudeDelta" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="fullName" optional="YES" attributeType="String"/>
-        <attribute name="user" optional="YES" attributeType="String"/>
-    </entity>
     <elements>
         <element name="Pet" positionX="-54" positionY="27" width="128" height="164"/>
         <element name="Region" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="User" positionX="-54" positionY="72" width="128" height="74"/>
     </elements>
 </model>

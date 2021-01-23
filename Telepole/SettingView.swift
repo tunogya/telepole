@@ -14,9 +14,6 @@ struct SettingView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
         animation: .default) private var pets: FetchedResults<Pet>
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \User.user, ascending: true)],
-        animation: .default) private var users: FetchedResults<User>
     
     @State private var isShareMyLocation: Bool = false
     @Binding var isShowSetting: Bool
@@ -49,8 +46,23 @@ struct SettingView: View {
                     case .success(let authResults):
                         switch authResults.credential {
                         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-                            
-                            print(appleIDCredential.fullName as Any, appleIDCredential.email ?? "null", appleIDCredential.user)
+                            if appleIDCredential.email == nil{
+                                // 已经注册过，直接登陆
+                                let user = appleIDCredential.user
+                                UserApi().login(user: user) { (user) in
+                                    print(user)
+                                }
+                            }else {
+                                // 新注册
+                                let fullName = String(describing: appleIDCredential.fullName?.familyName)
+                                    + String(describing: appleIDCredential.fullName?.givenName)
+                                let email = String(describing: appleIDCredential.email)
+                                let user = appleIDCredential.user
+                                let newUser = UserModel(user: user, fullName: fullName, email: email)
+                                UserApi().register(newUser) { (user) in
+                                    print(user)
+                                }
+                            }
                             
                         case let passwordCredential as ASPasswordCredential:
                             let username = passwordCredential.user
