@@ -18,28 +18,28 @@ struct UserModel {
 class UserApi {
     //    根据id登陆
     func login(user: String, completion: @escaping (UserModel) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/"
+        let url = "\(HOSTNAME)/telepole/v1.0/users/find/"
+        let parameters: [String: Any] = ["query": ["user": ["$eq": user]]]
         // 根据user查询到user信息
-//        AF.request(url).responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let jsonData = JSON(value)["data"]
-//                completion(UserModel(
-//                    user: jsonData["user"].stringValue,
-//                    fullName: jsonData["fullName"].stringValue,
-//                    email: jsonData["email"].stringValue
-//                ))
-//            case .failure(let error):
-//                debugPrint(error)
-//            }
-//        }
+        AF.request(url, method: .post, parameters: parameters).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let email = JSON(value)["data"][0]["email"].stringValue
+                let fullName = JSON(value)["data"][0]["fullName"].stringValue
+                let user = JSON(value)["data"][0]["user"].stringValue
+                let newUser = UserModel(user: user, fullName: fullName, email: email)
+                completion(newUser)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
     
     //    用户注册
     func register(_ user: UserModel, completion: @escaping (UserModel) -> ()) {
-        let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user]]]
         let url = "\(HOSTNAME)/telepole/v1.0/users/"
-        
+        let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user]]]
+       
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let value):
