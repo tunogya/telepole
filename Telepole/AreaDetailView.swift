@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct AreaView: View {
+struct AreaDetailView: View {
     @Binding var isShowArea: Bool
     @Binding var mapRegin: MKCoordinateRegion
     

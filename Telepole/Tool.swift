@@ -13,6 +13,7 @@ struct Tool: View {
     
     @Binding var isShowSetting: Bool
     @Binding var region: MKCoordinateRegion
+    @Binding var isShowPetList: Bool
     
     @ObservedObject var locationManager = LocationManager()
     var userLatitude: CLLocationDegrees {
@@ -24,6 +25,29 @@ struct Tool: View {
     
     var body: some View {
         HStack {
+            VStack(spacing: 20) {
+                HStack {
+                    Button(action: {
+                        isShowPetList.toggle()
+                    }) {
+                        Image(systemName: "person.circle")
+                            .frame(width: 44, height: 44, alignment: .center)
+                            .font(.title)
+                    }
+                   
+                    VStack(alignment: .leading){
+                        Text("贝贝")
+                        Text("200000000币")
+                    }
+                    .font(.footnote)
+                    .padding(.trailing)
+                }
+                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                .cornerRadius(44)
+               
+                
+                Spacer()
+            }
             Spacer()
             VStack(spacing: 20) {
                 Button(action: {

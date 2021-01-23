@@ -23,32 +23,29 @@ struct ContentView: View {
     }
     
     @ObservedObject var locationManager = LocationManager()
-    
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
     }
-    
     var userLongitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
-    
     @State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
-    
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
     @State private var isShowDetail = false
     @State private var isShowSetting = false
     @State private var isShowArea = false
-    
     @State private var trackingMode = MapUserTrackingMode.follow
-    
     @State private var isShareMyLocation: Bool = false
+    @State private var isShowPetList = false
     
-    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+//    @State private var pickPet: PetModel = PetModel
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var drag: some Gesture {
         DragGesture()
@@ -116,7 +113,7 @@ struct ContentView: View {
                     }
                 }
             
-            Tool(isShowSetting: $isShowSetting, region: $mapRegion)
+            Tool(isShowSetting: $isShowSetting, region: $mapRegion, isShowPetList: $isShowPetList)
             
             VStack{
                 Text("userLocation: ")
@@ -139,12 +136,20 @@ struct ContentView: View {
                 .gesture(drag)
                 .animation(.spring())
             
-            AreaView(isShowArea: $isShowArea, mapRegin: $mapRegion)
+            AreaDetailView(isShowArea: $isShowArea, mapRegin: $mapRegion)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
                 .offset(y: isShowArea ? 0 : SCREENHEIGHT)
+                .animation(.spring())
+            
+            PetListView()
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
+                .offset(y: isShowPetList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
             SettingView(isShareMyLocation: $isShareMyLocation, isShowSetting: $isShowSetting)

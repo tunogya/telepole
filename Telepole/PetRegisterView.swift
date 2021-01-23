@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingAddPetView: View {
+struct PetRegisterView: View {
     @State var IdInput: String = ""
     @Binding var isShowAddPetView: Bool
     @State var pageIndex: Int = 0
@@ -162,6 +162,6 @@ struct AddPetView_Previews: PreviewProvider {
 struct AddPetView_Previews_Test: View {
     @State var isShowAddPetView = true
     var body: some View {
-        SettingAddPetView(isShowAddPetView: $isShowAddPetView)
+        PetRegisterView(isShowAddPetView: $isShowAddPetView)
     }
 }
