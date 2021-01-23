@@ -34,7 +34,7 @@ struct ContentView: View {
     
     @State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
     
     @State private var dragOffset = OFFSET_S
@@ -94,7 +94,7 @@ struct ContentView: View {
     fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         mapRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
         )
     }
     
