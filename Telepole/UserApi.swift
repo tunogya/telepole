@@ -18,20 +18,21 @@ struct UserModel {
 class UserApi {
     //    根据id登陆
     func login(user: String, completion: @escaping (UserModel) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(user)/"
-        AF.request(url).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let jsonData = JSON(value)["data"]
-                completion(UserModel(
-                    user: jsonData["user"].stringValue,
-                    fullName: jsonData["fullName"].stringValue,
-                    email: jsonData["email"].stringValue
-                ))
-            case .failure(let error):
-                debugPrint(error)
-            }
-        }
+        let url = "\(HOSTNAME)/telepole/v1.0/users/"
+        // 根据user查询到user信息
+//        AF.request(url).responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let jsonData = JSON(value)["data"]
+//                completion(UserModel(
+//                    user: jsonData["user"].stringValue,
+//                    fullName: jsonData["fullName"].stringValue,
+//                    email: jsonData["email"].stringValue
+//                ))
+//            case .failure(let error):
+//                debugPrint(error)
+//            }
+//        }
     }
     
     //    用户注册
