@@ -49,7 +49,8 @@ struct SettingView: View {
                     case .success(let authResults):
                         switch authResults.credential {
                         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-                            print(appleIDCredential.fullName!, appleIDCredential.email!, appleIDCredential.user)
+                            
+                            print(appleIDCredential.fullName as Any, appleIDCredential.email ?? "null", appleIDCredential.user)
                             
                         case let passwordCredential as ASPasswordCredential:
                             let username = passwordCredential.user
