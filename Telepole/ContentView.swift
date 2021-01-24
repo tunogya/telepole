@@ -126,6 +126,7 @@ struct ContentView: View {
                     Text("\(mapRegion.center.latitude)")
                     Text("\(mapRegion.center.longitude)")
                 }
+                Text(String(describing: userSetting.isShareMyLocation))
             }
             
             // 关心的地区列表

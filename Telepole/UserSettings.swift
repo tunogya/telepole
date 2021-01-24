@@ -10,28 +10,47 @@ import Combine
 import MapKit
 import SwiftUI
 
-class UserSettings: ObservableObject {
-    @Published var user: UserModel {
-        didSet {
-            UserDefaults.standard.set(user, forKey: "user")
+@propertyWrapper
+struct UserDefault<T> {
+    let key: String
+    let defaultValue: T
+    
+    init(_ key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+    
+    var wrappedValue: T {
+        get {
+            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: key)
+        }
+    }
+}
+
+final class UserSettings: ObservableObject {
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    
+    @UserDefault("user", defaultValue: UserModel(user: "", fullName: "", email: ""))
+    var user: UserModel {
+        willSet {
+            objectWillChange.send()
         }
     }
     
-    @Published var isShareMyLocation: Bool {
-        didSet {
-            UserDefaults.standard.set(isShareMyLocation, forKey: "isShareMyLocation")
+    @UserDefault("isShareMyLocation", defaultValue: false)
+    var isShareMyLocation: Bool {
+        willSet {
+            objectWillChange.send()
         }
     }
-    
-    @Published var trackingMode: MapUserTrackingMode {
-        didSet {
-            UserDefaults.standard.set(trackingMode, forKey: "trackingMode")
+
+    @UserDefault("trackingMode", defaultValue: MapUserTrackingMode.follow)
+    var trackingMode: MapUserTrackingMode {
+        willSet {
+            objectWillChange.send()
         }
-    }
-    
-    init() {
-        self.user = UserDefaults.standard.object(forKey: "user") as? UserModel ?? UserModel(user: "", fullName: "", email: "")
-        self.isShareMyLocation = UserDefaults.standard.bool(forKey: "isShareMyLocation")
-        self.trackingMode = UserDefaults.standard.object(forKey: "trackingMode") as? MapUserTrackingMode ?? MapUserTrackingMode.follow
     }
 }
