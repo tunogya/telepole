@@ -19,12 +19,14 @@ struct SettingView: View {
         VStack(spacing: 0) {
             CardTitleClosed(flag: $isShowSetting, title: "设置")
             
-            SignInButton()
-                .signInWithAppleButtonStyle(.white)
-                .frame(maxWidth: 375)
-                .frame(height: 44)
-                .padding()
-            
+            if userSettings.user == ""{
+                SignInButton()
+                    .signInWithAppleButtonStyle(.white)
+                    .frame(maxWidth: 375)
+                    .frame(height: 44)
+                    .padding()
+            }
+
             Form{
                 Section(header: Text("定位权限")) {
                     Toggle(isOn: $userSettings.isShareMyLocation) {
@@ -45,6 +47,17 @@ struct SettingView: View {
                         }
                     }
                 }
+                
+                Section(header: Text("当前用户: tunogya@qq.com")) {
+                    Button(action: {
+                        userSettings.user = ""
+                        userSettings.email = ""
+                        userSettings.fullName = ""
+                    }){
+                        Text("注销")
+                    }
+                }
+                
             }
         }
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
@@ -83,7 +96,9 @@ struct SignInButton: View {
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
                             UserApi().login(user) { (user) in
-                                userSettings.user = user
+                                userSettings.user = user.user
+                                userSettings.email = user.email
+                                userSettings.fullName = user.fullName
                             }
                         }else {
                             // 新注册
@@ -93,7 +108,9 @@ struct SignInButton: View {
                             let user = appleIDCredential.user
                             let newUser = UserModel(user: user, fullName: fullName, email: email)
                             UserApi().register(newUser) { (user) in
-                                userSettings.user = user
+                                userSettings.user = user.user
+                                userSettings.email = user.email
+                                userSettings.fullName = user.fullName
                             }
                         }
                         

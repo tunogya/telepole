@@ -33,12 +33,27 @@ struct UserDefault<T: Codable> {
 final class UserSettings: ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
     
-    @UserDefault("user", defaultValue: UserModel(user: "", fullName: "", email: ""))
-    var user: UserModel {
+    @UserDefault("user", defaultValue: "")
+    var user: String {
         willSet {
             objectWillChange.send()
         }
     }
+    
+    @UserDefault("email", defaultValue: "")
+    var email: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("fullName", defaultValue: "")
+    var fullName: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     
     @UserDefault("isShareMyLocation", defaultValue: false)
     var isShareMyLocation: Bool {
