@@ -39,7 +39,6 @@ struct ContentView: View {
     @State private var currentOffset = OFFSET_S
     @State private var isShowSetting = false
     @State private var isShowAreaList = false
-    @State private var isShowAreaDetail = false
     @State private var isShowPetList = false
     @State private var isShowPetDetail = false
     @State private var trackingMode = MapUserTrackingMode.none
@@ -114,7 +113,7 @@ struct ContentView: View {
                     }
                 }
             
-            Tool(isShowSetting: $isShowSetting, region: $mapRegion, isShowPetList: $isShowPetList, trackingMode: $trackingMode)
+            Tool(isShowSetting: $isShowSetting, isShowPetList: $isShowPetList, isShowAreaList: $isShowAreaList, region: $mapRegion, trackingMode: $trackingMode)
             
             VStack{
                 HStack {

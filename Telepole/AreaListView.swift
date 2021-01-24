@@ -62,10 +62,10 @@ struct AreaListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $isShow, hasEditButton: true, title: "telepole")
+            CardHeader(flag: $isShow, hasEditButton: true, title: "地图")
             
             Form {
-                Section(header: Text("我的关注地区")) {
+                Section(header: Text("我的地图")) {
                     ForEach(items) { item in
                         Button(action: {
                             mapRegion = MKCoordinateRegion(
@@ -82,7 +82,7 @@ struct AreaListView: View {
                         Button(action: {
                             addRegion(RegionModel(name: "\(mapRegion.center.latitude), \(mapRegion.center.longitude)", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude, latitudeDelta: mapRegion.span.latitudeDelta, longitudeDelta: mapRegion.span.longitudeDelta))
                         }) {
-                            Text("增加一个兴趣点")
+                            Text("增加一个地图")
                                 .font(.body)
                         }
                     }

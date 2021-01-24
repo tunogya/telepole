@@ -11,8 +11,9 @@ import MapKit
 struct Tool: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var isShowSetting: Bool
-    @Binding var region: MKCoordinateRegion
     @Binding var isShowPetList: Bool
+    @Binding var isShowAreaList: Bool
+    @Binding var region: MKCoordinateRegion
     @Binding var trackingMode: MapUserTrackingMode
     @ObservedObject var locationManager = LocationManager()
     @ObservedObject var userSetting = UserSettings()
@@ -68,6 +69,7 @@ struct Tool: View {
                         Image(systemName: "location.fill")
                             .frame(width: 40, height: 40, alignment: .center)
                     }
+                    
                     Divider()
                         .frame(width: 44, height: 1, alignment: .center)
                     
@@ -80,6 +82,17 @@ struct Tool: View {
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(8)
+                
+                VStack {
+                    Button(action: {
+                        isShowAreaList.toggle()
+                    }) {
+                        Image(systemName: "map.fill")
+                            .frame(width: 40, height: 40, alignment: .center)
+                    }
+                    .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                    .cornerRadius(8)
+                }
                 
                 Spacer()
             }
