@@ -8,10 +8,12 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import AuthenticationServices
+import MapKit
 
 struct SettingView: View {
     @Binding var isShowSetting: Bool
     @ObservedObject var userSettings = UserSettings()
+    @State private var isFollowMe = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,10 +26,23 @@ struct SettingView: View {
                 .padding()
             
             Form{
-                Section(header: Text("设置定位权限")) {
+                Section(header: Text("定位权限")) {
                     Toggle(isOn: $userSettings.isShareMyLocation) {
                         Text("共享我的位置")
                             .font(.body)
+                    }
+                }
+                
+                Section(header: Text("地图设置")) {
+                    Toggle(isOn: $isFollowMe) {
+                        Text("追随模式")
+                            .font(.body)
+                    }.onChange(of: isFollowMe) { (value) in
+                        if value {
+                            userSettings.trackingMode = MapUserTrackingMode.follow
+                        }else {
+                            userSettings.trackingMode = MapUserTrackingMode.none
+                        }
                     }
                 }
             }
