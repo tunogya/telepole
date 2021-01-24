@@ -13,7 +13,7 @@ import MapKit
 struct SettingView: View {
     @Binding var isShowSetting: Bool
     @ObservedObject var userSettings = UserSettings()
-    @State private var isFollowMe = false
+    @State private var trackingMode = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -34,10 +34,10 @@ struct SettingView: View {
                 }
                 
                 Section(header: Text("地图设置")) {
-                    Toggle(isOn: $isFollowMe) {
+                    Toggle(isOn: $trackingMode) {
                         Text("追随模式")
                             .font(.body)
-                    }.onChange(of: isFollowMe) { (value) in
+                    }.onChange(of: trackingMode) { (value) in
                         if value {
                             userSettings.trackingMode = MapUserTrackingMode.follow
                         }else {
