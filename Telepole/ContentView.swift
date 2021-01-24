@@ -37,7 +37,6 @@ struct ContentView: View {
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
-    @State private var trackingMode: MapUserTrackingMode = MapUserTrackingMode.follow
     @State private var isShowDetail = false
     @State private var isShowSetting = false
     @State private var isShowArea = false
@@ -101,7 +100,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $userSetting.trackingMode)
                 .onAppear(perform: {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
