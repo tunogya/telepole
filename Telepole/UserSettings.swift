@@ -11,7 +11,7 @@ import Combine
 class UserSettings: ObservableObject {
     @Published var user: UserModel {
         didSet {
-            UserDefaults.standard.set(UserModel(user: "", fullName: "", email: ""), forKey: "user")
+            UserDefaults.standard.set(user, forKey: "user")
         }
     }
     
