@@ -17,7 +17,7 @@ struct UserModel {
 
 class UserApi {
     //    根据id登陆
-    func login(user: String, completion: @escaping (UserModel) -> ()) {
+    func login(_ user: String, completion: @escaping (UserModel) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": user]]]
         // 根据user查询到user信息
@@ -43,9 +43,26 @@ class UserApi {
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.login(user: id) { (user) in
+                self.getUserById(id) { (user) in
                     completion(user)
                 }
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // 根据注册返回结果查询用户
+    func getUserById(_ id: String, completion: @escaping (UserModel) -> ()) {
+        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)/"
+        // 根据user查询到user信息
+        AF.request(url, method: .get).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let email = JSON(value)["data"][0]["email"].stringValue
+                let fullName = JSON(value)["data"][0]["fullName"].stringValue
+                let user = JSON(value)["data"][0]["user"].stringValue
+                completion(UserModel(user: user, fullName: fullName, email: email))
             case .failure(let error):
                 debugPrint(error)
             }
