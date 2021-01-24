@@ -17,7 +17,7 @@ struct SettingView: View {
         
     var body: some View {
         VStack(spacing: 0) {
-            CardTitleClosed(flag: $isShowSetting, title: "设置")
+            CardHeader(flag: $isShowSetting, hasEditButton: false, title: "设置")
             
             if userSettings.user == ""{
                 SignInButton()

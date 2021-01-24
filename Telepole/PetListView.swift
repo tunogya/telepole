@@ -12,6 +12,7 @@ struct PetListView: View {
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
         animation: .default) private var pets: FetchedResults<Pet>
+    @Binding var isShowPetList: Bool
     
     private func deletePets(offsets: IndexSet) {
         withAnimation {
@@ -30,22 +31,7 @@ struct PetListView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            SliderIndicator()
-                .padding(.top, 12)
-            VStack {
-                // 标题及定位
-                HStack {
-                    Text("我的宠物")
-                        .bold()
-                    Spacer()
-                    EditButton()
-                        .font(.body)
-                }
-                .font(.title2)
-                .padding(.horizontal)
-                
-                Divider()
-            }
+            CardHeader(flag: $isShowPetList, hasEditButton: true, title: "我的宠物")
             
             Form {
                 Section(header: Text("我的宠物列表")) {
@@ -67,11 +53,11 @@ struct PetListView: View {
     }
 }
 
-struct PetListView_Previews: PreviewProvider {
-    static var previews: some View {
-        PetListView()
-    }
-}
+//struct PetListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PetListView()
+//    }
+//}
 
 struct ButtonRegister: View {
     @State var isShowAddPetView: Bool = false

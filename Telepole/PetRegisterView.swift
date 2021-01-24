@@ -66,7 +66,7 @@ struct PetRegisterView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardTitleClosed(flag: $isShowAddPetView, title: "增加宠物")
+            CardHeader(flag: $isShowAddPetView, hasEditButton: false, title: "增加宠物")
             
             Picker(selection: $pageIndex, label: Text("Picker")) {
                 ForEach(0 ..< page.count) {

@@ -14,7 +14,7 @@ struct AreaDetailView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardTitleClosed(flag: $isShowArea, title: "\(mapRegin.center.latitude)")
+            CardHeader(flag: $isShowArea, hasEditButton: false, title: "\(mapRegin.center.latitude)")
             Spacer()
         }
 //        .background(Color(.systemGroupedBackground))

@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct CardTitleClosed: View {
+struct CardHeader: View {
     @Binding var flag: Bool
+    
+    let hasEditButton: Bool
     let title: String
     
     var body: some View {
@@ -22,6 +24,11 @@ struct CardTitleClosed: View {
                         .bold()
                     
                     Spacer()
+                    
+                    if hasEditButton{
+                        EditButton()
+                            .font(.body)
+                    }
                     
                     Button(action: {
                         flag = false

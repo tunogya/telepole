@@ -63,23 +63,7 @@ struct AreaListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SliderIndicator()
-                .padding(.top, 12)
-            
-            VStack {
-                // 标题及定位
-                HStack {
-                    Text("Telepole")
-                        .bold()
-                    Spacer()
-                    EditButton()
-                        .font(.body)
-                }
-                .font(.title2)
-                .padding(.horizontal)
-                
-                Divider()
-            }
+            CardHeader(flag: $isShowArea, hasEditButton: true, title: "telepole")
             
             Form {
                 Section(header: Text("我的关注地区")) {

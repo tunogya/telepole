@@ -147,7 +147,7 @@ struct ContentView: View {
                 .offset(y: isShowArea ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            PetListView()
+            PetListView(isShowPetList: $isShowPetList)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
