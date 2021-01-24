@@ -9,14 +9,13 @@ import SwiftUI
 import MapKit
 
 struct AreaListView: View {
+    @Binding var isShow: Bool
+    @Binding var mapRegion: MKCoordinateRegion
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Region.latitude, ascending: true)],
         animation: .default) private var items: FetchedResults<Region>
-    
-    @Binding var mapRegion: MKCoordinateRegion
-    @Binding var isShowArea: Bool
-    
     @ObservedObject var locationManager = LocationManager()
     
     var userLatitude: CLLocationDegrees {
@@ -63,7 +62,7 @@ struct AreaListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $isShowArea, hasEditButton: true, title: "telepole")
+            CardHeader(flag: $isShow, hasEditButton: true, title: "telepole")
             
             Form {
                 Section(header: Text("我的关注地区")) {
@@ -73,7 +72,6 @@ struct AreaListView: View {
                                 center: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude),
                                 span: MKCoordinateSpan(latitudeDelta: item.latitudeDelta, longitudeDelta: item.longitudeDelta)
                             )
-                            isShowArea = true
                         }) {
                             Text(item.title ?? "神秘地点")
                         }

@@ -37,10 +37,11 @@ struct ContentView: View {
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
-    @State private var isShowDetail = false
     @State private var isShowSetting = false
-    @State private var isShowArea = false
+    @State private var isShowAreaList = false
+    @State private var isShowAreaDetail = false
     @State private var isShowPetList = false
+    @State private var isShowPetDetail = false
     @State private var trackingMode = MapUserTrackingMode.none
     
 //    @State private var pickPet: PetModel = PetModel
@@ -102,9 +103,9 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
-//                .onAppear(perform: {
-//                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
-//                })
+                .onAppear(perform: {
+                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
+                })
                 .onReceive(timer) { (time) in
                     if userSetting.isShareMyLocation{
                         GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
@@ -132,22 +133,15 @@ struct ContentView: View {
             }
             
             // 关心的地区列表
-            AreaListView(mapRegion: $mapRegion, isShowArea: $isShowArea)
+            AreaListView(isShow: $isShowAreaList, mapRegion: $mapRegion)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
+                .offset(y: isShowAreaList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            AreaDetailView(isShowArea: $isShowArea, mapRegin: $mapRegion)
-                .ignoresSafeArea(.all)
-                .animation(.easeInOut)
-                .offset(y: dragOffset.height)
-                .gesture(drag)
-                .offset(y: isShowArea ? 0 : SCREENHEIGHT)
-                .animation(.spring())
-            
-            PetListView(isShowPetList: $isShowPetList)
+            PetListView(isShow: $isShowPetList)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
@@ -155,7 +149,7 @@ struct ContentView: View {
                 .offset(y: isShowPetList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            SettingView(isShowSetting: $isShowSetting, trackingMode: $trackingMode)
+            SettingView(isShow: $isShowSetting, trackingMode: $trackingMode)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)

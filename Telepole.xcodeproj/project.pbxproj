@@ -20,7 +20,6 @@
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
 		173F05D6259324B600E662B8 /* TelepoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05D5259324B600E662B8 /* TelepoleTests.swift */; };
 		173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05E0259324B600E662B8 /* TelepoleUITests.swift */; };
-		17536DD525B5C422004E04D4 /* AreaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17536DD425B5C422004E04D4 /* AreaDetailView.swift */; };
 		175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAEC125AB3E1C0009B862 /* LottieView.swift */; };
 		175AAEC825AB3FFF0009B862 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 175AAEC725AB3FFF0009B862 /* Lottie */; };
 		1767A77F25BC373000838CEF /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoModel.swift */; };
@@ -78,7 +77,6 @@
 		173F05DC259324B600E662B8 /* TelepoleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelepoleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
 		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17536DD425B5C422004E04D4 /* AreaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaDetailView.swift; sourceTree = "<group>"; };
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		1767A77E25BC373000838CEF /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
 		1767A78725BC686A00838CEF /* PetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListView.swift; sourceTree = "<group>"; };
@@ -222,8 +220,8 @@
 		1767A78625BC683B00838CEF /* Pet */ = {
 			isa = PBXGroup;
 			children = (
-				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
 				1767A78725BC686A00838CEF /* PetListView.swift */,
+				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
 			);
 			name = Pet;
 			sourceTree = "<group>";
@@ -265,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */,
-				17536DD425B5C422004E04D4 /* AreaDetailView.swift */,
 			);
 			name = Area;
 			sourceTree = "<group>";
@@ -440,7 +437,6 @@
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,
 				1767A77F25BC373000838CEF /* GeoModel.swift in Sources */,
 				179E7FD325B44E060002322A /* Persistence.swift in Sources */,
-				17536DD525B5C422004E04D4 /* AreaDetailView.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
 				172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */,
 				17D7D3BD25B3C20900C087C9 /* Tool.swift in Sources */,

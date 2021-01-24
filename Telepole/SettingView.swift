@@ -11,13 +11,13 @@ import AuthenticationServices
 import MapKit
 
 struct SettingView: View {
-    @Binding var isShowSetting: Bool
+    @Binding var isShow: Bool
     @ObservedObject var userSettings = UserSettings()
     @Binding var trackingMode: MapUserTrackingMode
         
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $isShowSetting, hasEditButton: false, title: "设置")
+            CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
             
             if userSettings.user == ""{
                 SignInButton()
