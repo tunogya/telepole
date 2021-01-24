@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegionModel {
+struct RegionModel: Codable {
     var name: String
     var latitude: Double
     var longitude: Double

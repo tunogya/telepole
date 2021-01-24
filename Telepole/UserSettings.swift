@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 
 @propertyWrapper
-struct UserDefault<T> {
+struct UserDefault<T: Codable> {
     let key: String
     let defaultValue: T
     
@@ -47,8 +47,8 @@ final class UserSettings: ObservableObject {
         }
     }
 
-    @UserDefault("trackingMode", defaultValue: MapUserTrackingMode.none)
-    var trackingMode: MapUserTrackingMode {
+    @UserDefault("trackingMode", defaultValue: false)
+    var trackingMode: Bool {
         willSet {
             objectWillChange.send()
         }

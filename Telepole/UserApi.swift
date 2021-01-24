@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct UserModel {
+struct UserModel: Codable {
     var user: String
     var fullName: String
     var email: String

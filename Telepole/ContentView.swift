@@ -41,6 +41,7 @@ struct ContentView: View {
     @State private var isShowSetting = false
     @State private var isShowArea = false
     @State private var isShowPetList = false
+    @State private var trackingMode = MapUserTrackingMode.none
     
 //    @State private var pickPet: PetModel = PetModel
     
@@ -100,7 +101,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $userSetting.trackingMode)
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
 //                .onAppear(perform: {
 //                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
 //                })
@@ -154,7 +155,7 @@ struct ContentView: View {
                 .offset(y: isShowPetList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            SettingView(isShowSetting: $isShowSetting)
+            SettingView(isShowSetting: $isShowSetting, trackingMode: $trackingMode)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
