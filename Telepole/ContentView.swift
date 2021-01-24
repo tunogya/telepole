@@ -113,7 +113,7 @@ struct ContentView: View {
                     }
                 }
             
-            Tool(isShowSetting: $isShowSetting, region: $mapRegion, isShowPetList: $isShowPetList)
+            Tool(isShowSetting: $isShowSetting, region: $mapRegion, isShowPetList: $isShowPetList, trackingMode: $trackingMode)
             
             VStack{
                 HStack {

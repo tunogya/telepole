@@ -35,7 +35,7 @@ struct SettingView: View {
                 
                 Section(header: Text("地图设置")) {
                     Toggle(isOn: $userSettings.trackingMode) {
-                        Text("追随模式")
+                        Text("默认追随模式")
                             .font(.body)
                     }.onChange(of: userSettings.trackingMode) { (value) in
                         if value {

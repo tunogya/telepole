@@ -10,12 +10,13 @@ import MapKit
 
 struct Tool: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
     @Binding var isShowSetting: Bool
     @Binding var region: MKCoordinateRegion
     @Binding var isShowPetList: Bool
-    
+    @Binding var trackingMode: MapUserTrackingMode
     @ObservedObject var locationManager = LocationManager()
+    @ObservedObject var userSetting = UserSettings()
+    
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
     }
@@ -62,7 +63,7 @@ struct Tool: View {
                 
                 VStack {
                     Button(action: {
-                        updateMapCenter(latitude: userLatitude, longitude: userLongitude)
+                        trackingMode = MapUserTrackingMode.follow
                     }) {
                         Image(systemName: "location.fill")
                             .frame(width: 40, height: 40, alignment: .center)
@@ -85,13 +86,6 @@ struct Tool: View {
         }
         .padding()
         .padding(.top, 30)
-    }
-    
-    fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-            span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        )
     }
     
     private func addRegion(_ region: RegionModel) {
