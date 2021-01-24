@@ -22,6 +22,7 @@ struct ContentView: View {
         UITableView.appearance().backgroundColor = .clear
     }
     
+    @ObservedObject var userSetting = UserSettings()
     @ObservedObject var locationManager = LocationManager()
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
@@ -36,11 +37,10 @@ struct ContentView: View {
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
+    @State private var trackingMode: MapUserTrackingMode = MapUserTrackingMode.follow
     @State private var isShowDetail = false
     @State private var isShowSetting = false
     @State private var isShowArea = false
-    @State private var trackingMode = MapUserTrackingMode.follow
-    @State private var isShareMyLocation: Bool = false
     @State private var isShowPetList = false
     
 //    @State private var pickPet: PetModel = PetModel
@@ -106,7 +106,7 @@ struct ContentView: View {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
                 })
                 .onReceive(timer) { (time) in
-                    if isShareMyLocation{
+                    if userSetting.isShareMyLocation{
                         GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
                     }else{
                         print("no")
@@ -152,7 +152,7 @@ struct ContentView: View {
                 .offset(y: isShowPetList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            SettingView(isShareMyLocation: $isShareMyLocation, isShowSetting: $isShowSetting)
+            SettingView(isShowSetting: $isShowSetting)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)

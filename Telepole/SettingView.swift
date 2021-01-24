@@ -10,8 +10,8 @@ import SDWebImageSwiftUI
 import AuthenticationServices
 
 struct SettingView: View {
-    @Binding var isShareMyLocation: Bool
     @Binding var isShowSetting: Bool
+    @ObservedObject var userSettings = UserSettings()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -63,7 +63,7 @@ struct SettingView: View {
             
             Form{
                 Section(header: Text("设置定位权限")) {
-                    Toggle(isOn: $isShareMyLocation) {
+                    Toggle(isOn: $userSettings.isShareMyLocation) {
                         Text("共享我的位置")
                             .font(.body)
                     }
