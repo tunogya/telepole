@@ -48,7 +48,7 @@ struct SettingView: View {
                     }
                 }
                 
-                Section(header: Text("当前用户: tunogya@qq.com")) {
+                Section(header: Text("当前用户: \(userSettings.email)")) {
                     Button(action: {
                         userSettings.user = ""
                         userSettings.email = ""
@@ -57,7 +57,6 @@ struct SettingView: View {
                         Text("注销")
                     }
                 }
-                
             }
         }
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
