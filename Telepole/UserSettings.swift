@@ -47,7 +47,7 @@ final class UserSettings: ObservableObject {
         }
     }
 
-    @UserDefault("trackingMode", defaultValue: MapUserTrackingMode.follow)
+    @UserDefault("trackingMode", defaultValue: MapUserTrackingMode.none)
     var trackingMode: MapUserTrackingMode {
         willSet {
             objectWillChange.send()

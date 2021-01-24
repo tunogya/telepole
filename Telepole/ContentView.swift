@@ -31,7 +31,7 @@ struct ContentView: View {
         return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
     @State private var mapRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
+        center: CLLocationCoordinate2D(latitude: 37.6, longitude: -122),
         span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
     )
     @State private var dragOffset = OFFSET_S
@@ -101,9 +101,9 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $userSetting.trackingMode)
-                .onAppear(perform: {
-                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
-                })
+//                .onAppear(perform: {
+//                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
+//                })
                 .onReceive(timer) { (time) in
                     if userSetting.isShareMyLocation{
                         GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
@@ -115,17 +115,19 @@ struct ContentView: View {
             Tool(isShowSetting: $isShowSetting, region: $mapRegion, isShowPetList: $isShowPetList)
             
             VStack{
-                Text("userLocation: ")
                 HStack {
-                    Text("\(userLatitude)")
+                    Text("userLocation: ")
+                    Text("\(userLatitude),")
                     Text("\(userLongitude)")
                 }
-                Text("mapRegion:")
+                
                 HStack {
-                    Text("\(mapRegion.center.latitude)")
+                    Text("mapRegion:")
+                    Text("\(mapRegion.center.latitude),")
                     Text("\(mapRegion.center.longitude)")
                 }
-                Text(String(describing: userSetting.isShareMyLocation))
+                Text("isShareMyLocation:" + String(describing: userSetting.isShareMyLocation))
+                Text("trackingMode:" + String(describing: userSetting.trackingMode))
             }
             
             // 关心的地区列表
