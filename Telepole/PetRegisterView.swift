@@ -101,6 +101,7 @@ struct PetRegisterView: View {
                             PetApi().getPetById(id: IdInput) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
+                                    isShowAddPetView = false
                                 }else{
                                     debugPrint("添加失败")
                                 }
@@ -138,6 +139,7 @@ struct PetRegisterView: View {
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
+                                    isShowAddPetView = false
                                 }else{
                                     debugPrint("添加失败")
                                 }
