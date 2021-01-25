@@ -48,13 +48,15 @@ struct SettingView: View {
                     }
                 }
                 
-                Section(header: Text("当前用户: \(userSettings.email)")) {
-                    Button(action: {
-                        userSettings.user = ""
-                        userSettings.email = ""
-                        userSettings.fullName = ""
-                    }){
-                        Text("注销")
+                if userSettings.user != "" {
+                    Section(header: Text("当前用户: \(userSettings.email)")) {
+                        Button(action: {
+                            userSettings.user = ""
+                            userSettings.email = ""
+                            userSettings.fullName = ""
+                        }){
+                            Text("注销")
+                        }
                     }
                 }
             }
