@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct PetListView: View {
+    @Binding var showStatus: ShowStatus
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
         animation: .default) private var pets: FetchedResults<Pet>
-    @Binding var isShow: Bool
     
     private func deletePets(offsets: IndexSet) {
         withAnimation {
@@ -31,7 +32,7 @@ struct PetListView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            CardHeader(flag: $isShow, hasEditButton: true, title: "我的宠物")
+            CardHeader(flag: $showStatus.isShowPetList, hasEditButton: true, title: "我的宠物")
             
             Form {
                 Section(header: Text("我的宠物列表")) {

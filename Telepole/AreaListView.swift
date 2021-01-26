@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 
 struct AreaListView: View {
-    @Binding var isShow: Bool
+    @Binding var showStatus: ShowStatus
     @Binding var mapRegion: MKCoordinateRegion
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -62,7 +62,7 @@ struct AreaListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $isShow, hasEditButton: true, title: "地图")
+            CardHeader(flag: $showStatus.isShowAreaList, hasEditButton: true, title: "地图")
             
             Form {
                 Section(header: Text("我的地图")) {

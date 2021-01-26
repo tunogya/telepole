@@ -10,9 +10,7 @@ import MapKit
 
 struct Tool: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Binding var isShowSetting: Bool
-    @Binding var isShowPetList: Bool
-    @Binding var isShowAreaList: Bool
+    @Binding var showStatus: ShowStatus
     @Binding var region: MKCoordinateRegion
     @Binding var trackingMode: MapUserTrackingMode
     @ObservedObject var locationManager = LocationManager()
@@ -25,12 +23,23 @@ struct Tool: View {
         return locationManager.lastLocation?.coordinate.longitude ?? 0
     }
     
+    fileprivate func closedAllCard() {
+        withAnimation {
+            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
+        }
+    }
+    
     var body: some View {
         HStack {
             VStack(spacing: 20) {
                 HStack {
                     Button(action: {
-                        isShowPetList.toggle()
+                        if showStatus.isShowPetList {
+                            showStatus.isShowPetList = false
+                        }else{
+                            closedAllCard()
+                            showStatus.isShowPetList = true
+                        }
                     }) {
                         Image(systemName: "person.circle")
                             .frame(width: 44, height: 44, alignment: .center)
@@ -53,7 +62,12 @@ struct Tool: View {
             Spacer()
             VStack(spacing: 20) {
                 Button(action: {
-                    isShowSetting.toggle()
+                    if showStatus.isShowSetting {
+                        showStatus.isShowSetting  = false
+                    }else {
+                        closedAllCard()
+                        showStatus.isShowSetting = true
+                    }
                 }) {
                     Image(systemName: "person.circle")
                         .frame(width: 44, height: 44, alignment: .center)
@@ -85,7 +99,12 @@ struct Tool: View {
                 
                 VStack {
                     Button(action: {
-                        isShowAreaList.toggle()
+                        if showStatus.isShowAreaList {
+                            showStatus.isShowAreaList = false
+                        }else {
+                            closedAllCard()
+                            showStatus.isShowAreaList = true
+                        }
                     }) {
                         Image(systemName: "map.fill")
                             .frame(width: 40, height: 40, alignment: .center)

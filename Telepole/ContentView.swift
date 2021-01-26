@@ -17,6 +17,13 @@ private let OFFSET_M = CGSize(width: 0, height: 100)
 // 触摸保持距离
 private let KEEPDISTENCE: CGFloat = 100
 
+struct ShowStatus {
+    var isShowSetting: Bool
+    var isShowAreaList: Bool
+    var isShowPetList: Bool
+    var isShowPetDetail: Bool
+}
+
 struct ContentView: View {
     init(){
         UITableView.appearance().backgroundColor = .clear
@@ -37,10 +44,7 @@ struct ContentView: View {
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
-    @State private var isShowSetting = false
-    @State private var isShowAreaList = false
-    @State private var isShowPetList = false
-    @State private var isShowPetDetail = false
+    @State private var showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
     @State private var trackingMode = MapUserTrackingMode.none
     
 //    @State private var pickPet: PetModel = PetModel
@@ -90,17 +94,18 @@ struct ContentView: View {
     }
     
     fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        mapRegion = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-            span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-        )
+        withAnimation {
+            mapRegion = MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
+            )
+        }
     }
     
     fileprivate func closedAllCard() {
-        isShowSetting = false
-        isShowAreaList = false
-        isShowPetList = false
-        isShowPetDetail = false
+        withAnimation {
+            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
+        }
     }
     
     var body: some View {
@@ -117,7 +122,7 @@ struct ContentView: View {
                     }
                 }
             
-            Tool(isShowSetting: $isShowSetting, isShowPetList: $isShowPetList, isShowAreaList: $isShowAreaList, region: $mapRegion, trackingMode: $trackingMode)
+            Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode)
             
             VStack{
                 HStack {
@@ -136,28 +141,28 @@ struct ContentView: View {
             }
             
             // 关心的地区列表
-            AreaListView(isShow: $isShowAreaList, mapRegion: $mapRegion)
+            AreaListView(showStatus: $showStatus, mapRegion: $mapRegion)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
-                .offset(y: isShowAreaList ? 0 : SCREENHEIGHT)
+                .offset(y: showStatus.isShowAreaList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            PetListView(isShow: $isShowPetList)
+            PetListView(showStatus: $showStatus)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
-                .offset(y: isShowPetList ? 0 : SCREENHEIGHT)
+                .offset(y: showStatus.isShowPetList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            SettingView(isShow: $isShowSetting, trackingMode: $trackingMode)
+            SettingView(showStatus: $showStatus, trackingMode: $trackingMode)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
                 .gesture(drag)
-                .offset(y: isShowSetting ? 0 : SCREENHEIGHT)
+                .offset(y: showStatus.isShowSetting ? 0 : SCREENHEIGHT)
                 .animation(.spring())
         }
         .ignoresSafeArea(.all)
