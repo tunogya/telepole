@@ -59,11 +59,7 @@ struct ContentView: View {
                         dragOffset.height = currentOffset.height + varOffset.height
                     }
                 }else if currentOffset == OFFSET_S {
-                    if varOffset.height > 0 {
-                        dragOffset.height = currentOffset.height
-                    }else{
-                        dragOffset.height = currentOffset.height + varOffset.height
-                    }
+                    dragOffset.height = currentOffset.height + varOffset.height
                 }
             }
             .onEnded { value in
@@ -77,12 +73,13 @@ struct ContentView: View {
                         dragOffset = OFFSET_M
                     }
                 }else if currentOffset == OFFSET_S {
-                    if varOffset.height >= -KEEPDISTENCE && varOffset.height <= 0 {
+                    if varOffset.height >= -KEEPDISTENCE && varOffset.height <= KEEPDISTENCE {
                         dragOffset = OFFSET_S
                     }else if varOffset.height < -KEEPDISTENCE {
                         dragOffset = OFFSET_M
                     }else{
                         dragOffset = OFFSET_S
+                        closedAllCard()
                     }
                 }else{
                     dragOffset = OFFSET_S
@@ -97,6 +94,13 @@ struct ContentView: View {
             center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
             span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
         )
+    }
+    
+    fileprivate func closedAllCard() {
+        isShowSetting = false
+        isShowAreaList = false
+        isShowPetList = false
+        isShowPetDetail = false
     }
     
     var body: some View {
