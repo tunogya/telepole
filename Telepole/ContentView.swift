@@ -124,22 +124,6 @@ struct ContentView: View {
             
             Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode)
             
-            VStack{
-                HStack {
-                    Text("userLocation: ")
-                    Text("\(userLatitude),")
-                    Text("\(userLongitude)")
-                }
-                
-                HStack {
-                    Text("mapRegion:")
-                    Text("\(mapRegion.center.latitude),")
-                    Text("\(mapRegion.center.longitude)")
-                }
-                Text("isShareMyLocation:" + String(describing: userSetting.isShareMyLocation))
-                Text("trackingMode:" + String(describing: userSetting.trackingMode))
-            }
-            
             // 关心的地区列表
             AreaListView(showStatus: $showStatus, mapRegion: $mapRegion)
                 .ignoresSafeArea(.all)
