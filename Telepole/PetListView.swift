@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PetListView: View {
     @Binding var showStatus: ShowStatus
-    
+    @ObservedObject var userSettings = UserSettings()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
@@ -39,7 +39,12 @@ struct PetListView: View {
                     // 呈现宠物集合
                     List {
                         ForEach(pets) { item in
-                            Text("\(item.name ?? "神秘宝贝")")
+                            Button(action: {
+                                userSettings.pickPetID = item.id ?? ""
+                                print(userSettings.pickPetID)
+                            }, label: {
+                                Text("\(item.name ?? "神秘宝贝")")
+                            })
                         }
                         .onDelete(perform: deletePets)
                     }

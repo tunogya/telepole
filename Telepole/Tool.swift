@@ -16,6 +16,9 @@ struct Tool: View {
     @ObservedObject var locationManager = LocationManager()
     @ObservedObject var userSetting = UserSettings()
     
+    @State private var name = ""
+    @State private var coins = 0
+    
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
     }
@@ -47,11 +50,20 @@ struct Tool: View {
                     }
                    
                     VStack(alignment: .leading){
-                        Text("贝贝")
-                        Text("200000000币")
+                        Text(name)
+                        Text("\(coins)币")
                     }
                     .font(.footnote)
                     .padding(.trailing)
+                    .onChange(of: userSetting.pickPetID, perform: { value in
+                        if userSetting.pickPetID == "" {
+                            name = "请选择宠物"
+                        }else {
+                            PetApi().getPetById(id: userSetting.pickPetID) { (pet) in
+                                name = pet.name
+                            }
+                        }
+                    })
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(44)
