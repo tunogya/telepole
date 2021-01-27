@@ -98,7 +98,7 @@ struct PetRegisterView: View {
                         
                         // 已经注册宠物添加按钮
                         Button(action: {
-                            PetApi().getPetById(id: IdInput) { (pet) in
+                            PetApi().getPetById(IdInput) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
                                     isShowAddPetView = false

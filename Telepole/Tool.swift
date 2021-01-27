@@ -32,6 +32,19 @@ struct Tool: View {
         }
     }
     
+    fileprivate func getPetInfo() {
+        if userSetting.pickPetID == "" {
+            name = "请选择宠物"
+        }else {
+            PetApi().getPetById(userSetting.pickPetID) { (pet) in
+                name = pet.name
+            }
+            PetApi().getPetMetricsModel(userSetting.pickPetID) { (metric) in
+                coins = metric.meow_coin_count
+            }
+        }
+    }
+    
     var body: some View {
         HStack {
             VStack(spacing: 20) {
@@ -55,14 +68,11 @@ struct Tool: View {
                     }
                     .font(.footnote)
                     .padding(.trailing)
+                    .onAppear(perform: {
+                        self.getPetInfo()
+                    })
                     .onChange(of: userSetting.pickPetID, perform: { value in
-                        if userSetting.pickPetID == "" {
-                            name = "请选择宠物"
-                        }else {
-                            PetApi().getPetById(id: userSetting.pickPetID) { (pet) in
-                                name = pet.name
-                            }
-                        }
+                        self.getPetInfo()
                     })
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))

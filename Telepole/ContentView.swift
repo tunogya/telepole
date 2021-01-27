@@ -118,7 +118,7 @@ struct ContentView: View {
                     if userSetting.isShareMyLocation{
                         GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
                     }else{
-                        print("no")
+//                        print("no")
                     }
                 }
             
