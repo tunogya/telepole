@@ -77,7 +77,7 @@ struct Tool: View {
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(44)
-               
+                .frame(height: 44)
                 
                 Spacer()
             }
