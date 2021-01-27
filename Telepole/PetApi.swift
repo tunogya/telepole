@@ -86,7 +86,6 @@ class PetApi {
                 let following_count = JSON(value)["data"][0]["following_count"].intValue
                 let meow_coin_count = JSON(value)["data"][0]["meow_coin_count"].intValue
                 completion(PetMetricsModel(followers_count: followers_count, following_count: following_count, meow_coin_count: meow_coin_count, pet: pet))
-                print(JSON(value)["data"])
             case .failure(let error):
                 debugPrint(error)
             }
@@ -98,10 +97,10 @@ class PetApi {
         let parameters: [String: Array<Any>] = ["data": [["pet": metric.pet, "followers_count": metric.followers_count, "following_count": metric.following_count, "meow_coin_count":metric.meow_coin_count]]]
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
-            case .success(let value):
-                print(value)
             case .failure(let error):
                 print(error)
+            case .success(_):
+                print("ok")
             }
         }
     }
