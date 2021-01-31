@@ -8,7 +8,7 @@
 import Foundation
 
 struct DistenceModel {
-    var value: Double = 0
+    var value: Int = 0
     var unit: Unit = Unit.m
     
     enum Unit: String {

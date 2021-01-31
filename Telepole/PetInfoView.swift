@@ -16,10 +16,10 @@ struct PetInfoView: View {
     @ObservedObject var locationManager = LocationManager()
     var distence: DistenceModel {
         var distence = DistenceModel(value: 0, unit: .m)
-        let value = locationManager.lastLocation?.distance(from: location) ?? 0
+        let value = Int(locationManager.lastLocation?.distance(from: location) ?? 0)
         
         if value > 1000 {
-            distence.value = value/1000
+            distence.value = Int(value/1000)
             distence.unit = .km
         }else{
             distence.value = value
