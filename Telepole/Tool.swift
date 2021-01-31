@@ -33,15 +33,19 @@ struct Tool: View {
     }
     
     fileprivate func getPetInfo() {
+        PetApi().getPetById(pickPetID) { (p) in
+            pet = p
+        }
+        PetApi().getPetMetricsModel(pickPetID) { (m) in
+            metric = m
+        }
+    }
+    
+    var petName: String {
         if pickPetID == "" {
-            pet.name = "请选择宠物"
+            return "请选择宠物"
         }else {
-            PetApi().getPetById(pickPetID) { (p) in
-                pet = p
-            }
-            PetApi().getPetMetricsModel(pickPetID) { (m) in
-                metric = m
-            }
+            return pet.name
         }
     }
     
@@ -72,7 +76,7 @@ struct Tool: View {
                         }
                     }) {
                         VStack(alignment: .leading){
-                            Text(pet.name)
+                            Text(petName)
                             Text("\(metric.meow_coin_count)币")
                         }
                         .font(.footnote)

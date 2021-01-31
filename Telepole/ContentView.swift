@@ -128,7 +128,6 @@ struct ContentView: View {
             
             Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode, pickPetID: $currentPetID)
             
-            Text(currentPetID)
             // 关心的地区列表
             AreaListView(showStatus: $showStatus, mapRegion: $mapRegion)
                 .ignoresSafeArea(.all)

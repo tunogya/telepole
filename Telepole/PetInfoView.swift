@@ -28,9 +28,17 @@ struct PetInfoView: View {
         }
     }
     
+    var petName: String {
+        if pickPetID == "" {
+            return "请选择宠物"
+        }else {
+            return pet.name
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $showStatus.isShowPetInfo, hasEditButton: false, title: pet.name)
+            CardHeader(flag: $showStatus.isShowPetInfo, hasEditButton: false, title: petName)
             
             VStack(spacing: 10) {
                 Text(pet.description)
