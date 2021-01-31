@@ -20,10 +20,10 @@ struct PetInfoView: View {
             pet.name = "请选择宠物"
         }else {
             PetApi().getPetById(pickPetID) { (p) in
-                pet.name = p.name
+                pet = p
             }
             PetApi().getPetMetricsModel(pickPetID) { (m) in
-                metric.meow_coin_count = m.meow_coin_count
+                metric = m
             }
         }
     }
@@ -44,13 +44,13 @@ struct PetInfoView: View {
                         .padding(.leading, -4)
                         .padding(.trailing, 6)
                     Image(systemName: "calendar")
-                    Text("variety")
+                    Text("\(pet.variety)")
                         .padding(.leading, -4)
                     Spacer()
                 }
                 HStack {
                     Group {
-                        Text("500")
+                        Text("\(metric.meow_coin_count)")
                             .bold()
                             .foregroundColor(.black)
                         Text("喵喵币")
@@ -59,7 +59,7 @@ struct PetInfoView: View {
                     }
                     
                     Group {
-                        Text("2000")
+                        Text("\(metric.followers_count)")
                             .bold()
                             .foregroundColor(.black)
                         Text("关注者")

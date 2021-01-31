@@ -37,10 +37,10 @@ struct Tool: View {
             pet.name = "请选择宠物"
         }else {
             PetApi().getPetById(pickPetID) { (p) in
-                pet.name = p.name
+                pet = p
             }
             PetApi().getPetMetricsModel(pickPetID) { (m) in
-                metric.meow_coin_count = m.meow_coin_count
+                metric = m
             }
         }
     }
