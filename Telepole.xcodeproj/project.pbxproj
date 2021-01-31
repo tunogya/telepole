@@ -37,6 +37,7 @@
 		17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardHeader.swift */; };
 		17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */; };
 		17E0E5A625B9D4170066D0BA /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E0E5A525B9D4170066D0BA /* Live.swift */; };
+		17E7876125C6D13D00DC531C /* PetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7876025C6D13D00DC531C /* PetInfoView.swift */; };
 		17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1716A25BD6AD300B12947 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		17D7D3D525B414F800C087C9 /* CardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeader.swift; sourceTree = "<group>"; };
 		17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionApi.swift; sourceTree = "<group>"; };
 		17E0E5A525B9D4170066D0BA /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
+		17E7876025C6D13D00DC531C /* PetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoView.swift; sourceTree = "<group>"; };
 		17F1716A25BD6AD300B12947 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 			children = (
 				1767A78725BC686A00838CEF /* PetListView.swift */,
 				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
+				17E7876025C6D13D00DC531C /* PetInfoView.swift */,
 			);
 			name = Pet;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				1767A77F25BC373000838CEF /* GeoModel.swift in Sources */,
 				179E7FD325B44E060002322A /* Persistence.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
+				17E7876125C6D13D00DC531C /* PetInfoView.swift in Sources */,
 				172D929C25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift in Sources */,
 				17D7D3BD25B3C20900C087C9 /* Tool.swift in Sources */,
 				17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */,

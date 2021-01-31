@@ -28,7 +28,7 @@ struct Tool: View {
     
     fileprivate func closedAllCard() {
         withAnimation {
-            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
+            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
         }
     }
     
@@ -47,7 +47,7 @@ struct Tool: View {
     
     var body: some View {
         HStack {
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Button(action: {
                         if showStatus.isShowPetList {
@@ -62,27 +62,41 @@ struct Tool: View {
                             .font(.title)
                     }
                    
-                    VStack(alignment: .leading){
-                        Text(name)
-                        Text("\(coins)币")
+                    Button(action: {
+                        if showStatus.isShowPetInfo {
+                            showStatus.isShowPetInfo = false
+                        }else {
+                            closedAllCard()
+                            self.getPetInfo()
+                            showStatus.isShowPetInfo = true
+                        }
+                    }) {
+                        VStack(alignment: .leading){
+                            Text(name)
+                            Text("\(coins)币")
+                        }
+                        .font(.footnote)
+                        .padding(.trailing)
+                        .onAppear(perform: {
+                            self.getPetInfo()
+                        })
+                        .onChange(of: userSetting.pickPetID, perform: { value in
+                            self.getPetInfo()
+                        })
                     }
-                    .font(.footnote)
-                    .padding(.trailing)
-                    .onAppear(perform: {
-                        self.getPetInfo()
-                    })
-                    .onChange(of: userSetting.pickPetID, perform: { value in
-                        self.getPetInfo()
-                    })
+                    
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(44)
                 .frame(height: 44)
                 
+                Text("🎆")
+                    .padding()
+                
                 Spacer()
             }
             Spacer()
-            VStack(spacing: 20) {
+            VStack(alignment: .trailing, spacing: 20) {
                 Button(action: {
                     if showStatus.isShowSetting {
                         showStatus.isShowSetting  = false

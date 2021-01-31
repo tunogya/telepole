@@ -22,6 +22,7 @@ struct ShowStatus {
     var isShowAreaList: Bool
     var isShowPetList: Bool
     var isShowPetDetail: Bool
+    var isShowPetInfo: Bool
 }
 
 struct ContentView: View {
@@ -44,7 +45,7 @@ struct ContentView: View {
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
-    @State private var showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
+    @State private var showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
     @State private var trackingMode = MapUserTrackingMode.none
     
 //    @State private var pickPet: PetModel = PetModel
@@ -104,7 +105,7 @@ struct ContentView: View {
     
     fileprivate func closedAllCard() {
         withAnimation {
-            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false)
+            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
         }
     }
     
@@ -147,6 +148,14 @@ struct ContentView: View {
                 .offset(y: dragOffset.height)
                 .gesture(drag)
                 .offset(y: showStatus.isShowSetting ? 0 : SCREENHEIGHT)
+                .animation(.spring())
+            
+            PetInfoView(showStatus: $showStatus)
+                .ignoresSafeArea(.all)
+                .animation(.easeInOut)
+                .offset(y: dragOffset.height)
+                .gesture(drag)
+                .offset(y: showStatus.isShowPetInfo ? 0 : SCREENHEIGHT)
                 .animation(.spring())
         }
         .ignoresSafeArea(.all)
