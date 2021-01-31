@@ -10,9 +10,9 @@ import Foundation
 import SwiftyJSON
 
 struct UserModel: Codable {
-    var user: String
-    var fullName: String
-    var email: String
+    var user: String = ""
+    var fullName: String = ""
+    var email: String = ""
 }
 
 class UserApi {

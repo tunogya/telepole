@@ -9,15 +9,15 @@ import Foundation
 import SwiftyJSON
 
 struct PetModel: Codable {
-    var id: String
-    var name: String
-    var username: String
-    var description: String
-    var profile_image_url: String
-    var protected: Bool
-    var verified: Bool
-    var variety: String
-    var gender: String
+    var id: String = ""
+    var name: String = ""
+    var username: String = ""
+    var description: String = ""
+    var profile_image_url: String = ""
+    var protected: Bool = false
+    var verified: Bool = false
+    var variety: String = ""
+    var gender: String = "boy"
 }
 
 struct PetMetricsModel {

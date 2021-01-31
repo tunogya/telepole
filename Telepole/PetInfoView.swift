@@ -9,24 +9,42 @@ import SwiftUI
 
 struct PetInfoView: View {
     @Binding var showStatus: ShowStatus
+    @Binding var pickPetID: String
+    var distences = 20
+    
+    @State private var pet: PetModel = PetModel()
+    @State private var metric: PetMetricsModel = PetMetricsModel()
+    
+    fileprivate func getPetInfo() {
+        if pickPetID == "" {
+            pet.name = "请选择宠物"
+        }else {
+            PetApi().getPetById(pickPetID) { (p) in
+                pet.name = p.name
+            }
+            PetApi().getPetMetricsModel(pickPetID) { (m) in
+                metric.meow_coin_count = m.meow_coin_count
+            }
+        }
+    }
     
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $showStatus.isShowPetInfo, hasEditButton: false, title: "贝贝")
+            CardHeader(flag: $showStatus.isShowPetInfo, hasEditButton: false, title: pet.name)
             
             VStack(spacing: 10) {
-                Text("贝贝的介绍")
+                Text(pet.description)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.body)
                 
                 HStack {
                     Image(systemName: "location")
-                    Text("距离你25km")
+                    Text("距离你\(distences)Km")
                         .padding(.leading, -4)
                         .padding(.trailing, 6)
                     Image(systemName: "calendar")
-                    Text("2020年8月加入")
+                    Text("variety")
                         .padding(.leading, -4)
                     Spacer()
                 }
@@ -60,6 +78,12 @@ struct PetInfoView: View {
         .padding(.vertical, 10)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
+        .onAppear(perform: {
+            self.getPetInfo()
+        })
+        .onChange(of: pickPetID, perform: { value in
+            self.getPetInfo()
+        })
     }
 }
 

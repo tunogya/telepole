@@ -13,11 +13,11 @@ struct Tool: View {
     @Binding var showStatus: ShowStatus
     @Binding var region: MKCoordinateRegion
     @Binding var trackingMode: MapUserTrackingMode
+    @Binding var pickPetID: String
     @ObservedObject var locationManager = LocationManager()
-    @ObservedObject var userSetting = UserSettings()
     
-    @State private var name = ""
-    @State private var coins = 0
+    @State private var pet: PetModel = PetModel()
+    @State private var metric: PetMetricsModel = PetMetricsModel()
     
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
@@ -33,14 +33,14 @@ struct Tool: View {
     }
     
     fileprivate func getPetInfo() {
-        if userSetting.pickPetID == "" {
-            name = "请选择宠物"
+        if pickPetID == "" {
+            pet.name = "请选择宠物"
         }else {
-            PetApi().getPetById(userSetting.pickPetID) { (pet) in
-                name = pet.name
+            PetApi().getPetById(pickPetID) { (p) in
+                pet.name = p.name
             }
-            PetApi().getPetMetricsModel(userSetting.pickPetID) { (metric) in
-                coins = metric.meow_coin_count
+            PetApi().getPetMetricsModel(pickPetID) { (m) in
+                metric.meow_coin_count = m.meow_coin_count
             }
         }
     }
@@ -72,19 +72,18 @@ struct Tool: View {
                         }
                     }) {
                         VStack(alignment: .leading){
-                            Text(name)
-                            Text("\(coins)币")
+                            Text(pet.name)
+                            Text("\(metric.meow_coin_count)币")
                         }
                         .font(.footnote)
                         .padding(.trailing)
                         .onAppear(perform: {
                             self.getPetInfo()
                         })
-                        .onChange(of: userSetting.pickPetID, perform: { value in
+                        .onChange(of: pickPetID, perform: { value in
                             self.getPetInfo()
                         })
                     }
-                    
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(44)

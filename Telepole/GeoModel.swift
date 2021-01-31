@@ -11,9 +11,9 @@ import SwiftyJSON
 
 struct GeoModel {
     var pet: PetModel
-    var name: String
-    var latitude: Double
-    var longitude: Double
+    var name: String = ""
+    var latitude: Double = 0
+    var longitude: Double = 0
 }
 
 class GeoApi {

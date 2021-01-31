@@ -8,9 +8,9 @@
 import Foundation
 
 struct RegionModel: Codable {
-    var name: String
-    var latitude: Double
-    var longitude: Double
-    var latitudeDelta: Double
-    var longitudeDelta: Double
+    var name: String = ""
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var latitudeDelta: Double = 0.03
+    var longitudeDelta: Double = 0.03
 }

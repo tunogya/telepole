@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PetListView: View {
     @Binding var showStatus: ShowStatus
+    @Binding var petID: String
     @ObservedObject var userSettings = UserSettings()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
@@ -40,7 +41,8 @@ struct PetListView: View {
                     List {
                         ForEach(pets) { item in
                             Button(action: {
-                                userSettings.pickPetID = item.id ?? ""
+                                petID = item.id ?? ""
+                                userSettings.pickPetID = petID
                                 print(userSettings.pickPetID)
                             }, label: {
                                 Text("\(item.name ?? "神秘宝贝")")

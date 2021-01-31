@@ -48,6 +48,8 @@ struct ContentView: View {
     @State private var showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
     @State private var trackingMode = MapUserTrackingMode.none
     
+    @State private var currentPetID = ""
+    
 //    @State private var pickPet: PetModel = PetModel
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -114,6 +116,7 @@ struct ContentView: View {
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
                 .onAppear(perform: {
                     updateMapCenter(latitude: userLatitude, longitude: userLongitude)
+                    currentPetID = userSetting.pickPetID
                 })
                 .onReceive(timer) { (time) in
                     if userSetting.isShareMyLocation{
@@ -123,8 +126,9 @@ struct ContentView: View {
                     }
                 }
             
-            Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode)
+            Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode, pickPetID: $currentPetID)
             
+            Text(currentPetID)
             // 关心的地区列表
             AreaListView(showStatus: $showStatus, mapRegion: $mapRegion)
                 .ignoresSafeArea(.all)
@@ -134,7 +138,7 @@ struct ContentView: View {
                 .offset(y: showStatus.isShowAreaList ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            PetListView(showStatus: $showStatus)
+            PetListView(showStatus: $showStatus, petID: $currentPetID)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
@@ -150,7 +154,7 @@ struct ContentView: View {
                 .offset(y: showStatus.isShowSetting ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            PetInfoView(showStatus: $showStatus)
+            PetInfoView(showStatus: $showStatus, pickPetID: $currentPetID)
                 .ignoresSafeArea(.all)
                 .animation(.easeInOut)
                 .offset(y: dragOffset.height)
