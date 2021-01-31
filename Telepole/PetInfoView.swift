@@ -6,11 +6,28 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PetInfoView: View {
     @Binding var showStatus: ShowStatus
     @Binding var pickPetID: String
-    var distences = 20
+    @State private var location: CLLocation = CLLocation(latitude: 0, longitude: 0)
+    
+    @ObservedObject var locationManager = LocationManager()
+    var distence: DistenceModel {
+        var distence = DistenceModel(value: 0, unit: .m)
+        let value = locationManager.lastLocation?.distance(from: location) ?? 0
+        
+        if value > 1000 {
+            distence.value = value/1000
+            distence.unit = .km
+        }else{
+            distence.value = value
+            distence.unit = .m
+        }
+        
+        return distence
+    }
     
     @State private var pet: PetModel = PetModel()
     @State private var metric: PetMetricsModel = PetMetricsModel()
@@ -48,7 +65,7 @@ struct PetInfoView: View {
                 
                 HStack {
                     Image(systemName: "location")
-                    Text("距离你\(distences)Km")
+                    Text("距离你\(distence.value)\(distence.unit.rawValue)")
                         .padding(.leading, -4)
                         .padding(.trailing, 6)
                     Image(systemName: "calendar")

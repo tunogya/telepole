@@ -38,6 +38,8 @@
 		17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */; };
 		17E0E5A625B9D4170066D0BA /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E0E5A525B9D4170066D0BA /* Live.swift */; };
 		17E7876125C6D13D00DC531C /* PetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7876025C6D13D00DC531C /* PetInfoView.swift */; };
+		17E7877225C6ED6E00DC531C /* Cacular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877125C6ED6E00DC531C /* Cacular.swift */; };
+		17E7877725C6F19800DC531C /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
 		17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1716A25BD6AD300B12947 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,8 @@
 		17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionApi.swift; sourceTree = "<group>"; };
 		17E0E5A525B9D4170066D0BA /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
 		17E7876025C6D13D00DC531C /* PetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoView.swift; sourceTree = "<group>"; };
+		17E7877125C6ED6E00DC531C /* Cacular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacular.swift; sourceTree = "<group>"; };
+		17E7877625C6F19800DC531C /* Distence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distence.swift; sourceTree = "<group>"; };
 		17F1716A25BD6AD300B12947 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +137,7 @@
 				172F4FDE25B722A30091F044 /* UserApi.swift */,
 				17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */,
 				1767A77E25BC373000838CEF /* GeoModel.swift */,
+				17E7877625C6F19800DC531C /* Distence.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				172D929625ADD27300DC14B8 /* LocationManager.swift */,
 				172D929B25ADE4A400DC14B8 /* QCloudCOSXMLManager.swift */,
 				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
+				17E7877125C6ED6E00DC531C /* Cacular.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -436,7 +442,9 @@
 				17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */,
 				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
 				17054B34259867CE001DE66A /* PetApi.swift in Sources */,
+				17E7877225C6ED6E00DC531C /* Cacular.swift in Sources */,
 				17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */,
+				17E7877725C6F19800DC531C /* Distence.swift in Sources */,
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,
 				1767A77F25BC373000838CEF /* GeoModel.swift in Sources */,
 				179E7FD325B44E060002322A /* Persistence.swift in Sources */,
