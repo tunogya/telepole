@@ -11,12 +11,12 @@ import MapKit
 struct PetInfoView: View {
     @Binding var showStatus: ShowStatus
     @Binding var pickPetID: String
-    @State private var location: CLLocation = CLLocation(latitude: 0, longitude: 0)
+    var location: CLLocation = CLLocation(latitude: 0, longitude: 0)
     
     @ObservedObject var locationManager = LocationManager()
     var distence: DistenceModel {
         var distence = DistenceModel(value: 0, unit: .m)
-        let value = Int(locationManager.lastLocation?.distance(from: location) ?? 0)
+        let value = Int((locationManager.lastLocation?.distance(from: location)) ?? 12791)
         
         if value > 1000 {
             distence.value = Int(value/1000)
@@ -64,16 +64,6 @@ struct PetInfoView: View {
                     .font(.body)
                 
                 HStack {
-                    Image(systemName: "location")
-                    Text("距离你\(distence.value)\(distence.unit.rawValue)")
-                        .padding(.leading, -4)
-                        .padding(.trailing, 6)
-                    Image(systemName: "calendar")
-                    Text("\(pet.variety)")
-                        .padding(.leading, -4)
-                    Spacer()
-                }
-                HStack {
                     Group {
                         Text("\(metric.meow_coin_count)")
                             .bold()
@@ -92,6 +82,15 @@ struct PetInfoView: View {
                     }
                     
                     Spacer()
+                }
+                
+                HStack {
+                    Text("距离你:")
+                    Text("\(distence.value)")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+                    Text("\(distence.unit.rawValue)")
                 }
             }
             .font(.footnote)

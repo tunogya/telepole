@@ -15,9 +15,13 @@ struct Tool: View {
     @Binding var trackingMode: MapUserTrackingMode
     @Binding var pickPetID: String
     @ObservedObject var locationManager = LocationManager()
+    @ObservedObject var userSetting = UserSettings()
     
     @State private var pet: PetModel = PetModel()
     @State private var metric: PetMetricsModel = PetMetricsModel()
+    
+    @State private var animationAmount: CGFloat = 1
+    @State var isShowLocation = false
     
     var userLatitude: CLLocationDegrees {
         return locationManager.lastLocation?.coordinate.latitude ?? 0
@@ -41,6 +45,11 @@ struct Tool: View {
         }
     }
     
+    fileprivate func getIsShowLocation() {
+        isShowLocation = userSetting.isShareMyLocation
+    }
+    
+    
     var petName: String {
         if pickPetID == "" {
             return "请选择宠物"
@@ -61,11 +70,12 @@ struct Tool: View {
                             showStatus.isShowPetList = true
                         }
                     }) {
-                        Image(systemName: "person.circle")
+                        Text("🐶")
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+                            .clipShape(Circle())
                             .frame(width: 44, height: 44, alignment: .center)
-                            .font(.title)
                     }
-                   
                     Button(action: {
                         if showStatus.isShowPetInfo {
                             showStatus.isShowPetInfo = false
@@ -77,9 +87,11 @@ struct Tool: View {
                     }) {
                         VStack(alignment: .leading){
                             Text(petName)
+                                .bold()
                             Text("\(metric.meow_coin_count)币")
                         }
                         .font(.footnote)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                         .padding(.trailing)
                         .onAppear(perform: {
                             self.getPetInfo()
@@ -98,6 +110,7 @@ struct Tool: View {
                 
                 Spacer()
             }
+            
             Spacer()
             VStack(alignment: .trailing, spacing: 20) {
                 Button(action: {
@@ -108,7 +121,7 @@ struct Tool: View {
                         showStatus.isShowSetting = true
                     }
                 }) {
-                    Image(systemName: "person.circle")
+                    Text("😀")
                         .frame(width: 44, height: 44, alignment: .center)
                         .font(.title)
                         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
