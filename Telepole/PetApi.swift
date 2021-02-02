@@ -37,9 +37,9 @@ class PetApi {
                 let jsonData = JSON(value)["data"]
                 completion(PetModel(
                     id: jsonData["_id"].stringValue,
-                    name: jsonData["description"].stringValue,
-                    username: jsonData["name"].stringValue,
-                    description: jsonData["variety"].stringValue,
+                    name: jsonData["name"].stringValue,
+                    username: jsonData["username"].stringValue,
+                    description: jsonData["description"].stringValue,
                     profile_image_url: jsonData["profile_image_url"].stringValue,
                     protected: jsonData["protected"].boolValue,
                     verified: jsonData["verified"].boolValue,
