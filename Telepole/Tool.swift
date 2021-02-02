@@ -105,9 +105,6 @@ struct Tool: View {
                 .cornerRadius(44)
                 .frame(height: 44)
                 
-                Text("🎆")
-                    .padding()
-                
                 Spacer()
             }
             
