@@ -98,9 +98,9 @@ class PetApi {
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .failure(let error):
-                print(error)
+                debugPrint(error)
             case .success(_):
-                print("ok")
+                debugPrint("ok")
             }
         }
     }
