@@ -14,25 +14,15 @@ struct Tool: View {
     @Binding var region: MKCoordinateRegion
     @Binding var trackingMode: MapUserTrackingMode
     @Binding var pickPetID: String
-    @ObservedObject var locationManager = LocationManager()
     @ObservedObject var userSetting = UserSettings()
     
     @State private var pet: PetModel = PetModel()
     @State private var metric: PetMetricsModel = PetMetricsModel()
     
-    @State private var animationAmount: CGFloat = 1
-    @State var isShowLocation = false
-    
-    var userLatitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.latitude ?? 0
-    }
-    var userLongitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.longitude ?? 0
-    }
     
     fileprivate func closedAllCard() {
         withAnimation {
-            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
+            showStatus = ShowStatus(isShowSetting: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
         }
     }
     
@@ -44,11 +34,6 @@ struct Tool: View {
             metric = m
         }
     }
-    
-    fileprivate func getIsShowLocation() {
-        isShowLocation = userSetting.isShareMyLocation
-    }
-    
     
     var petName: String {
         if pickPetID == "" {
@@ -132,60 +117,15 @@ struct Tool: View {
                         Image(systemName: "location.fill")
                             .frame(width: 40, height: 40, alignment: .center)
                     }
-                    
-                    Divider()
-                        .frame(width: 44, height: 1, alignment: .center)
-                    
-                    Button(action: {
-                        addRegion(RegionModel(name: "\(region.center.latitude), \(region.center.longitude)", latitude: region.center.latitude, longitude: region.center.longitude, latitudeDelta: region.span.latitudeDelta, longitudeDelta: region.span.longitudeDelta))
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .frame(width: 40, height: 40, alignment: .center)
-                    }
                 }
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .cornerRadius(8)
-                
-                VStack {
-                    Button(action: {
-                        if showStatus.isShowAreaList {
-                            showStatus.isShowAreaList = false
-                        }else {
-                            closedAllCard()
-                            showStatus.isShowAreaList = true
-                        }
-                    }) {
-                        Image(systemName: "map.fill")
-                            .frame(width: 40, height: 40, alignment: .center)
-                    }
-                    .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                    .cornerRadius(8)
-                }
                 
                 Spacer()
             }
         }
         .padding()
         .padding(.top, 30)
-    }
-    
-    private func addRegion(_ region: RegionModel) {
-        withAnimation {
-            let newRegion = Region(context: viewContext)
-            newRegion.title = region.name
-            newRegion.latitude = region.latitude
-            newRegion.longitude = region.longitude
-            newRegion.latitudeDelta = region.latitudeDelta
-            newRegion.longitudeDelta = region.longitudeDelta
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
     }
 }
 

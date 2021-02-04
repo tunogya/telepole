@@ -31,12 +31,10 @@
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
 		17D1D38A259A1C4C001B9CD2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D389259A1C4C001B9CD2 /* SDWebImageMapKit */; };
 		17D1D390259A1C69001B9CD2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D38F259A1C69001B9CD2 /* SDWebImageSwiftUI */; };
-		17D7D3A425B3C0CE00C087C9 /* AreaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */; };
 		17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */; };
 		17D7D3BD25B3C20900C087C9 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3BC25B3C20900C087C9 /* Tool.swift */; };
 		17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardHeader.swift */; };
 		17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */; };
-		17E0E5A625B9D4170066D0BA /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E0E5A525B9D4170066D0BA /* Live.swift */; };
 		17E7876125C6D13D00DC531C /* PetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7876025C6D13D00DC531C /* PetInfoView.swift */; };
 		17E7877225C6ED6E00DC531C /* Cacular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877125C6ED6E00DC531C /* Cacular.swift */; };
 		17E7877725C6F19800DC531C /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
@@ -87,12 +85,10 @@
 		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		179E7F8E25B43E980002322A /* data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = data.xcdatamodel; sourceTree = "<group>"; };
 		179E7FD225B44E060002322A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaListView.swift; sourceTree = "<group>"; };
 		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
 		17D7D3BC25B3C20900C087C9 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		17D7D3D525B414F800C087C9 /* CardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeader.swift; sourceTree = "<group>"; };
 		17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionApi.swift; sourceTree = "<group>"; };
-		17E0E5A525B9D4170066D0BA /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
 		17E7876025C6D13D00DC531C /* PetInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoView.swift; sourceTree = "<group>"; };
 		17E7877125C6ED6E00DC531C /* Cacular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacular.swift; sourceTree = "<group>"; };
 		17E7877625C6F19800DC531C /* Distence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distence.swift; sourceTree = "<group>"; };
@@ -239,9 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				1767A78625BC683B00838CEF /* Pet */,
-				17E0E5AA25B9D41D0066D0BA /* Live */,
 				17E0E5A125B9D2D90066D0BA /* Setting */,
-				17E0E5A025B9D2C90066D0BA /* Area */,
 				17E0E59F25B9D2AD0066D0BA /* Map */,
 				17D7D3C125B3C22700C087C9 /* Library */,
 				17322AE42593645500A0049B /* ContentView.swift */,
@@ -268,28 +262,12 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
-		17E0E5A025B9D2C90066D0BA /* Area */ = {
-			isa = PBXGroup;
-			children = (
-				17D7D3A325B3C0CE00C087C9 /* AreaListView.swift */,
-			);
-			name = Area;
-			sourceTree = "<group>";
-		};
 		17E0E5A125B9D2D90066D0BA /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				17322ADF2593644600A0049B /* SettingView.swift */,
 			);
 			name = Setting;
-			sourceTree = "<group>";
-		};
-		17E0E5AA25B9D41D0066D0BA /* Live */ = {
-			isa = PBXGroup;
-			children = (
-				17E0E5A525B9D4170066D0BA /* Live.swift */,
-			);
-			name = Live;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,7 +415,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */,
-				17D7D3A425B3C0CE00C087C9 /* AreaListView.swift in Sources */,
 				17322AE52593645500A0049B /* ContentView.swift in Sources */,
 				17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */,
 				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
@@ -457,7 +434,6 @@
 				179E7F8F25B43E980002322A /* data.xcdatamodeld in Sources */,
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* UserApi.swift in Sources */,
-				17E0E5A625B9D4170066D0BA /* Live.swift in Sources */,
 				1767A78825BC686A00838CEF /* PetListView.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);

@@ -19,7 +19,6 @@ private let KEEPDISTENCE: CGFloat = 100
 
 struct ShowStatus {
     var isShowSetting: Bool
-    var isShowAreaList: Bool
     var isShowPetList: Bool
     var isShowPetDetail: Bool
     var isShowPetInfo: Bool
@@ -32,27 +31,15 @@ struct ContentView: View {
     
     @ObservedObject var userSetting = UserSettings()
     @ObservedObject var locationManager = LocationManager()
-    var userLatitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.latitude ?? 0
-    }
-    var userLongitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.longitude ?? 0
-    }
-    @State private var mapRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.6, longitude: -122),
-        span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-    )
+    
+    @State private var mapRegion = MKCoordinateRegion()
     @State private var dragOffset = OFFSET_S
     @State private var varOffset = CGSize.zero
     @State private var currentOffset = OFFSET_S
-    @State private var showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
+    @State private var showStatus = ShowStatus(isShowSetting: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
     @State private var trackingMode = MapUserTrackingMode.none
     
     @State private var currentPetID = ""
-    
-//    @State private var pickPet: PetModel = PetModel
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var drag: some Gesture {
         DragGesture()
@@ -96,18 +83,9 @@ struct ContentView: View {
             }
     }
     
-    fileprivate func updateMapCenter(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        withAnimation {
-            mapRegion = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-                span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-            )
-        }
-    }
-    
     fileprivate func closedAllCard() {
         withAnimation {
-            showStatus = ShowStatus(isShowSetting: false, isShowAreaList: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
+            showStatus = ShowStatus(isShowSetting: false, isShowPetList: false, isShowPetDetail: false, isShowPetInfo: false)
         }
     }
     
@@ -115,27 +93,10 @@ struct ContentView: View {
         ZStack {
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
                 .onAppear(perform: {
-                    updateMapCenter(latitude: userLatitude, longitude: userLongitude)
-                    currentPetID = userSetting.pickPetID
+                    self.trackingMode = MapUserTrackingMode.follow
                 })
-                .onReceive(timer) { (time) in
-                    if userSetting.isShareMyLocation{
-                        GeoApi().postMyGeo(GeoModel(pet: PetModel(id: "测试", name: "test", username: "test", description: "test", profile_image_url: "sss", protected: true, verified: true, variety: "杜宾", gender: "boy"), name: "测试地址", latitude: userLatitude, longitude: userLongitude))
-                    }else{
-//                        print("no")
-                    }
-                }
             
             Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode, pickPetID: $currentPetID)
-            
-            // 关心的地区列表
-            AreaListView(showStatus: $showStatus, mapRegion: $mapRegion)
-                .ignoresSafeArea(.all)
-                .animation(.easeInOut)
-                .offset(y: dragOffset.height)
-                .gesture(drag)
-                .offset(y: showStatus.isShowAreaList ? 0 : SCREENHEIGHT)
-                .animation(.spring())
             
             PetListView(showStatus: $showStatus, petID: $currentPetID)
                 .ignoresSafeArea(.all)
