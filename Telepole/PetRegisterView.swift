@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PetRegisterView: View {
     @State var IdInput: String = ""
-    @Binding var isShowAddPetView: Bool
+    @Binding var isShow: Bool
     @State var pageIndex: Int = 0
     let page: [String] = ["已注册", "新注册"]
     @State var isShowCode: Bool = false
@@ -66,7 +66,7 @@ struct PetRegisterView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            CardHeader(flag: $isShowAddPetView, hasEditButton: false, title: "增加宠物")
+            CardHeader(flag: $isShow, hasEditButton: false, title: "增加宠物")
             
             Picker(selection: $pageIndex, label: Text("Picker")) {
                 ForEach(0 ..< page.count) {
@@ -101,7 +101,7 @@ struct PetRegisterView: View {
                             PetApi().getPetById(IdInput) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
-                                    isShowAddPetView = false
+                                    isShow = false
                                 }else{
                                     debugPrint("添加失败")
                                 }
@@ -139,7 +139,7 @@ struct PetRegisterView: View {
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
                                     addPet(pet)
-                                    isShowAddPetView = false
+                                    isShow = false
                                 }else{
                                     debugPrint("添加失败")
                                 }
@@ -164,6 +164,6 @@ struct AddPetView_Previews: PreviewProvider {
 struct AddPetView_Previews_Test: View {
     @State var isShowAddPetView = true
     var body: some View {
-        PetRegisterView(isShowAddPetView: $isShowAddPetView)
+        PetRegisterView(isShow: $isShowAddPetView)
     }
 }

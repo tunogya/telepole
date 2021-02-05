@@ -17,7 +17,6 @@ struct Tool: View {
     @ObservedObject var userSetting = UserSettings()
     
     @State private var pet: PetModel = PetModel()
-    @State private var metric: PetMetricsModel = PetMetricsModel()
     
     
     fileprivate func closedAllCard() {
@@ -29,9 +28,6 @@ struct Tool: View {
     fileprivate func getPetInfo() {
         PetApi().getPetById(pickPetID) { (p) in
             pet = p
-        }
-        PetApi().getPetMetricsModel(pickPetID) { (m) in
-            metric = m
         }
     }
     
@@ -73,7 +69,6 @@ struct Tool: View {
                         VStack(alignment: .leading){
                             Text(petName)
                                 .bold()
-                            Text("\(metric.meow_coin_count)币")
                         }
                         .font(.footnote)
                         .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))

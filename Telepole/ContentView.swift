@@ -94,14 +94,7 @@ struct ContentView: View {
                 })
             
             Tool(showStatus: $showStatus, region: $mapRegion, trackingMode: $trackingMode, pickPetID: $currentPetID)
-            
-            PetListView(showStatus: $showStatus, petID: $currentPetID)
-                .ignoresSafeArea(.all)
-                .animation(.easeInOut)
-                .offset(y: dragOffset.height)
-                .gesture(drag)
-                .offset(y: showStatus.isShowPetList ? 0 : SCREENHEIGHT)
-                .animation(.spring())
+
             
             SettingView(showStatus: $showStatus, trackingMode: $trackingMode)
                 .ignoresSafeArea(.all)
@@ -111,13 +104,6 @@ struct ContentView: View {
                 .offset(y: showStatus.isShowSetting ? 0 : SCREENHEIGHT)
                 .animation(.spring())
             
-            PetInfoView(showStatus: $showStatus, pickPetID: $currentPetID)
-                .ignoresSafeArea(.all)
-                .animation(.easeInOut)
-                .offset(y: dragOffset.height)
-                .gesture(drag)
-                .offset(y: showStatus.isShowPetInfo ? 0 : SCREENHEIGHT)
-                .animation(.spring())
         }
         .ignoresSafeArea(.all)
     }

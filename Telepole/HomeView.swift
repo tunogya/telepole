@@ -12,11 +12,21 @@ var SCREENWIDTH = UIScreen.main.bounds.width
 var SCREENHEIGHT = UIScreen.main.bounds.height
 
 struct HomeView: View {
+    @State private var isShowPetRegisterView = false
+    @State private var isSmallMap = true
+    @State private var phoneNumber = 0
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 // 宠物图标
                 HomePetInfoView()
+                
+                ButtonRegisterPet(isPresent: $isShowPetRegisterView)
+                    .sheet(isPresented: $isShowPetRegisterView) {
+                        PetRegisterView(isShow: $isShowPetRegisterView)
+                    }
+                
                 Spacer()
                 // 个人图标
                 HomeUserInfoView()
@@ -26,23 +36,21 @@ struct HomeView: View {
             // 地图
             HomeMapView()
                 .cornerRadius(24)
-                .frame(height: SCREENWIDTH*1.333)
+                .frame(height: isSmallMap ? SCREENWIDTH*0.618 : SCREENWIDTH*1.114)
             
             // 附近的人
-            VStack(alignment: .leading) {
-                Text("Wakanda")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Text("Go wild, go beyond!")
-                    .font(.title)
-                    .fontWeight(.light)
-            }
-            .padding(.vertical)
+            WakandaSlogan(isShowDetail: $isSmallMap)
+                .padding(.vertical)
             
             Spacer()
             
+            HStack {
+                Spacer()
+                CallMeButton(phoneNumber: $phoneNumber)
+            }
         }
         .padding(.horizontal)
+        .animation(.spring(dampingFraction: 0.618))
     }
 }
 
@@ -63,9 +71,7 @@ struct HomePetInfoView: View {
                     .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
                     .clipShape(Circle())
                     .frame(width: 44, height: 44, alignment: .center)
-            }
-            Button(action: {
-            }) {
+                
                 VStack(alignment: .leading){
                     Text("贝贝")
                         .bold()
@@ -123,8 +129,63 @@ struct HomeMapView: View {
                             .padding()
                     })
                 }
-              
             }
+        }
+    }
+}
+
+
+struct ButtonRegisterPet: View {
+    @Binding var isPresent: Bool
+    var body: some View {
+        Button {
+            isPresent = true
+        } label: {
+            Image(systemName: "plus.circle")
+                .font(.title3)
+        }
+        
+    }
+}
+
+struct WakandaSlogan: View {
+    @Binding var isShowDetail: Bool
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Telepole")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Button {
+                    isShowDetail.toggle()
+                } label: {
+                    Text("#Wakanda")
+                        .font(.caption)
+                        .padding(.leading, 4)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
+                }
+            }
+           
+            Text("Go wild, go beyond!")
+                .font(.title)
+                .fontWeight(.light)
+        }
+    }
+}
+
+
+struct CallMeButton: View {
+    @Binding var phoneNumber: Int
+    
+    var body: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "phone.circle.fill")
+                .resizable()
+                .frame(width: 60, height: 60, alignment: .center)
         }
     }
 }
