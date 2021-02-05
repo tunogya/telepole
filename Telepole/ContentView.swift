@@ -8,9 +8,6 @@
 import SwiftUI
 import MapKit
 
-var SCREENWIDTH = UIScreen.main.bounds.width
-var SCREENHEIGHT = UIScreen.main.bounds.height
-
 // 显示
 private let OFFSET_S = CGSize(width: 0, height: SCREENHEIGHT - 240)
 private let OFFSET_M = CGSize(width: 0, height: 100)

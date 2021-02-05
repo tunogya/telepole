@@ -22,6 +22,7 @@
 		173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05E0259324B600E662B8 /* TelepoleUITests.swift */; };
 		175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAEC125AB3E1C0009B862 /* LottieView.swift */; };
 		175AAEC825AB3FFF0009B862 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 175AAEC725AB3FFF0009B862 /* Lottie */; };
+		1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* HomeView.swift */; };
 		1767A77F25BC373000838CEF /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoModel.swift */; };
 		1767A78825BC686A00838CEF /* PetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A78725BC686A00838CEF /* PetListView.swift */; };
 		177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* PetRegisterView.swift */; };
@@ -79,6 +80,7 @@
 		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
 		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		1767A54F25CD69A800DCB1BE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1767A77E25BC373000838CEF /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
 		1767A78725BC686A00838CEF /* PetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListView.swift; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* PetRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRegisterView.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				17D7D3C125B3C22700C087C9 /* Library */,
 				17322AE42593645500A0049B /* ContentView.swift */,
 				17D7D3BC25B3C20900C087C9 /* Tool.swift */,
+				1767A54F25CD69A800DCB1BE /* HomeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* UserApi.swift in Sources */,
 				1767A78825BC686A00838CEF /* PetListView.swift in Sources */,
+				1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
