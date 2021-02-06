@@ -11,44 +11,18 @@ import AuthenticationServices
 import MapKit
 
 struct SettingView: View {
-//    @Binding var showStatus: ShowStatus
+    @Binding var isShow: Bool
     @ObservedObject var userSettings = UserSettings()
-    @Binding var trackingMode: MapUserTrackingMode
         
     var body: some View {
         VStack(spacing: 0) {
-//            CardHeader(flag: $showStatus.isShowSetting, hasEditButton: false, title: "设置")
-            
-            if userSettings.user == ""{
-                SignInButton()
-                    .signInWithAppleButtonStyle(.white)
-                    .frame(maxWidth: 375)
-                    .frame(height: 44)
-                    .padding()
-            }
+            CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
 
             Form{
-                Section(header: Text("定位权限")) {
-                    Toggle(isOn: $userSettings.isShareMyLocation) {
-                        Text("共享我的位置")
-                            .font(.body)
-                    }
-                }
-                
-                Section(header: Text("地图设置")) {
-                    Toggle(isOn: $userSettings.trackingMode) {
-                        Text("默认追随模式")
-                            .font(.body)
-                    }.onChange(of: userSettings.trackingMode) { (value) in
-                        if value {
-                            trackingMode = MapUserTrackingMode.follow
-                        }else {
-                            trackingMode = MapUserTrackingMode.none
-                        }
-                    }
-                }
-                
-                if userSettings.user != "" {
+                if userSettings.user == ""{
+                    SignInButton()
+                        .signInWithAppleButtonStyle(.white)
+                }else{
                     Section(header: Text("当前用户: \(userSettings.email)")) {
                         Button(action: {
                             userSettings.user = ""
@@ -61,16 +35,10 @@ struct SettingView: View {
                 }
             }
         }
-        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(20)
+        .ignoresSafeArea()
     }
 }
-
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}
 
 struct TipsAnonymous: View {
     var body: some View {

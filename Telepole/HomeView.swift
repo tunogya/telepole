@@ -13,6 +13,7 @@ var SCREENHEIGHT = UIScreen.main.bounds.height
 
 struct HomeView: View {
     @State private var isShowPetRegisterView = false
+    @State private var isShowSettingView = false
     @State private var isSmallMap = true
     @State private var phoneNumber = 0
     @State private var pet: PetModel = PetModel()
@@ -50,7 +51,10 @@ struct HomeView: View {
                     
                 Spacer()
                 // 个人图标
-                HomeUserInfoView()
+                HomeUserInfoView(isPresent: $isShowSettingView)
+                    .sheet(isPresented: $isShowSettingView) {
+                        SettingView(isShow: $isShowSettingView)
+                    }
             }
             .padding(.vertical)
             
@@ -113,8 +117,10 @@ struct HomePetInfoView: View {
 
 struct HomeUserInfoView: View {
     @State var status: String = "😀"
+    @Binding var isPresent: Bool
     var body: some View {
         Button(action: {
+            isPresent = true
         }) {
             Text(status)
                 .frame(width: 44, height: 44, alignment: .center)
@@ -161,6 +167,7 @@ struct HomeMapView: View {
 
 struct ButtonRegisterPet: View {
     @Binding var isPresent: Bool
+    
     var body: some View {
         Button {
             isPresent = true
