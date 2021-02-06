@@ -54,21 +54,6 @@ final class UserSettings: ObservableObject {
         }
     }
     
-    
-    @UserDefault("isShareMyLocation", defaultValue: false)
-    var isShareMyLocation: Bool {
-        willSet {
-            objectWillChange.send()
-        }
-    }
-
-    @UserDefault("trackingMode", defaultValue: false)
-    var trackingMode: Bool {
-        willSet {
-            objectWillChange.send()
-        }
-    }
-    
     @UserDefault("pickPetID", defaultValue: "")
     var pickPetID: String {
         willSet {

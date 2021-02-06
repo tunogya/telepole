@@ -13,13 +13,20 @@ import MapKit
 struct SettingView: View {
     @Binding var isShow: Bool
     @ObservedObject var userSettings = UserSettings()
+    
+    var isShowLoginButton: Bool {
+        if userSettings.user == ""{
+            return true
+        }
+        return false
+    }
         
     var body: some View {
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
-
+            
             Form{
-                if userSettings.user == ""{
+                if isShowLoginButton {
                     SignInButton()
                         .signInWithAppleButtonStyle(.white)
                 }else{
