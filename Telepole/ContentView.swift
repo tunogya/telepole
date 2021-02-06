@@ -22,9 +22,9 @@ struct ShowStatus {
 }
 
 struct ContentView: View {
-    init(){
-        UITableView.appearance().backgroundColor = .clear
-    }
+//    init(){
+//        UITableView.appearance().backgroundColor = .clear
+//    }
     
     @ObservedObject var userSetting = UserSettings()
     @ObservedObject var locationManager = LocationManager()

@@ -36,7 +36,8 @@ struct PetRegisterView: View {
             newPet.verified = pet.verified
             newPet.variety = pet.variety
             newPet.gender = pet.gender
-            
+            newPet.phone = pet.phone
+            newPet.coins = pet.coins
             do {
                 try viewContext.save()
             } catch {
@@ -151,7 +152,6 @@ struct PetRegisterView: View {
                 }
             }
         }
-        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
     }
 }
 

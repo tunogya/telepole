@@ -20,7 +20,7 @@ struct HomeView: View {
         VStack(alignment: .leading) {
             HStack {
                 // 宠物图标
-                HomePetInfoView()
+                HomePetInfoView(name: "贝贝", coins: 100)
                 
                 ButtonRegisterPet(isPresent: $isShowPetRegisterView)
                     .sheet(isPresented: $isShowPetRegisterView) {
@@ -62,6 +62,8 @@ struct HomeView_Previews: PreviewProvider {
 
 
 struct HomePetInfoView: View {
+    let name: String
+    var coins: Double
     var body: some View {
         HStack {
             Button(action: {
@@ -73,9 +75,9 @@ struct HomePetInfoView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text("贝贝")
+                    Text(name)
                         .bold()
-                    Text("100 币")
+                    Text(String(format: "%0.1f", coins) + " 币")
                 }
                 .font(.footnote)
                 .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))

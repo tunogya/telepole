@@ -18,8 +18,8 @@ struct PetModel: Codable {
     var verified: Bool = false
     var variety: String = ""
     var gender: String = "boy"
-    var phone: Int = 0
-    var coins: Int = 0
+    var phone: Double = 0
+    var coins: Double = 0
 }
 
 class PetApi {
@@ -40,8 +40,8 @@ class PetApi {
                     verified: jsonData["verified"].boolValue,
                     variety: jsonData["variety"].stringValue,
                     gender: jsonData["gender"].stringValue,
-                    phone: jsonData["phone"].intValue,
-                    coins: jsonData["coins"].intValue
+                    phone: jsonData["phone"].doubleValue,
+                    coins: jsonData["coins"].doubleValue
                 ))
             case .failure(let error):
                 debugPrint(error)
