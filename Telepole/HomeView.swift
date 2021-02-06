@@ -16,20 +16,26 @@ struct HomeView: View {
     @State private var isSmallMap = true
     @State private var phoneNumber = 0
     @State private var pet: PetModel = PetModel()
-    @State private var pickPetID: String = "79550af2601e422702db9128122a9b48"
+    @State private var pickPetID: String = ""
     
     fileprivate func getPetInfo() {
-        print(pickPetID)
         PetApi().getPetById(pickPetID) { (p) in
             pet = p
         }
+    }
+    
+    var petname: String {
+        if pet.name == "" {
+            return "暂无宠物"
+        }
+        return pet.name
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 // 宠物图标
-                HomePetInfoView(name: pet.name, coins: pet.coins)
+                HomePetInfoView(name: petname, coins: pet.coins)
                     .onAppear(perform: {
                         self.getPetInfo()
                     })
@@ -77,12 +83,12 @@ struct HomeView_Previews: PreviewProvider {
 
 
 struct HomePetInfoView: View {
-    let name: String
+    var name: String
     var coins: Double
     var body: some View {
-        HStack {
-            Button(action: {
-            }) {
+        Button(action: {
+        }) {
+            HStack(spacing: 0){
                 Text("🐶")
                     .frame(width: 30, height: 30, alignment: .center)
                     .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
@@ -98,10 +104,10 @@ struct HomePetInfoView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                 .padding(.trailing)
             }
+            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+            .cornerRadius(44)
+            .frame(height: 44)
         }
-        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-        .cornerRadius(44)
-        .frame(height: 44)
     }
 }
 
