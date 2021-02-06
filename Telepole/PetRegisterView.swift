@@ -39,6 +39,7 @@ struct PetRegisterView: View {
             }
             .padding()
             .pickerStyle(SegmentedPickerStyle())
+            .background(Color(.systemGroupedBackground))
             
             Form {
                 // 已经注册页面
