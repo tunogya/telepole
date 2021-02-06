@@ -19,35 +19,6 @@ struct PetRegisterView: View {
     let gender: [String] = ["boy", "girl"]
     
     @ObservedObject var userSettings = UserSettings()
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
-        animation: .default) private var items: FetchedResults<Pet>
-    
-    // 增加pet到数据库
-    private func addPet(_ pet: PetModel) {
-        withAnimation {
-            let newPet = Pet(context: viewContext)
-            newPet.name = pet.name
-            newPet.desc = pet.description
-            newPet.id = pet.id
-            newPet.profile_image_url = pet.profile_image_url
-            newPet.protected = pet.protected
-            newPet.verified = pet.verified
-            newPet.variety = pet.variety
-            newPet.gender = pet.gender
-            newPet.phone = pet.phone
-            newPet.coins = pet.coins
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
     
     var is_name_valid: Bool {
         if pet.name.isEmpty{
@@ -82,7 +53,7 @@ struct PetRegisterView: View {
                         Button(action: {
                             PetApi().getPetById(IdInput) { (pet) in
                                 if !pet.id.isEmpty{
-                                    addPet(pet)
+                                    // 添加到存储
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")
@@ -94,17 +65,15 @@ struct PetRegisterView: View {
                     }
                     
                     Section(header: Text("我的宠物列表")) {
-                        ForEach(items){ item in
-                            Button {
-                                userSettings.pickPetID = item.id!
-                                pickPetID = item.id!
-                                isShow = false
-                            } label: {
-                                Text(item.name ?? "null")
-                            }
-
-                            
-                        }
+//                        ForEach(pets){ pet in
+//                            Button {
+//                                userSettings.pickPetID = item.id!
+//                                pickPetID = item.id!
+//                                isShow = false
+//                            } label: {
+//                                Text(item.name ?? "null")
+//                            }
+//                        }
                     }
                     
                 // 未注册页面
@@ -128,7 +97,6 @@ struct PetRegisterView: View {
                             print(pet)
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
-                                    addPet(pet)
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")

@@ -11,11 +11,9 @@ let HOSTNAME = "https://app.wakanda.vip"
 
 @main
 struct TelepoleApp: App {
-    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
