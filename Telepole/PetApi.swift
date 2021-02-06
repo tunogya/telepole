@@ -23,7 +23,7 @@ struct PetModel: Codable {
 
 class PetApi {
 //    根据用户id查询用户信息
-    func getPetById(_ id: String, completion: @escaping (PetModel) -> ()) {
+    func getPetByID(_ id: String, completion: @escaping (PetModel) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/pets/\(id)/"
         AF.request(url).responseJSON { response in
             switch response.result {
@@ -55,7 +55,7 @@ class PetApi {
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.getPetById(id) { (pet) in
+                self.getPetByID(id) { (pet) in
                     completion(pet)
                 }
             case .failure(let error):

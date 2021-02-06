@@ -34,6 +34,15 @@ struct SettingView: View {
             }
             Form{
                 if !isShowLoginButton {
+                    Section(header: Text("数据同步")) {
+                        Button(action: {
+                            
+                        }) {
+                            Text("同步我的宠物")
+                        }
+                    }
+                    
+                    
                     Section(header: Text("当前用户: \(userSettings.email)")) {
                         Button(action: {
                             userSettings.user = ""

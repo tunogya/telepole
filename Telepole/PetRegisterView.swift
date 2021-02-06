@@ -52,9 +52,10 @@ struct PetRegisterView: View {
                         
                         // 已经注册宠物添加按钮
                         Button(action: {
-                            PetApi().getPetById(IdInput) { (pet) in
+                            PetApi().getPetByID(IdInput) { (pet) in
                                 if !pet.id.isEmpty{
                                     userSettings.myPets.append(pet.id)
+                                    userSettings.pickPetID = pet.id
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")
@@ -99,6 +100,7 @@ struct PetRegisterView: View {
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
                                     userSettings.myPets.append(pet.id)
+                                    userSettings.pickPetID = pet.id
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")

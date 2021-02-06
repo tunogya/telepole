@@ -14,64 +14,71 @@ var SCREENHEIGHT = UIScreen.main.bounds.height
 struct HomeView: View {
     @State private var isShowPetRegisterView = false
     @State private var isShowSettingView = false
-    @State private var isSmallMap = true
+    @State private var isFoldMap = false
+    @State private var isShowWakanda = false
     @State private var phoneNumber = 0
     @State private var pet: PetModel = PetModel()
     @State private var pickPetID: String = ""
     
+    @ObservedObject var userSettings = UserSettings()
+    
     fileprivate func getPetInfo() {
-        PetApi().getPetById(pickPetID) { (p) in
+        PetApi().getPetByID(pickPetID) { (p) in
             pet = p
         }
     }
     
-    var petname: String {
-        if pet.name == "" {
-            return "暂无宠物"
-        }
-        return pet.name
-    }
-    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                // 宠物图标
-                HomePetInfoView(name: petname, coins: pet.coins)
-                    .onAppear(perform: {
-                        self.getPetInfo()
-                    })
-                    .onChange(of: pickPetID, perform: { value in
-                        self.getPetInfo()
-                    })
-                
-                ButtonRegisterPet(isPresent: $isShowPetRegisterView)
-                    .sheet(isPresented: $isShowPetRegisterView) {
-                        PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
-                    }
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HomeMapView()
+                        .cornerRadius(24)
+                        .frame(height: isFoldMap ? SCREENWIDTH*0.618 : SCREENWIDTH*1.114)
+                        .padding(.top, 80)
                     
-                Spacer()
-                // 个人图标
-                HomeUserInfoView(isPresent: $isShowSettingView)
-                    .sheet(isPresented: $isShowSettingView) {
-                        SettingView(isShow: $isShowSettingView)
-                    }
+                    WakandaSlogan(isPresent: $isShowWakanda)
+                        .padding(.vertical)
+                    
+                    ShowPetInfo(isPresent: $isFoldMap)
+                }
             }
-            .padding(.vertical)
             
-            // 地图
-            HomeMapView()
-                .cornerRadius(24)
-                .frame(height: isSmallMap ? SCREENWIDTH*0.618 : SCREENWIDTH*1.114)
-            
-            // 附近的人
-            WakandaSlogan(isShowDetail: $isSmallMap)
+            VStack(alignment: .leading){
+                HStack {
+                    // 宠物图标
+                    HomePetInfoView(pet: $pet)
+                        .onAppear(perform: {
+                            pickPetID = userSettings.pickPetID
+                            self.getPetInfo()
+                        })
+                        .onChange(of: pickPetID, perform: { value in
+                            self.getPetInfo()
+                        })
+                    
+                    ButtonRegisterPet(isPresent: $isShowPetRegisterView)
+                        .sheet(isPresented: $isShowPetRegisterView) {
+                            PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
+                        }
+                        
+                    Spacer()
+                    // 个人图标
+                    HomeUserInfoView(isPresent: $isShowSettingView)
+                        .sheet(isPresented: $isShowSettingView) {
+                            SettingView(isShow: $isShowSettingView)
+                        }
+                }
                 .padding(.vertical)
-            
-            Spacer()
-            
-            HStack {
+                
                 Spacer()
-                CallMeButton(phoneNumber: $phoneNumber)
+                
+                HStack {
+                    Spacer()
+                    
+                    CallMeButton(phoneNumber: $phoneNumber)
+                        .foregroundColor(Color(pickPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+                        .disabled(pickPetID == "" ? true : false)
+                }
             }
         }
         .padding(.horizontal)
@@ -87,8 +94,13 @@ struct HomeView_Previews: PreviewProvider {
 
 
 struct HomePetInfoView: View {
-    var name: String
-    var coins: Double
+    @Binding var pet: PetModel
+    var petname: String {
+        if pet.name == "" {
+            return "暂无宠物"
+        }
+        return pet.name
+    }
     var body: some View {
         Button(action: {
         }) {
@@ -100,9 +112,9 @@ struct HomePetInfoView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text(name)
+                    Text(petname)
                         .bold()
-                    Text(String(format: "%0.1f", coins) + " 币")
+                    Text(String(format: "%0.1f", pet.coins) + " 币")
                 }
                 .font(.footnote)
                 .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
@@ -174,13 +186,14 @@ struct ButtonRegisterPet: View {
         } label: {
             Image(systemName: "plus.circle")
                 .font(.title3)
+                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                .clipShape(Circle())
         }
-        
     }
 }
 
 struct WakandaSlogan: View {
-    @Binding var isShowDetail: Bool
+    @Binding var isPresent: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -190,9 +203,9 @@ struct WakandaSlogan: View {
                     .fontWeight(.bold)
                 
                 Button {
-                    isShowDetail.toggle()
+                    isPresent.toggle()
                 } label: {
-                    Text("#Wakanda")
+                    Text("@Wakanda")
                         .font(.caption)
                         .padding(.leading, 4)
                         .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
@@ -229,5 +242,23 @@ struct ShowAllPetButton: View {
             Image(systemName: "arrow.up.backward.and.arrow.down.forward.circle")
                 .font(.body)
         }
+    }
+}
+
+
+struct ShowPetInfo: View {
+    @Binding var isPresent: Bool
+    var body: some View {
+        VStack(alignment: .leading){
+            Button {
+                isPresent.toggle()
+            } label: {
+                Text((isPresent ? "折叠" : "展开" ) + "宠物信息")
+                    .font(.footnote)
+                    .foregroundColor(Color(isPresent ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+            }
+            Text(isPresent ? "" : "...")
+        }
+  
     }
 }
