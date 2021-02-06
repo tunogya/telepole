@@ -25,11 +25,15 @@ struct SettingView: View {
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
             
+            if isShowLoginButton {
+                SignInButton()
+                    .signInWithAppleButtonStyle(.white)
+                    .frame(height: 44)
+                    .padding()
+                    .background(Color(.systemGroupedBackground))
+            }
             Form{
-                if isShowLoginButton {
-                    SignInButton()
-                        .signInWithAppleButtonStyle(.white)
-                }else{
+                if !isShowLoginButton {
                     Section(header: Text("当前用户: \(userSettings.email)")) {
                         Button(action: {
                             userSettings.user = ""
@@ -75,6 +79,7 @@ struct SignInButton: View {
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
+                                print(userSettings.user)
                             }
                         }else {
                             // 新注册
