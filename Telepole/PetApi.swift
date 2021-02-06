@@ -11,14 +11,13 @@ import SwiftyJSON
 struct PetModel: Codable {
     var id: String = ""
     var name: String = ""
-    var username: String = ""
     var description: String = ""
     var profile_image_url: String = ""
     var protected: Bool = false
     var verified: Bool = false
     var variety: String = ""
     var gender: String = "boy"
-    var phone: Double = 0
+    var phone: String = ""
     var coins: Double = 0
 }
 
@@ -33,14 +32,13 @@ class PetApi {
                 completion(PetModel(
                     id: jsonData["_id"].stringValue,
                     name: jsonData["name"].stringValue,
-                    username: jsonData["username"].stringValue,
                     description: jsonData["description"].stringValue,
                     profile_image_url: jsonData["profile_image_url"].stringValue,
                     protected: jsonData["protected"].boolValue,
                     verified: jsonData["verified"].boolValue,
                     variety: jsonData["variety"].stringValue,
                     gender: jsonData["gender"].stringValue,
-                    phone: jsonData["phone"].doubleValue,
+                    phone: jsonData["phone"].stringValue,
                     coins: jsonData["coins"].doubleValue
                 ))
             case .failure(let error):
@@ -51,7 +49,7 @@ class PetApi {
     
 //    用户注册
     func createPet(_ pet: PetModel, completion: @escaping (PetModel) -> ()) {
-        let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "username": pet.username, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
+        let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
         let url = "\(HOSTNAME)/telepole/v1.0/pets/"
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {

@@ -10,14 +10,15 @@ import SwiftUI
 struct PetRegisterView: View {
     @State var IdInput: String = ""
     @Binding var isShow: Bool
+    @Binding var pickPetID: String
     @State var pageIndex: Int = 0
     let page: [String] = ["已注册", "新注册"]
-    @State var isShowCode: Bool = false
     
-    @State var pet = PetModel(id: "", name: "", username: "", description: "", profile_image_url: "", protected: false, verified: false, variety: "", gender: "boy")
+    @State var pet = PetModel()
     @State var genderIndex = 0
     let gender: [String] = ["boy", "girl"]
     
+    @ObservedObject var userSettings = UserSettings()
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Pet.id, ascending: true)],
@@ -28,7 +29,6 @@ struct PetRegisterView: View {
         withAnimation {
             let newPet = Pet(context: viewContext)
             newPet.name = pet.name
-            newPet.username = pet.username
             newPet.desc = pet.description
             newPet.id = pet.id
             newPet.profile_image_url = pet.profile_image_url
@@ -57,14 +57,6 @@ struct PetRegisterView: View {
         }
     }
     
-    var is_username_valid: Bool  {
-        if pet.username.isEmpty{
-            return false
-        }else{
-            return true
-        }   
-    }
-    
     var body: some View {
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "增加宠物")
@@ -82,18 +74,7 @@ struct PetRegisterView: View {
                 if pageIndex == 0 {
                     Section(header: Text("请确保宠物已经注册")) {
                         HStack {
-                            if isShowCode {
-                                TextField("请输入已注册宠物的Id地址", text: $IdInput)
-                            } else {
-                                SecureField("请输入已注册宠物的Id地址", text: $IdInput)
-                            }
-                            
-                            Button(action: {
-                                isShowCode.toggle()
-                            }) {
-                                Image(systemName: isShowCode ? "eye" : "eye.slash.fill")
-                                    .foregroundColor(.secondary)
-                            }
+                            TextField("请输入已注册宠物的Id地址", text: $IdInput)
                         }
                         .font(.body)
                         
@@ -112,16 +93,24 @@ struct PetRegisterView: View {
                         }
                     }
                     
+                    Section(header: Text("我的宠物列表")) {
+                        ForEach(items){ item in
+                            Button {
+                                userSettings.pickPetID = item.id!
+                                pickPetID = item.id!
+                                isShow = false
+                            } label: {
+                                Text(item.name ?? "null")
+                            }
+
+                            
+                        }
+                    }
+                    
                 // 未注册页面
                 }else if pageIndex == 1 {
                     Section(header: Text("宠物信息")) {
                         TextField("请输入宠物姓名", text: $pet.name)
-                        HStack {
-                            Text("@")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                            TextField("请输入唯一标识的域名", text: $pet.username)
-                        }
                         Picker(selection: $genderIndex, label: Text("性别")) {
                             ForEach(0 ..< gender.count) {
                                 Text(self.gender[$0])
@@ -152,18 +141,5 @@ struct PetRegisterView: View {
                 }
             }
         }
-    }
-}
-
-struct AddPetView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddPetView_Previews_Test()
-    }
-}
-
-struct AddPetView_Previews_Test: View {
-    @State var isShowAddPetView = true
-    var body: some View {
-        PetRegisterView(isShow: $isShowAddPetView)
     }
 }

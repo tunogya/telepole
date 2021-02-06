@@ -15,18 +15,33 @@ struct HomeView: View {
     @State private var isShowPetRegisterView = false
     @State private var isSmallMap = true
     @State private var phoneNumber = 0
+    @State private var pet: PetModel = PetModel()
+    @State private var pickPetID: String = "79550af2601e422702db9128122a9b48"
+    
+    fileprivate func getPetInfo() {
+        print(pickPetID)
+        PetApi().getPetById(pickPetID) { (p) in
+            pet = p
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 // 宠物图标
-                HomePetInfoView(name: "贝贝", coins: 100)
+                HomePetInfoView(name: pet.name, coins: pet.coins)
+                    .onAppear(perform: {
+                        self.getPetInfo()
+                    })
+                    .onChange(of: pickPetID, perform: { value in
+                        self.getPetInfo()
+                    })
                 
                 ButtonRegisterPet(isPresent: $isShowPetRegisterView)
                     .sheet(isPresented: $isShowPetRegisterView) {
-                        PetRegisterView(isShow: $isShowPetRegisterView)
+                        PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
                     }
-                
+                    
                 Spacer()
                 // 个人图标
                 HomeUserInfoView()
@@ -91,10 +106,11 @@ struct HomePetInfoView: View {
 }
 
 struct HomeUserInfoView: View {
+    @State var status: String = "😀"
     var body: some View {
         Button(action: {
         }) {
-            Text("😀")
+            Text(status)
                 .frame(width: 44, height: 44, alignment: .center)
                 .font(.title)
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
@@ -188,6 +204,17 @@ struct CallMeButton: View {
             Image(systemName: "phone.circle.fill")
                 .resizable()
                 .frame(width: 60, height: 60, alignment: .center)
+        }
+    }
+}
+
+struct ShowAllPetButton: View {
+    var body: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "arrow.up.backward.and.arrow.down.forward.circle")
+                .font(.body)
         }
     }
 }

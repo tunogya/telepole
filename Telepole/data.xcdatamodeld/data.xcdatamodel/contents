@@ -6,7 +6,7 @@
         <attribute name="gender" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="phone" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="profile_image_url" optional="YES" attributeType="String"/>
         <attribute name="protected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="username" optional="YES" attributeType="String"/>

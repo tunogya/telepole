@@ -46,7 +46,6 @@ class GeoApi {
                 for item in items {
                     let pet = PetModel(id: item["pet"]["_id"].stringValue,
                                        name: item["pet"]["name"].stringValue,
-                                       username: item["pet"]["username"].stringValue,
                                        description: item["pet"]["description"].stringValue,
                                        profile_image_url: item["pet"]["profile_image_url"].stringValue,
                                        protected: item["pet"]["protected"].boolValue,
