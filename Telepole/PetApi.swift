@@ -22,7 +22,7 @@ struct PetModel: Codable {
 }
 
 class PetApi {
-//    根据用户id查询用户信息
+//    根据pet id查询用户信息
     func getPetByID(_ id: String, completion: @escaping (PetModel) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/pets/\(id)/"
         AF.request(url).responseJSON { response in
@@ -47,7 +47,7 @@ class PetApi {
         }
     }
     
-//    用户注册
+//   宠物注册
     func createPet(_ pet: PetModel, completion: @escaping (PetModel) -> ()) {
         let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
         let url = "\(HOSTNAME)/telepole/v1.0/pets/"

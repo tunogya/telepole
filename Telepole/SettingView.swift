@@ -20,7 +20,7 @@ struct SettingView: View {
         }
         return false
     }
-        
+    
     var body: some View {
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
@@ -41,7 +41,6 @@ struct SettingView: View {
                             Text("同步我的宠物")
                         }
                     }
-                    
                     
                     Section(header: Text("当前用户: \(userSettings.email)")) {
                         Button(action: {
