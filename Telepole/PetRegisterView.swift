@@ -53,7 +53,7 @@ struct PetRegisterView: View {
                         Button(action: {
                             PetApi().getPetById(IdInput) { (pet) in
                                 if !pet.id.isEmpty{
-                                    // 添加到存储
+                                    userSettings.myPets.append(pet.id)
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")
@@ -65,15 +65,15 @@ struct PetRegisterView: View {
                     }
                     
                     Section(header: Text("我的宠物列表")) {
-//                        ForEach(pets){ pet in
-//                            Button {
-//                                userSettings.pickPetID = item.id!
-//                                pickPetID = item.id!
-//                                isShow = false
-//                            } label: {
-//                                Text(item.name ?? "null")
-//                            }
-//                        }
+                        ForEach(userSettings.myPets, id: \.self){ pet in
+                            Button {
+                                userSettings.pickPetID = pet
+                                pickPetID = pet
+                                isShow = false
+                            } label: {
+                                Text(pet)
+                            }
+                        }
                     }
                     
                 // 未注册页面
@@ -87,6 +87,7 @@ struct PetRegisterView: View {
                         }.pickerStyle(SegmentedPickerStyle())
                         TextField("品种", text: $pet.variety)
                         TextField("请输入描述", text: $pet.description)
+                        TextField("请输入联系电话", text: $pet.phone)
                     }
                     
                     Section {
@@ -94,9 +95,9 @@ struct PetRegisterView: View {
                         Button(action: {
                             // 更新gender
                             pet.gender = gender[genderIndex]
-                            print(pet)
                             PetApi().createPet(pet) { (pet) in
                                 if !pet.id.isEmpty{
+                                    userSettings.myPets.append(pet.id)
                                     isShow = false
                                 }else{
                                     debugPrint("添加失败")

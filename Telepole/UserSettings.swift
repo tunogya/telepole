@@ -75,4 +75,11 @@ final class UserSettings: ObservableObject {
             objectWillChange.send()
         }
     }
+    
+    @UserDefault("myPets", defaultValue: [])
+    var myPets: [String] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
 }
