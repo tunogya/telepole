@@ -13,7 +13,7 @@ struct UserModel: Codable {
     var user: String = ""
     var fullName: String = ""
     var email: String = ""
-    var user_id: String = ""
+    var _id: String = ""
 }
 
 class UserApi {
@@ -29,7 +29,7 @@ class UserApi {
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
                 let user_id = JSON(value)["data"][0]["_id"].stringValue
-                completion(UserModel(user: user, fullName: fullName, email: email, user_id: user_id))
+                completion(UserModel(user: user, fullName: fullName, email: email, _id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }
@@ -55,8 +55,8 @@ class UserApi {
     }
     
     // 根据注册返回结果查询用户
-    func getUserById(_ id: String, completion: @escaping (UserModel) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(id)/"
+    func getUserById(_ doc_id: String, completion: @escaping (UserModel) -> ()) {
+        let url = "\(HOSTNAME)/telepole/v1.0/users/\(doc_id)/"
         // 根据user查询到user信息
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {
@@ -65,7 +65,7 @@ class UserApi {
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
                 let user_id = JSON(value)["data"][0]["_id"].stringValue
-                completion(UserModel(user: user, fullName: fullName, email: email, user_id: user_id))
+                completion(UserModel(user: user, fullName: fullName, email: email, _id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }

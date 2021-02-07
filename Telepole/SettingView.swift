@@ -14,6 +14,8 @@ struct SettingView: View {
     @Binding var isShow: Bool
     @ObservedObject var userSettings = UserSettings()
     
+    @State var owner: OwnerModel = OwnerModel()
+    
     var isShowLoginButton: Bool {
         if userSettings.user == ""{
             return true
@@ -22,6 +24,7 @@ struct SettingView: View {
     }
     
     var body: some View {
+      
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
             
@@ -32,22 +35,31 @@ struct SettingView: View {
                     .padding()
                     .background(Color(.systemGroupedBackground))
             }
+            
             Form{
                 if !isShowLoginButton {
                     Section(header: Text("数据同步")) {
                         Button(action: {
-                            
+                            if owner._id == "" {
+                                print("首次备份")
+                                OwnerApi().initCloudData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
+                            }else{
+                                print("更新备份")
+                                print(owner._id)
+                                OwnerApi().patchCloudData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
+                            }
                         }) {
                             Text("备份我的宠物")
                         }
                         
                         Button(action: {
-                            print(userSettings.user_id)
-                            OwnerApi().getPetByUser(userSettings.user_id) { (owner) in
-                                print(owner)
-                            }
+                            
                         }) {
-                            Text("恢复我的宠物")
+                            HStack{
+                                Text("恢复我的宠物")
+                                Spacer()
+                                Text("(\(owner.pets.count))")
+                            }
                         }
                     }
                     
@@ -56,13 +68,18 @@ struct SettingView: View {
                             userSettings.user = ""
                             userSettings.email = ""
                             userSettings.fullName = ""
-                            userSettings.user_id = ""
+                            userSettings._id = ""
                         }){
                             Text("注销")
                         }
                     }
                 }
             }
+            .onAppear(perform: {
+                OwnerApi().getPetByUser(_id: userSettings._id) { o in
+                    owner = o
+                }
+            })
         }
         .cornerRadius(20)
         .ignoresSafeArea()
@@ -98,7 +115,7 @@ struct SignInButton: View {
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
-                                userSettings.user_id = user.user_id
+                                userSettings._id = user._id
                             }
                         }else {
                             // 新注册
@@ -111,7 +128,7 @@ struct SignInButton: View {
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
-                                userSettings.user_id = user.user_id
+                                userSettings._id = user._id
                             }
                         }
                         
