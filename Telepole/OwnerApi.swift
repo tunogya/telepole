@@ -20,7 +20,7 @@ struct OwnerModel {
 
 class OwnerApi {
     // 查询是否有云端备份数据，有则下载
-    func getPetByUser(_id doc_id: String, completion: @escaping (OwnerModel) -> ()) {
+    func getDataByUser_id(_id doc_id: String, completion: @escaping (OwnerModel) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/owner/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": doc_id]]]
         
@@ -42,14 +42,17 @@ class OwnerApi {
     }
     
     // 创建一份云端备份数据
-    func initCloudData(_ owner: OwnerModel){
+    func initData(_ owner: OwnerModel, completion: @escaping (OwnerModel) -> ()){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/"
         let parameters: [String: Array<Any>] = ["data": [["pets": owner.pets, "user": owner.user_id]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
-                debugPrint(value)
+                let doc_id = JSON(value)["ids"][0].stringValue
+                self.getData(_id: doc_id) { (owner) in
+                    completion(owner)
+                }
             case .failure(let error):
                 debugPrint(error)
             }
@@ -57,7 +60,7 @@ class OwnerApi {
     }
     
     // 更新云端数据
-    func patchCloudData(_id doc_id: String, owner: OwnerModel){
+    func patchData(_id doc_id: String, owner: OwnerModel, completion: @escaping (OwnerModel) -> ()){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
         let parameters: [String: Array<Any>] = ["data": [["pets": owner.pets, "user": owner.user_id]]]
         
@@ -70,5 +73,22 @@ class OwnerApi {
             }
         }
     }
+    
+    // 获取指定云端备份
+    func getData(_id doc_id: String, completion: @escaping (OwnerModel) -> ()) {
+        let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
+        
+        AF.request(url, method: .get).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                debugPrint(value)
+                
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+        
+    }
+    
 }
 

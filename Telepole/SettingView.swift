@@ -76,7 +76,7 @@ struct SettingView: View {
                 }
             }
             .onAppear(perform: {
-                OwnerApi().getPetByUser(_id: userSettings._id) { o in
+                OwnerApi().getDataByUser_id(_id: userSettings._id) { o in
                     owner = o
                 }
             })
