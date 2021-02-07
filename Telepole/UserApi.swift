@@ -13,6 +13,7 @@ struct UserModel: Codable {
     var user: String = ""
     var fullName: String = ""
     var email: String = ""
+    var user_id: String = ""
 }
 
 class UserApi {
@@ -27,7 +28,8 @@ class UserApi {
                 let email = JSON(value)["data"][0]["email"].stringValue
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
-                completion(UserModel(user: user, fullName: fullName, email: email))
+                let user_id = JSON(value)["data"][0]["_id"].stringValue
+                completion(UserModel(user: user, fullName: fullName, email: email, user_id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }
@@ -62,7 +64,8 @@ class UserApi {
                 let email = JSON(value)["data"][0]["email"].stringValue
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
-                completion(UserModel(user: user, fullName: fullName, email: email))
+                let user_id = JSON(value)["data"][0]["_id"].stringValue
+                completion(UserModel(user: user, fullName: fullName, email: email, user_id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }

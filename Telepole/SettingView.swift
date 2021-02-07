@@ -38,7 +38,16 @@ struct SettingView: View {
                         Button(action: {
                             
                         }) {
-                            Text("同步我的宠物")
+                            Text("备份我的宠物")
+                        }
+                        
+                        Button(action: {
+                            print(userSettings.user_id)
+                            OwnerApi().getPetByUser(userSettings.user_id) { (owner) in
+                                print(owner)
+                            }
+                        }) {
+                            Text("恢复我的宠物")
                         }
                     }
                     
@@ -47,6 +56,7 @@ struct SettingView: View {
                             userSettings.user = ""
                             userSettings.email = ""
                             userSettings.fullName = ""
+                            userSettings.user_id = ""
                         }){
                             Text("注销")
                         }
@@ -84,10 +94,11 @@ struct SignInButton: View {
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
                             UserApi().login(user) { (user) in
+                                print(user)
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
-                                print(userSettings.user)
+                                userSettings.user_id = user.user_id
                             }
                         }else {
                             // 新注册
@@ -100,6 +111,7 @@ struct SignInButton: View {
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
+                                userSettings.user_id = user.user_id
                             }
                         }
                         
