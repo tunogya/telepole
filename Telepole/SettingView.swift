@@ -94,14 +94,6 @@ struct SettingView: View {
     }
 }
 
-struct TipsAnonymous: View {
-    var body: some View {
-        Text("Session:")
-            .font(.body)
-            .foregroundColor(Color("GrayColor"))
-    }
-}
-
 struct SignInButton: View {
     @ObservedObject var userSettings = UserSettings()
     
