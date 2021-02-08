@@ -60,9 +60,9 @@ class OwnerApi {
     }
     
     // 更新云端数据
-    func patchData(_id doc_id: String, owner: OwnerModel, completion: @escaping (OwnerModel) -> ()){
+    func patchData(_id doc_id: String, owner: OwnerModel){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
-        let parameters: [String: Array<Any>] = ["data": [["pets": owner.pets, "user": owner.user_id]]]
+        let parameters: [String: Any] = ["data": ["pets": owner.pets, "user": owner.user_id]]
         
         AF.request(url, method: .patch, parameters: parameters).responseJSON { response in
             switch response.result {

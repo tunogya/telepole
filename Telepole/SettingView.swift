@@ -41,12 +41,11 @@ struct SettingView: View {
                     Section(header: Text("数据同步")) {
                         Button(action: {
                             if owner._id == "" {
-                                print("首次备份")
-                                OwnerApi().initCloudData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
+                                OwnerApi().initData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)) { owner in
+                                    print(owner)
+                                }
                             }else{
-                                print("更新备份")
-                                print(owner._id)
-                                OwnerApi().patchCloudData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
+                                OwnerApi().patchData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
                             }
                         }) {
                             Text("备份我的宠物")
