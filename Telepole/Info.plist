@@ -21,11 +21,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App需要一直访问位置信息</string>
+	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App运行需要访问位置信息</string>
+	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App运行需要获取位置信息</string>
+	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
