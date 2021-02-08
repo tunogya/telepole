@@ -61,7 +61,7 @@ struct SettingView: View {
                         }
                         
                         Button(action: {
-                            
+                            userSettings.myPets = owner.pets
                         }) {
                             HStack{
                                 Text("恢复我的宠物")
