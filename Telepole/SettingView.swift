@@ -41,14 +41,23 @@ struct SettingView: View {
                     Section(header: Text("数据同步")) {
                         Button(action: {
                             if owner._id == "" {
-                                OwnerApi().initData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)) { owner in
-                                    print(owner)
+                                OwnerApi().initData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)) { o in
+                                    owner = o
                                 }
                             }else{
-                                OwnerApi().patchData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id))
+                                OwnerApi().patchData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)){
+                                    OwnerApi().getData(_id: owner._id) { o in
+                                        owner = o
+                                    }
+                                }
                             }
                         }) {
-                            Text("备份我的宠物")
+                            HStack {
+                                Text("备份我的宠物")
+                                Spacer()
+                                Text("(\(userSettings.myPets.count))")
+                            }
+                            
                         }
                         
                         Button(action: {

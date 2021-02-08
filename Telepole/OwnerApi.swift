@@ -27,7 +27,7 @@ class OwnerApi {
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
-                let user_id = JSON(value)["data"][0]["user"]["user"].stringValue
+                let user_id = JSON(value)["data"][0]["user"]["_id"].stringValue
                 let _id = JSON(value)["data"][0]["_id"].stringValue
                 let petsArray = JSON(value)["data"][0]["pets"].arrayValue
                 var pets: [String] = []
@@ -60,14 +60,14 @@ class OwnerApi {
     }
     
     // 更新云端数据
-    func patchData(_id doc_id: String, owner: OwnerModel){
+    func patchData(_id doc_id: String, owner: OwnerModel, completion: @escaping () -> ()){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
         let parameters: [String: Any] = ["data": ["pets": owner.pets, "user": owner.user_id]]
         
         AF.request(url, method: .patch, parameters: parameters).responseJSON { response in
             switch response.result {
-            case .success(let value):
-                debugPrint(value)
+            case .success(_):
+                completion()
             case .failure(let error):
                 debugPrint(error)
             }
@@ -81,8 +81,14 @@ class OwnerApi {
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {
             case .success(let value):
-                debugPrint(value)
-                
+                let user_id = JSON(value)["data"]["user"]["_id"].stringValue
+                let _id = JSON(value)["data"]["_id"].stringValue
+                let petsArray = JSON(value)["data"]["pets"].arrayValue
+                var pets: [String] = []
+                for pet in petsArray {
+                    pets.append(pet["_id"].stringValue)
+                }
+                completion(OwnerModel(_id: _id, pets: pets, user_id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }
