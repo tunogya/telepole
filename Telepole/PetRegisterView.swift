@@ -43,7 +43,7 @@ struct HadRegisterForm: View {
     var body: some View {
         Section(header: Text("请确保宠物已经注册")) {
             HStack {
-                TextField("请输入已注册宠物的Id地址", text: $IdInput)
+                TextField("宠物ID地址", text: $IdInput)
             }
             .font(.body)
             
