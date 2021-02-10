@@ -70,10 +70,12 @@
 		173F05DC259324B600E662B8 /* TelepoleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelepoleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
 		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1743C9B525D3FC7500FEC327 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		1767A54F25CD69A800DCB1BE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerApi.swift; sourceTree = "<group>"; };
 		1767A77E25BC373000838CEF /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
+		176F439825D4204300BE5C00 /* Telepole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole.entitlements; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* PetRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRegisterView.swift; sourceTree = "<group>"; };
 		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				173F05D4259324B600E662B8 /* TelepoleTests */,
 				173F05DF259324B600E662B8 /* TelepoleUITests */,
 				173F05C1259324B300E662B8 /* Products */,
+				1743C9B425D3FC7500FEC327 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +163,7 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
+				176F439825D4204300BE5C00 /* Telepole.entitlements */,
 				172F4FDA25B715D40091F044 /* TelepoleDebug.entitlements */,
 				172D929525ADD25C00DC14B8 /* Controller */,
 				175AAECC25AB40240009B862 /* LottieFiles */,
@@ -197,6 +201,14 @@
 				173F05E2259324B600E662B8 /* Info.plist */,
 			);
 			path = TelepoleUITests;
+			sourceTree = "<group>";
+		};
+		1743C9B425D3FC7500FEC327 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1743C9B525D3FC7500FEC327 /* AuthenticationServices.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		175AAECC25AB40240009B862 /* LottieFiles */ = {
@@ -568,6 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Telepole/Telepole.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Telepole/Preview Content\"";
