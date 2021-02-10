@@ -70,7 +70,7 @@ struct HadRegisterForm: View {
                     pickPetID = pet
                     isPresent = false
                 } label: {
-                    Text(pet)
+                    PetListIInfo(pet_id: pet)
                 }
             }
         }
@@ -139,5 +139,27 @@ struct RegisterFormPicker: View {
         }
         .padding()
         .pickerStyle(SegmentedPickerStyle())
+    }
+}
+
+struct PetListIInfo: View {
+    var pet_id: String
+    @State var pet: PetModel = PetModel()
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "person")
+                .background(Color("AccentColor"))
+            Text("\(pet.name)")
+                .font(.body)
+                .bold()
+            Spacer()
+            
+        }
+        .onAppear(perform: {
+            PetApi().getPetByID(pet_id) { p in
+                pet = p
+            }
+        })
     }
 }
