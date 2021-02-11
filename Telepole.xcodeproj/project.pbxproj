@@ -34,6 +34,8 @@
 		176F43D825D5004F00BE5C00 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43D725D5004F00BE5C00 /* Lottie */; };
 		176F43ED25D5089600BE5C00 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */; };
 		176F43EE25D5089600BE5C00 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */; };
+		176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
+		176F43F025D50AE900BE5C00 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1716A25BD6AD300B12947 /* UserSettings.swift */; };
 		177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* PetRegisterView.swift */; };
 		177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D172825A2043A00C75B4A /* VisualEffectBlur.swift */; };
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
@@ -135,28 +137,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		17054B32259867AE001DE66A /* API */ = {
-			isa = PBXGroup;
-			children = (
-				17054B33259867CE001DE66A /* PetApi.swift */,
-				172F4FDE25B722A30091F044 /* UserApi.swift */,
-				17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */,
-				1767A77E25BC373000838CEF /* GeoModel.swift */,
-				17E7877625C6F19800DC531C /* Distence.swift */,
-				1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */,
-			);
-			name = API;
-			sourceTree = "<group>";
-		};
-		172D929525ADD25C00DC14B8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				172D929625ADD27300DC14B8 /* LocationManager.swift */,
-				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
@@ -181,11 +161,6 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
-				176F439825D4204300BE5C00 /* Telepole.entitlements */,
-				172F4FDA25B715D40091F044 /* TelepoleDebug.entitlements */,
-				172D929525ADD25C00DC14B8 /* Controller */,
-				177D1714259CD26400C75B4A /* Views */,
-				17054B32259867AE001DE66A /* API */,
 				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
 				173F05C7259324B600E662B8 /* Assets.xcassets */,
 				173F05CC259324B600E662B8 /* Info.plist */,
@@ -235,30 +210,25 @@
 			isa = PBXGroup;
 			children = (
 				176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		177D1714259CD26400C75B4A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				17D7D3C125B3C22700C087C9 /* Library */,
+				172D929625ADD27300DC14B8 /* LocationManager.swift */,
+				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
 				1767A54F25CD69A800DCB1BE /* HomeView.swift */,
 				17322ADF2593644600A0049B /* SettingView.swift */,
 				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		17D7D3C125B3C22700C087C9 /* Library */ = {
-			isa = PBXGroup;
-			children = (
 				17D7D3D525B414F800C087C9 /* CardHeader.swift */,
 				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
+				17054B33259867CE001DE66A /* PetApi.swift */,
+				172F4FDE25B722A30091F044 /* UserApi.swift */,
+				17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */,
+				1767A77E25BC373000838CEF /* GeoModel.swift */,
+				17E7877625C6F19800DC531C /* Distence.swift */,
+				1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */,
 				177D172825A2043A00C75B4A /* VisualEffectBlur.swift */,
+				172F4FDA25B715D40091F044 /* TelepoleDebug.entitlements */,
+				176F439825D4204300BE5C00 /* Telepole.entitlements */,
 				175AAEC125AB3E1C0009B862 /* LottieView.swift */,
 			);
-			name = Library;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,7 +381,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				176F43A225D5002400BE5C00 /* ContentView.swift in Sources */,
+				176F43F025D50AE900BE5C00 /* UserSettings.swift in Sources */,
 				176F43A025D5002400BE5C00 /* Telepole_ClipApp.swift in Sources */,
+				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
