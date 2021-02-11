@@ -16,13 +16,24 @@
 		173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 		173F05C8259324B600E662B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05C7259324B600E662B8 /* Assets.xcassets */; };
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
-		173F05D6259324B600E662B8 /* TelepoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05D5259324B600E662B8 /* TelepoleTests.swift */; };
-		173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05E0259324B600E662B8 /* TelepoleUITests.swift */; };
 		175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAEC125AB3E1C0009B862 /* LottieView.swift */; };
 		175AAEC825AB3FFF0009B862 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 175AAEC725AB3FFF0009B862 /* Lottie */; };
 		1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* HomeView.swift */; };
 		1767A57F25CEE0F200DCB1BE /* OwnerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */; };
 		1767A77F25BC373000838CEF /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoModel.swift */; };
+		176F43A025D5002400BE5C00 /* Telepole_ClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */; };
+		176F43A225D5002400BE5C00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F43A125D5002400BE5C00 /* ContentView.swift */; };
+		176F43A425D5002800BE5C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43A325D5002800BE5C00 /* Assets.xcassets */; };
+		176F43A725D5002800BE5C00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43A625D5002800BE5C00 /* Preview Assets.xcassets */; };
+		176F43C225D5002800BE5C00 /* Telepole Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 176F439D25D5002400BE5C00 /* Telepole Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		176F43CE25D5003B00BE5C00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43CD25D5003B00BE5C00 /* Alamofire */; };
+		176F43D025D5003F00BE5C00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43CF25D5003F00BE5C00 /* SwiftyJSON */; };
+		176F43D225D5004500BE5C00 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43D125D5004500BE5C00 /* SDWebImage */; };
+		176F43D425D5004500BE5C00 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43D325D5004500BE5C00 /* SDWebImageMapKit */; };
+		176F43D625D5004A00BE5C00 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43D525D5004A00BE5C00 /* SDWebImageSwiftUI */; };
+		176F43D825D5004F00BE5C00 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43D725D5004F00BE5C00 /* Lottie */; };
+		176F43DB25D5056400BE5C00 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43DA25D5056400BE5C00 /* Shared.xcassets */; };
+		176F43DC25D5056500BE5C00 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43DA25D5056400BE5C00 /* Shared.xcassets */; };
 		177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* PetRegisterView.swift */; };
 		177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D172825A2043A00C75B4A /* VisualEffectBlur.swift */; };
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
@@ -36,21 +47,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		173F05D2259324B600E662B8 /* PBXContainerItemProxy */ = {
+		176F43C025D5002800BE5C00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 173F05B8259324B300E662B8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 173F05BF259324B300E662B8;
-			remoteInfo = Telepole;
-		};
-		173F05DD259324B600E662B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 173F05B8259324B300E662B8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 173F05BF259324B300E662B8;
-			remoteInfo = Telepole;
+			remoteGlobalIDString = 176F439C25D5002400BE5C00;
+			remoteInfo = "Telepole Clip";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		176F43C625D5002800BE5C00 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				176F43C225D5002800BE5C00 /* Telepole Clip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		17054B33259867CE001DE66A /* PetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetApi.swift; sourceTree = "<group>"; };
@@ -64,18 +82,20 @@
 		173F05C7259324B600E662B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		173F05CA259324B600E662B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		173F05CC259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173F05D1259324B600E662B8 /* TelepoleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelepoleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		173F05D5259324B600E662B8 /* TelepoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleTests.swift; sourceTree = "<group>"; };
-		173F05D7259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173F05DC259324B600E662B8 /* TelepoleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TelepoleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		173F05E0259324B600E662B8 /* TelepoleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleUITests.swift; sourceTree = "<group>"; };
-		173F05E2259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1743C9B525D3FC7500FEC327 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		1767A54F25CD69A800DCB1BE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerApi.swift; sourceTree = "<group>"; };
 		1767A77E25BC373000838CEF /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
 		176F439825D4204300BE5C00 /* Telepole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole.entitlements; sourceTree = "<group>"; };
+		176F439D25D5002400BE5C00 /* Telepole Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telepole Clip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telepole_ClipApp.swift; sourceTree = "<group>"; };
+		176F43A125D5002400BE5C00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		176F43A325D5002800BE5C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		176F43A625D5002800BE5C00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		176F43A825D5002800BE5C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		176F43A925D5002800BE5C00 /* Telepole_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole_Clip.entitlements; sourceTree = "<group>"; };
+		176F43DA25D5056400BE5C00 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* PetRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRegisterView.swift; sourceTree = "<group>"; };
 		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
@@ -99,17 +119,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		173F05CE259324B600E662B8 /* Frameworks */ = {
+		176F439A25D5002400BE5C00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		173F05D9259324B600E662B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				176F43D625D5004A00BE5C00 /* SDWebImageSwiftUI in Frameworks */,
+				176F43D225D5004500BE5C00 /* SDWebImage in Frameworks */,
+				176F43D025D5003F00BE5C00 /* SwiftyJSON in Frameworks */,
+				176F43D425D5004500BE5C00 /* SDWebImageMapKit in Frameworks */,
+				176F43CE25D5003B00BE5C00 /* Alamofire in Frameworks */,
+				176F43D825D5004F00BE5C00 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +160,10 @@
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
+				176F43DA25D5056400BE5C00 /* Shared.xcassets */,
 				173EF4AF2596E7FC0059E467 /* README.md */,
 				173F05C2259324B300E662B8 /* Telepole */,
-				173F05D4259324B600E662B8 /* TelepoleTests */,
-				173F05DF259324B600E662B8 /* TelepoleUITests */,
+				176F439E25D5002400BE5C00 /* Telepole Clip */,
 				173F05C1259324B300E662B8 /* Products */,
 				1743C9B425D3FC7500FEC327 /* Frameworks */,
 			);
@@ -154,8 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				173F05C0259324B300E662B8 /* Telepole.app */,
-				173F05D1259324B600E662B8 /* TelepoleTests.xctest */,
-				173F05DC259324B600E662B8 /* TelepoleUITests.xctest */,
+				176F439D25D5002400BE5C00 /* Telepole Clip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,24 +203,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		173F05D4259324B600E662B8 /* TelepoleTests */ = {
-			isa = PBXGroup;
-			children = (
-				173F05D5259324B600E662B8 /* TelepoleTests.swift */,
-				173F05D7259324B600E662B8 /* Info.plist */,
-			);
-			path = TelepoleTests;
-			sourceTree = "<group>";
-		};
-		173F05DF259324B600E662B8 /* TelepoleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				173F05E0259324B600E662B8 /* TelepoleUITests.swift */,
-				173F05E2259324B600E662B8 /* Info.plist */,
-			);
-			path = TelepoleUITests;
-			sourceTree = "<group>";
-		};
 		1743C9B425D3FC7500FEC327 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +216,27 @@
 			children = (
 			);
 			path = LottieFiles;
+			sourceTree = "<group>";
+		};
+		176F439E25D5002400BE5C00 /* Telepole Clip */ = {
+			isa = PBXGroup;
+			children = (
+				176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */,
+				176F43A125D5002400BE5C00 /* ContentView.swift */,
+				176F43A325D5002800BE5C00 /* Assets.xcassets */,
+				176F43A825D5002800BE5C00 /* Info.plist */,
+				176F43A925D5002800BE5C00 /* Telepole_Clip.entitlements */,
+				176F43A525D5002800BE5C00 /* Preview Content */,
+			);
+			path = "Telepole Clip";
+			sourceTree = "<group>";
+		};
+		176F43A525D5002800BE5C00 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				176F43A625D5002800BE5C00 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		177D1714259CD26400C75B4A /* Views */ = {
@@ -250,10 +271,12 @@
 				173F05BC259324B300E662B8 /* Sources */,
 				173F05BD259324B300E662B8 /* Frameworks */,
 				173F05BE259324B300E662B8 /* Resources */,
+				176F43C625D5002800BE5C00 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				176F43C125D5002800BE5C00 /* PBXTargetDependency */,
 			);
 			name = Telepole;
 			packageProductDependencies = (
@@ -268,41 +291,30 @@
 			productReference = 173F05C0259324B300E662B8 /* Telepole.app */;
 			productType = "com.apple.product-type.application";
 		};
-		173F05D0259324B600E662B8 /* TelepoleTests */ = {
+		176F439C25D5002400BE5C00 /* Telepole Clip */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 173F05E8259324B600E662B8 /* Build configuration list for PBXNativeTarget "TelepoleTests" */;
+			buildConfigurationList = 176F43C325D5002800BE5C00 /* Build configuration list for PBXNativeTarget "Telepole Clip" */;
 			buildPhases = (
-				173F05CD259324B600E662B8 /* Sources */,
-				173F05CE259324B600E662B8 /* Frameworks */,
-				173F05CF259324B600E662B8 /* Resources */,
+				176F439925D5002400BE5C00 /* Sources */,
+				176F439A25D5002400BE5C00 /* Frameworks */,
+				176F439B25D5002400BE5C00 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				173F05D3259324B600E662B8 /* PBXTargetDependency */,
 			);
-			name = TelepoleTests;
-			productName = TelepoleTests;
-			productReference = 173F05D1259324B600E662B8 /* TelepoleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		173F05DB259324B600E662B8 /* TelepoleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 173F05EB259324B600E662B8 /* Build configuration list for PBXNativeTarget "TelepoleUITests" */;
-			buildPhases = (
-				173F05D8259324B600E662B8 /* Sources */,
-				173F05D9259324B600E662B8 /* Frameworks */,
-				173F05DA259324B600E662B8 /* Resources */,
+			name = "Telepole Clip";
+			packageProductDependencies = (
+				176F43CD25D5003B00BE5C00 /* Alamofire */,
+				176F43CF25D5003F00BE5C00 /* SwiftyJSON */,
+				176F43D125D5004500BE5C00 /* SDWebImage */,
+				176F43D325D5004500BE5C00 /* SDWebImageMapKit */,
+				176F43D525D5004A00BE5C00 /* SDWebImageSwiftUI */,
+				176F43D725D5004F00BE5C00 /* Lottie */,
 			);
-			buildRules = (
-			);
-			dependencies = (
-				173F05DE259324B600E662B8 /* PBXTargetDependency */,
-			);
-			name = TelepoleUITests;
-			productName = TelepoleUITests;
-			productReference = 173F05DC259324B600E662B8 /* TelepoleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			productName = "Telepole Clip";
+			productReference = 176F439D25D5002400BE5C00 /* Telepole Clip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -310,19 +322,14 @@
 		173F05B8259324B300E662B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					173F05BF259324B300E662B8 = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					173F05D0259324B600E662B8 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 173F05BF259324B300E662B8;
-					};
-					173F05DB259324B600E662B8 = {
-						CreatedOnToolsVersion = 12.3;
-						TestTargetID = 173F05BF259324B300E662B8;
+					176F439C25D5002400BE5C00 = {
+						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
@@ -347,8 +354,7 @@
 			projectRoot = "";
 			targets = (
 				173F05BF259324B300E662B8 /* Telepole */,
-				173F05D0259324B600E662B8 /* TelepoleTests */,
-				173F05DB259324B600E662B8 /* TelepoleUITests */,
+				176F439C25D5002400BE5C00 /* Telepole Clip */,
 			);
 		};
 /* End PBXProject section */
@@ -360,20 +366,17 @@
 			files = (
 				173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */,
 				173F05C8259324B600E662B8 /* Assets.xcassets in Resources */,
+				176F43DB25D5056400BE5C00 /* Shared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		173F05CF259324B600E662B8 /* Resources */ = {
+		176F439B25D5002400BE5C00 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		173F05DA259324B600E662B8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				176F43A725D5002800BE5C00 /* Preview Assets.xcassets in Resources */,
+				176F43A425D5002800BE5C00 /* Assets.xcassets in Resources */,
+				176F43DC25D5056500BE5C00 /* Shared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,34 +406,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		173F05CD259324B600E662B8 /* Sources */ = {
+		176F439925D5002400BE5C00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173F05D6259324B600E662B8 /* TelepoleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		173F05D8259324B600E662B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				173F05E1259324B600E662B8 /* TelepoleUITests.swift in Sources */,
+				176F43A225D5002400BE5C00 /* ContentView.swift in Sources */,
+				176F43A025D5002400BE5C00 /* Telepole_ClipApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		173F05D3259324B600E662B8 /* PBXTargetDependency */ = {
+		176F43C125D5002800BE5C00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 173F05BF259324B300E662B8 /* Telepole */;
-			targetProxy = 173F05D2259324B600E662B8 /* PBXContainerItemProxy */;
-		};
-		173F05DE259324B600E662B8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 173F05BF259324B300E662B8 /* Telepole */;
-			targetProxy = 173F05DD259324B600E662B8 /* PBXContainerItemProxy */;
+			target = 176F439C25D5002400BE5C00 /* Telepole Clip */;
+			targetProxy = 176F43C025D5002800BE5C00 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -554,11 +545,12 @@
 		173F05E6259324B600E662B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Telepole/TelepoleDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Telepole/Preview Content\"";
 				DEVELOPMENT_TEAM = GDG2N58DA2;
 				ENABLE_PREVIEWS = YES;
@@ -578,11 +570,12 @@
 		173F05E7259324B600E662B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Telepole/Telepole.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Telepole/Preview Content\"";
 				DEVELOPMENT_TEAM = GDG2N58DA2;
 				ENABLE_PREVIEWS = YES;
@@ -599,87 +592,49 @@
 			};
 			name = Release;
 		};
-		173F05E9259324B600E662B8 /* Debug */ = {
+		176F43C425D5002800BE5C00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Telepole Clip/Telepole_Clip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Telepole Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = GDG2N58DA2;
-				INFOPLIST_FILE = TelepoleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Telepole Clip/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.TelepoleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.Telepole.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Telepole.app/Telepole";
 			};
 			name = Debug;
 		};
-		173F05EA259324B600E662B8 /* Release */ = {
+		176F43C525D5002800BE5C00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Telepole Clip/Telepole_Clip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Telepole Clip/Preview Content\"";
 				DEVELOPMENT_TEAM = GDG2N58DA2;
-				INFOPLIST_FILE = TelepoleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Telepole Clip/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.TelepoleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.Telepole.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Telepole.app/Telepole";
-			};
-			name = Release;
-		};
-		173F05EC259324B600E662B8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDG2N58DA2;
-				INFOPLIST_FILE = TelepoleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.TelepoleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Telepole;
-			};
-			name = Debug;
-		};
-		173F05ED259324B600E662B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDG2N58DA2;
-				INFOPLIST_FILE = TelepoleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wakanda.TelepoleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Telepole;
 			};
 			name = Release;
 		};
@@ -704,20 +659,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		173F05E8259324B600E662B8 /* Build configuration list for PBXNativeTarget "TelepoleTests" */ = {
+		176F43C325D5002800BE5C00 /* Build configuration list for PBXNativeTarget "Telepole Clip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				173F05E9259324B600E662B8 /* Debug */,
-				173F05EA259324B600E662B8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		173F05EB259324B600E662B8 /* Build configuration list for PBXNativeTarget "TelepoleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				173F05EC259324B600E662B8 /* Debug */,
-				173F05ED259324B600E662B8 /* Release */,
+				176F43C425D5002800BE5C00 /* Debug */,
+				176F43C525D5002800BE5C00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -779,6 +725,36 @@
 			productName = SwiftyJSON;
 		};
 		175AAEC725AB3FFF0009B862 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 175AAEC625AB3FFF0009B862 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		176F43CD25D5003B00BE5C00 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4B325974FBD0059E467 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		176F43CF25D5003F00BE5C00 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173EF4C125975BEC0059E467 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		176F43D125D5004500BE5C00 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D1D386259A1C4C001B9CD2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		176F43D325D5004500BE5C00 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D1D386259A1C4C001B9CD2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		176F43D525D5004A00BE5C00 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17D1D38E259A1C69001B9CD2 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		176F43D725D5004F00BE5C00 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 175AAEC625AB3FFF0009B862 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
