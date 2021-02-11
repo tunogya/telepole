@@ -11,7 +11,7 @@ import SwiftUI
 struct Telepole_ClipApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

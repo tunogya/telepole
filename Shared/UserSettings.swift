@@ -10,6 +10,8 @@ import Combine
 import MapKit
 import SwiftUI
 
+let HOSTNAME = "https://app.wakanda.vip"
+
 @propertyWrapper
 struct UserDefault<T: Codable> {
     let key: String

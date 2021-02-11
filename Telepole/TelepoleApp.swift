@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-let HOSTNAME = "https://app.wakanda.vip"
-
 @main
 struct TelepoleApp: App {
     var body: some Scene {
