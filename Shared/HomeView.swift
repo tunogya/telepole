@@ -55,18 +55,20 @@ struct HomeView: View {
                         .onChange(of: pickPetID, perform: { value in
                             self.getPetInfo()
                         })
-                    
+                    #if !APPCLIP
                     ButtonRegisterPet(isPresent: $isShowPetRegisterView)
                         .sheet(isPresented: $isShowPetRegisterView) {
                             PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
                         }
-                        
+                    #endif
                     Spacer()
                     // 个人图标
+                    #if !APPCLIP
                     HomeUserInfoView(isPresent: $isShowSettingView)
                         .sheet(isPresented: $isShowSettingView) {
                             SettingView(isShow: $isShowSettingView)
                         }
+                    #endif
                 }
                 .padding(.vertical)
                 

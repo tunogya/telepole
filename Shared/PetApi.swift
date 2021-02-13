@@ -8,7 +8,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct PetModel: Codable {
+struct PetModel: Identifiable, Codable {
     var id: String = ""
     var name: String = ""
     var description: String = ""
