@@ -8,21 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		17054B34259867CE001DE66A /* PetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17054B33259867CE001DE66A /* PetApi.swift */; };
+		1718BB2725D9798F0079C92D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
+		1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* PetRegisterView.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* UserApi.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
 		173EF4B525974FBD0059E467 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4B425974FBD0059E467 /* Alamofire */; };
 		173EF4C325975BEC0059E467 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 173EF4C225975BEC0059E467 /* SwiftyJSON */; };
 		173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
-		173F05C8259324B600E662B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05C7259324B600E662B8 /* Assets.xcassets */; };
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
 		175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAEC125AB3E1C0009B862 /* LottieView.swift */; };
 		175AAEC825AB3FFF0009B862 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 175AAEC725AB3FFF0009B862 /* Lottie */; };
 		1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* HomeView.swift */; };
 		1767A57F25CEE0F200DCB1BE /* OwnerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */; };
 		1767A77F25BC373000838CEF /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoModel.swift */; };
-		176F43A025D5002400BE5C00 /* Telepole_ClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */; };
-		176F43A425D5002800BE5C00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43A325D5002800BE5C00 /* Assets.xcassets */; };
 		176F43A725D5002800BE5C00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43A625D5002800BE5C00 /* Preview Assets.xcassets */; };
 		176F43C225D5002800BE5C00 /* Telepole Clip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 176F439D25D5002400BE5C00 /* Telepole Clip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		176F43CE25D5003B00BE5C00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 176F43CD25D5003B00BE5C00 /* Alamofire */; };
@@ -56,6 +55,7 @@
 		17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */; };
 		17E7877725C6F19800DC531C /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
 		17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1716A25BD6AD300B12947 /* UserSettings.swift */; };
+		17F2205A25D9768D00287464 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 		173EF4AF2596E7FC0059E467 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		173F05C0259324B300E662B8 /* Telepole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Telepole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173F05C3259324B300E662B8 /* TelepoleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleApp.swift; sourceTree = "<group>"; };
-		173F05C7259324B600E662B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		173F05CA259324B600E662B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		173F05CC259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1743C9B525D3FC7500FEC327 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
@@ -100,8 +99,6 @@
 		1767A77E25BC373000838CEF /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
 		176F439825D4204300BE5C00 /* Telepole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole.entitlements; sourceTree = "<group>"; };
 		176F439D25D5002400BE5C00 /* Telepole Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Telepole Clip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Telepole_ClipApp.swift; sourceTree = "<group>"; };
-		176F43A325D5002800BE5C00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		176F43A625D5002800BE5C00 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		176F43A825D5002800BE5C00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		176F43A925D5002800BE5C00 /* Telepole_Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole_Clip.entitlements; sourceTree = "<group>"; };
@@ -169,11 +166,7 @@
 		173F05C2259324B300E662B8 /* Telepole */ = {
 			isa = PBXGroup;
 			children = (
-				17322ADF2593644600A0049B /* SettingView.swift */,
-				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
-				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
 				176F439825D4204300BE5C00 /* Telepole.entitlements */,
-				173F05C7259324B600E662B8 /* Assets.xcassets */,
 				173F05CC259324B600E662B8 /* Info.plist */,
 				173F05C9259324B600E662B8 /* Preview Content */,
 			);
@@ -199,8 +192,6 @@
 		176F439E25D5002400BE5C00 /* Telepole Clip */ = {
 			isa = PBXGroup;
 			children = (
-				176F439F25D5002400BE5C00 /* Telepole_ClipApp.swift */,
-				176F43A325D5002800BE5C00 /* Assets.xcassets */,
 				176F43A825D5002800BE5C00 /* Info.plist */,
 				176F43A925D5002800BE5C00 /* Telepole_Clip.entitlements */,
 				176F43A525D5002800BE5C00 /* Preview Content */,
@@ -219,38 +210,65 @@
 		176F43EB25D5087C00BE5C00 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				176F440025D8027700BE5C00 /* Library */,
-				176F43FF25D8026300BE5C00 /* API */,
 				176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */,
-				1767A54F25CD69A800DCB1BE /* HomeView.swift */,
+				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
+				17F2205925D9766400287464 /* Widgets */,
+				17F2205825D9764900287464 /* Components */,
+				17F2205725D9763E00287464 /* Styles */,
+				17F2205625D9762900287464 /* Navigation */,
+				17F2205525D9761D00287464 /* Model */,
 				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		176F43FF25D8026300BE5C00 /* API */ = {
+		17F2205525D9761D00287464 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				172D929625ADD27300DC14B8 /* LocationManager.swift */,
 				17E7877625C6F19800DC531C /* Distence.swift */,
-				17054B33259867CE001DE66A /* PetApi.swift */,
 				1767A77E25BC373000838CEF /* GeoModel.swift */,
+				17054B33259867CE001DE66A /* PetApi.swift */,
 				1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */,
 				172F4FDE25B722A30091F044 /* UserApi.swift */,
 				17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */,
 			);
-			name = API;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		176F440025D8027700BE5C00 /* Library */ = {
+		17F2205625D9762900287464 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				1767A54F25CD69A800DCB1BE /* HomeView.swift */,
+				17322ADF2593644600A0049B /* SettingView.swift */,
+				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		17F2205725D9763E00287464 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		17F2205825D9764900287464 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				177D172825A2043A00C75B4A /* VisualEffectBlur.swift */,
-				172D929625ADD27300DC14B8 /* LocationManager.swift */,
-				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
-				17D7D3D525B414F800C087C9 /* CardHeader.swift */,
 				175AAEC125AB3E1C0009B862 /* LottieView.swift */,
+				17D7D3D525B414F800C087C9 /* CardHeader.swift */,
+				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
 			);
-			name = Library;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		17F2205925D9766400287464 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,7 +376,6 @@
 			files = (
 				176F43ED25D5089600BE5C00 /* SharedAssets.xcassets in Resources */,
 				173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */,
-				173F05C8259324B600E662B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +385,6 @@
 			files = (
 				176F43EE25D5089600BE5C00 /* SharedAssets.xcassets in Resources */,
 				176F43A725D5002800BE5C00 /* Preview Assets.xcassets in Resources */,
-				176F43A425D5002800BE5C00 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,15 +420,17 @@
 			files = (
 				176F43F925D55B6300BE5C00 /* Distence.swift in Sources */,
 				176F43FB25D55B6300BE5C00 /* OwnerApi.swift in Sources */,
+				17F2205A25D9768D00287464 /* TelepoleApp.swift in Sources */,
 				176F43F625D55B5E00BE5C00 /* SliderIndicator.swift in Sources */,
 				176F43FC25D55B6300BE5C00 /* PetApi.swift in Sources */,
 				176F43FD25D55B6300BE5C00 /* UserApi.swift in Sources */,
+				1718BB2725D9798F0079C92D /* SettingView.swift in Sources */,
 				176F43FE25D55B6600BE5C00 /* LottieView.swift in Sources */,
 				176F43FA25D55B6300BE5C00 /* RegionApi.swift in Sources */,
+				1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */,
 				176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */,
 				176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */,
 				176F43F125D55B4200BE5C00 /* HomeView.swift in Sources */,
-				176F43A025D5002400BE5C00 /* Telepole_ClipApp.swift in Sources */,
 				176F440125D8030E00BE5C00 /* UserSettings.swift in Sources */,
 				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 				176F43F725D55B6300BE5C00 /* GeoModel.swift in Sources */,
