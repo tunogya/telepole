@@ -42,6 +42,7 @@ struct HomeView: View {
                     
                     ShowPetInfo(isPresent: $isFoldMap)
                 }
+                .animation(Animation.openMap)
             }
             
             VStack(alignment: .leading){
@@ -84,7 +85,6 @@ struct HomeView: View {
             }
         }
         .padding(.horizontal)
-        .animation(.spring(dampingFraction: 0.618))
     }
 }
 
