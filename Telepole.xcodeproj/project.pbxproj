@@ -12,6 +12,8 @@
 		1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D1720259F269A00C75B4A /* PetRegisterView.swift */; };
 		1718BB2B25DA1B970079C92D /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB2A25DA1B970079C92D /* Animations.swift */; };
 		1718BB2C25DA1B970079C92D /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB2A25DA1B970079C92D /* Animations.swift */; };
+		1718BB3025DA21940079C92D /* AppSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB2F25DA21940079C92D /* AppSingleView.swift */; };
+		1718BB3125DA21940079C92D /* AppSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB2F25DA21940079C92D /* AppSingleView.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* UserApi.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -85,6 +87,7 @@
 /* Begin PBXFileReference section */
 		17054B33259867CE001DE66A /* PetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetApi.swift; sourceTree = "<group>"; };
 		1718BB2A25DA1B970079C92D /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		1718BB2F25DA21940079C92D /* AppSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSingleView.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172F4FDE25B722A30091F044 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				1767A54F25CD69A800DCB1BE /* ContentView.swift */,
+				1718BB2F25DA21940079C92D /* AppSingleView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -432,6 +436,7 @@
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* UserApi.swift in Sources */,
+				1718BB3025DA21940079C92D /* AppSingleView.swift in Sources */,
 				1767A55025CD69A800DCB1BE /* ContentView.swift in Sources */,
 				1767A57F25CEE0F200DCB1BE /* OwnerApi.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
@@ -455,6 +460,7 @@
 				176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */,
 				176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */,
 				176F43F125D55B4200BE5C00 /* ContentView.swift in Sources */,
+				1718BB3125DA21940079C92D /* AppSingleView.swift in Sources */,
 				176F440125D8030E00BE5C00 /* UserSettings.swift in Sources */,
 				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 				176F43F725D55B6300BE5C00 /* GeoApi.swift in Sources */,
