@@ -21,7 +21,7 @@
 		173F05CB259324B600E662B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173F05CA259324B600E662B8 /* Preview Assets.xcassets */; };
 		175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAEC125AB3E1C0009B862 /* LottieView.swift */; };
 		175AAEC825AB3FFF0009B862 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 175AAEC725AB3FFF0009B862 /* Lottie */; };
-		1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* HomeView.swift */; };
+		1767A55025CD69A800DCB1BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* ContentView.swift */; };
 		1767A57F25CEE0F200DCB1BE /* OwnerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */; };
 		1767A77F25BC373000838CEF /* GeoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoApi.swift */; };
 		176F43A725D5002800BE5C00 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43A625D5002800BE5C00 /* Preview Assets.xcassets */; };
@@ -35,9 +35,8 @@
 		176F43ED25D5089600BE5C00 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */; };
 		176F43EE25D5089600BE5C00 /* SharedAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */; };
 		176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
-		176F43F125D55B4200BE5C00 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* HomeView.swift */; };
+		176F43F125D55B4200BE5C00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A54F25CD69A800DCB1BE /* ContentView.swift */; };
 		176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardHeader.swift */; };
-		176F43F625D55B5E00BE5C00 /* SliderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */; };
 		176F43F725D55B6300BE5C00 /* GeoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1767A77E25BC373000838CEF /* GeoApi.swift */; };
 		176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177D172825A2043A00C75B4A /* VisualEffectBlur.swift */; };
 		176F43F925D55B6300BE5C00 /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
@@ -52,7 +51,6 @@
 		17D1D388259A1C4C001B9CD2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D387259A1C4C001B9CD2 /* SDWebImage */; };
 		17D1D38A259A1C4C001B9CD2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D389259A1C4C001B9CD2 /* SDWebImageMapKit */; };
 		17D1D390259A1C69001B9CD2 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D1D38F259A1C69001B9CD2 /* SDWebImageSwiftUI */; };
-		17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */; };
 		17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardHeader.swift */; };
 		17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */; };
 		17E7877725C6F19800DC531C /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
@@ -97,7 +95,7 @@
 		173F05CC259324B600E662B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1743C9B525D3FC7500FEC327 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		175AAEC125AB3E1C0009B862 /* LottieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		1767A54F25CD69A800DCB1BE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1767A54F25CD69A800DCB1BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1767A57E25CEE0F200DCB1BE /* OwnerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerApi.swift; sourceTree = "<group>"; };
 		1767A77E25BC373000838CEF /* GeoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoApi.swift; sourceTree = "<group>"; };
 		176F439825D4204300BE5C00 /* Telepole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Telepole.entitlements; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 		176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SharedAssets.xcassets; sourceTree = "<group>"; };
 		177D1720259F269A00C75B4A /* PetRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetRegisterView.swift; sourceTree = "<group>"; };
 		177D172825A2043A00C75B4A /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
-		17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderIndicator.swift; sourceTree = "<group>"; };
 		17D7D3D525B414F800C087C9 /* CardHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeader.swift; sourceTree = "<group>"; };
 		17DFFF2B25B870CC00B9DA6A /* RegionApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionApi.swift; sourceTree = "<group>"; };
 		17E7877625C6F19800DC531C /* Distence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distence.swift; sourceTree = "<group>"; };
@@ -151,6 +148,22 @@
 				172D929625ADD27300DC14B8 /* LocationManager.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		1718BB2D25DA1F140079C92D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				17322ADF2593644600A0049B /* SettingView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		1718BB2E25DA1F280079C92D /* PetRegister */ = {
+			isa = PBXGroup;
+			children = (
+				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
+			);
+			path = PetRegister;
 			sourceTree = "<group>";
 		};
 		173F05B7259324B300E662B8 = {
@@ -224,6 +237,8 @@
 				176F43EC25D5089600BE5C00 /* SharedAssets.xcassets */,
 				173F05C3259324B300E662B8 /* TelepoleApp.swift */,
 				17F2205625D9762900287464 /* Navigation */,
+				1718BB2D25DA1F140079C92D /* Setting */,
+				1718BB2E25DA1F280079C92D /* PetRegister */,
 				17F2205825D9764900287464 /* Components */,
 				17F2205925D9766400287464 /* Widgets */,
 				17F2205725D9763E00287464 /* Styles */,
@@ -250,9 +265,7 @@
 		17F2205625D9762900287464 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				1767A54F25CD69A800DCB1BE /* HomeView.swift */,
-				17322ADF2593644600A0049B /* SettingView.swift */,
-				177D1720259F269A00C75B4A /* PetRegisterView.swift */,
+				1767A54F25CD69A800DCB1BE /* ContentView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -271,7 +284,6 @@
 				177D172825A2043A00C75B4A /* VisualEffectBlur.swift */,
 				175AAEC125AB3E1C0009B862 /* LottieView.swift */,
 				17D7D3D525B414F800C087C9 /* CardHeader.swift */,
-				17D7D3B725B3C19B00C087C9 /* SliderIndicator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -410,7 +422,6 @@
 				177D172925A2043A00C75B4A /* VisualEffectBlur.swift in Sources */,
 				17DFFF2C25B870CC00B9DA6A /* RegionApi.swift in Sources */,
 				1718BB2B25DA1B970079C92D /* Animations.swift in Sources */,
-				17D7D3B825B3C19B00C087C9 /* SliderIndicator.swift in Sources */,
 				17054B34259867CE001DE66A /* PetApi.swift in Sources */,
 				17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */,
 				17E7877725C6F19800DC531C /* Distence.swift in Sources */,
@@ -421,7 +432,7 @@
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* UserApi.swift in Sources */,
-				1767A55025CD69A800DCB1BE /* HomeView.swift in Sources */,
+				1767A55025CD69A800DCB1BE /* ContentView.swift in Sources */,
 				1767A57F25CEE0F200DCB1BE /* OwnerApi.swift in Sources */,
 				173F05C4259324B300E662B8 /* TelepoleApp.swift in Sources */,
 			);
@@ -435,7 +446,6 @@
 				176F43FB25D55B6300BE5C00 /* OwnerApi.swift in Sources */,
 				1718BB2C25DA1B970079C92D /* Animations.swift in Sources */,
 				17F2205A25D9768D00287464 /* TelepoleApp.swift in Sources */,
-				176F43F625D55B5E00BE5C00 /* SliderIndicator.swift in Sources */,
 				176F43FC25D55B6300BE5C00 /* PetApi.swift in Sources */,
 				176F43FD25D55B6300BE5C00 /* UserApi.swift in Sources */,
 				1718BB2725D9798F0079C92D /* SettingView.swift in Sources */,
@@ -444,7 +454,7 @@
 				1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */,
 				176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */,
 				176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */,
-				176F43F125D55B4200BE5C00 /* HomeView.swift in Sources */,
+				176F43F125D55B4200BE5C00 /* ContentView.swift in Sources */,
 				176F440125D8030E00BE5C00 /* UserSettings.swift in Sources */,
 				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 				176F43F725D55B6300BE5C00 /* GeoApi.swift in Sources */,

@@ -11,7 +11,7 @@ import MapKit
 var SCREENWIDTH = UIScreen.main.bounds.width
 var SCREENHEIGHT = UIScreen.main.bounds.height
 
-struct HomeView: View {
+struct ContentView: View {
     @State private var isShowPetRegisterView = false
     @State private var isShowSettingView = false
     @State private var isFoldMap = false
@@ -90,7 +90,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ContentView()
     }
 }
 

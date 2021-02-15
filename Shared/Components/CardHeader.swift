@@ -15,7 +15,9 @@ struct CardHeader: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SliderIndicator()
+            RoundedRectangle(cornerRadius: 6)
+                .foregroundColor(Color("GrayColor"))
+                .frame(width: 46, height: 6, alignment: .center)
                 .padding(.top, 12)
             
             VStack {
