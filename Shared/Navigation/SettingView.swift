@@ -23,13 +23,61 @@ struct SettingView: View {
         return false
     }
     
+    var SignInButton: some View {
+        SignInWithAppleButton(
+            onRequest: { request in
+                request.requestedScopes = [.fullName, .email]
+            },
+            onCompletion: { result in
+                switch result {
+                case .success(let authResults):
+                    switch authResults.credential {
+                    case let appleIDCredential as ASAuthorizationAppleIDCredential:
+                        if appleIDCredential.email == nil{
+                            // 已经注册过，直接登陆
+                            let user = appleIDCredential.user
+                            UserApi().login(user) { (user) in
+                                print(user)
+                                userSettings.user = user.user
+                                userSettings.email = user.email
+                                userSettings.fullName = user.fullName
+                                userSettings._id = user._id
+                            }
+                        }else {
+                            // 新注册
+                            let fullName = String(describing: appleIDCredential.fullName?.familyName)
+                                + String(describing: appleIDCredential.fullName?.givenName)
+                            let email = String(describing: appleIDCredential.email)
+                            let user = appleIDCredential.user
+                            let newUser = UserModel(user: user, fullName: fullName, email: email)
+                            UserApi().register(newUser) { (user) in
+                                userSettings.user = user.user
+                                userSettings.email = user.email
+                                userSettings.fullName = user.fullName
+                                userSettings._id = user._id
+                            }
+                        }
+                        
+                    case let passwordCredential as ASPasswordCredential:
+                        let username = passwordCredential.user
+                        let password = passwordCredential.password
+                        print(username, password)
+                    default:
+                        break
+                    }
+                case .failure(let error):
+                    print("failure", error)
+                }
+            }
+        )
+    }
+    
     var body: some View {
-      
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "设置")
             
             if isShowLoginButton {
-                SignInButton()
+                SignInButton
                     .signInWithAppleButtonStyle(.white)
                     .frame(height: 44)
                     .padding()
@@ -91,58 +139,5 @@ struct SettingView: View {
         }
         .cornerRadius(20)
         .ignoresSafeArea()
-    }
-}
-
-struct SignInButton: View {
-    @ObservedObject var userSettings = UserSettings()
-    
-    var body: some View {
-        SignInWithAppleButton(
-            onRequest: { request in
-                request.requestedScopes = [.fullName, .email]
-            },
-            onCompletion: { result in
-                switch result {
-                case .success(let authResults):
-                    switch authResults.credential {
-                    case let appleIDCredential as ASAuthorizationAppleIDCredential:
-                        if appleIDCredential.email == nil{
-                            // 已经注册过，直接登陆
-                            let user = appleIDCredential.user
-                            UserApi().login(user) { (user) in
-                                print(user)
-                                userSettings.user = user.user
-                                userSettings.email = user.email
-                                userSettings.fullName = user.fullName
-                                userSettings._id = user._id
-                            }
-                        }else {
-                            // 新注册
-                            let fullName = String(describing: appleIDCredential.fullName?.familyName)
-                                + String(describing: appleIDCredential.fullName?.givenName)
-                            let email = String(describing: appleIDCredential.email)
-                            let user = appleIDCredential.user
-                            let newUser = UserModel(user: user, fullName: fullName, email: email)
-                            UserApi().register(newUser) { (user) in
-                                userSettings.user = user.user
-                                userSettings.email = user.email
-                                userSettings.fullName = user.fullName
-                                userSettings._id = user._id
-                            }
-                        }
-                        
-                    case let passwordCredential as ASPasswordCredential:
-                        let username = passwordCredential.user
-                        let password = passwordCredential.password
-                        print(username, password)
-                    default:
-                        break
-                    }
-                case .failure(let error):
-                    print("failure", error)
-                }
-            }
-        )
     }
 }
