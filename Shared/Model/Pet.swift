@@ -21,7 +21,8 @@ struct Pet: Identifiable, Codable {
     var coins: Double = 0
 }
 
-class PetApi {
+// Pet API
+extension Pet {
 //    根据pet id查询用户信息
     func getPetByID(_ doc_id: String, completion: @escaping (Pet) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/pets/\(doc_id)/"

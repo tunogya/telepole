@@ -10,7 +10,7 @@ import AuthenticationServices
 
 class TelepoleModel: ObservableObject {
     // 用户账户
-    @Published private(set) var user: User?
+    @Published private(set) var user: Account?
     // 我的宠物ID列表
     @Published private(set) var myPetIDs = Set<Pet.ID>()
     // 当前选择的宠物ID

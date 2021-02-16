@@ -22,7 +22,7 @@ struct AppSingleView: View {
     @ObservedObject var userSettings = UserSettings()
     
     fileprivate func getPetInfo() {
-        PetApi().getPetByID(pickPetID) { (p) in
+        Pet().getPetByID(pickPetID) { (p) in
             pet = p
         }
     }
@@ -82,7 +82,6 @@ struct AppSingleView: View {
             }
             Text(isFoldMap ? "" : "...")
         }
-  
     }
     
     var buttonRegisterPet: some View {

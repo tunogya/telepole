@@ -9,16 +9,17 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct User: Codable {
+struct Account: Codable {
+    var id: String = ""
     var user: String = ""
     var fullName: String = ""
     var email: String = ""
-    var id: String = ""
 }
 
-class UserApi {
+// AccountAPI
+extension Account {
     //    根据id登陆
-    func login(_ user: String, completion: @escaping (User) -> ()) {
+    func login(_ user: String, completion: @escaping (Account) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": user]]]
         // 根据user查询到user信息
@@ -29,7 +30,7 @@ class UserApi {
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
                 let user_id = JSON(value)["data"][0]["_id"].stringValue
-                completion(User(user: user, fullName: fullName, email: email, id: user_id))
+                completion(Account(id: user_id, user: user, fullName: fullName, email: email))
             case .failure(let error):
                 debugPrint(error)
             }
@@ -37,7 +38,7 @@ class UserApi {
     }
     
     //    用户注册
-    func register(_ user: User, completion: @escaping (User) -> ()) {
+    func register(_ user: Account, completion: @escaping (Account) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/"
         let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user]]]
        
@@ -55,7 +56,7 @@ class UserApi {
     }
     
     // 根据注册返回结果查询用户
-    func getUserById(_ doc_id: String, completion: @escaping (User) -> ()) {
+    func getUserById(_ doc_id: String, completion: @escaping (Account) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/users/\(doc_id)/"
         // 根据user查询到user信息
         AF.request(url, method: .get).responseJSON { response in
@@ -65,7 +66,7 @@ class UserApi {
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
                 let user_id = JSON(value)["data"][0]["_id"].stringValue
-                completion(User(user: user, fullName: fullName, email: email, id: user_id))
+                completion(Account(id: user_id, user: user, fullName: fullName, email: email))
             case .failure(let error):
                 debugPrint(error)
             }

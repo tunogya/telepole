@@ -18,7 +18,8 @@ struct Owner {
     var user_id: String = ""
 }
 
-class OwnerApi {
+// Owner API
+extension Owner {
     // 查询是否有云端备份数据，有则下载
     func getDataByUser_id(_id doc_id: String, completion: @escaping (Owner) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/owner/find/"
@@ -93,8 +94,6 @@ class OwnerApi {
                 debugPrint(error)
             }
         }
-        
     }
-    
 }
 

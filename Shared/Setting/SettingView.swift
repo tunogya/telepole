@@ -36,7 +36,7 @@ struct SettingView: View {
                         if appleIDCredential.email == nil{
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
-                            UserApi().login(user) { (user) in
+                            Account().login(user) { (user) in
                                 print(user)
                                 userSettings.user = user.user
                                 userSettings.email = user.email
@@ -49,8 +49,8 @@ struct SettingView: View {
                                 + String(describing: appleIDCredential.fullName?.givenName)
                             let email = String(describing: appleIDCredential.email)
                             let user = appleIDCredential.user
-                            let newUser = User(user: user, fullName: fullName, email: email)
-                            UserApi().register(newUser) { (user) in
+                            let newUser = Account(user: user, fullName: fullName, email: email)
+                            Account().register(newUser) { (user) in
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
@@ -89,12 +89,12 @@ struct SettingView: View {
                     Section(header: Text("数据同步")) {
                         Button(action: {
                             if owner.id == "" {
-                                OwnerApi().initData(Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)) { o in
+                                Owner().initData(Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)) { o in
                                     owner = o
                                 }
                             }else{
-                                OwnerApi().patchData(_id: owner.id, owner: Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)){
-                                    OwnerApi().getData(_id: owner.id) { o in
+                                Owner().patchData(_id: owner.id, owner: Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)){
+                                    Owner().getData(_id: owner.id) { o in
                                         owner = o
                                     }
                                 }
@@ -132,7 +132,7 @@ struct SettingView: View {
                 }
             }
             .onAppear(perform: {
-                OwnerApi().getDataByUser_id(_id: userSettings._id) { o in
+                Owner().getDataByUser_id(_id: userSettings._id) { o in
                     owner = o
                 }
             })

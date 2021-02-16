@@ -49,7 +49,7 @@ struct HadRegisterForm: View {
             
             // 已经注册宠物添加按钮
             Button(action: {
-                PetApi().getPetByID(IdInput) { (pet) in
+                Pet().getPetByID(IdInput) { (pet) in
                     if !pet.id.isEmpty{
                         userSettings.myPetIDs.append(pet.id)
                         userSettings.selectedPetID = pet.id
@@ -111,7 +111,7 @@ struct NewRegisterForm: View {
             Button(action: {
                 // 更新gender
                 pet.gender = gender[genderIndex]
-                PetApi().createPet(pet) { (pet) in
+                Pet().createPet(pet) { (pet) in
                     if !pet.id.isEmpty{
                         userSettings.myPetIDs.append(pet.id)
                         userSettings.selectedPetID = pet.id
@@ -157,7 +157,7 @@ struct PetListIInfo: View {
             
         }
         .onAppear(perform: {
-            PetApi().getPetByID(pet_id) { p in
+            Pet().getPetByID(pet_id) { p in
                 pet = p
             }
         })

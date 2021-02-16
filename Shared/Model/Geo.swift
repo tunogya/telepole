@@ -16,7 +16,7 @@ struct Geo {
     var longitude: Double = 0
 }
 
-class GeoApi {
+extension Geo {
     // 上传我的位置
     func postMyGeo(_ geo: Geo) {
         let url = "\(HOSTNAME)/telepole/v1.0/geo/"
