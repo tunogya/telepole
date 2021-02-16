@@ -8,7 +8,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct PetModel: Identifiable, Codable {
+struct Pet: Identifiable, Codable {
     var id: String = ""
     var name: String = ""
     var description: String = ""
@@ -23,13 +23,13 @@ struct PetModel: Identifiable, Codable {
 
 class PetApi {
 //    根据pet id查询用户信息
-    func getPetByID(_ doc_id: String, completion: @escaping (PetModel) -> ()) {
+    func getPetByID(_ doc_id: String, completion: @escaping (Pet) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/pets/\(doc_id)/"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let jsonData = JSON(value)["data"]
-                completion(PetModel(
+                completion(Pet(
                     id: jsonData["_id"].stringValue,
                     name: jsonData["name"].stringValue,
                     description: jsonData["description"].stringValue,
@@ -48,7 +48,7 @@ class PetApi {
     }
     
 //   宠物注册
-    func createPet(_ pet: PetModel, completion: @escaping (PetModel) -> ()) {
+    func createPet(_ pet: Pet, completion: @escaping (Pet) -> ()) {
         let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
         let url = "\(HOSTNAME)/telepole/v1.0/pets/"
         

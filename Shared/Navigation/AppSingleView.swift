@@ -17,7 +17,7 @@ struct AppSingleView: View {
     @State private var isFoldMap = false
     @State private var isShowWakanda = false
     @State private var phoneNumber = 0
-    @State private var pet: PetModel = PetModel()
+    @State private var pet: Pet = Pet()
     @State private var pickPetID: String = ""
     
     @ObservedObject var userSettings = UserSettings()
@@ -50,7 +50,7 @@ struct AppSingleView: View {
                     // 宠物图标
                     HomePetInfoView(pet: $pet)
                         .onAppear(perform: {
-                            pickPetID = userSettings.pickPetID
+                            pickPetID = userSettings.selectedPetID
                             self.getPetInfo()
                         })
                         .onChange(of: pickPetID, perform: { value in
@@ -95,7 +95,7 @@ struct AppSingleView_Previews: PreviewProvider {
 }
 
 struct HomePetInfoView: View {
-    @Binding var pet: PetModel
+    @Binding var pet: Pet
     var petname: String {
         if pet.name == "" {
             return "暂无宠物"

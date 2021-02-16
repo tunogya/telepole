@@ -9,9 +9,9 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct OwnerModel {
+struct Owner {
     // 文档_id
-    var _id: String = ""
+    var id: String = ""
     // 宠物列表
     var pets: [String] = []
     // 用户的文档_id
@@ -20,7 +20,7 @@ struct OwnerModel {
 
 class OwnerApi {
     // 查询是否有云端备份数据，有则下载
-    func getDataByUser_id(_id doc_id: String, completion: @escaping (OwnerModel) -> ()) {
+    func getDataByUser_id(_id doc_id: String, completion: @escaping (Owner) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/owner/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": doc_id]]]
         
@@ -34,7 +34,7 @@ class OwnerApi {
                 for pet in petsArray {
                     pets.append(pet["_id"].stringValue)
                 }
-                completion(OwnerModel(_id: _id, pets: pets, user_id: user_id))
+                completion(Owner(id: _id, pets: pets, user_id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }
@@ -42,7 +42,7 @@ class OwnerApi {
     }
     
     // 创建一份云端备份数据
-    func initData(_ owner: OwnerModel, completion: @escaping (OwnerModel) -> ()){
+    func initData(_ owner: Owner, completion: @escaping (Owner) -> ()){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/"
         let parameters: [String: Array<Any>] = ["data": [["pets": owner.pets, "user": owner.user_id]]]
         
@@ -60,7 +60,7 @@ class OwnerApi {
     }
     
     // 更新云端数据
-    func patchData(_id doc_id: String, owner: OwnerModel, completion: @escaping () -> ()){
+    func patchData(_id doc_id: String, owner: Owner, completion: @escaping () -> ()){
         let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
         let parameters: [String: Any] = ["data": ["pets": owner.pets, "user": owner.user_id]]
         
@@ -75,7 +75,7 @@ class OwnerApi {
     }
     
     // 获取指定云端备份
-    func getData(_id doc_id: String, completion: @escaping (OwnerModel) -> ()) {
+    func getData(_id doc_id: String, completion: @escaping (Owner) -> ()) {
         let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
         
         AF.request(url, method: .get).responseJSON { response in
@@ -88,7 +88,7 @@ class OwnerApi {
                 for pet in petsArray {
                     pets.append(pet["_id"].stringValue)
                 }
-                completion(OwnerModel(_id: _id, pets: pets, user_id: user_id))
+                completion(Owner(id: _id, pets: pets, user_id: user_id))
             case .failure(let error):
                 debugPrint(error)
             }

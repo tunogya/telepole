@@ -14,7 +14,7 @@ struct SettingView: View {
     @Binding var isShow: Bool
     @ObservedObject var userSettings = UserSettings()
     
-    @State var owner: OwnerModel = OwnerModel()
+    @State var owner: Owner = Owner()
     
     var isShowLoginButton: Bool {
         if userSettings.user == ""{
@@ -41,7 +41,7 @@ struct SettingView: View {
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
-                                userSettings._id = user._id
+                                userSettings._id = user.id
                             }
                         }else {
                             // 新注册
@@ -49,12 +49,12 @@ struct SettingView: View {
                                 + String(describing: appleIDCredential.fullName?.givenName)
                             let email = String(describing: appleIDCredential.email)
                             let user = appleIDCredential.user
-                            let newUser = UserModel(user: user, fullName: fullName, email: email)
+                            let newUser = User(user: user, fullName: fullName, email: email)
                             UserApi().register(newUser) { (user) in
                                 userSettings.user = user.user
                                 userSettings.email = user.email
                                 userSettings.fullName = user.fullName
-                                userSettings._id = user._id
+                                userSettings._id = user.id
                             }
                         }
                         
@@ -88,13 +88,13 @@ struct SettingView: View {
                 if !isShowLoginButton {
                     Section(header: Text("数据同步")) {
                         Button(action: {
-                            if owner._id == "" {
-                                OwnerApi().initData(OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)) { o in
+                            if owner.id == "" {
+                                OwnerApi().initData(Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)) { o in
                                     owner = o
                                 }
                             }else{
-                                OwnerApi().patchData(_id: owner._id, owner: OwnerModel(pets: userSettings.myPets, user_id: userSettings._id)){
-                                    OwnerApi().getData(_id: owner._id) { o in
+                                OwnerApi().patchData(_id: owner.id, owner: Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)){
+                                    OwnerApi().getData(_id: owner.id) { o in
                                         owner = o
                                     }
                                 }
@@ -103,13 +103,13 @@ struct SettingView: View {
                             HStack {
                                 Text("备份我的宠物")
                                 Spacer()
-                                Text("(\(userSettings.myPets.count))")
+                                Text("(\(userSettings.myPetIDs.count))")
                             }
                             
                         }
                         
                         Button(action: {
-                            userSettings.myPets = owner.pets
+                            userSettings.myPetIDs = owner.pets
                         }) {
                             HStack{
                                 Text("恢复我的宠物")

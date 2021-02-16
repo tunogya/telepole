@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DistenceModel {
+struct Distence {
     var value: Int = 0
     var unit: Unit = Unit.m
     

@@ -51,8 +51,8 @@ struct HadRegisterForm: View {
             Button(action: {
                 PetApi().getPetByID(IdInput) { (pet) in
                     if !pet.id.isEmpty{
-                        userSettings.myPets.append(pet.id)
-                        userSettings.pickPetID = pet.id
+                        userSettings.myPetIDs.append(pet.id)
+                        userSettings.selectedPetID = pet.id
                         isPresent = false
                     }else{
                         debugPrint("添加失败")
@@ -64,9 +64,9 @@ struct HadRegisterForm: View {
         }
         
         Section(header: Text("我的宠物列表")) {
-            ForEach(userSettings.myPets, id: \.self){ pet in
+            ForEach(userSettings.myPetIDs, id: \.self){ pet in
                 Button {
-                    userSettings.pickPetID = pet
+                    userSettings.selectedPetID = pet
                     pickPetID = pet
                     isPresent = false
                 } label: {
@@ -79,7 +79,7 @@ struct HadRegisterForm: View {
 
 struct NewRegisterForm: View {
     @State var genderIndex = 0
-    @State var pet = PetModel()
+    @State var pet = Pet()
     
     @ObservedObject var userSettings = UserSettings()
     @Binding var isPresent: Bool
@@ -113,8 +113,8 @@ struct NewRegisterForm: View {
                 pet.gender = gender[genderIndex]
                 PetApi().createPet(pet) { (pet) in
                     if !pet.id.isEmpty{
-                        userSettings.myPets.append(pet.id)
-                        userSettings.pickPetID = pet.id
+                        userSettings.myPetIDs.append(pet.id)
+                        userSettings.selectedPetID = pet.id
                         isPresent = false
                     }else{
                         debugPrint("添加失败")
@@ -144,7 +144,7 @@ struct RegisterFormPicker: View {
 
 struct PetListIInfo: View {
     var pet_id: String
-    @State var pet: PetModel = PetModel()
+    @State var pet: Pet = Pet()
     
     var body: some View {
         HStack {
