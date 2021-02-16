@@ -257,7 +257,6 @@
 				17F2205725D9763E00287464 /* Styles */,
 				1718BB2925DA14600079C92D /* Controller */,
 				17F2205525D9761D00287464 /* Model */,
-				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -265,6 +264,7 @@
 		17F2205525D9761D00287464 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				17F1716A25BD6AD300B12947 /* UserSettings.swift */,
 				1718BB3225DA23CC0079C92D /* TelepoleModel.swift */,
 				17E7877625C6F19800DC531C /* Distence.swift */,
 				1767A77E25BC373000838CEF /* Geo.swift */,
