@@ -28,6 +28,38 @@ struct AppSingleView: View {
         }
     }
     
+    var petname: String {
+        if pet.name == "" {
+            return "暂无宠物"
+        }
+        return pet.name
+    }
+    
+    var petInfo: some View {
+        Button(action: {
+        }) {
+            HStack(spacing: 0){
+                Text("🐶")
+                    .frame(width: 30, height: 30, alignment: .center)
+                    .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+                    .clipShape(Circle())
+                    .frame(width: 44, height: 44, alignment: .center)
+                
+                VStack(alignment: .leading){
+                    Text(petname)
+                        .bold()
+                    Text(String(format: "%0.1f", pet.coins) + " 币")
+                }
+                .font(.footnote)
+                .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
+                .padding(.trailing)
+            }
+            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+            .cornerRadius(44)
+            .frame(height: 44)
+        }
+    }
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -48,7 +80,7 @@ struct AppSingleView: View {
             VStack(alignment: .leading){
                 HStack {
                     // 宠物图标
-                    HomePetInfoView(pet: $pet)
+                    petInfo
                         .onAppear(perform: {
                             pickPetID = userSettings.selectedPetID
                             self.getPetInfo()
@@ -91,40 +123,6 @@ struct AppSingleView: View {
 struct AppSingleView_Previews: PreviewProvider {
     static var previews: some View {
         AppSingleView()
-    }
-}
-
-struct HomePetInfoView: View {
-    @Binding var pet: Pet
-    var petname: String {
-        if pet.name == "" {
-            return "暂无宠物"
-        }
-        return pet.name
-    }
-    var body: some View {
-        Button(action: {
-        }) {
-            HStack(spacing: 0){
-                Text("🐶")
-                    .frame(width: 30, height: 30, alignment: .center)
-                    .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-                    .clipShape(Circle())
-                    .frame(width: 44, height: 44, alignment: .center)
-                
-                VStack(alignment: .leading){
-                    Text(petname)
-                        .bold()
-                    Text(String(format: "%0.1f", pet.coins) + " 币")
-                }
-                .font(.footnote)
-                .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
-                .padding(.trailing)
-            }
-            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-            .cornerRadius(44)
-            .frame(height: 44)
-        }
     }
 }
 
