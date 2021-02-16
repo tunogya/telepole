@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MapKit
 
 var SCREENWIDTH = UIScreen.main.bounds.width
 var SCREENHEIGHT = UIScreen.main.bounds.height
@@ -16,6 +15,7 @@ struct AppSingleView: View {
     @State private var isShowSettingView = false
     @State private var isFoldMap = false
     @State private var isShowWakanda = false
+    @State private var status: String = "😀"
     @State private var phoneNumber = 0
     @State private var pet: Pet = Pet()
     @State private var pickPetID: String = ""
@@ -60,19 +60,89 @@ struct AppSingleView: View {
         }
     }
     
+    var userStatus: some View {
+        Button(action: {
+            isShowSettingView = true
+        }) {
+            Text(status)
+                .frame(width: 44, height: 44, alignment: .center)
+                .font(.title)
+                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                .clipShape(Circle())
+        }
+    }
+    
+    var showPetInfo: some View {
+        VStack(alignment: .leading){
+            Button {
+                isFoldMap.toggle()
+            } label: {
+                Text((isFoldMap ? "折叠" : "展开" ) + "宠物信息")
+                    .font(.footnote)
+                    .foregroundColor(Color(isFoldMap ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+            }
+            Text(isFoldMap ? "" : "...")
+        }
+  
+    }
+    
+    var buttonRegisterPet: some View {
+        Button {
+            isShowPetRegisterView = true
+        } label: {
+            Image(systemName: "plus.circle")
+                .font(.title3)
+                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                .clipShape(Circle())
+        }
+    }
+    
+    var callMeButton: some View {
+        Button {
+            
+        } label: {
+            Image(systemName: "phone.circle.fill")
+                .resizable()
+                .frame(width: 60, height: 60, alignment: .center)
+        }
+    }
+    
+    var wakandaSlogan: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("Telepole")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Button {
+                    isShowWakanda.toggle()
+                } label: {
+                    Text("@Wakanda")
+                        .font(.caption)
+                        .padding(.leading, 4)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
+                }
+            }
+           
+            Text("Go wild, go beyond!")
+                .font(.title)
+                .fontWeight(.light)
+        }
+        .padding(.vertical)
+    }
+    
     var body: some View {
         ZStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    HomeMapView()
+                    MapView()
                         .cornerRadius(24)
                         .frame(height: isFoldMap ? SCREENWIDTH*0.618 : SCREENWIDTH*1.114)
                         .padding(.top, 80)
                     
-                    WakandaSlogan(isPresent: $isShowWakanda)
-                        .padding(.vertical)
+                    wakandaSlogan
                     
-                    ShowPetInfo(isPresent: $isFoldMap)
+                    showPetInfo
                 }
                 .animation(Animation.openMap)
             }
@@ -89,7 +159,7 @@ struct AppSingleView: View {
                             self.getPetInfo()
                         })
                     #if !APPCLIP
-                    ButtonRegisterPet(isPresent: $isShowPetRegisterView)
+                    buttonRegisterPet
                         .sheet(isPresented: $isShowPetRegisterView) {
                             PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
                         }
@@ -97,7 +167,7 @@ struct AppSingleView: View {
                     Spacer()
                     // 个人图标
                     #if !APPCLIP
-                    HomeUserInfoView(isPresent: $isShowSettingView)
+                    userStatus
                         .sheet(isPresented: $isShowSettingView) {
                             SettingView(isShow: $isShowSettingView)
                         }
@@ -110,7 +180,7 @@ struct AppSingleView: View {
                 HStack {
                     Spacer()
                     
-                    CallMeButton(phoneNumber: $phoneNumber)
+                    callMeButton
                         .foregroundColor(Color(pickPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
                         .disabled(pickPetID == "" ? true : false)
                 }
@@ -123,141 +193,5 @@ struct AppSingleView: View {
 struct AppSingleView_Previews: PreviewProvider {
     static var previews: some View {
         AppSingleView()
-    }
-}
-
-struct HomeUserInfoView: View {
-    @State var status: String = "😀"
-    @Binding var isPresent: Bool
-    var body: some View {
-        Button(action: {
-            isPresent = true
-        }) {
-            Text(status)
-                .frame(width: 44, height: 44, alignment: .center)
-                .font(.title)
-                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                .clipShape(Circle())
-        }
-    }
-}
-
-
-struct HomeMapView: View {
-    @State private var mapRegion = MKCoordinateRegion()
-    @State private var trackingMode = MapUserTrackingMode.none
-    
-    var body: some View {
-        ZStack{
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
-                .onAppear(perform: {
-                    self.trackingMode = MapUserTrackingMode.follow
-                })
-            
-            VStack {
-                Spacer()
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        self.trackingMode = MapUserTrackingMode.follow
-                    }, label: {
-                        Image(systemName: "scope")
-                            .font(.body)
-                            .padding(8)
-                            .foregroundColor(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .padding()
-                    })
-                }
-            }
-        }
-    }
-}
-
-
-struct ButtonRegisterPet: View {
-    @Binding var isPresent: Bool
-    
-    var body: some View {
-        Button {
-            isPresent = true
-        } label: {
-            Image(systemName: "plus.circle")
-                .font(.title3)
-                .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                .clipShape(Circle())
-        }
-    }
-}
-
-struct WakandaSlogan: View {
-    @Binding var isPresent: Bool
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Telepole")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Button {
-                    isPresent.toggle()
-                } label: {
-                    Text("@Wakanda")
-                        .font(.caption)
-                        .padding(.leading, 4)
-                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
-                }
-            }
-           
-            Text("Go wild, go beyond!")
-                .font(.title)
-                .fontWeight(.light)
-        }
-    }
-}
-
-
-struct CallMeButton: View {
-    @Binding var phoneNumber: Int
-    
-    var body: some View {
-        Button {
-            
-        } label: {
-            Image(systemName: "phone.circle.fill")
-                .resizable()
-                .frame(width: 60, height: 60, alignment: .center)
-        }
-    }
-}
-
-struct ShowAllPetButton: View {
-    var body: some View {
-        Button {
-            
-        } label: {
-            Image(systemName: "arrow.up.backward.and.arrow.down.forward.circle")
-                .font(.body)
-        }
-    }
-}
-
-
-struct ShowPetInfo: View {
-    @Binding var isPresent: Bool
-    var body: some View {
-        VStack(alignment: .leading){
-            Button {
-                isPresent.toggle()
-            } label: {
-                Text((isPresent ? "折叠" : "展开" ) + "宠物信息")
-                    .font(.footnote)
-                    .foregroundColor(Color(isPresent ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-            }
-            Text(isPresent ? "" : "...")
-        }
-  
     }
 }

@@ -16,6 +16,8 @@
 		1718BB3125DA21940079C92D /* AppSingleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB2F25DA21940079C92D /* AppSingleView.swift */; };
 		1718BB3325DA23CC0079C92D /* TelepoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3225DA23CC0079C92D /* TelepoleModel.swift */; };
 		1718BB3425DA23CC0079C92D /* TelepoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3225DA23CC0079C92D /* TelepoleModel.swift */; };
+		1718BB3B25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
+		1718BB3C25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* User.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -90,6 +92,7 @@
 		1718BB2F25DA21940079C92D /* AppSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSingleView.swift; sourceTree = "<group>"; };
 		1718BB3225DA23CC0079C92D /* TelepoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleModel.swift; sourceTree = "<group>"; };
 		1718BB3925DAB5160079C92D /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1718BB3A25DBFCB30079C92D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172F4FDE25B722A30091F044 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 				177D172825A2043A00C75B4A /* VisualEffectBlur.swift */,
 				175AAEC125AB3E1C0009B862 /* LottieView.swift */,
 				17D7D3D525B414F800C087C9 /* CardHeader.swift */,
+				1718BB3A25DBFCB30079C92D /* MapView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 				17E7877725C6F19800DC531C /* Distence.swift in Sources */,
 				17322AE02593644600A0049B /* SettingView.swift in Sources */,
 				1718BB3325DA23CC0079C92D /* TelepoleModel.swift in Sources */,
+				1718BB3B25DBFCB30079C92D /* MapView.swift in Sources */,
 				1767A77F25BC373000838CEF /* Geo.swift in Sources */,
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
 				17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */,
@@ -464,6 +469,7 @@
 				176F43FC25D55B6300BE5C00 /* Pet.swift in Sources */,
 				176F43FD25D55B6300BE5C00 /* User.swift in Sources */,
 				1718BB3425DA23CC0079C92D /* TelepoleModel.swift in Sources */,
+				1718BB3C25DBFCB30079C92D /* MapView.swift in Sources */,
 				1718BB2725D9798F0079C92D /* SettingView.swift in Sources */,
 				176F43FE25D55B6600BE5C00 /* LottieView.swift in Sources */,
 				1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */,
