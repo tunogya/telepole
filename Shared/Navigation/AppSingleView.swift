@@ -71,7 +71,7 @@ struct AppSingleView: View {
         }
     }
     
-    var showPetInfo: some View {
+    var foldPetInfo: some View {
         VStack(alignment: .leading){
             Button {
                 isFoldMap.toggle()
@@ -104,6 +104,8 @@ struct AppSingleView: View {
                 .resizable()
                 .frame(width: 60, height: 60, alignment: .center)
         }
+        .foregroundColor(Color(pickPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+        .disabled(pickPetID == "" ? true : false)
     }
     
     var wakandaSlogan: some View {
@@ -141,7 +143,7 @@ struct AppSingleView: View {
                     
                     wakandaSlogan
                     
-                    showPetInfo
+                    foldPetInfo
                 }
                 .animation(Animation.openMap)
             }
@@ -150,13 +152,7 @@ struct AppSingleView: View {
                 HStack {
                     // 宠物图标
                     petInfo
-                        .onAppear(perform: {
-                            pickPetID = userSettings.selectedPetID
-                            self.getPetInfo()
-                        })
-                        .onChange(of: pickPetID, perform: { value in
-                            self.getPetInfo()
-                        })
+                    
                     #if !APPCLIP
                     buttonRegisterPet
                         .sheet(isPresented: $isShowPetRegisterView) {
@@ -180,12 +176,18 @@ struct AppSingleView: View {
                     Spacer()
                     
                     callMeButton
-                        .foregroundColor(Color(pickPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-                        .disabled(pickPetID == "" ? true : false)
+                       
                 }
             }
         }
         .padding(.horizontal)
+        .onAppear(perform: {
+            pickPetID = userSettings.selectedPetID
+            self.getPetInfo()
+        })
+        .onChange(of: pickPetID, perform: { value in
+            self.getPetInfo()
+        })
     }
 }
 
