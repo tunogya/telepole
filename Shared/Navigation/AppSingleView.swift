@@ -16,7 +16,6 @@ struct AppSingleView: View {
     @State private var isFoldMap = false
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
-    @State private var phoneNumber = 0
     @State private var pet: Pet = Pet()
     @State private var pickPetID: String = ""
     
