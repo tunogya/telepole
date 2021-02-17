@@ -1,23 +1,80 @@
 //
-//  TelepoleModel.swift
+//  UserDefaults.swift
 //  Telepole
 //
-//  Created by 丁涯 on 2021/2/15.
+//  Created by 丁涯 on 2021/1/24.
 //
-// 后续将进行优化，结合 使用CoreData
 
-import AuthenticationServices
+import Foundation
+import Combine
+import MapKit
+import SwiftUI
 
-class TelepoleModel: ObservableObject {
-    // 用户账户
-    @Published private(set) var user: Account?
-    // 我的宠物ID列表
-    @Published private(set) var myPetIDs = Set<Pet.ID>()
-    // 当前选择的宠物ID
-    @Published private(set) var selectedPetID: Pet.ID?
-    // 是否有定位允许
-    @Published var locationAllowed = true
-    
+let HOSTNAME = "https://app.wakanda.vip"
+
+@propertyWrapper
+struct UserDefault<T: Codable> {
+    let key: String
+    let defaultValue: T
     let defaults = UserDefaults(suiteName: "group.wakanda.telepole")
     
+    init(_ key: String, defaultValue: T) {
+        self.key = key
+        self.defaultValue = defaultValue
+    }
+    
+    var wrappedValue: T {
+        get {
+            return defaults?.object(forKey: key) as? T ?? defaultValue
+        }
+        set {
+            defaults?.set(newValue, forKey: key)
+        }
+    }
+}
+
+final class TelepoleModel: ObservableObject {
+    let objectWillChange = PassthroughSubject<Void, Never>()
+    
+    @UserDefault("user", defaultValue: "")
+    var user: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("email", defaultValue: "")
+    var email: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("fullName", defaultValue: "")
+    var fullName: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("_id", defaultValue: "")
+    var _id: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("selectedPetID", defaultValue: "")
+    var selectedPetID: String {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @UserDefault("myPetIDs", defaultValue: [])
+    var myPetIDs: [String] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
 }

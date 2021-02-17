@@ -19,7 +19,7 @@ struct AppSingleView: View {
     @State private var pet: Pet = Pet()
     @State private var pickPetID: String = ""
     
-    @ObservedObject var userSettings = UserSettings()
+    @ObservedObject var userSettings = TelepoleModel()
     
     fileprivate func getPetInfo() {
         Pet().getPetByID(pickPetID) { (p) in

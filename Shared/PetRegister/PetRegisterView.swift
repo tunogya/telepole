@@ -35,7 +35,7 @@ struct PetRegisterView: View {
 
 
 struct HadRegisterForm: View {
-    @ObservedObject var userSettings = UserSettings()
+    @ObservedObject var userSettings = TelepoleModel()
     @State var IdInput: String = ""
     @Binding var pickPetID: String
     @Binding var isPresent: Bool
@@ -81,7 +81,7 @@ struct NewRegisterForm: View {
     @State var genderIndex = 0
     @State var pet = Pet()
     
-    @ObservedObject var userSettings = UserSettings()
+    @ObservedObject var userSettings = TelepoleModel()
     @Binding var isPresent: Bool
     
     let gender: [String] = ["boy", "girl"]

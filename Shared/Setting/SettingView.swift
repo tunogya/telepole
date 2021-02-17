@@ -12,7 +12,7 @@ import MapKit
 
 struct SettingView: View {
     @Binding var isShow: Bool
-    @ObservedObject var userSettings = UserSettings()
+    @ObservedObject var userSettings = TelepoleModel()
     
     @State var owner: Owner = Owner()
     
