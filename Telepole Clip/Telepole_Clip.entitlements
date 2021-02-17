@@ -9,6 +9,8 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>appclips:app.wakanda.vip</string>
+		<string>webcredentials:app.wakanda.vip</string>
+		<string>applinks:app.wakanda.vip</string>
 	</array>
 	<key>com.apple.developer.parent-application-identifiers</key>
 	<array>
