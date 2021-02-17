@@ -18,6 +18,7 @@
 		1718BB3425DA23CC0079C92D /* TelepoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3225DA23CC0079C92D /* TelepoleModel.swift */; };
 		1718BB3B25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
 		1718BB3C25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
+		1718BB4325DC081A0079C92D /* TelepoleAppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* Account.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -59,7 +60,6 @@
 		17D7D3D625B414F900C087C9 /* CardHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D7D3D525B414F800C087C9 /* CardHeader.swift */; };
 		17E7877725C6F19800DC531C /* Distence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E7877625C6F19800DC531C /* Distence.swift */; };
 		17F1716B25BD6AD300B12947 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1716A25BD6AD300B12947 /* UserSettings.swift */; };
-		17F2205A25D9768D00287464 /* TelepoleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173F05C3259324B300E662B8 /* TelepoleApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +93,7 @@
 		1718BB3225DA23CC0079C92D /* TelepoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleModel.swift; sourceTree = "<group>"; };
 		1718BB3925DAB5160079C92D /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1718BB3A25DBFCB30079C92D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleAppClip.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172F4FDE25B722A30091F044 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -232,6 +233,7 @@
 		176F439E25D5002400BE5C00 /* Telepole Clip */ = {
 			isa = PBXGroup;
 			children = (
+				1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */,
 				176F43A825D5002800BE5C00 /* Info.plist */,
 				176F43A925D5002800BE5C00 /* Telepole_Clip.entitlements */,
 				176F43A525D5002800BE5C00 /* Preview Content */,
@@ -392,6 +394,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 173F05B7259324B300E662B8;
 			packageReferences = (
@@ -465,7 +468,6 @@
 				176F43F925D55B6300BE5C00 /* Distence.swift in Sources */,
 				176F43FB25D55B6300BE5C00 /* Owner.swift in Sources */,
 				1718BB2C25DA1B970079C92D /* Animations.swift in Sources */,
-				17F2205A25D9768D00287464 /* TelepoleApp.swift in Sources */,
 				176F43FC25D55B6300BE5C00 /* Pet.swift in Sources */,
 				176F43FD25D55B6300BE5C00 /* Account.swift in Sources */,
 				1718BB3425DA23CC0079C92D /* TelepoleModel.swift in Sources */,
@@ -480,6 +482,7 @@
 				176F440125D8030E00BE5C00 /* UserSettings.swift in Sources */,
 				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 				176F43F725D55B6300BE5C00 /* Geo.swift in Sources */,
+				1718BB4325DC081A0079C92D /* TelepoleAppClip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
