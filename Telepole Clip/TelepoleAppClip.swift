@@ -11,12 +11,12 @@ import CoreLocation
 
 @main
 struct TelepoleAppClip: App {
-    
-    @ObservedObject var userSettings = TelepoleModel()
+    @StateObject private var model = TelepoleModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(model)
                 .onContinueUserActivity(NSUserActivityTypeBrowsingWeb, perform: handleUserActivity)
         }
     }
@@ -31,7 +31,7 @@ struct TelepoleAppClip: App {
         }
         
         if let petID = queryItems.first(where: { $0.name == "id" })?.value {
-            userSettings.selectedPetID = petID
+            model.selectedPetID = petID
         }
         
         guard
