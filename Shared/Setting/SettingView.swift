@@ -12,12 +12,12 @@ import MapKit
 
 struct SettingView: View {
     @Binding var isShow: Bool
-    @ObservedObject var userSettings = TelepoleModel()
+    @EnvironmentObject private var model: TelepoleModel
     
     @State var owner: Owner = Owner()
     
     var isShowLoginButton: Bool {
-        if userSettings.user == ""{
+        if model.user == ""{
             return true
         }
         return false
@@ -38,10 +38,10 @@ struct SettingView: View {
                             let user = appleIDCredential.user
                             Account().login(user) { (user) in
                                 print(user)
-                                userSettings.user = user.user
-                                userSettings.email = user.email
-                                userSettings.fullName = user.fullName
-                                userSettings._id = user.id
+                                model.user = user.user
+                                model.email = user.email
+                                model.fullName = user.fullName
+                                model._id = user.id
                             }
                         }else {
                             // 新注册
@@ -51,10 +51,10 @@ struct SettingView: View {
                             let user = appleIDCredential.user
                             let newUser = Account(user: user, fullName: fullName, email: email)
                             Account().register(newUser) { (user) in
-                                userSettings.user = user.user
-                                userSettings.email = user.email
-                                userSettings.fullName = user.fullName
-                                userSettings._id = user.id
+                                model.user = user.user
+                                model.email = user.email
+                                model.fullName = user.fullName
+                                model._id = user.id
                             }
                         }
                         
@@ -89,11 +89,11 @@ struct SettingView: View {
                     Section(header: Text("数据同步")) {
                         Button(action: {
                             if owner.id == "" {
-                                Owner().initData(Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)) { o in
+                                Owner().initData(Owner(pets: model.myPetIDs, user_id: model._id)) { o in
                                     owner = o
                                 }
                             }else{
-                                Owner().patchData(_id: owner.id, owner: Owner(pets: userSettings.myPetIDs, user_id: userSettings._id)){
+                                Owner().patchData(_id: owner.id, owner: Owner(pets: model.myPetIDs, user_id: model._id)){
                                     Owner().getData(_id: owner.id) { o in
                                         owner = o
                                     }
@@ -103,13 +103,13 @@ struct SettingView: View {
                             HStack {
                                 Text("备份我的宠物")
                                 Spacer()
-                                Text("(\(userSettings.myPetIDs.count))")
+                                Text("(\(model.myPetIDs.count))")
                             }
                             
                         }
                         
                         Button(action: {
-                            userSettings.myPetIDs = owner.pets
+                            model.myPetIDs = owner.pets
                         }) {
                             HStack{
                                 Text("恢复我的宠物")
@@ -119,12 +119,12 @@ struct SettingView: View {
                         }
                     }
                     
-                    Section(header: Text("当前用户: \(userSettings.email)")) {
+                    Section(header: Text("当前用户: \(model.email)")) {
                         Button(action: {
-                            userSettings.user = ""
-                            userSettings.email = ""
-                            userSettings.fullName = ""
-                            userSettings._id = ""
+                            model.user = ""
+                            model.email = ""
+                            model.fullName = ""
+                            model._id = ""
                         }){
                             Text("注销")
                         }
@@ -132,7 +132,7 @@ struct SettingView: View {
                 }
             }
             .onAppear(perform: {
-                Owner().getDataByUser_id(_id: userSettings._id) { o in
+                Owner().getDataByUser_id(_id: model._id) { o in
                     owner = o
                 }
             })

@@ -11,6 +11,9 @@ import CoreLocation
 
 @main
 struct TelepoleAppClip: App {
+    
+    @ObservedObject var userSettings = TelepoleModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -27,7 +30,9 @@ struct TelepoleAppClip: App {
             return
         }
         
-        print(queryItems)
+        if let petID = queryItems.first(where: { $0.name == "id" })?.value {
+            userSettings.selectedPetID = petID
+        }
         
         guard
             let latitudeValue = queryItems.first(where: { $0.name == "latitude" })?.value,

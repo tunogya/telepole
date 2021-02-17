@@ -17,12 +17,11 @@ struct AppSingleView: View {
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
     @State private var pet: Pet = Pet()
-    @State private var pickPetID: String = ""
     
-    @ObservedObject var userSettings = TelepoleModel()
+    @EnvironmentObject private var model: TelepoleModel
     
-    fileprivate func getPetInfo() {
-        Pet().getPetByID(pickPetID) { (p) in
+    fileprivate func getPetInfo(_ id: String) {
+        Pet().getPetByID(id) { (p) in
             pet = p
         }
     }
@@ -103,8 +102,8 @@ struct AppSingleView: View {
                 .resizable()
                 .frame(width: 60, height: 60, alignment: .center)
         }
-        .foregroundColor(Color(pickPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-        .disabled(pickPetID == "" ? true : false)
+        .foregroundColor(Color(model.selectedPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+        .disabled(model.selectedPetID == "" ? true : false)
     }
     
     var wakandaSlogan: some View {
@@ -155,7 +154,7 @@ struct AppSingleView: View {
                     #if !APPCLIP
                     buttonRegisterPet
                         .sheet(isPresented: $isShowPetRegisterView) {
-                            PetRegisterView(isShow: $isShowPetRegisterView, pickPetID: $pickPetID)
+                            PetRegisterView(isShow: $isShowPetRegisterView)
                         }
                     #endif
                     Spacer()
@@ -181,11 +180,10 @@ struct AppSingleView: View {
         }
         .padding(.horizontal)
         .onAppear(perform: {
-            pickPetID = userSettings.selectedPetID
-            self.getPetInfo()
+            self.getPetInfo(model.selectedPetID)
         })
-        .onChange(of: pickPetID, perform: { value in
-            self.getPetInfo()
+        .onChange(of: model.selectedPetID, perform: { value in
+            self.getPetInfo(model.selectedPetID)
         })
     }
 }

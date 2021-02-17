@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PetRegisterView: View {
     @Binding var isShow: Bool
-    @Binding var pickPetID: String
     @State var pageIndex: Int = 0
     
     var body: some View {
@@ -22,7 +21,7 @@ struct PetRegisterView: View {
             Form {
                 // 已经注册页面
                 if pageIndex == 0 {
-                    HadRegisterForm(pickPetID: $pickPetID, isPresent: $isShow)
+                    HadRegisterForm(isPresent: $isShow)
                     
                 // 未注册页面
                 }else if pageIndex == 1 {
@@ -35,9 +34,8 @@ struct PetRegisterView: View {
 
 
 struct HadRegisterForm: View {
-    @ObservedObject var userSettings = TelepoleModel()
+    @EnvironmentObject private var model: TelepoleModel
     @State var IdInput: String = ""
-    @Binding var pickPetID: String
     @Binding var isPresent: Bool
     
     var body: some View {
@@ -51,8 +49,8 @@ struct HadRegisterForm: View {
             Button(action: {
                 Pet().getPetByID(IdInput) { (pet) in
                     if !pet.id.isEmpty{
-                        userSettings.myPetIDs.append(pet.id)
-                        userSettings.selectedPetID = pet.id
+                        model.myPetIDs.append(pet.id)
+                        model.selectedPetID = pet.id
                         isPresent = false
                     }else{
                         debugPrint("添加失败")
@@ -64,10 +62,9 @@ struct HadRegisterForm: View {
         }
         
         Section(header: Text("我的宠物列表")) {
-            ForEach(userSettings.myPetIDs, id: \.self){ pet in
+            ForEach(model.myPetIDs, id: \.self){ pet in
                 Button {
-                    userSettings.selectedPetID = pet
-                    pickPetID = pet
+                    model.selectedPetID = pet
                     isPresent = false
                 } label: {
                     PetListIInfo(pet_id: pet)

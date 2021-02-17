@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct TelepoleApp: App {
+    @StateObject private var model = TelepoleModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(model)
         }
     }
 }
