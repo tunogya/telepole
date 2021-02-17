@@ -20,7 +20,7 @@ struct Account: Codable {
 extension Account {
     //    根据id登陆
     func login(_ user: String, completion: @escaping (Account) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/find/"
+        let url = "\(HOSTNAME)/users/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": user]]]
         // 根据user查询到user信息
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
@@ -39,7 +39,7 @@ extension Account {
     
     //    用户注册
     func register(_ user: Account, completion: @escaping (Account) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/"
+        let url = "\(HOSTNAME)/users/"
         let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user]]]
        
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
@@ -57,7 +57,7 @@ extension Account {
     
     // 根据注册返回结果查询用户
     func getUserById(_ doc_id: String, completion: @escaping (Account) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/users/\(doc_id)/"
+        let url = "\(HOSTNAME)/users/\(doc_id)/"
         // 根据user查询到user信息
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {

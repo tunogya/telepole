@@ -19,7 +19,7 @@ struct Geo {
 extension Geo {
     // 上传我的位置
     func postMyGeo(_ geo: Geo) {
-        let url = "\(HOSTNAME)/telepole/v1.0/geo/"
+        let url = "\(HOSTNAME)/geo/"
         let parameters: [String: Array<Any>] = ["data": [["latitude": geo.latitude, "longitude": geo.longitude, "name": geo.name, "pet": geo.pet.id]]]
        
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
@@ -35,7 +35,7 @@ extension Geo {
     
     // 获取我附近的宠物
     func getNearbyPets(latitude: Double, longitude: Double, completion: @escaping ([Geo]) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/geo/find/"
+        let url = "\(HOSTNAME)/geo/find/"
         let parameters: [String: Any] = ["query":["$and":[["latitude": ["$lte": latitude + 0.01]], ["latitude": ["$gte": latitude - 0.01]], ["longitude": ["$lte": longitude + 0.01]], ["longitude": ["$gte": longitude - 0.01]]]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (respone) in

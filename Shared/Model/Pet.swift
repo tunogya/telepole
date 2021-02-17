@@ -25,7 +25,7 @@ struct Pet: Identifiable, Codable {
 extension Pet {
 //    根据pet id查询用户信息
     func getPetByID(_ doc_id: String, completion: @escaping (Pet) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/pets/\(doc_id)/"
+        let url = "\(HOSTNAME)/pets/\(doc_id)/"
         AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -51,7 +51,7 @@ extension Pet {
 //   宠物注册
     func createPet(_ pet: Pet, completion: @escaping (Pet) -> ()) {
         let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
-        let url = "\(HOSTNAME)/telepole/v1.0/pets/"
+        let url = "\(HOSTNAME)/pets/"
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {

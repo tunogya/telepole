@@ -10,7 +10,7 @@ import Combine
 import MapKit
 import SwiftUI
 
-let HOSTNAME = "https://app.wakanda.vip"
+let HOSTNAME = "https://app.wakanda.vip/api/telepole/v1.0"
 
 @propertyWrapper
 struct UserDefault<T: Codable> {

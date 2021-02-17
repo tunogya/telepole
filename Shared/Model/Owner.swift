@@ -22,7 +22,7 @@ struct Owner {
 extension Owner {
     // 查询是否有云端备份数据，有则下载
     func getDataByUser_id(_id doc_id: String, completion: @escaping (Owner) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/owner/find/"
+        let url = "\(HOSTNAME)/owner/find/"
         let parameters: [String: Any] = ["query": ["user": ["$eq": doc_id]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
@@ -44,7 +44,7 @@ extension Owner {
     
     // 创建一份云端备份数据
     func initData(_ owner: Owner, completion: @escaping (Owner) -> ()){
-        let url = "\(HOSTNAME)/telepole/v1.0/owner/"
+        let url = "\(HOSTNAME)/owner/"
         let parameters: [String: Array<Any>] = ["data": [["pets": owner.pets, "user": owner.user_id]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
@@ -62,7 +62,7 @@ extension Owner {
     
     // 更新云端数据
     func patchData(_id doc_id: String, owner: Owner, completion: @escaping () -> ()){
-        let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
+        let url = "\(HOSTNAME)/owner/\(doc_id)/"
         let parameters: [String: Any] = ["data": ["pets": owner.pets, "user": owner.user_id]]
         
         AF.request(url, method: .patch, parameters: parameters).responseJSON { response in
@@ -77,7 +77,7 @@ extension Owner {
     
     // 获取指定云端备份
     func getData(_id doc_id: String, completion: @escaping (Owner) -> ()) {
-        let url = "\(HOSTNAME)/telepole/v1.0/owner/\(doc_id)/"
+        let url = "\(HOSTNAME)/owner/\(doc_id)/"
         
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {
