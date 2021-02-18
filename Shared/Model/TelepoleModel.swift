@@ -59,18 +59,12 @@ class TelepoleModel: ObservableObject {
 
 extension TelepoleModel {
     func updateAccount(user: Account) {
-        account.email = user.email
-        account.user = user.user
-        account.fullName = user.fullName
-        account.id = user.id
+        account = user
     }
     
     func clearAccount() {
-        account.email = ""
-        account.user = ""
-        account.fullName = ""
-        account.id = ""
-        
+        account = Account()
+ 
         self.clearUserCredential()
     }
     
@@ -80,7 +74,6 @@ extension TelepoleModel {
     
     func saveUserCredential(credential: String) {
         userCredential = credential
-        print("保存", credential)
     }
 }
 
