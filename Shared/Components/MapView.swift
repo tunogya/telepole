@@ -29,7 +29,7 @@ struct MapView: View {
                         let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
                         Geo().postMyGeo(geo)
                     } label: {
-                        Text("宠物定位")
+                        Text("宠物辅助定位")
                             .font(.footnote)
                             .padding(8)
                             .background(Color.white)
