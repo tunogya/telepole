@@ -69,7 +69,7 @@ struct HadRegisterForm: View {
                     }
                     isPresent = false
                 } label: {
-                    PetListIInfo(pet_id: id)
+                    PetListInfo(pet_id: id)
                 }
             }
         }
@@ -79,9 +79,10 @@ struct HadRegisterForm: View {
 struct NewRegisterForm: View {
     @State var genderIndex = 0
     @State var pet = Pet()
-    
-    @ObservedObject var userSettings = TelepoleModel()
     @Binding var isPresent: Bool
+    
+    @EnvironmentObject private var model: TelepoleModel
+    
     
     let gender: [String] = ["boy", "girl"]
     var is_name_valid: Bool {
@@ -112,8 +113,8 @@ struct NewRegisterForm: View {
                 pet.gender = gender[genderIndex]
                 Pet().createPet(pet) { (pet) in
                     if !pet.id.isEmpty{
-                        userSettings.myPetIDs.append(pet.id)
-                        userSettings.selectedPetID = pet.id
+                        model.myPetIDs.append(pet.id)
+                        model.selectPet(pet)
                         isPresent = false
                     }else{
                         debugPrint("添加失败")
@@ -141,7 +142,7 @@ struct RegisterFormPicker: View {
     }
 }
 
-struct PetListIInfo: View {
+struct PetListInfo: View {
     var pet_id: String
     @State var pet: Pet = Pet()
     
