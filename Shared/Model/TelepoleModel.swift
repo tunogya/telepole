@@ -38,7 +38,7 @@ class TelepoleModel: ObservableObject {
     @Published private(set) var selectedPet = Pet()
     
     @UserDefault("userCredential", defaultValue: "")
-    var userCredential: String
+    private var userCredential: String
     
     @UserDefault("selectedPetID", defaultValue: "")
     var selectedPetID: String
