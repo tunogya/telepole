@@ -38,54 +38,35 @@ class TelepoleModel: ObservableObject {
     @Published private(set) var selectedPet = Pet()
     
     @UserDefault("user", defaultValue: "")
-    var user: String {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var user: String
     
     @UserDefault("email", defaultValue: "")
-    var email: String {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var email: String
     
     @UserDefault("fullName", defaultValue: "")
-    var fullName: String {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var fullName: String
     
     @UserDefault("_id", defaultValue: "")
-    var _id: String {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var _id: String
     
     @UserDefault("selectedPetID", defaultValue: "")
-    var selectedPetID: String {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var selectedPetID: String
     
     @UserDefault("myPetIDs", defaultValue: [])
-    var myPetIDs: [String] {
-        willSet {
-            objectWillChange.send()
+    var myPetIDs: [String]
+    
+    init() {
+        Pet().getPetByID(selectedPetID) { pet in
+            self.selectPet(pet)
         }
     }
-    
-    let objectWillChange = PassthroughSubject<Void, Never>()
 }
 
 extension TelepoleModel {
-    func createAccount() {
+    func createAccount(_id: String, user: String, fullName: String, email: String) {
         guard account == nil else { return }
-        account = Account()
+        account = Account(id: _id, user: user, fullName: fullName, email: email)
+        
     }
     
     func clearMyPetIDs() {
@@ -99,5 +80,12 @@ extension TelepoleModel {
     
     func selectPet(id: Pet.ID) {
         selectedPetID = id
+    }
+    
+    func clearAccount() {
+        user = ""
+        email = ""
+        fullName = ""
+        _id = ""
     }
 }

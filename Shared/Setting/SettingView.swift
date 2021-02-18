@@ -11,10 +11,9 @@ import AuthenticationServices
 import MapKit
 
 struct SettingView: View {
+    @State var owner: Owner = Owner()
     @Binding var isShow: Bool
     @EnvironmentObject private var model: TelepoleModel
-    
-    @State var owner: Owner = Owner()
     
     var isShowLoginButton: Bool {
         if model.user == ""{
@@ -37,7 +36,6 @@ struct SettingView: View {
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
                             Account().login(user) { (user) in
-                                print(user)
                                 model.user = user.user
                                 model.email = user.email
                                 model.fullName = user.fullName
@@ -121,10 +119,7 @@ struct SettingView: View {
                     
                     Section(header: Text("当前用户: \(model.email)")) {
                         Button(action: {
-                            model.user = ""
-                            model.email = ""
-                            model.fullName = ""
-                            model._id = ""
+                            model.clearAccount()
                         }){
                             Text("注销")
                         }
