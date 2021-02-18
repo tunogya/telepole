@@ -12,6 +12,9 @@ struct MapView: View {
     @State private var mapRegion = MKCoordinateRegion()
     @State private var trackingMode = MapUserTrackingMode.none
     
+    @EnvironmentObject private var model: TelepoleModel
+    @ObservedObject var locationManager = LocationManager()
+    
     var body: some View {
         ZStack{
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode)
@@ -22,6 +25,16 @@ struct MapView: View {
             VStack {
                 Spacer()
                 HStack{
+                    Button {
+                        let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
+                        Geo().postMyGeo(geo)
+                    } label: {
+                        Text("宠物定位")
+                            .font(.footnote)
+                            .padding(8)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                    }
                     Spacer()
                     Button(action: {
                         self.trackingMode = MapUserTrackingMode.follow
@@ -32,9 +45,9 @@ struct MapView: View {
                             .foregroundColor(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
                             .background(Color.white)
                             .clipShape(Circle())
-                            .padding()
                     })
                 }
+                .padding()
             }
         }
     }

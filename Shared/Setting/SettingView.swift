@@ -41,11 +41,11 @@ struct SettingView: View {
                             }
                         }else {
                             // 新注册
-                            let fullName = String(describing: appleIDCredential.fullName?.familyName)
-                                + String(describing: appleIDCredential.fullName?.givenName)
-                            let email = String(describing: appleIDCredential.email)
+                            let fullName = "\(appleIDCredential.fullName?.familyName ?? "")"
+                                + "\(appleIDCredential.fullName?.givenName ?? "")"
+                            let email = appleIDCredential.email
                             let user = appleIDCredential.user
-                            let newUser = Account(user: user, fullName: fullName, email: email)
+                            let newUser = Account(user: user, fullName: fullName, email: email!)
                             Account().register(newUser) { (user) in
                                 model.updateAccount(user: user)
                                 model.saveUserCredential(credential: user.id)

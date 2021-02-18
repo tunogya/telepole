@@ -82,7 +82,8 @@ struct AppSingleView: View {
     
     var callMeButton: some View {
         Button {
-            
+            guard let number = URL(string: "tel://" + model.selectedPet.phone) else { return }
+            UIApplication.shared.open(number)
         } label: {
             Image(systemName: "phone.circle.fill")
                 .resizable()
@@ -162,6 +163,7 @@ struct AppSingleView: View {
                     Spacer()
                     
                     callMeButton
+                    
                        
                 }
             }

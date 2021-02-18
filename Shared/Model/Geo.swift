@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct Geo {
-    var pet: Pet
+    var pet: Pet = Pet()
     var name: String = ""
     var latitude: Double = 0
     var longitude: Double = 0

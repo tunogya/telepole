@@ -154,7 +154,6 @@ struct PetListInfo: View {
                 .font(.body)
                 .bold()
             Spacer()
-            
         }
         .onAppear(perform: {
             Pet().getPetByID(pet_id) { p in
