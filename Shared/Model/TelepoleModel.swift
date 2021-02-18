@@ -33,8 +33,8 @@ struct UserDefault<T: Codable> {
     }
 }
 
-final class TelepoleModel: ObservableObject {
-    let objectWillChange = PassthroughSubject<Void, Never>()
+class TelepoleModel: ObservableObject {
+    @Published private(set) var account: Account?
     
     @UserDefault("user", defaultValue: "")
     var user: String {
@@ -76,5 +76,18 @@ final class TelepoleModel: ObservableObject {
         willSet {
             objectWillChange.send()
         }
+    }
+    
+    let objectWillChange = PassthroughSubject<Void, Never>()
+}
+
+extension TelepoleModel {
+    func createAccount() {
+        guard account == nil else { return }
+        account = Account()
+    }
+    
+    func clearMyPetIDs() {
+        myPetIDs.removeAll()
     }
 }

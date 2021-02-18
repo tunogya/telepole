@@ -26,13 +26,6 @@ struct AppSingleView: View {
         }
     }
     
-    var petname: String {
-        if pet.name == "" {
-            return "暂无宠物"
-        }
-        return pet.name
-    }
-    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -44,7 +37,7 @@ struct AppSingleView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text(petname)
+                    Text(pet.petname)
                         .bold()
                     Text(String(format: "%0.1f", pet.coins) + " 币")
                 }

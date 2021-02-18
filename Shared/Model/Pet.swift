@@ -23,6 +23,13 @@ struct Pet: Identifiable, Codable {
 
 // Pet API
 extension Pet {
+    var petname: String {
+        if id == "" {
+            return "暂无宠物"
+        }
+        return name
+    }
+    
 //    根据pet id查询用户信息
     func getPetByID(_ doc_id: String, completion: @escaping (Pet) -> ()) {
         let url = "\(HOSTNAME)/pets/\(doc_id)/"
