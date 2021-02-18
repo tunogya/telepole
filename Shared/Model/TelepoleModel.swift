@@ -35,6 +35,7 @@ struct UserDefault<T: Codable> {
 
 class TelepoleModel: ObservableObject {
     @Published private(set) var account: Account?
+    @Published private(set) var selectedPet = Pet()
     
     @UserDefault("user", defaultValue: "")
     var user: String {
@@ -89,5 +90,14 @@ extension TelepoleModel {
     
     func clearMyPetIDs() {
         myPetIDs.removeAll()
+    }
+    
+    func selectPet(_ pet: Pet) {
+        selectPet(id: pet.id)
+        selectedPet = pet
+    }
+    
+    func selectPet(id: Pet.ID) {
+        selectedPetID = id
     }
 }

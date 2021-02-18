@@ -50,7 +50,7 @@ struct HadRegisterForm: View {
                 Pet().getPetByID(IdInput) { (pet) in
                     if !pet.id.isEmpty{
                         model.myPetIDs.append(pet.id)
-                        model.selectedPetID = pet.id
+                        model.selectPet(pet)
                         isPresent = false
                     }else{
                         debugPrint("添加失败")
@@ -62,12 +62,13 @@ struct HadRegisterForm: View {
         }
         
         Section(header: Text("我的宠物列表")) {
-            ForEach(model.myPetIDs, id: \.self){ pet in
+            ForEach(model.myPetIDs, id: \.self){ id in
                 Button {
-                    model.selectedPetID = pet
-                    isPresent = false
+                    Pet().getPetByID(id) { pet in
+                        model.selectPet(pet)
+                    }
                 } label: {
-                    PetListIInfo(pet_id: pet)
+                    PetListIInfo(pet_id: id)
                 }
             }
         }
