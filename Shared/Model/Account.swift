@@ -46,7 +46,7 @@ extension Account {
             switch response.result {
             case .success(let value):
                 let id = JSON(value)["ids"][0].stringValue
-                self.getUserById(id) { (user) in
+                self.getUserByID(id) { (user) in
                     completion(user)
                 }
             case .failure(let error):
@@ -56,16 +56,16 @@ extension Account {
     }
     
     // 根据注册返回结果查询用户
-    func getUserById(_ doc_id: String, completion: @escaping (Account) -> ()) {
+    func getUserByID(_ doc_id: String, completion: @escaping (Account) -> ()) {
         let url = "\(HOSTNAME)/users/\(doc_id)/"
         // 根据user查询到user信息
         AF.request(url, method: .get).responseJSON { response in
             switch response.result {
             case .success(let value):
-                let email = JSON(value)["data"][0]["email"].stringValue
-                let fullName = JSON(value)["data"][0]["fullName"].stringValue
-                let user = JSON(value)["data"][0]["user"].stringValue
-                let user_id = JSON(value)["data"][0]["_id"].stringValue
+                let email = JSON(value)["data"]["email"].stringValue
+                let fullName = JSON(value)["data"]["fullName"].stringValue
+                let user = JSON(value)["data"]["user"].stringValue
+                let user_id = JSON(value)["data"]["_id"].stringValue
                 completion(Account(id: user_id, user: user, fullName: fullName, email: email))
             case .failure(let error):
                 debugPrint(error)

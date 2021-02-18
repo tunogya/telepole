@@ -16,7 +16,7 @@ struct SettingView: View {
     @EnvironmentObject private var model: TelepoleModel
     
     var isShowLoginButton: Bool {
-        if model.user == ""{
+        if model.account.user == ""{
             return true
         }
         return false
@@ -36,10 +36,8 @@ struct SettingView: View {
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
                             Account().login(user) { (user) in
-                                model.user = user.user
-                                model.email = user.email
-                                model.fullName = user.fullName
-                                model._id = user.id
+                                model.updateAccount(user: user)
+                                model.saveUserCredential(credential: user.id)
                             }
                         }else {
                             // 新注册
@@ -49,10 +47,8 @@ struct SettingView: View {
                             let user = appleIDCredential.user
                             let newUser = Account(user: user, fullName: fullName, email: email)
                             Account().register(newUser) { (user) in
-                                model.user = user.user
-                                model.email = user.email
-                                model.fullName = user.fullName
-                                model._id = user.id
+                                model.updateAccount(user: user)
+                                model.saveUserCredential(credential: user.id)
                             }
                         }
                         
@@ -87,11 +83,11 @@ struct SettingView: View {
                     Section(header: Text("数据同步")) {
                         Button(action: {
                             if owner.id == "" {
-                                Owner().initData(Owner(pets: model.myPetIDs, user_id: model._id)) { o in
+                                Owner().initData(Owner(pets: model.myPetIDs, user_id: model.account.id)) { o in
                                     owner = o
                                 }
                             }else{
-                                Owner().patchData(_id: owner.id, owner: Owner(pets: model.myPetIDs, user_id: model._id)){
+                                Owner().patchData(_id: owner.id, owner: Owner(pets: model.myPetIDs, user_id: model.account.id)){
                                     Owner().getData(_id: owner.id) { o in
                                         owner = o
                                     }
@@ -117,7 +113,7 @@ struct SettingView: View {
                         }
                     }
                     
-                    Section(header: Text("当前用户: \(model.email)")) {
+                    Section(header: Text("当前用户: \(model.account.email)")) {
                         Button(action: {
                             model.clearAccount()
                         }){
@@ -127,7 +123,7 @@ struct SettingView: View {
                 }
             }
             .onAppear(perform: {
-                Owner().getDataByUser_id(_id: model._id) { o in
+                Owner().getDataByUser_id(_id: model.account.id) { o in
                     owner = o
                 }
             })
