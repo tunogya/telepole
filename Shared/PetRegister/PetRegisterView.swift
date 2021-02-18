@@ -67,6 +67,7 @@ struct HadRegisterForm: View {
                     Pet().getPetByID(id) { pet in
                         model.selectPet(pet)
                     }
+                    isPresent = false
                 } label: {
                     PetListIInfo(pet_id: id)
                 }
