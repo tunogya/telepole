@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct Account: Codable {
+struct Account:Identifiable, Codable {
     var id: String = ""
     var user: String = ""
     var fullName: String = ""

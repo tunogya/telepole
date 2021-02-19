@@ -48,19 +48,20 @@ class TelepoleModel: ObservableObject {
     var myPetIDs: [String]
     
     init() {
-        Pet().getPetByID(selectedPetID) { pet in
-            self.selectPet(pet)
-        }
-        
-        Account().getUserByID(userCredential) { user in
-            self.updateAccount(user: user)
-        }
+        selectPet(id: selectedPetID)
+        updateAccount(id: userCredential)
     }
 }
 
 extension TelepoleModel {
     func updateAccount(user: Account) {
         account = user
+    }
+    
+    func updateAccount(id: Account.ID) {
+        Pet().getPetByID(selectedPetID) { pet in
+            self.selectPet(pet)
+        }
     }
     
     func clearAccount() {
@@ -84,11 +85,13 @@ extension TelepoleModel {
     }
     
     func selectPet(_ pet: Pet) {
-        selectPet(id: pet.id)
         selectedPet = pet
+        selectedPetID = pet.id
     }
     
     func selectPet(id: Pet.ID) {
-        selectedPetID = id
+        Pet().getPetByID(id) { pet in
+            self.selectPet(pet)
+        }
     }
 }

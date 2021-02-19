@@ -64,9 +64,7 @@ struct HadRegisterForm: View {
         Section(header: Text("我的宠物列表")) {
             ForEach(model.myPetIDs, id: \.self){ id in
                 Button {
-                    Pet().getPetByID(id) { pet in
-                        model.selectPet(pet)
-                    }
+                    model.selectPet(id: id)
                     isPresent = false
                 } label: {
                     PetListInfo(pet_id: id)
