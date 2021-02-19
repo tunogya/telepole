@@ -2,11 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationUsageDescription</key>
-	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>当你选择帮助丢失的宠物上传定位时，App需要在后台获取你的位置信息</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
