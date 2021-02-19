@@ -89,8 +89,8 @@ struct AppSingleView: View {
                 .resizable()
                 .frame(width: 60, height: 60, alignment: .center)
         }
-        .foregroundColor(Color(model.selectedPetID == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-        .disabled(model.selectedPetID == "" ? true : false)
+        .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+        .disabled(model.selectedPet.id == "" ? true : false)
     }
     
     var wakandaSlogan: some View {

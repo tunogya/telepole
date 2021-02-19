@@ -36,12 +36,13 @@ struct UserDefault<T: Codable> {
 class TelepoleModel: ObservableObject {
     @Published private(set) var account = Account()
     @Published private(set) var selectedPet = Pet()
+    @Published private(set) var myPets = [Pet]()
     
     @UserDefault("userCredential", defaultValue: "")
     private var userCredential: String
     
     @UserDefault("selectedPetID", defaultValue: "")
-    var selectedPetID: String
+    private var selectedPetID: String
     
     @UserDefault("myPetIDs", defaultValue: [])
     var myPetIDs: [String]

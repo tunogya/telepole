@@ -31,7 +31,7 @@ struct TelepoleAppClip: App {
         }
         
         if let petID = queryItems.first(where: { $0.name == "id" })?.value {
-            model.selectedPetID = petID
+            model.selectPet(id: petID)
         }
         
         guard
