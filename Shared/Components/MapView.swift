@@ -25,15 +25,19 @@ struct MapView: View {
             VStack {
                 Spacer()
                 HStack{
-                    Button {
-                        let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
-                        Geo().postMyGeo(geo)
-                    } label: {
-                        Text("宠物辅助定位")
-                            .font(.footnote)
-                            .padding(8)
-                            .background(Color.white)
-                            .cornerRadius(8)
+                    if model.selectedPetID != "" {
+                        Button {
+                            let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
+                            Geo().postMyGeo(geo)
+                        } label: {
+                            Text("宠物辅助定位")
+                                .font(.footnote)
+                                .bold()
+                                .padding(8)
+                                .background(Color.white)
+                                .cornerRadius(8)
+                                .foregroundColor(Color.black)
+                        }
                     }
                     Spacer()
                     Button(action: {
