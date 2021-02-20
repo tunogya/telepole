@@ -34,9 +34,23 @@ struct UserDefault<T: Codable> {
 }
 
 class TelepoleModel: ObservableObject {
-    @Published private(set) var account = Account()
-    @Published private(set) var selectedPet = Pet()
-    @Published private(set) var myPets = [Pet]()
+    @Published private(set) var account = Account() {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @Published private(set) var selectedPet = Pet() {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @Published private(set) var myPets = [Pet]() {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     
     @UserDefault("userCredential", defaultValue: "")
     private var userCredential: String
@@ -45,22 +59,28 @@ class TelepoleModel: ObservableObject {
     private var selectedPetID: String
     
     @UserDefault("myPetIDs", defaultValue: [])
-    var myPetIDs: [String]
+    var myPetIDs: [String] {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    let objectWillChange = PassthroughSubject<Void, Never>()
     
     init() {
         selectPet(id: selectedPetID)
-        updateAccount(id: userCredential)
+        loadAccount(id: userCredential)
     }
 }
 
 extension TelepoleModel {
-    func updateAccount(user: Account) {
+    func loadAccount(user: Account) {
         account = user
     }
     
-    func updateAccount(id: Account.ID) {
+    func loadAccount(id: Account.ID) {
         Account().getUserByID(id) { account in
-            self.updateAccount(user: account)
+            self.loadAccount(user: account)
         }
     }
     

@@ -16,7 +16,7 @@ struct SettingView: View {
     @EnvironmentObject private var model: TelepoleModel
     
     var isShowLoginButton: Bool {
-        if model.account.user == ""{
+        if model.account.user == "" {
             return true
         }
         return false
@@ -36,8 +36,10 @@ struct SettingView: View {
                             // 已经注册过，直接登陆
                             let user = appleIDCredential.user
                             Account().login(user) { (user) in
-                                model.updateAccount(user: user)
+                                model.loadAccount(user: user)
                                 model.saveUserCredential(credential: user.id)
+                                print("登陆完成")
+                                print(isShowLoginButton)
                             }
                         }else {
                             // 新注册
@@ -47,7 +49,7 @@ struct SettingView: View {
                             let user = appleIDCredential.user
                             let newUser = Account(user: user, fullName: fullName, email: email!)
                             Account().register(newUser) { (user) in
-                                model.updateAccount(user: user)
+                                model.loadAccount(user: user)
                                 model.saveUserCredential(credential: user.id)
                             }
                         }
