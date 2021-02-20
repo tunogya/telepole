@@ -25,9 +25,8 @@ extension Geo {
        
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
-            case .success(let value):
-                let id = JSON(value)["ids"][0].stringValue
-                debugPrint(id)
+            case .success(_):
+                return
             case .failure(let error):
                 debugPrint(error)
             }

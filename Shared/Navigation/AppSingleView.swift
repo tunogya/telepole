@@ -16,6 +16,7 @@ struct AppSingleView: View {
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
     @EnvironmentObject private var model: TelepoleModel
+    @ObservedObject var locationManager = LocationManager()
     
     var time: String {
         return updateTimeToCurrennTime(timeStamp: model.lastGeo._createTime)
@@ -63,8 +64,11 @@ struct AppSingleView: View {
             Button {
                 model.updateGeo(petID: model.selectedPet.id)
             } label: {
-                Text("获取宠物位置")
-                    .font(.footnote)
+                HStack(spacing: 4) {
+                    Image(systemName: "arrow.clockwise")
+                    Text("获取宠物位置")
+                }
+                .font(.footnote)
             }
             .disabled(model.selectedPet.id.isEmpty ? true : false)
             
@@ -92,6 +96,20 @@ struct AppSingleView: View {
         }
     }
     
+    var sendGeoButton: some View {
+        Button {
+            let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
+            Geo().postMyGeo(geo)
+        } label:{
+            Image(systemName: "paperplane.circle")
+                .resizable()
+                .frame(width: 50, height: 50, alignment: .center)
+        }
+        .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+        .clipShape(Circle())
+        .disabled(model.selectedPet.id.isEmpty ? true : false)
+    }
+    
     var callMeButton: some View {
         Button {
             guard let number = URL(string: "tel://" + model.selectedPet.phone) else { return }
@@ -99,9 +117,10 @@ struct AppSingleView: View {
         } label: {
             Image(systemName: "phone.circle.fill")
                 .resizable()
-                .frame(width: 60, height: 60, alignment: .center)
+                .frame(width: 50, height: 50, alignment: .center)
         }
         .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+        .clipShape(Circle())
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
@@ -171,10 +190,13 @@ struct AppSingleView: View {
                 
                 HStack {
                     Spacer()
-                    
-                    callMeButton
-                    
-                       
+                    HStack(spacing: 16) {
+                        sendGeoButton
+                        callMeButton
+                    }
+                    .padding()
+                    .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                    .cornerRadius(20)
                 }
             }
         }
