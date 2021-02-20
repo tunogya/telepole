@@ -59,8 +59,8 @@ extension TelepoleModel {
     }
     
     func updateAccount(id: Account.ID) {
-        Pet().getPetByID(selectedPetID) { pet in
-            self.selectPet(pet)
+        Account().getUserByID(id) { account in
+            self.updateAccount(user: account)
         }
     }
     
