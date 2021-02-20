@@ -19,6 +19,13 @@ struct AppSingleView: View {
     
     @EnvironmentObject private var model: TelepoleModel
     
+    var time: String {
+        if lastGeo.pet.id.isEmpty {
+            return ""
+        }
+        return updateTimeToCurrennTime(timeStamp: lastGeo._createTime)
+    }
+    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -69,7 +76,9 @@ struct AppSingleView: View {
             
             Text("\(lastGeo.latitude), \(lastGeo.longitude)")
                 .font(.callout)
-                
+            
+            Text(time)
+                .font(.footnote)
         }
     }
     
