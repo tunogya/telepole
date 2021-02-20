@@ -15,13 +15,9 @@ struct AppSingleView: View {
     @State private var isShowSettingView = false
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
-    
     @EnvironmentObject private var model: TelepoleModel
     
     var time: String {
-        if model.selectedPet.id.isEmpty {
-            return ""
-        }
         return updateTimeToCurrennTime(timeStamp: model.lastGeo._createTime)
     }
     
@@ -72,11 +68,16 @@ struct AppSingleView: View {
             }
             .disabled(model.selectedPet.id.isEmpty ? true : false)
             
-            Text("\(model.lastGeo.latitude), \(model.lastGeo.longitude)")
+            Text(model.lastAddress)
                 .font(.callout)
             
-            Text(time)
-                .font(.footnote)
+            if !model.selectedPet.id.isEmpty && !model.lastGeo._createTime.isZero {
+                Text("纬度:\(model.lastGeo.latitude), 经度:\(model.lastGeo.longitude)")
+                    .font(.footnote)
+                
+                Text(time)
+                    .font(.footnote)
+            }
         }
     }
     

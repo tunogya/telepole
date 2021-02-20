@@ -31,6 +31,12 @@ class TelepoleModel: ObservableObject {
         }
     }
     
+    @Published private(set) var lastAddress: String = "" {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     @UserDefault("userCredential", defaultValue: "")
     private var userCredential: String
     
@@ -111,6 +117,7 @@ extension TelepoleModel {
 extension TelepoleModel {
     func updateGeo(_ geo: Geo) {
         lastGeo = geo
+        getAddress(latitude: geo.latitude, longitude: geo.longitude)
     }
     
     func updateGeo(petID: Pet.ID) {
@@ -118,4 +125,60 @@ extension TelepoleModel {
             self.updateGeo(geo)
         }
     }
+    
+    func getAddress(latitude: Double, longitude: Double) {
+        if ( Int(latitude) == 0 && Int(longitude) == 0 ){
+            self.lastAddress = "没有可用的位置信息"
+        }
+        reverseGeocode(latitude: latitude, longitude: longitude) { address in
+            self.lastAddress = address
+        }
+    }
+    
+    func reverseGeocode(latitude: Double, longitude: Double, completion: @escaping (String) -> ()) {
+        let geocoder = CLGeocoder()
+        let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geocoder.reverseGeocodeLocation(currentLocation) { placemarks, error in
+            let array = NSArray(object: "zh-hans")
+            UserDefaults.standard.set(array, forKey: "AppleLanguages")
+            if error != nil {
+                return
+            }
+            
+            if let p = placemarks?[0]{
+                var address = ""
+                
+                if let country = p.country {
+                    address.append("\(country)")
+                }
+                if let administrativeArea = p.administrativeArea {
+                    address.append("\(administrativeArea)")
+                }
+                if let subAdministrativeArea = p.subAdministrativeArea {
+                    address.append("\(subAdministrativeArea)")
+                }
+                if let locality = p.locality {
+                    address.append("\(locality)")
+                }
+                if let subLocality = p.subLocality {
+                    address.append("\(subLocality)")
+                }
+                if let thoroughfare = p.thoroughfare {
+                    address.append("\(thoroughfare)")
+                }
+                if let subThoroughfare = p.subThoroughfare {
+                    address.append("\(subThoroughfare)")
+                }
+                if let name = p.name {
+                    address.append("\(name)")
+                }
+                completion(address)
+            } else {
+                print("No placemarks!")
+                completion("没有可用的位置信息")
+            }
+        }
+    }
+
 }
