@@ -38,8 +38,6 @@ struct SettingView: View {
                             Account().login(user) { (user) in
                                 model.loadAccount(user: user)
                                 model.saveUserCredential(credential: user.id)
-                                print("登陆完成")
-                                print(isShowLoginButton)
                             }
                         }else {
                             // 新注册
@@ -105,7 +103,9 @@ struct SettingView: View {
                         }
                         
                         Button(action: {
-                            model.myPetIDs = owner.pets
+                            for petID in owner.pets {
+                                model.addMyPets(id: petID)
+                            }
                         }) {
                             HStack{
                                 Text("恢复我的宠物")

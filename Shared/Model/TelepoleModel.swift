@@ -12,27 +12,6 @@ import SwiftUI
 
 let HOSTNAME = "https://app.wakanda.vip/api/telepole/v1.0"
 
-@propertyWrapper
-struct UserDefault<T: Codable> {
-    let key: String
-    let defaultValue: T
-    let defaults = UserDefaults(suiteName: "group.wakanda.telepole")
-    
-    init(_ key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
-    }
-    
-    var wrappedValue: T {
-        get {
-            return defaults?.object(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            defaults?.set(newValue, forKey: key)
-        }
-    }
-}
-
 class TelepoleModel: ObservableObject {
     @Published private(set) var account = Account() {
         willSet {
@@ -41,12 +20,6 @@ class TelepoleModel: ObservableObject {
     }
     
     @Published private(set) var selectedPet = Pet() {
-        willSet {
-            objectWillChange.send()
-        }
-    }
-    
-    @Published private(set) var myPets = [Pet]() {
         willSet {
             objectWillChange.send()
         }
@@ -113,5 +86,16 @@ extension TelepoleModel {
         Pet().getPetByID(id) { pet in
             self.selectPet(pet)
         }
+    }
+    
+    func isMyPet(id: Pet.ID) -> Bool {
+        myPetIDs.contains(id)
+    }
+    
+    func addMyPets(id: Pet.ID) {
+        guard !isMyPet(id: id) else {
+            return
+        }
+        myPetIDs.append(id)
     }
 }

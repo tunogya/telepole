@@ -17,6 +17,10 @@
 		1718BB3B25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
 		1718BB3C25DBFCB30079C92D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB3A25DBFCB30079C92D /* MapView.swift */; };
 		1718BB4325DC081A0079C92D /* TelepoleAppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */; };
+		17193E1A25E0ECA800C97163 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17193E1925E0ECA700C97163 /* Utils.swift */; };
+		17193E1B25E0ECA800C97163 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17193E1925E0ECA700C97163 /* Utils.swift */; };
+		17193E1D25E0EDD700C97163 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17193E1C25E0EDD700C97163 /* UserDefault.swift */; };
+		17193E1E25E0EDD700C97163 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17193E1C25E0EDD700C97163 /* UserDefault.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* Account.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -91,6 +95,8 @@
 		1718BB3925DAB5160079C92D /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1718BB3A25DBFCB30079C92D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleAppClip.swift; sourceTree = "<group>"; };
+		17193E1925E0ECA700C97163 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		17193E1C25E0EDD700C97163 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172F4FDE25B722A30091F044 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -151,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				172D929625ADD27300DC14B8 /* LocationManager.swift */,
+				17193E1925E0ECA700C97163 /* Utils.swift */,
+				17193E1C25E0EDD700C97163 /* UserDefault.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -447,8 +455,10 @@
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
 				17F1716B25BD6AD300B12947 /* TelepoleModel.swift in Sources */,
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
+				17193E1A25E0ECA800C97163 /* Utils.swift in Sources */,
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* Account.swift in Sources */,
+				17193E1D25E0EDD700C97163 /* UserDefault.swift in Sources */,
 				1718BB3025DA21940079C92D /* AppSingleView.swift in Sources */,
 				1767A55025CD69A800DCB1BE /* ContentView.swift in Sources */,
 				1767A57F25CEE0F200DCB1BE /* Owner.swift in Sources */,
@@ -471,8 +481,10 @@
 				1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */,
 				176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */,
 				176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */,
+				17193E1B25E0ECA800C97163 /* Utils.swift in Sources */,
 				176F43F125D55B4200BE5C00 /* ContentView.swift in Sources */,
 				1718BB3125DA21940079C92D /* AppSingleView.swift in Sources */,
+				17193E1E25E0EDD700C97163 /* UserDefault.swift in Sources */,
 				176F440125D8030E00BE5C00 /* TelepoleModel.swift in Sources */,
 				176F43EF25D50AE900BE5C00 /* LocationManager.swift in Sources */,
 				176F43F725D55B6300BE5C00 /* Geo.swift in Sources */,
