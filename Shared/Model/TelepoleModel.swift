@@ -25,6 +25,12 @@ class TelepoleModel: ObservableObject {
         }
     }
     
+    @Published private(set) var lastGeo = Geo() {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     @UserDefault("userCredential", defaultValue: "")
     private var userCredential: String
     
@@ -75,11 +81,13 @@ extension TelepoleModel {
 extension TelepoleModel {
     func clearMyPetIDs() {
         myPetIDs.removeAll()
+        lastGeo = Geo()
     }
     
     func selectPet(_ pet: Pet) {
         selectedPet = pet
         selectedPetID = pet.id
+        updateGeo(petID: pet.id)
     }
     
     func selectPet(id: Pet.ID) {
@@ -97,5 +105,17 @@ extension TelepoleModel {
             return
         }
         myPetIDs.append(id)
+    }
+}
+
+extension TelepoleModel {
+    func updateGeo(_ geo: Geo) {
+        lastGeo = geo
+    }
+    
+    func updateGeo(petID: Pet.ID) {
+        Geo().getLastGeo(petID: petID) { geo in
+            self.updateGeo(geo)
+        }
     }
 }

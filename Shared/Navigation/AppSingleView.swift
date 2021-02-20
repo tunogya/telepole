@@ -15,15 +15,14 @@ struct AppSingleView: View {
     @State private var isShowSettingView = false
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
-    @State private var lastGeo: Geo = Geo()
     
     @EnvironmentObject private var model: TelepoleModel
     
     var time: String {
-        if lastGeo.pet.id.isEmpty {
+        if model.selectedPet.id.isEmpty {
             return ""
         }
-        return updateTimeToCurrennTime(timeStamp: lastGeo._createTime)
+        return updateTimeToCurrennTime(timeStamp: model.lastGeo._createTime)
     }
     
     var petInfo: some View {
@@ -66,15 +65,14 @@ struct AppSingleView: View {
     var petGeoInfo: some View {
         VStack(alignment: .leading, spacing: 4){
             Button {
-                Geo().getLastGeo(petID: model.selectedPet.id) { geo in
-                    lastGeo = geo
-                }
+                model.updateGeo(petID: model.selectedPet.id)
             } label: {
-                Text("获取宠物最新位置")
+                Text("获取宠物位置")
                     .font(.footnote)
             }
+            .disabled(model.selectedPet.id.isEmpty ? true : false)
             
-            Text("\(lastGeo.latitude), \(lastGeo.longitude)")
+            Text("\(model.lastGeo.latitude), \(model.lastGeo.longitude)")
                 .font(.callout)
             
             Text(time)
@@ -103,7 +101,7 @@ struct AppSingleView: View {
                 .frame(width: 60, height: 60, alignment: .center)
         }
         .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-        .disabled(model.selectedPet.id == "" ? true : false)
+        .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
     var wakandaSlogan: some View {
