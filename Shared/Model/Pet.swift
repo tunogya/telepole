@@ -19,6 +19,7 @@ struct Pet: Identifiable, Codable {
     var gender: String = "boy"
     var phone: String = ""
     var coins: Double = 0
+    var _createTime: Double = Date().timeIntervalSince1970
 }
 
 // Pet API
@@ -47,8 +48,9 @@ extension Pet {
                     variety: jsonData["variety"].stringValue,
                     gender: jsonData["gender"].stringValue,
                     phone: jsonData["phone"].stringValue,
-                    coins: jsonData["coins"].doubleValue
-                ))
+                    coins: jsonData["coins"].doubleValue,
+                    _createTime: jsonData["_createTime"].doubleValue)
+                )
             case .failure(let error):
                 debugPrint(error)
             }
@@ -57,7 +59,7 @@ extension Pet {
     
 //   宠物注册
     func createPet(_ pet: Pet, completion: @escaping (Pet) -> ()) {
-        let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins]]]
+        let parameters: [String: Array<Any>] = ["data": [["name": pet.name, "description": pet.description, "profile_image_url": pet.profile_image_url, "protected": pet.protected, "verified": pet.verified, "gender": pet.gender, "variety": pet.variety, "phone": pet.phone, "coins": pet.coins, "_createTime": pet._createTime]]]
         let url = "\(HOSTNAME)/pets/"
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in

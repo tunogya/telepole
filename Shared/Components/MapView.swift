@@ -54,6 +54,8 @@ struct MapView: View {
                 .padding()
             }
         }
+        .cornerRadius(24)
+        .frame(height: SCREENHEIGHT*0.5)
     }
 }
 

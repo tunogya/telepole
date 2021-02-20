@@ -13,9 +13,9 @@ var SCREENHEIGHT = UIScreen.main.bounds.height
 struct AppSingleView: View {
     @State private var isShowPetRegisterView = false
     @State private var isShowSettingView = false
-    @State private var isFoldMap = false
     @State private var isShowWakanda = false
     @State private var status: String = "😀"
+    @State private var lastGeo: Geo = Geo()
     
     @EnvironmentObject private var model: TelepoleModel
     
@@ -56,16 +56,18 @@ struct AppSingleView: View {
         }
     }
     
-    var foldPetInfo: some View {
-        VStack(alignment: .leading){
+    var petGeoInfo: some View {
+        VStack(alignment: .leading, spacing: 4){
             Button {
-                isFoldMap.toggle()
+                
             } label: {
-                Text((isFoldMap ? "折叠" : "展开" ) + "宠物信息")
+                Text("获取宠物最新位置")
                     .font(.footnote)
-                    .foregroundColor(Color(isFoldMap ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
             }
-            Text(isFoldMap ? "" : "...")
+            
+            Text("...")
+                .font(.callout)
+                
         }
     }
     
@@ -122,13 +124,11 @@ struct AppSingleView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     MapView()
-                        .cornerRadius(24)
-                        .frame(height: isFoldMap ? SCREENWIDTH*0.618 : SCREENWIDTH*1.114)
                         .padding(.top, 80)
                     
                     wakandaSlogan
                     
-                    foldPetInfo
+                    petGeoInfo
                 }
                 .animation(Animation.openMap)
             }

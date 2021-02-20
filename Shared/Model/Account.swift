@@ -14,6 +14,7 @@ struct Account:Identifiable, Codable {
     var user: String = ""
     var fullName: String = ""
     var email: String = ""
+    var _createTime: Double = Date().timeIntervalSince1970
 }
 
 // AccountAPI
@@ -30,7 +31,8 @@ extension Account {
                 let fullName = JSON(value)["data"][0]["fullName"].stringValue
                 let user = JSON(value)["data"][0]["user"].stringValue
                 let user_id = JSON(value)["data"][0]["_id"].stringValue
-                completion(Account(id: user_id, user: user, fullName: fullName, email: email))
+                let _createTime = JSON(value)["data"][0]["_createTime"].doubleValue
+                completion(Account(id: user_id, user: user, fullName: fullName, email: email, _createTime: _createTime))
             case .failure(let error):
                 debugPrint(error)
             }
@@ -40,7 +42,7 @@ extension Account {
     //    用户注册
     func register(_ user: Account, completion: @escaping (Account) -> ()) {
         let url = "\(HOSTNAME)/users/"
-        let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user]]]
+        let parameters: [String: Array<Any>] = ["data": [["fullName": user.fullName, "email": user.email, "user": user.user, "_createTime": user._createTime]]]
        
         AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
             switch response.result {
@@ -66,7 +68,8 @@ extension Account {
                 let fullName = JSON(value)["data"]["fullName"].stringValue
                 let user = JSON(value)["data"]["user"].stringValue
                 let user_id = JSON(value)["data"]["_id"].stringValue
-                completion(Account(id: user_id, user: user, fullName: fullName, email: email))
+                let _createTime = JSON(value)["data"]["_createTime"].doubleValue
+                completion(Account(id: user_id, user: user, fullName: fullName, email: email, _createTime: _createTime))
             case .failure(let error):
                 debugPrint(error)
             }

@@ -20,3 +20,9 @@ extension Array {
         return result
     }
 }
+
+func stringConvertDate(string:String, dateFormat:String="yyyy-MM-dd HH:mm:ss ZZZ") -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = dateFormat
+    return dateFormatter.date(from: string)!
+}
