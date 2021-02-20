@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct Geo {
     var pet: Pet = Pet()
-    var name: String = ""
+    var name: String = "佚名"
     var latitude: Double = 0
     var longitude: Double = 0
     var _createTime: Double = Date().timeIntervalSince1970
@@ -34,32 +34,30 @@ extension Geo {
         }
     }
     
-    func getLastGeo(petID: Pet.ID, completion: @escaping ([Geo]) -> ()){
-        let url = "\(HOSTNAME)/geo/find/"
+    func getLastGeo(petID: Pet.ID, completion: @escaping (Geo) -> ()){
+        let url = "\(HOSTNAME)/geo/find/?limit=1"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
-                let items = JSON(value)["data"].arrayValue
-                let geos: [Geo] = items.map { item in
-                    Geo(pet: Pet(id: item["pet"]["_id"].stringValue,
-                                 name: item["pet"]["name"].stringValue,
-                                 description: item["pet"]["description"].stringValue,
-                                 profile_image_url: item["pet"]["profile_image_url"].stringValue,
-                                 protected: item["pet"]["protected"].boolValue,
-                                 verified: item["pet"]["verified"].boolValue,
-                                 variety: item["pet"]["variety"].stringValue,
-                                 gender: item["pet"]["gender"].stringValue,
-                                 phone: item["pet"]["phone"].stringValue,
-                                 coins: item["pet"]["coins"].doubleValue,
-                                 _createTime: item["pet"]["_createTime"].doubleValue),
-                        name: item["name"].stringValue,
-                        latitude: item["latitude"].doubleValue,
-                        longitude: item["longitude"].doubleValue,
-                        _createTime: item["_createTime"].doubleValue)
-                }
-                completion(geos)
+                let item = JSON(value)["data"][0]
+                let geo = Geo(pet: Pet(id: item["pet"]["_id"].stringValue,
+                                       name: item["pet"]["name"].stringValue,
+                                       description: item["pet"]["description"].stringValue,
+                                       profile_image_url: item["pet"]["profile_image_url"].stringValue,
+                                       protected: item["pet"]["protected"].boolValue,
+                                       verified: item["pet"]["verified"].boolValue,
+                                       variety: item["pet"]["variety"].stringValue,
+                                       gender: item["pet"]["gender"].stringValue,
+                                       phone: item["pet"]["phone"].stringValue,
+                                       coins: item["pet"]["coins"].doubleValue,
+                                       _createTime: item["pet"]["_createTime"].doubleValue),
+                              name: item["name"]["fullName"].stringValue,
+                              latitude: item["latitude"].doubleValue,
+                              longitude: item["longitude"].doubleValue,
+                              _createTime: item["_createTime"].doubleValue)
+                completion(geo)
             case .failure(let error):
                 print(error)
             }
@@ -88,7 +86,7 @@ extension Geo {
                                  phone: item["pet"]["phone"].stringValue,
                                  coins: item["pet"]["coins"].doubleValue,
                                  _createTime: item["pet"]["_createTime"].doubleValue),
-                        name: item["name"].stringValue,
+                        name: item["name"]["fullName"].stringValue,
                         latitude: item["latitude"].doubleValue,
                         longitude: item["longitude"].doubleValue,
                         _createTime: item["_createTime"].doubleValue)

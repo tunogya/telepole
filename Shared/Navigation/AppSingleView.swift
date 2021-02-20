@@ -59,13 +59,15 @@ struct AppSingleView: View {
     var petGeoInfo: some View {
         VStack(alignment: .leading, spacing: 4){
             Button {
-                
+                Geo().getLastGeo(petID: model.selectedPet.id) { geo in
+                    lastGeo = geo
+                }
             } label: {
                 Text("获取宠物最新位置")
                     .font(.footnote)
             }
             
-            Text("...")
+            Text("\(lastGeo.latitude), \(lastGeo.longitude)")
                 .font(.callout)
                 
         }
