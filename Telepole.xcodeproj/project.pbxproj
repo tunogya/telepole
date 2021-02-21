@@ -23,6 +23,8 @@
 		17193E1E25E0EDD700C97163 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17193E1C25E0EDD700C97163 /* UserDefault.swift */; };
 		1726558425E27357006C81A5 /* AMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726558325E27357006C81A5 /* AMap.swift */; };
 		1726558525E27357006C81A5 /* AMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726558325E27357006C81A5 /* AMap.swift */; };
+		1726558725E2980D006C81A5 /* AnimatableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726558625E2980D006C81A5 /* AnimatableModifier.swift */; };
+		1726558825E2980D006C81A5 /* AnimatableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726558625E2980D006C81A5 /* AnimatableModifier.swift */; };
 		172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172D929625ADD27300DC14B8 /* LocationManager.swift */; };
 		172F4FDF25B722A30091F044 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172F4FDE25B722A30091F044 /* Account.swift */; };
 		17322AE02593644600A0049B /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17322ADF2593644600A0049B /* SettingView.swift */; };
@@ -100,6 +102,7 @@
 		17193E1925E0ECA700C97163 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		17193E1C25E0EDD700C97163 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		1726558325E27357006C81A5 /* AMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMap.swift; sourceTree = "<group>"; };
+		1726558625E2980D006C81A5 /* AnimatableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableModifier.swift; sourceTree = "<group>"; };
 		172D929625ADD27300DC14B8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		172F4FDE25B722A30091F044 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		17322ADF2593644600A0049B /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				1718BB2A25DA1B970079C92D /* Animations.swift */,
+				1726558625E2980D006C81A5 /* AnimatableModifier.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -459,6 +463,7 @@
 				172D929725ADD27300DC14B8 /* LocationManager.swift in Sources */,
 				17F1716B25BD6AD300B12947 /* TelepoleModel.swift in Sources */,
 				175AAEC225AB3E1D0009B862 /* LottieView.swift in Sources */,
+				1726558725E2980D006C81A5 /* AnimatableModifier.swift in Sources */,
 				17193E1A25E0ECA800C97163 /* Utils.swift in Sources */,
 				177D1721259F269A00C75B4A /* PetRegisterView.swift in Sources */,
 				172F4FDF25B722A30091F044 /* Account.swift in Sources */,
@@ -486,6 +491,7 @@
 				1718BB2825D979920079C92D /* PetRegisterView.swift in Sources */,
 				176F43F525D55B5B00BE5C00 /* CardHeader.swift in Sources */,
 				176F43F825D55B6300BE5C00 /* VisualEffectBlur.swift in Sources */,
+				1726558825E2980D006C81A5 /* AnimatableModifier.swift in Sources */,
 				17193E1B25E0ECA800C97163 /* Utils.swift in Sources */,
 				176F43F125D55B4200BE5C00 /* ContentView.swift in Sources */,
 				1718BB3125DA21940079C92D /* AppSingleView.swift in Sources */,

@@ -9,4 +9,5 @@ import SwiftUI
 
 extension Animation {
     static let openMap = Animation.spring(dampingFraction: 0.618)
+    static let rotate = Animation.linear.repeatForever(autoreverses: true).speed(1/8)
 }
