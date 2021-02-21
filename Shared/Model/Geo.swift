@@ -20,15 +20,18 @@ struct Geo {
 extension Geo {
     // 上传我的位置
     func postMyGeo(_ geo: Geo) {
-        let url = "\(HOSTNAME)/geo/"
-        let parameters: [String: Array<Any>] = ["data": [["latitude": geo.latitude, "longitude": geo.longitude, "name": geo.name, "pet": geo.pet.id, "_createTime": geo._createTime]]]
-       
-        AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
-            switch response.result {
-            case .success(_):
-                return
-            case .failure(let error):
-                debugPrint(error)
+        AMap().convertCoordinate(longitude: geo.longitude, latitude: geo.latitude) { locationsString in
+            let url = "\(HOSTNAME)/geo/"
+            let locations = locationsString.split(separator: ",")
+            let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "_createTime": geo._createTime]]]
+           
+            AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
+                switch response.result {
+                case .success(_):
+                    return
+                case .failure(let error):
+                    debugPrint(error)
+                }
             }
         }
     }
