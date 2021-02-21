@@ -67,14 +67,12 @@ struct AppSingleView: View {
                 model.autoUpdateGeo(petID: model.selectedPet.id)
             } label: {
                 HStack(spacing: 4) {
-                    Image(systemName: "arrow.clockwise")
-                        .animation(Animation.rotate)
-                        .rotationEffect(Angle.degrees(180))
-                    Text("获取宠物位置")
+                    Text("获取宠物位置 " + (model.isLoading ? "Loading..." : ""))
                 }
                 .font(.footnote)
             }
             .disabled(model.selectedPet.id.isEmpty ? true : false)
+            .animation(.easeIn)
             
             Text(model.lastAddress)
                 .font(.callout)
@@ -105,9 +103,11 @@ struct AppSingleView: View {
             withAnimation(Animation.easeInOut(duration: 1)) {
                 taps += 1
             }
+            model.startLoading()
             let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
             Geo().postMyGeo(geo){
                 model.autoUpdateGeo(petID: model.selectedPet.id)
+                model.stopLoading()
             }
         } label:{
             VStack{

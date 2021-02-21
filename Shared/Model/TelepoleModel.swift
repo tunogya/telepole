@@ -37,6 +37,12 @@ class TelepoleModel: ObservableObject {
         }
     }
     
+    @Published private(set) var isLoading: Bool = false {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
     @UserDefault("userCredential", defaultValue: "")
     private var userCredential: String
     
@@ -122,6 +128,7 @@ extension TelepoleModel {
     }
     
     func updateGeo(petID: Pet.ID) {
+        startLoading()
         Geo().getLastGeo(petID: petID) { geo in
             self.updateGeo(geo)
         }
@@ -139,6 +146,7 @@ extension TelepoleModel {
         }
         reverseGeocode(latitude: latitude, longitude: longitude) { address in
             self.lastAddress = address
+            self.stopLoading()
         }
     }
     
@@ -187,5 +195,16 @@ extension TelepoleModel {
             }
         }
     }
+}
 
+extension TelepoleModel {
+    func startLoading() {
+        isLoading = true
+    }
+    
+    func stopLoading() {
+        DispatchAfter(after: 1) {
+            self.isLoading = false
+        }
+    }
 }
