@@ -115,13 +115,13 @@ struct AppSingleView: View {
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)
                     .modifier(Bounce(animCount: CGFloat(taps)))
+                    .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
                 Text("上报位置")
                     .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
             }
-            
-          
         }
-        .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+       
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
@@ -134,12 +134,12 @@ struct AppSingleView: View {
                 Image(systemName: "phone.circle.fill")
                     .resizable()
                     .frame(width: 50, height: 50, alignment: .center)
+                    .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
                 Text("联系主人")
                     .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
             }
-           
         }
-        .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
