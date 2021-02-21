@@ -62,7 +62,7 @@ struct AppSingleView: View {
     var petGeoInfo: some View {
         VStack(alignment: .leading, spacing: 4){
             Button {
-                model.updateGeo(petID: model.selectedPet.id)
+                model.autoUpdateGeo(petID: model.selectedPet.id)
             } label: {
                 HStack(spacing: 4) {
                     Image(systemName: "arrow.clockwise")
@@ -76,7 +76,7 @@ struct AppSingleView: View {
                 .font(.callout)
             
             if !model.selectedPet.id.isEmpty && !model.lastGeo._createTime.isZero {
-                Text("纬度:\(model.lastGeo.latitude), 经度:\(model.lastGeo.longitude)")
+                Text("经度:\(model.lastGeo.longitude)，纬度:\(model.lastGeo.latitude)")
                     .font(.footnote)
                 
                 Text(time)
@@ -99,14 +99,20 @@ struct AppSingleView: View {
     var sendGeoButton: some View {
         Button {
             let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
-            Geo().postMyGeo(geo)
+            Geo().postMyGeo(geo){
+                model.autoUpdateGeo(petID: model.selectedPet.id)
+            }
         } label:{
-            Image(systemName: "paperplane.circle")
-                .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+            VStack{
+                Image(systemName: "paperplane.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50, alignment: .center)
+                Text("上报位置")
+                    .font(.footnote)
+            }
+          
         }
         .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-        .clipShape(Circle())
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
@@ -115,12 +121,16 @@ struct AppSingleView: View {
             guard let number = URL(string: "tel://" + model.selectedPet.phone) else { return }
             UIApplication.shared.open(number)
         } label: {
-            Image(systemName: "phone.circle.fill")
-                .resizable()
-                .frame(width: 50, height: 50, alignment: .center)
+            VStack{
+                Image(systemName: "phone.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50, alignment: .center)
+                Text("联系主人")
+                    .font(.footnote)
+            }
+           
         }
         .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-        .clipShape(Circle())
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
@@ -190,7 +200,7 @@ struct AppSingleView: View {
                 
                 HStack {
                     Spacer()
-                    HStack(spacing: 16) {
+                    HStack(spacing: 24) {
                         sendGeoButton
                         callMeButton
                     }

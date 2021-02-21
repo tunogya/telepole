@@ -19,7 +19,7 @@ struct Geo {
 
 extension Geo {
     // 上传我的位置
-    func postMyGeo(_ geo: Geo) {
+    func postMyGeo(_ geo: Geo, completion: @escaping () -> ()) {
         AMap().convertCoordinate(longitude: geo.longitude, latitude: geo.latitude) { locationsString in
             let url = "\(HOSTNAME)/geo/"
             let locations = locationsString.split(separator: ",")
@@ -28,7 +28,7 @@ extension Geo {
             AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
                 switch response.result {
                 case .success(_):
-                    return
+                    completion()
                 case .failure(let error):
                     debugPrint(error)
                 }

@@ -78,3 +78,24 @@ func timeToTimeStamp(time: String) -> Double {
     let timeStamp = last?.timeIntervalSince1970
     return timeStamp!
 }
+
+// 循环
+func DispatchTimer(timeInterval: Double, handler: @escaping (DispatchSourceTimer?)->())
+{
+    let timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+    timer.schedule(deadline: .now(), repeating: timeInterval)
+    timer.setEventHandler {
+        DispatchQueue.main.async {
+            handler(timer)
+        }
+    }
+    timer.resume()
+}
+
+// 延迟
+func DispatchAfter(after: Double, handler: @escaping ()->())
+{
+    DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+        handler()
+    }
+}

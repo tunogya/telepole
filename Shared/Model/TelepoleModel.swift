@@ -93,7 +93,8 @@ extension TelepoleModel {
     func selectPet(_ pet: Pet) {
         selectedPet = pet
         selectedPetID = pet.id
-        updateGeo(petID: pet.id)
+//        updateGeo(petID: pet.id)
+        autoUpdateGeo(petID: pet.id)
     }
     
     func selectPet(id: Pet.ID) {
@@ -123,6 +124,12 @@ extension TelepoleModel {
     func updateGeo(petID: Pet.ID) {
         Geo().getLastGeo(petID: petID) { geo in
             self.updateGeo(geo)
+        }
+    }
+    
+    func autoUpdateGeo(petID: Pet.ID) {
+        DispatchTimer(timeInterval: 30) {_ in
+            self.updateGeo(petID: petID)
         }
     }
     
