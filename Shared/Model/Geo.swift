@@ -9,7 +9,8 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct Geo {
+struct Geo: Identifiable {
+    var id = UUID()
     var pet: Pet = Pet()
     var name: String = "佚名"
     var latitude: Double = 0
@@ -37,7 +38,7 @@ extension Geo {
     }
     
     func getLastGeo(petID: Pet.ID, completion: @escaping (Geo) -> ()){
-        let url = "\(HOSTNAME)/geo/find/?limit=1"
+        let url = "\(HOSTNAME)/geo/find/?limit=10"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in

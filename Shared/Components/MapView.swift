@@ -8,26 +8,16 @@
 import SwiftUI
 import MapKit
 
-struct City: Identifiable {
-    let id = UUID()
-    let coordinate: CLLocationCoordinate2D
-}
-
 struct MapView: View {
     @State private var mapRegion = MKCoordinateRegion()
     @State private var trackingMode = MapUserTrackingMode.none
-    @State private var cities: [City] = [
-           City(coordinate: .init(latitude: 40.7128, longitude: 74.0060)),
-           City(coordinate: .init(latitude: 37.7749, longitude: 122.4194)),
-           City(coordinate: .init(latitude: 47.6062, longitude: 122.3321))
-       ]
     @EnvironmentObject private var model: TelepoleModel
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: cities) { city in
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: model.lastGeos) { geo in
                 MapAnnotation(
-                    coordinate: city.coordinate,
+                    coordinate: CLLocationCoordinate2D(latitude: geo.latitude, longitude: geo.longitude),
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
                     Circle()
