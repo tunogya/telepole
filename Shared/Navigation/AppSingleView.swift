@@ -64,7 +64,7 @@ struct AppSingleView: View {
     var petGeoInfo: some View {
         VStack(alignment: .leading, spacing: 4){
             Button {
-                model.autoUpdateGeo(petID: model.selectedPet.id)
+                model.autoUpdateGeos(petID: model.selectedPet.id)
             } label: {
                 HStack(spacing: 4) {
                     Text("获取宠物位置 " + (model.isLoading ? "Loading..." : ""))
@@ -105,7 +105,7 @@ struct AppSingleView: View {
             }
             let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
             Geo().postMyGeo(geo){
-                model.autoUpdateGeo(petID: model.selectedPet.id)
+                model.autoUpdateGeos(petID: model.selectedPet.id)
             }
         } label:{
             VStack{

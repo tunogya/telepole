@@ -37,30 +37,32 @@ extension Geo {
         }
     }
     
-    func getLastGeo(petID: Pet.ID, completion: @escaping (Geo) -> ()){
+    func getLastGeos(petID: Pet.ID, completion: @escaping ([Geo]) -> ()){
         let url = "\(HOSTNAME)/geo/find/?limit=10"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
-                let item = JSON(value)["data"][0]
-                let geo = Geo(pet: Pet(id: item["pet"]["_id"].stringValue,
-                                       name: item["pet"]["name"].stringValue,
-                                       description: item["pet"]["description"].stringValue,
-                                       profile_image_url: item["pet"]["profile_image_url"].stringValue,
-                                       protected: item["pet"]["protected"].boolValue,
-                                       verified: item["pet"]["verified"].boolValue,
-                                       variety: item["pet"]["variety"].stringValue,
-                                       gender: item["pet"]["gender"].stringValue,
-                                       phone: item["pet"]["phone"].stringValue,
-                                       coins: item["pet"]["coins"].doubleValue,
-                                       _createTime: item["pet"]["_createTime"].doubleValue),
-                              name: item["name"]["fullName"].stringValue,
-                              latitude: item["latitude"].doubleValue,
-                              longitude: item["longitude"].doubleValue,
-                              _createTime: item["_createTime"].doubleValue)
-                completion(geo)
+                let items = JSON(value)["data"].arrayValue
+                let geos: [Geo] = items.map { item in
+                    Geo(pet: Pet(id: item["pet"]["_id"].stringValue,
+                                           name: item["pet"]["name"].stringValue,
+                                           description: item["pet"]["description"].stringValue,
+                                           profile_image_url: item["pet"]["profile_image_url"].stringValue,
+                                           protected: item["pet"]["protected"].boolValue,
+                                           verified: item["pet"]["verified"].boolValue,
+                                           variety: item["pet"]["variety"].stringValue,
+                                           gender: item["pet"]["gender"].stringValue,
+                                           phone: item["pet"]["phone"].stringValue,
+                                           coins: item["pet"]["coins"].doubleValue,
+                                           _createTime: item["pet"]["_createTime"].doubleValue),
+                                  name: item["name"]["fullName"].stringValue,
+                                  latitude: item["latitude"].doubleValue,
+                                  longitude: item["longitude"].doubleValue,
+                                  _createTime: item["_createTime"].doubleValue)
+                }
+                completion(geos)
             case .failure(let error):
                 print(error)
             }
