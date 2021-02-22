@@ -125,16 +125,17 @@ extension TelepoleModel {
     func updateGeo(_ geo: Geo) {
         lastGeo = geo
         getAddress(latitude: geo.latitude, longitude: geo.longitude)
+        stopLoading()
     }
     
     func updateGeo(petID: Pet.ID) {
-        startLoading()
         Geo().getLastGeo(petID: petID) { geo in
             self.updateGeo(geo)
         }
     }
     
     func autoUpdateGeo(petID: Pet.ID) {
+        startLoading()
         DispatchTimer(timeInterval: 30) {_ in
             self.updateGeo(petID: petID)
         }
@@ -146,7 +147,6 @@ extension TelepoleModel {
         }
         reverseGeocode(latitude: latitude, longitude: longitude) { address in
             self.lastAddress = address
-            self.stopLoading()
         }
     }
     

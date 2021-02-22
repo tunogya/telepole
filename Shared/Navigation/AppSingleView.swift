@@ -103,11 +103,9 @@ struct AppSingleView: View {
             withAnimation(Animation.easeInOut(duration: 1)) {
                 taps += 1
             }
-            model.startLoading()
             let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
             Geo().postMyGeo(geo){
                 model.autoUpdateGeo(petID: model.selectedPet.id)
-                model.stopLoading()
             }
         } label:{
             VStack{
