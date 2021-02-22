@@ -124,7 +124,7 @@ extension TelepoleModel {
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {
         lastGeos = geos
-        getAddress(latitude: geos.last!.latitude, longitude: geos.last!.longitude)
+        getAddress(latitude: geos.first!.latitude, longitude: geos.first!.longitude)
         stopLoading()
     }
     

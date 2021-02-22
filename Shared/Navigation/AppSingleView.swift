@@ -77,10 +77,9 @@ struct AppSingleView: View {
             Text(model.lastAddress)
                 .font(.callout)
             
-            if !model.selectedPet.id.isEmpty && !model.lastGeos.last!._createTime.isZero {
-                Text("经度:\(model.lastGeos.last!.longitude)，纬度:\(model.lastGeos.last!.latitude)")
-                    .font(.footnote)
-                
+            if !model.selectedPet.id.isEmpty && !model.lastGeos.first!._createTime.isZero {
+//                Text("经度:\(model.lastGeos.first!.longitude)，纬度:\(model.lastGeos.first!.latitude)")
+//                    .font(.footnote)
                 Text(time)
                     .font(.footnote)
             }
