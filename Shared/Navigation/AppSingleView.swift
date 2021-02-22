@@ -21,7 +21,7 @@ struct AppSingleView: View {
     @State var taps = 0
     
     var time: String {
-        return updateTimeToCurrennTime(timeStamp: model.lastGeos.last!._createTime)
+        return updateTimeToCurrennTime(timeStamp: model.lastGeos.first!._createTime)
     }
     
     var petInfo: some View {
