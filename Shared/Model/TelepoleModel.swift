@@ -25,7 +25,7 @@ class TelepoleModel: ObservableObject {
         }
     }
     
-    @Published private(set) var lastGeo = Geo() {
+    @Published private(set) var lastGeo = [Geo()] {
         willSet {
             objectWillChange.send()
         }
@@ -93,7 +93,7 @@ extension TelepoleModel {
 extension TelepoleModel {
     func clearMyPetIDs() {
         myPetIDs.removeAll()
-        lastGeo = Geo()
+        lastGeo.removeAll()
     }
     
     func selectPet(_ pet: Pet) {
@@ -123,7 +123,7 @@ extension TelepoleModel {
 
 extension TelepoleModel {
     func updateGeo(_ geo: Geo) {
-        lastGeo = geo
+        lastGeo.append(geo)
         getAddress(latitude: geo.latitude, longitude: geo.longitude)
         stopLoading()
     }

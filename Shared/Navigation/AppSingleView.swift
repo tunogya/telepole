@@ -21,7 +21,7 @@ struct AppSingleView: View {
     @State var taps = 0
     
     var time: String {
-        return updateTimeToCurrennTime(timeStamp: model.lastGeo._createTime)
+        return updateTimeToCurrennTime(timeStamp: model.lastGeo.last!._createTime)
     }
     
     var petInfo: some View {
@@ -77,8 +77,8 @@ struct AppSingleView: View {
             Text(model.lastAddress)
                 .font(.callout)
             
-            if !model.selectedPet.id.isEmpty && !model.lastGeo._createTime.isZero {
-                Text("经度:\(model.lastGeo.longitude)，纬度:\(model.lastGeo.latitude)")
+            if !model.selectedPet.id.isEmpty && !model.lastGeo.last!._createTime.isZero {
+                Text("经度:\(model.lastGeo.last!.longitude)，纬度:\(model.lastGeo.last!.latitude)")
                     .font(.footnote)
                 
                 Text(time)
