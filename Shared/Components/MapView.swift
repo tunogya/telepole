@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import Foundation
 
 struct MapView: View {
     @State private var mapRegion = MKCoordinateRegion()
@@ -21,6 +22,11 @@ struct MapView: View {
         return model.lastGeos
     }
     
+    func getOpacity(timeInterval: Double) -> Double {
+        let diff = (Date().timeIntervalSince1970 - timeInterval) / 86400
+        return 1 - 2 * atan(diff) / Double.pi
+    }
+    
     var body: some View {
         ZStack{
             Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: geos) { geo in
@@ -30,9 +36,13 @@ struct MapView: View {
                 ) {
                     VStack{
                         Text("🐕")
+                            .font(.body)
                         Text(updateTimeToCurrennTime(timeStamp: geo._createTime))
+                            .font(Font.custom("Herculanum", size: 10))
+                            .fontWeight(.heavy)
+                            .foregroundColor(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
                     }
-                    .font(.body)
+                    .opacity(getOpacity(timeInterval: geo._createTime))
                 }
             }
             .onAppear(perform: {
