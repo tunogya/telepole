@@ -12,24 +12,43 @@ import Foundation
 struct MapView: View {
     @State private var mapRegion = MKCoordinateRegion()
     @State private var trackingMode = MapUserTrackingMode.none
-    @State private var isOnlyShowLatest: Bool = true
+    @State private var percent: Double = 10
     @EnvironmentObject private var model: TelepoleModel
     
-    var geos: [Geo] {
-        if isOnlyShowLatest {
-            return [model.lastGeos.first!]
-        }
-        return model.lastGeos
+    func getOpacity(timeInterval: Double) -> Double {
+        let diff = (Date().timeIntervalSince1970 - timeInterval) / 86400 * percent
+        return 1 - 2 * atan(diff) / Double.pi
     }
     
-    func getOpacity(timeInterval: Double) -> Double {
-        let diff = (Date().timeIntervalSince1970 - timeInterval) / 86400
-        return 1 - 2 * atan(diff) / Double.pi
+    var speedSlider: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                    .opacity(0.5)
+                Rectangle()
+                    .foregroundColor(.accentColor)
+                    .frame(width: geometry.size.width * CGFloat(self.percent / 100))
+                    .opacity(0.8)
+                HStack{
+                    Image(systemName: "tortoise.fill")
+                    Spacer()
+                    Image(systemName: "hare.fill")
+                }
+                .padding(.horizontal, 8)
+                .font(.footnote)
+            }
+            .cornerRadius(8)
+            .gesture(DragGesture(minimumDistance: 0)
+                        .onChanged({ value in
+                            self.percent = min(max(10, Double(value.location.x / geometry.size.width * 100)), 100)
+                        }))
+        }
     }
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: geos) { geo in
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: model.lastGeos) { geo in
                 MapAnnotation(
                     coordinate: CLLocationCoordinate2D(latitude: geo.latitude, longitude: geo.longitude),
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
@@ -51,18 +70,15 @@ struct MapView: View {
             
             VStack {
                 Spacer()
-                HStack{
-                    Button {
-                        isOnlyShowLatest.toggle()
-                    } label: {
-                        Text(!isOnlyShowLatest ? "最新足迹" : "所有足迹")
-                            .font(.footnote)
-                            .padding(8)
-                            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                            .cornerRadius(10)
+                HStack(alignment: .bottom){
+                    VStack(alignment: .leading, spacing: 4){
+                        Text("消逝速度")
+                            .font(Font.custom("Herculanum", size: 10))
+                            .fontWeight(.heavy)
+                            .padding(.horizontal, 8)
+                        speedSlider
+                            .frame(height: 28)
                     }
-
-                    Spacer()
                     Button(action: {
                         self.trackingMode = MapUserTrackingMode.follow
                     }, label: {
