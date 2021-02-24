@@ -67,7 +67,12 @@ struct AppSingleView: View {
                 model.autoUpdateGeos(petID: model.selectedPet.id)
             } label: {
                 HStack(spacing: 4) {
-                    Text("获取宠物位置 " + (model.isLoading ? "Loading..." : ""))
+                    Text("获取宠物位置")
+                        .padding(6)
+                        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                        .cornerRadius(8)
+                    Text(model.isLoading ? "Loading..." : "")
+                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 }
                 .font(.footnote)
             }
@@ -81,7 +86,8 @@ struct AppSingleView: View {
 //                Text("经度:\(model.lastGeos.first!.longitude)，纬度:\(model.lastGeos.first!.latitude)")
 //                    .font(.footnote)
                 Text(time)
-                    .font(.footnote)
+                    .font(Font.custom("Herculanum", size: 10))
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
             }
         }
     }
