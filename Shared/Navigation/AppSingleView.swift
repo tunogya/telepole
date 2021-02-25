@@ -119,7 +119,7 @@ struct AppSingleView: View {
                     .frame(width: 50, height: 50, alignment: .center)
                     .modifier(Bounce(animCount: CGFloat(taps)))
                     .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-                Text("上报位置")
+                Text("记录足迹")
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
             }
