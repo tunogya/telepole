@@ -67,7 +67,7 @@ struct AppSingleView: View {
                 model.autoUpdateGeos(petID: model.selectedPet.id)
             } label: {
                 HStack(spacing: 4) {
-                    Text("获取宠物位置")
+                    Text("获取宠物足迹")
                         .padding(6)
                         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                         .cornerRadius(8)
@@ -216,7 +216,8 @@ struct AppSingleView: View {
                         sendGeoButton
                         callMeButton
                     }
-                    .padding()
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
                     .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                     .cornerRadius(20)
                 }

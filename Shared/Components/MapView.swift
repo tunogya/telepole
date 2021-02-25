@@ -72,7 +72,7 @@ struct MapView: View {
                 Spacer()
                 HStack(alignment: .bottom){
                     VStack(alignment: .leading, spacing: 4){
-                        Text("消逝速度")
+                        Text("足迹消逝速度")
                             .font(Font.custom("Herculanum", size: 10))
                             .fontWeight(.heavy)
                             .padding(.horizontal, 8)
@@ -94,7 +94,7 @@ struct MapView: View {
             }
         }
         .cornerRadius(24)
-        .frame(height: SCREENHEIGHT*0.4)
+        .frame(height: SCREENHEIGHT*0.45)
     }
 }
 
