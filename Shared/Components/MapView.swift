@@ -20,6 +20,23 @@ struct MapView: View {
         return 1 - 2 * atan(diff) / Double.pi
     }
     
+    var wakandaSlogan: some View {
+        HStack {
+            Text("Telepole")
+                .font(.title2)
+                .fontWeight(.bold)
+            
+            Button {
+                
+            } label: {
+                Text("@Wakanda")
+                    .font(.caption)
+                    .padding(.leading, 4)
+            }
+        }
+        .padding(4)
+    }
+    
     var speedSlider: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -68,7 +85,8 @@ struct MapView: View {
                 self.trackingMode = MapUserTrackingMode.follow
             })
             
-            VStack {
+            VStack(alignment: .leading) {
+                wakandaSlogan
                 Spacer()
                 HStack(alignment: .bottom){
                     VStack(alignment: .leading, spacing: 4){
@@ -94,7 +112,7 @@ struct MapView: View {
             }
         }
         .cornerRadius(24)
-        .frame(height: SCREENHEIGHT*0.45)
+        .frame(height: SCREENHEIGHT*0.55)
     }
 }
 

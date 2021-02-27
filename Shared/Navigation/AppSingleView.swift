@@ -66,30 +66,25 @@ struct AppSingleView: View {
     
     var petGeoInfo: some View {
         VStack(alignment: .leading, spacing: 4){
-            Button {
-                model.autoUpdateGeos(petID: model.selectedPet.id)
-            } label: {
-                HStack(spacing: 4) {
-                    Text("获取宠物足迹")
-                        .padding(6)
-                        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                        .cornerRadius(8)
-                    Text(model.isLoading ? "Loading..." : "")
-                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                }
-                .font(.footnote)
-            }
-            .disabled(model.selectedPet.id.isEmpty ? true : false)
-            .animation(.easeIn)
-            
-            Text(model.lastAddress)
-                .font(.callout)
-            
             if !model.selectedPet.id.isEmpty {
-//                Text("经度:\(model.lastGeos.first!.longitude)，纬度:\(model.lastGeos.first!.latitude)")
-//                    .font(.footnote)
+                Button {
+                    model.autoUpdateGeos(petID: model.selectedPet.id)
+                } label: {
+                    HStack(spacing: 4) {
+                        Text("获取宠物足迹")
+                        Text(model.isLoading ? "..." : "")
+                            .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                    }
+                    .font(.footnote)
+                }
+                .disabled(model.selectedPet.id.isEmpty ? true : false)
+                .animation(.easeIn)
+                
+                Text(model.lastAddress)
+                    .font(.callout)
+                
                 Text(time)
-                    .font(Font.custom("Herculanum", size: 10))
+                    .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
             }
         }
@@ -127,7 +122,6 @@ struct AppSingleView: View {
                     .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
             }
         }
-       
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
@@ -149,38 +143,15 @@ struct AppSingleView: View {
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
-    var wakandaSlogan: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Telepole")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Button {
-                    isShowWakanda.toggle()
-                } label: {
-                    Text("@Wakanda")
-                        .font(.caption)
-                        .padding(.leading, 4)
-                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
-                }
-            }
-           
-            Text("Go wild, go beyond!")
-                .font(.title)
-                .fontWeight(.light)
-        }
-        .padding(.vertical)
-    }
-    
     var body: some View {
         ZStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     MapView()
                         .padding(.top, 80)
+                        .padding(.bottom)
                     
-                    wakandaSlogan
+//                    wakandaSlogan
                     
                     petGeoInfo
                 }
@@ -213,16 +184,19 @@ struct AppSingleView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Spacer()
-                    HStack(spacing: 24) {
-                        sendGeoButton
-                        callMeButton
+                if !model.selectedPet.id.isEmpty {
+                    HStack {
+                        Spacer()
+                        HStack(spacing: 24) {
+                            sendGeoButton
+                            callMeButton
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                        .cornerRadius(20)
+                        .padding(.bottom)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                    .cornerRadius(20)
                 }
             }
         }
