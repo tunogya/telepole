@@ -20,10 +20,17 @@ struct MapView: View {
         return 1 - 2 * atan(diff) / Double.pi
     }
     
+    var time: String {
+        guard let geo = model.lastGeos.first else {
+            return ""
+        }
+        return updateTimeToCurrennTime(timeStamp: geo._createTime)
+    }
+    
     var wakandaSlogan: some View {
         HStack {
             Text("Telepole")
-                .font(.title2)
+                .font(.body)
                 .fontWeight(.bold)
             
             Button {
@@ -35,32 +42,6 @@ struct MapView: View {
             }
         }
         .padding(4)
-    }
-    
-    var speedSlider: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                    .opacity(0.5)
-                Rectangle()
-                    .foregroundColor(.accentColor)
-                    .frame(width: geometry.size.width * CGFloat(self.percent / 100))
-                    .opacity(0.8)
-                HStack{
-                    Image(systemName: "tortoise.fill")
-                    Spacer()
-                    Image(systemName: "hare.fill")
-                }
-                .padding(.horizontal, 8)
-                .font(.footnote)
-            }
-            .cornerRadius(8)
-            .gesture(DragGesture(minimumDistance: 0)
-                        .onChanged({ value in
-                            self.percent = min(max(10, Double(value.location.x / geometry.size.width * 100)), 100)
-                        }))
-        }
     }
     
     var body: some View {
@@ -90,13 +71,12 @@ struct MapView: View {
                 Spacer()
                 HStack(alignment: .bottom){
                     VStack(alignment: .leading, spacing: 4){
-                        Text("足迹消逝速度")
-                            .font(Font.custom("Herculanum", size: 10))
-                            .fontWeight(.heavy)
-                            .padding(.horizontal, 8)
-                        speedSlider
-                            .frame(height: 28)
+                        Text("我的足迹: " + time)
+                            .font(.system(size: 9.0))
+                        Text(model.lastAddress)
+                            .font(.footnote)
                     }
+                    Spacer()
                     Button(action: {
                         self.trackingMode = MapUserTrackingMode.follow
                     }, label: {

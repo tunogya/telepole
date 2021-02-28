@@ -20,13 +20,6 @@ struct AppSingleView: View {
     
     @State var taps = 0
     
-    var time: String {
-        guard let geo = model.lastGeos.first else {
-            return ""
-        }
-        return updateTimeToCurrennTime(timeStamp: geo._createTime)
-    }
-    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -61,32 +54,6 @@ struct AppSingleView: View {
                 .font(.title)
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .clipShape(Circle())
-        }
-    }
-    
-    var petGeoInfo: some View {
-        VStack(alignment: .leading, spacing: 4){
-            if !model.selectedPet.id.isEmpty {
-                Button {
-                    model.autoUpdateGeos(petID: model.selectedPet.id)
-                } label: {
-                    HStack(spacing: 4) {
-                        Text("获取宠物足迹")
-                        Text(model.isLoading ? "..." : "")
-                            .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                    }
-                    .font(.footnote)
-                }
-                .disabled(model.selectedPet.id.isEmpty ? true : false)
-                .animation(.easeIn)
-                
-                Text(model.lastAddress)
-                    .font(.callout)
-                
-                Text(time)
-                    .font(.footnote)
-                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-            }
         }
     }
     
@@ -153,7 +120,6 @@ struct AppSingleView: View {
                     
 //                    wakandaSlogan
                     
-                    petGeoInfo
                 }
                 .animation(Animation.openMap)
             }
@@ -183,21 +149,6 @@ struct AppSingleView: View {
                 .padding(.vertical)
                 
                 Spacer()
-                
-                if !model.selectedPet.id.isEmpty {
-                    HStack {
-                        Spacer()
-                        HStack(spacing: 24) {
-                            sendGeoButton
-                            callMeButton
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
-                        .cornerRadius(20)
-                        .padding(.bottom)
-                    }
-                }
             }
         }
         .padding(.horizontal)
