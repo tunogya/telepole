@@ -33,13 +33,10 @@ struct MapView: View {
                 .font(.body)
                 .fontWeight(.bold)
             
-            Button {
-                
-            } label: {
-                Text("@Wakanda")
-                    .font(.caption)
-                    .padding(.leading, 4)
-            }
+            Text("@Wakanda")
+                .font(.caption)
+                .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
+                .padding(.leading, 4)
         }
         .padding(4)
     }
@@ -83,8 +80,8 @@ struct MapView: View {
                         Image(systemName: "scope")
                             .font(.body)
                             .padding(8)
-                            .foregroundColor(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
-                            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+                            .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
+                            .background(Color.white)
                             .clipShape(Circle())
                     })
                 }

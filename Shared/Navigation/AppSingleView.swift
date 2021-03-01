@@ -20,6 +20,10 @@ struct AppSingleView: View {
     
     @State var taps = 0
     
+    var disabled: Bool {
+        return true
+    }
+    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -88,7 +92,7 @@ struct AppSingleView: View {
                 Spacer()
             }
             .padding(.vertical, 12)
-            .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+            .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
             .background(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
             .cornerRadius(28)
         }
@@ -103,14 +107,8 @@ struct AppSingleView: View {
             VStack{
                 Image(systemName: "phone.circle.fill")
                     .resizable()
-                    .frame(width: 50, height: 50, alignment: .center)
-                    .foregroundColor(Color(model.selectedPet.id == "" ? #colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1) : #colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
-                Text("联系主人")
-                    .font(.footnote)
-                    .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
             }
         }
-        .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
     var body: some View {
