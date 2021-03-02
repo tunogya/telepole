@@ -15,7 +15,8 @@ struct PetRegisterView: View {
         VStack(spacing: 0) {
             CardHeader(flag: $isShow, hasEditButton: false, title: "增加宠物")
             
-            RegisterFormPicker(index: $pageIndex)
+            FormPicker(index: $pageIndex, page: ["已注册", "新注册"])
+                .padding()
                 .background(Color(.systemGroupedBackground))
             
             Form {
@@ -125,17 +126,16 @@ struct NewRegisterForm: View {
     }
 }
 
-struct RegisterFormPicker: View {
+struct FormPicker: View {
     @Binding var index: Int
     
-    let page: [String] = ["已注册", "新注册"]
+    let page: [String]
     var body: some View {
         Picker(selection: $index, label: Text("Picker")) {
             ForEach(0 ..< page.count) {
                 Text(self.page[$0])
             }
         }
-        .padding()
         .pickerStyle(SegmentedPickerStyle())
     }
 }

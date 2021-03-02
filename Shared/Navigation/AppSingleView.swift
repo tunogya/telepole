@@ -19,7 +19,7 @@ struct AppSingleView: View {
     @ObservedObject var locationManager = LocationManager()
     
     @State var taps = 0
-    
+    @State var pageIndex = 0
     var petInfo: some View {
         Button(action: {
         }) {
@@ -119,18 +119,24 @@ struct AppSingleView: View {
                         }
                     #endif
                 }
-                .padding(.vertical)
                 
                 MapView()
                     .padding(.bottom)
                 
                 VStack(alignment: .leading) {
-                    Text("足迹发现")
-                        .font(.title)
-                        .bold()
+                    HStack {
+                        Text("足迹发现")
+                            .font(.title)
+                            .bold()
+                            .padding(.trailing)
+                        
+                        FormPicker(index: $pageIndex, page: ["我的", "新朋友"])
+                            .padding(.leading)
+                    }
+                    .padding(.bottom, 12)
                     
                     ForEach(model.lastGeos){ geo in
-                        FindOtherPetListItem(geo: geo)
+                        FindOtherPetFootItem(geo: geo)
                     }
                 }
                 .padding(.bottom, 80)
@@ -155,10 +161,44 @@ struct AppSingleView_Previews: PreviewProvider {
     }
 }
 
-
-struct FindOtherPetListItem: View {
+struct FindOtherPetFootItem: View {
     let geo: Geo
-    
+    var time: String {
+        return updateTimeToCurrennTime(timeStamp: geo._createTime)
+    }
+    var body: some View {
+        HStack{
+            VStack(alignment: .leading, spacing: 6){
+                Text(geo.pet.name + ", " + geo.pet.variety)
+                    .font(.body)
+                    .lineLimit(2)
+                
+                Text(time)
+                    .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+            }
+            
+            Spacer()
+            
+            Button {
+                guard let number = URL(string: "tel://" + geo.pet.phone) else { return }
+                UIApplication.shared.open(number)
+            } label: {
+                VStack{
+                    Image(systemName: "phone.circle.fill")
+                        .font(.title)
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+        .cornerRadius(16)
+    }
+}
+
+struct FindMyPetFootItem: View {
+    let geo: Geo
     var time: String {
         return updateTimeToCurrennTime(timeStamp: geo._createTime)
     }
