@@ -75,7 +75,7 @@ struct AppSingleView: View {
             }
             let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
             Geo().postMyGeo(geo){
-                model.autoUpdateGeos(petID: model.selectedPet.id)
+                model.updateGeos(petID: model.selectedPet.id)
             }
         } label:{
             HStack(){
