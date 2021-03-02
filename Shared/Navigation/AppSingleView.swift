@@ -135,9 +135,16 @@ struct AppSingleView: View {
                     }
                     .padding(.bottom, 12)
                     
-                    ForEach(model.lastGeos){ geo in
-                        FindOtherPetFootItem(geo: geo)
+                    if pageIndex == 0 {
+                        ForEach(model.lastGeos){ geo in
+                            FindMyPetFootItem(geo: geo)
+                        }
+                    } else {
+                        ForEach(model.lastGeos){ geo in
+                            FindOtherPetFootItem(geo: geo)
+                        }
                     }
+                   
                 }
                 .padding(.bottom, 80)
             }
@@ -217,12 +224,12 @@ struct FindMyPetFootItem: View {
             Spacer()
             
             Button {
-                guard let number = URL(string: "tel://" + geo.pet.phone) else { return }
-                UIApplication.shared.open(number)
+              
             } label: {
                 VStack{
-                    Image(systemName: "phone.circle.fill")
+                    Image(systemName: "trash.circle.fill")
                         .font(.title)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 }
             }
         }
