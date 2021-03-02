@@ -35,7 +35,7 @@ struct MapView: View {
             
             Text("@Wakanda")
                 .font(.caption)
-                .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
+                .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 .padding(.leading, 4)
         }
         .padding(4)

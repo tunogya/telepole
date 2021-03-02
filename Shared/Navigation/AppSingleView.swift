@@ -20,10 +20,6 @@ struct AppSingleView: View {
     
     @State var taps = 0
     
-    var disabled: Bool {
-        return true
-    }
-    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -99,34 +95,9 @@ struct AppSingleView: View {
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
     
-    var callMeButton: some View {
-        Button {
-            guard let number = URL(string: "tel://" + model.selectedPet.phone) else { return }
-            UIApplication.shared.open(number)
-        } label: {
-            VStack{
-                Image(systemName: "phone.circle.fill")
-                    .resizable()
-            }
-        }
-    }
-    
     var body: some View {
         ZStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    MapView()
-                        .padding(.top, 80)
-                        .padding(.bottom)
-                    
-                    Text("足迹发现")
-                        .font(.title)
-                        .bold()
-                }
-                .animation(Animation.openMap)
-            }
-            
-            VStack(alignment: .leading){
+            ScrollView(showsIndicators: false) {
                 HStack {
                     // 宠物图标
                     petInfo
@@ -150,9 +121,27 @@ struct AppSingleView: View {
                 }
                 .padding(.vertical)
                 
+                MapView()
+                    .padding(.bottom)
+                
+                VStack(alignment: .leading) {
+                    Text("足迹发现")
+                        .font(.title)
+                        .bold()
+                    
+                    ForEach(model.lastGeos){ geo in
+                        FindOtherPetListItem(geo: geo)
+                    }
+                }
+                .padding(.bottom, 80)
+            }
+            
+            VStack(alignment: .leading){
+                
                 Spacer()
                 
                 sendGeoButton
+                    .padding(.bottom)
                 
             }
         }
@@ -163,5 +152,43 @@ struct AppSingleView: View {
 struct AppSingleView_Previews: PreviewProvider {
     static var previews: some View {
         AppSingleView()
+    }
+}
+
+
+struct FindOtherPetListItem: View {
+    let geo: Geo
+    
+    var time: String {
+        return updateTimeToCurrennTime(timeStamp: geo._createTime)
+    }
+    var body: some View {
+        HStack{
+            VStack(alignment: .leading, spacing: 6){
+                Text(geo.pet.name + ", " + geo.pet.variety)
+                    .font(.body)
+                    .lineLimit(2)
+                
+                Text(time)
+                    .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+            }
+            
+            Spacer()
+            
+            Button {
+                guard let number = URL(string: "tel://" + geo.pet.phone) else { return }
+                UIApplication.shared.open(number)
+            } label: {
+                VStack{
+                    Image(systemName: "phone.circle.fill")
+                        .font(.title)
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+        .cornerRadius(16)
     }
 }
