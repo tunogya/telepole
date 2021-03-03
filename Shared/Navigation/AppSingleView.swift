@@ -43,6 +43,7 @@ struct AppSingleView: View {
             .cornerRadius(44)
             .frame(height: 44)
         }
+        .padding(.top)
     }
     
     var userStatus: some View {
@@ -138,10 +139,12 @@ struct AppSingleView: View {
                     if pageIndex == 0 {
                         ForEach(model.lastGeos){ geo in
                             FindMyPetFootItem(geo: geo)
+                                .padding(.bottom, 4)
                         }
                     } else {
                         ForEach(model.lastGeos){ geo in
                             FindOtherPetFootItem(geo: geo)
+                                .padding(.bottom, 4)
                         }
                     }
                    
@@ -198,7 +201,7 @@ struct FindOtherPetFootItem: View {
             }
         }
         .padding(.horizontal)
-        .padding(.vertical, 8)
+        .padding(.vertical, 12)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
     }
@@ -211,12 +214,11 @@ struct FindMyPetFootItem: View {
     }
     var body: some View {
         HStack{
-            VStack(alignment: .leading, spacing: 6){
-                Text(geo.pet.name + ", " + geo.pet.variety)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("永康城")
                     .font(.body)
                     .lineLimit(2)
-                
-                Text(time)
+                Text("刚刚")
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
             }
@@ -234,7 +236,7 @@ struct FindMyPetFootItem: View {
             }
         }
         .padding(.horizontal)
-        .padding(.vertical, 8)
+        .padding(.vertical, 12)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
     }
