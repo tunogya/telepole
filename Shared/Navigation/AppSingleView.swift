@@ -226,6 +226,8 @@ struct FindMyPetFootItem: View {
     }
     @State var address: String = "获取地址中..."
     @EnvironmentObject private var model: TelepoleModel
+    @State var isDeleted: Bool = false
+    @State var taps = 0
     
     var body: some View {
         HStack{
@@ -239,6 +241,10 @@ struct FindMyPetFootItem: View {
             }
             Spacer()
             Button {
+                isDeleted = true
+                withAnimation(Animation.easeInOut(duration: 1)) {
+                    taps += 1
+                }
                 Geo().deleteMyGeo(geo) {
                     model.updateGeos(petID: model.selectedPet.id)
                 }
@@ -246,7 +252,8 @@ struct FindMyPetFootItem: View {
                 VStack{
                     Image(systemName: "trash.circle.fill")
                         .font(.title)
-                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                        .foregroundColor(isDeleted ? Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)) : Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                        .modifier(Bounce(animCount: CGFloat(taps)))
                 }
             }
         }
