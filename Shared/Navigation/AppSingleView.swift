@@ -178,18 +178,30 @@ struct FindOtherPetFootItem: View {
     }
     var body: some View {
         HStack{
-            VStack(alignment: .leading, spacing: 6){
-                Text(geo.pet.name + ", " + geo.pet.variety)
-                    .font(.body)
-                    .lineLimit(2)
-                
-                Text(time)
+            VStack(alignment: .leading, spacing: 4){
+                Text("姓名")
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                Text(geo.pet.name)
+                    .font(.body)
             }
-            
             Spacer()
-            
+            VStack(alignment: .leading, spacing: 4){
+                Text("品种")
+                    .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                Text(geo.pet.variety)
+                    .font(.body)
+            }
+            Spacer()
+            VStack(alignment: .leading, spacing: 4){
+                Text("时间")
+                    .font(.footnote)
+                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                Text(time)
+                    .font(.body)
+            }
+            Spacer()
             Button {
                 guard let number = URL(string: "tel://" + geo.pet.phone) else { return }
                 UIApplication.shared.open(number)
@@ -215,16 +227,14 @@ struct FindMyPetFootItem: View {
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 4) {
-                Text("永康城")
-                    .font(.body)
-                    .lineLimit(2)
-                Text("刚刚")
+                Text(time)
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                Text("永康")
+                    .font(.body)
+                    .lineLimit(2)
             }
-            
             Spacer()
-            
             Button {
               
             } label: {
