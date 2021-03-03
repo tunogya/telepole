@@ -82,16 +82,18 @@ struct AppSingleView: View {
             HStack(){
                 Spacer()
                 Image(systemName: "paperplane.circle.fill")
-                    .font(.body)
+                    .font(.title2)
                     .modifier(Bounce(animCount: CGFloat(taps)))
                 Text("记录足迹")
                     .font(.body)
+                    .bold()
                 Spacer()
             }
             .padding(.vertical, 12)
             .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
             .background(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
             .cornerRadius(28)
+            .shadow(color: Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)), radius: 4, x: 0, y: 2)
         }
         .disabled(model.selectedPet.id.isEmpty ? true : false)
     }
@@ -239,10 +241,11 @@ struct FindMyPetFootItem: View {
                     .font(.callout)
                     .lineLimit(2)
             }
+            .opacity(isDeleted ? 0.38 : 1)
             Spacer()
             Button {
-                isDeleted = true
                 withAnimation(Animation.easeInOut(duration: 1)) {
+                    isDeleted = true
                     taps += 1
                 }
                 Geo().deleteMyGeo(geo) {

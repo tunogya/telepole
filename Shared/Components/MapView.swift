@@ -89,7 +89,7 @@ struct MapView: View {
             }
         }
         .cornerRadius(24)
-        .frame(height: SCREENHEIGHT*0.55)
+        .frame(height: SCREENHEIGHT*0.5)
     }
 }
 
