@@ -183,7 +183,7 @@ struct FindOtherPetFootItem: View {
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 Text(geo.pet.name)
-                    .font(.body)
+                    .font(.callout)
             }
             Spacer()
             VStack(alignment: .leading, spacing: 4){
@@ -191,7 +191,7 @@ struct FindOtherPetFootItem: View {
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 Text(geo.pet.variety)
-                    .font(.body)
+                    .font(.callout)
             }
             Spacer()
             VStack(alignment: .leading, spacing: 4){
@@ -199,7 +199,7 @@ struct FindOtherPetFootItem: View {
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 Text(time)
-                    .font(.body)
+                    .font(.callout)
             }
             Spacer()
             Button {
@@ -224,14 +224,17 @@ struct FindMyPetFootItem: View {
     var time: String {
         return updateTimeToCurrennTime(timeStamp: geo._createTime)
     }
+    @State var address: String = "获取地址中..."
+    @EnvironmentObject private var model: TelepoleModel
+    
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 4) {
                 Text(time)
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                Text("永康")
-                    .font(.body)
+                Text(address)
+                    .font(.callout)
                     .lineLimit(2)
             }
             Spacer()
@@ -249,5 +252,10 @@ struct FindMyPetFootItem: View {
         .padding(.vertical, 12)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
+        .onAppear {
+            model.reverseGeocode(latitude: geo.latitude, longitude: geo.longitude) { (add) in
+                self.address = add
+            }
+        }
     }
 }
