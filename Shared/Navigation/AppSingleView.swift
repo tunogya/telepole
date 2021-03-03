@@ -239,7 +239,9 @@ struct FindMyPetFootItem: View {
             }
             Spacer()
             Button {
-              
+                Geo().deleteMyGeo(geo) {
+                    model.updateGeos(petID: model.selectedPet.id)
+                }
             } label: {
                 VStack{
                     Image(systemName: "trash.circle.fill")
