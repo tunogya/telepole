@@ -247,7 +247,7 @@ struct FindMyPetFootItem: View {
                 isDeleted = true
 //                Hapitcs().simpleSuccess()
                 Hapitcs().simpleError()
-                Geo().deleteMyGeo(geo) {
+                Geo().deleteOneGeo(geo) {
                     model.updateGeos(petID: model.selectedPet.id)
                 }
             } label: {

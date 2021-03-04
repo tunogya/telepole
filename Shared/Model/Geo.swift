@@ -70,7 +70,7 @@ extension Geo {
         }
     }
     
-    func deleteMyGeo(_ geo: Geo, completion: @escaping () -> ()) {
+    func deleteOneGeo(_ geo: Geo, completion: @escaping () -> ()) {
         let url = "\(HOSTNAME)/geo/\(geo.id)"
         AF.request(url, method: .delete).responseJSON { response in
             switch response.result {
@@ -82,10 +82,27 @@ extension Geo {
         }
     }
     
+    func deleteAllGeo(_ me: Pet, completion: @escaping () -> ()) {
+        let url = "\(HOSTNAME)/geo"
+        let parameters: [String: Any] = ["query": ["pet": ["$eq": me.id]]]
+        AF.request(url, method: .delete, parameters: parameters).responseJSON { response in
+            switch response.result {
+            case .success(_):
+                completion()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
     // 获取我附近的宠物
-    func getNearbyPets(latitude: Double, longitude: Double, completion: @escaping ([Geo]) -> ()) {
+    func getNearbyPets(latitude: Double, longitude: Double, my: Pet,completion: @escaping ([Geo]) -> ()) {
         let url = "\(HOSTNAME)/geo/find/"
-        let parameters: [String: Any] = ["query":["$and":[["latitude": ["$lte": latitude + 0.01]], ["latitude": ["$gte": latitude - 0.01]], ["longitude": ["$lte": longitude + 0.01]], ["longitude": ["$gte": longitude - 0.01]]]]]
+        let parameters: [String: Any] = ["query":["$and":[["latitude": ["$lte": latitude + 0.01]],
+                                                          ["latitude": ["$gte": latitude - 0.01]],
+                                                          ["longitude": ["$lte": longitude + 0.01]],
+                                                          ["longitude": ["$gte": longitude - 0.01]],
+                                                          ["pet": ["$nin": [my.id]]]]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (respone) in
             switch respone.result {
