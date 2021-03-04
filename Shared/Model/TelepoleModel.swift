@@ -132,7 +132,8 @@ extension TelepoleModel {
     
     func updateGeos(petID: Pet.ID) {
         Geo().getLastGeos(petID: petID) { geos in
-            guard geos.first != nil else{
+            guard geos.first != nil else {
+                self.lastGeos.removeAll()
                 return
             }
             self.updateGeos(geos)

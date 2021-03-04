@@ -144,6 +144,9 @@ struct AppSingleView: View {
                             FindMyPetFootItem(geo: geo)
                                 .padding(.bottom, 4)
                         }
+                        if model.lastGeos.count >= 20 {
+                            DeleteAllGeos(pet: model.selectedPet)
+                        }
                     } else {
                         ForEach(model.lastGeos){ geo in
                             FindOtherPetFootItem(geo: geo)
@@ -268,5 +271,29 @@ struct FindMyPetFootItem: View {
         }
         .offset(x: isDeleted ? 400 : 0)
         .animation(.easeOut)
+    }
+}
+
+struct DeleteAllGeos: View {
+    let pet: Pet
+    @EnvironmentObject private var model: TelepoleModel
+    var body: some View {
+        HStack {
+            Button {
+                Hapitcs().simpleWarning()
+                Geo().deleteAllGeo(pet) {
+                    model.updateGeos(petID: model.selectedPet.id)
+                }
+            } label: {
+                Text("删除 \(pet.name) 所有足迹")
+                    .font(.callout)
+                    .bold()
+            }
+            Spacer()
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 12)
+        .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
+        .cornerRadius(16)
     }
 }
