@@ -69,32 +69,33 @@ struct AppSingleView: View {
     }
     
     var sendGeoButton: some View {
-        Button {
-            withAnimation(Animation.easeInOut(duration: 1)) {
-                taps += 1
-            }
-            let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
-            Geo().postMyGeo(geo){
-                model.updateGeos(petID: model.selectedPet.id)
-            }
-        } label:{
-            HStack(){
-                Spacer()
+        HStack(){
+            Spacer()
+            Button {
+                Hapitcs().simpleSuccess()
+                withAnimation(Animation.easeInOut(duration: 1)) {
+                    taps += 1
+                }
+                let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
+                Geo().postMyGeo(geo){
+                    model.updateGeos(petID: model.selectedPet.id)
+                }
+            } label:{
                 Image(systemName: "paperplane.circle.fill")
                     .font(.title2)
                     .modifier(Bounce(animCount: CGFloat(taps)))
                 Text("记录足迹")
                     .font(.body)
                     .bold()
-                Spacer()
             }
-            .padding(.vertical, 12)
-            .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
-            .background(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
-            .cornerRadius(28)
-            .shadow(color: Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)), radius: 4, x: 0, y: 2)
+            .disabled(model.selectedPet.id.isEmpty ? true : false)
+           
+            Spacer()
         }
-        .disabled(model.selectedPet.id.isEmpty ? true : false)
+        .padding(.vertical, 12)
+        .foregroundColor(Color(#colorLiteral(red: 0.1490196078, green: 0.07058823529, blue: 0.3098039216, alpha: 1)))
+        .background(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
+        .cornerRadius(28)
     }
     
     var body: some View {
@@ -244,6 +245,8 @@ struct FindMyPetFootItem: View {
             Spacer()
             Button {
                 isDeleted = true
+//                Hapitcs().simpleSuccess()
+                Hapitcs().simpleError()
                 Geo().deleteMyGeo(geo) {
                     model.updateGeos(petID: model.selectedPet.id)
                 }
