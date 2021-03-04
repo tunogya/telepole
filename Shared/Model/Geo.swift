@@ -41,7 +41,9 @@ extension Geo {
         let url = "\(HOSTNAME)/geo/find/?limit=10"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
-        AF.request(url, method: .post, parameters: parameters).responseJSON { response in
+        AF.request(url, method: .post, parameters: parameters).response{ response in
+            debugPrint(response.request as Any)
+        }.responseJSON { response in
             switch response.result {
             case .success(let value):
                 let items = JSON(value)["data"].arrayValue
@@ -85,7 +87,9 @@ extension Geo {
     func deleteAllGeo(_ me: Pet, completion: @escaping () -> ()) {
         let url = "\(HOSTNAME)/geo"
         let parameters: [String: Any] = ["query": ["pet": ["$eq": me.id]]]
-        AF.request(url, method: .delete, parameters: parameters).responseJSON { response in
+        AF.request(url, method: .delete, parameters: parameters).response{ response in
+            print(response.request)
+        }.responseJSON { response in
             switch response.result {
             case .success(_):
                 completion()

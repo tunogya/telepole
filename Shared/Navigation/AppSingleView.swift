@@ -144,7 +144,7 @@ struct AppSingleView: View {
                             FindMyPetFootItem(geo: geo)
                                 .padding(.bottom, 4)
                         }
-                        if model.lastGeos.count >= 20 {
+                        if model.lastGeos.count >= 10 {
                             DeleteAllGeos(pet: model.selectedPet)
                         }
                     } else {
