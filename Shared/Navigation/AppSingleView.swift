@@ -20,6 +20,13 @@ struct AppSingleView: View {
     
     @State var taps = 0
     @State var pageIndex = 0
+    
+    var friends: [Pet] {
+        model.friendGeos.map { geo in
+            geo.pet
+        }.removeDuplicates()
+    }
+    
     var petInfo: some View {
         Button(action: {
         }) {
@@ -148,12 +155,11 @@ struct AppSingleView: View {
                             DeleteAllGeos(pet: model.selectedPet)
                         }
                     } else {
-                        ForEach(model.friendGeos){ geo in
-                            FindOtherPetFootItem(geo: geo)
+                        ForEach(friends){ pet in
+                            FindFriendsListItem(pet: pet)
                                 .padding(.bottom, 4)
                         }
                     }
-                   
                 }
                 .padding(.bottom, 80)
             }
@@ -177,31 +183,21 @@ struct AppSingleView_Previews: PreviewProvider {
     }
 }
 
-struct FindOtherPetFootItem: View {
-    let geo: Geo
-    var time: String {
-        return updateTimeToCurrennTime(timeStamp: geo._createTime)
-    }
-    @EnvironmentObject private var model: TelepoleModel
-    @State var address: String = "获取地址中..."
-    
+struct FindFriendsListItem: View {
+    let pet: Pet
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 4){
-                Text(geo.pet.name + ", " + geo.pet.variety + ", " + time)
+                Text(pet.variety + "，" + pet.gender + "，" + pet.description)
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                if !geo.pet.description.isEmpty {
-                    Text(geo.pet.description)
-                        .font(.footnote)
-                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                }
-                Text(address)
+                    .lineLimit(2)
+                Text(pet.name)
                     .font(.callout)
             }
             Spacer()
             Button {
-                guard let number = URL(string: "tel://" + geo.pet.phone) else { return }
+                guard let number = URL(string: "tel://" + pet.phone) else { return }
                 UIApplication.shared.open(number)
             } label: {
                 VStack{
@@ -209,16 +205,12 @@ struct FindOtherPetFootItem: View {
                         .font(.title)
                 }
             }
+            .disabled(pet.protected)
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
-        .onAppear {
-            model.reverseGeocode(latitude: geo.latitude, longitude: geo.longitude) { (add) in
-                self.address = add
-            }
-        }
     }
 }
 

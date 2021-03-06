@@ -7,16 +7,16 @@
 
 import Foundation
 
-extension Array {
-    // 去重
-    func filterDuplicates<E: Equatable>(_ filter: (Element) -> E) -> [Element] {
+extension Array where Element:Equatable {
+    func removeDuplicates() -> [Element] {
         var result = [Element]()
+
         for value in self {
-            let key = filter(value)
-            if !result.map({filter($0)}).contains(key) {
+            if result.contains(value) == false {
                 result.append(value)
             }
         }
+
         return result
     }
 }
