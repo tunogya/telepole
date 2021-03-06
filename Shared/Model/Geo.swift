@@ -87,9 +87,7 @@ extension Geo {
     func deleteAllGeo(_ me: Pet, completion: @escaping () -> ()) {
         let url = "\(HOSTNAME)/geo"
         let parameters: [String: Any] = ["query": ["pet": ["$eq": me.id]]]
-        AF.request(url, method: .delete, parameters: parameters).response{ response in
-            print(response.request)
-        }.responseJSON { response in
+        AF.request(url, method: .delete, parameters: parameters, encoding: URLEncoding.httpBody).responseJSON { response in
             switch response.result {
             case .success(_):
                 completion()
