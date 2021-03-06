@@ -144,7 +144,7 @@ struct AppSingleView: View {
                             FindMyPetFootItem(geo: geo)
                                 .padding(.bottom, 4)
                         }
-                        if model.lastGeos.count >= 10 {
+                        if model.lastGeos.count >= 3 {
                             DeleteAllGeos(pet: model.selectedPet)
                         }
                     } else {
@@ -277,18 +277,38 @@ struct FindMyPetFootItem: View {
 struct DeleteAllGeos: View {
     let pet: Pet
     @EnvironmentObject private var model: TelepoleModel
+    @State private var showingSheet = false
+    
     var body: some View {
         HStack {
             Button {
+                showingSheet = true
                 Hapitcs().simpleWarning()
-                Geo().deleteAllGeo(pet) {
-                    model.updateGeos(petID: model.selectedPet.id)
-                }
             } label: {
-                Text("删除 \(pet.name) 所有足迹")
+                Text("批量删除 \(pet.name) 的足迹")
+                    .foregroundColor(.red)
                     .font(.callout)
                     .bold()
             }
+            .actionSheet(isPresented: $showingSheet, content: {
+                ActionSheet(
+                    title: Text("批量删除 \(pet.name) 的足迹"),
+                    message: Text("永久删除，无法恢复"),
+                    buttons: [
+                        .default(Text("仅保留三天内足迹"), action: {
+                            Geo().delete3daysAwayGeo(pet) {
+                                model.updateGeos(petID: model.selectedPet.id)
+                            }
+                        }),
+                        .destructive(Text("删除历史所有足迹"),action: {
+                            Geo().deleteAllGeo(pet) {
+                                model.updateGeos(petID: model.selectedPet.id)
+                            }
+                        }),
+                        .cancel(Text("取消"))
+                    ]
+                )
+            })
             Spacer()
         }
         .padding(.horizontal)

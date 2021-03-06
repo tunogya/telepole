@@ -25,7 +25,8 @@ extension Geo {
         AMap().convertCoordinate(longitude: geo.longitude, latitude: geo.latitude) { locationsString in
             let url = "\(HOSTNAME)/geo/"
             let locations = locationsString.split(separator: ",")
-            let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "geo_code": Geohash.encode(latitude: latitude, longitude: longitude, length: 12) ,"_createTime": geo._createTime]]]
+            let geo_code = Geohash.encode(latitude: Double(locations[1])!, longitude: Double(locations[0])!, length: 10)
+            let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "geo_code": geo_code ,"_createTime": geo._createTime]]]
            
             AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
                 switch response.result {
@@ -75,6 +76,22 @@ extension Geo {
     func deleteOneGeo(_ geo: Geo, completion: @escaping () -> ()) {
         let url = "\(HOSTNAME)/geo/\(geo.id)"
         AF.request(url, method: .delete).responseJSON { response in
+            switch response.result {
+            case .success(_):
+                completion()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    func delete3daysAwayGeo(_ me: Pet, completion: @escaping () -> ()) {
+        let url = "\(HOSTNAME)/geo"
+        var dateComponent = DateComponents()
+        dateComponent.day = -3
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: Date())
+        let parameters: [String: Any] = ["query": ["$and": [["pet": ["$eq": me.id]],["_createTime": ["$lt": futureDate!.timeIntervalSince1970]]]]]
+        AF.request(url, method: .delete, parameters: parameters, encoding: URLEncoding.httpBody).responseJSON { response in
             switch response.result {
             case .success(_):
                 completion()
