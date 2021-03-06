@@ -39,7 +39,7 @@ extension Geo {
         }
     }
     
-    func getLastGeos(petID: Pet.ID, completion: @escaping ([Geo]) -> ()){
+    func getMyGeos(petID: Pet.ID, completion: @escaping ([Geo]) -> ()){
         let url = "\(HOSTNAME)/geo/find/?limit=10"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
@@ -118,7 +118,7 @@ extension Geo {
     func getNearbyGeos(geo: Geo, geo_length: Int = 6, completion: @escaping ([Geo]) -> ()) {
         let url = "\(HOSTNAME)/geo/find/"
         let parameters: [String: Any] = ["query":["$and":[["pet": ["$nin": [geo.pet.id]]],
-                                                          ["geo_code": ["$eq": geo.geo_code.prefix(geo_length)]]]]]
+                                                          ["geo_code": ["$exists": geo.geo_code.prefix(geo_length)]]]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (respone) in
             switch respone.result {

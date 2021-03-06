@@ -67,7 +67,6 @@ class TelepoleModel: ObservableObject {
     init() {
         selectPet(id: selectedPetID)
         loadAccount(id: userCredential)
-        
     }
 }
 
@@ -84,7 +83,6 @@ extension TelepoleModel {
     
     func clearAccount() {
         account = Account()
- 
         self.clearUserCredential()
     }
     
@@ -136,14 +134,17 @@ extension TelepoleModel {
         }
         lastGeos = geos
         getAddress(latitude: geo.latitude, longitude: geo.longitude)
-        stopLoading()
+        Geo().getNearbyGeos(geo: geo, geo_length: 7) { geos in
+            self.updateFriendGeos(geos)
+        }
     }
     
     func updateGeos(petID: Pet.ID) {
-        Geo().getLastGeos(petID: petID) { geos in
+        Geo().getMyGeos(petID: petID) { geos in
             guard geos.first != nil else {
                 self.lastGeos.removeAll()
                 self.lastAddress = ""
+                self.friendGeos.removeAll()
                 return
             }
             self.updateGeos(geos)
@@ -154,7 +155,7 @@ extension TelepoleModel {
         guard geos.first != nil else {
             return
         }
-        lastGeos.append(contentsOf: geos)
+        friendGeos = geos
     }
     
     func getAddress(latitude: Double, longitude: Double) {
@@ -209,24 +210,6 @@ extension TelepoleModel {
                 print("No placemarks!")
                 completion("没有可用的位置信息")
             }
-        }
-    }
-    
-    func searchFriendGeos(geo: Geo, geo_length: Int) {
-        Geo().getNearbyGeos(geo: geo, geo_length: 6) { geos in
-            self.updateFriendGeos(geos)
-        }
-    }
-}
-
-extension TelepoleModel {
-    func startLoading() {
-        isLoading = true
-    }
-    
-    func stopLoading() {
-        DispatchAfter(after: 1) {
-            self.isLoading = false
         }
     }
 }

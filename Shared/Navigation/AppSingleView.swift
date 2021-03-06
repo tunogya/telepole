@@ -134,7 +134,7 @@ struct AppSingleView: View {
                             .bold()
                             .padding(.trailing)
                         
-                        FormPicker(index: $pageIndex, page: ["我的", "新朋友"])
+                        FormPicker(index: $pageIndex, page: ["我", "新朋友"])
                             .padding(.leading)
                     }
                     .padding(.bottom, 12)
@@ -148,7 +148,7 @@ struct AppSingleView: View {
                             DeleteAllGeos(pet: model.selectedPet)
                         }
                     } else {
-                        ForEach(model.lastGeos){ geo in
+                        ForEach(model.friendGeos){ geo in
                             FindOtherPetFootItem(geo: geo)
                                 .padding(.bottom, 4)
                         }
@@ -182,29 +182,21 @@ struct FindOtherPetFootItem: View {
     var time: String {
         return updateTimeToCurrennTime(timeStamp: geo._createTime)
     }
+    @EnvironmentObject private var model: TelepoleModel
+    @State var address: String = "获取地址中..."
+    
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 4){
-                Text("姓名")
+                Text(geo.pet.name + ", " + geo.pet.variety + ", " + time)
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                Text(geo.pet.name)
-                    .font(.callout)
-            }
-            Spacer()
-            VStack(alignment: .leading, spacing: 4){
-                Text("品种")
-                    .font(.footnote)
-                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                Text(geo.pet.variety)
-                    .font(.callout)
-            }
-            Spacer()
-            VStack(alignment: .leading, spacing: 4){
-                Text("时间")
-                    .font(.footnote)
-                    .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
-                Text(time)
+                if !geo.pet.description.isEmpty {
+                    Text(geo.pet.description)
+                        .font(.footnote)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                }
+                Text(address)
                     .font(.callout)
             }
             Spacer()
@@ -222,6 +214,11 @@ struct FindOtherPetFootItem: View {
         .padding(.vertical, 12)
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
+        .onAppear {
+            model.reverseGeocode(latitude: geo.latitude, longitude: geo.longitude) { (add) in
+                self.address = add
+            }
+        }
     }
 }
 
