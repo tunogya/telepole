@@ -148,7 +148,7 @@ extension TelepoleModel {
         }
         lastGeos = geos
         getAddress(latitude: geo.latitude, longitude: geo.longitude)
-        Geo().getNearbyGeos(geo: geo, geo_length: 7) { geos in
+        Geo().getNearbyGeos(geo: geo) { geos in
             self.updateFriendGeos(geos)
         }
     }

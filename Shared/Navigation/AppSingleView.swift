@@ -225,37 +225,6 @@ struct FindFriendsListItem: View {
                         .font(.footnote)
                         .foregroundColor(.red)
                 }
-                
-                HStack{
-                    Button(action: {
-                        Pet().vote(pet: pet, coin: 5) {
-                            self.pet.coins += 5
-                        }
-                    }){
-                        Image(systemName: "5.circle.fill")
-                            .font(.title)
-                    }
-                    
-                    Button(action: {
-                        Pet().vote(pet: pet, coin: 10) {
-                            self.pet.coins += 10
-                        }
-                    }){
-                        Image(systemName: "10.circle.fill")
-                            .font(.title)
-                    }
-                    
-                    Button(action: {
-                        Pet().vote(pet: pet, coin: 20) {
-                            self.pet.coins += 20
-                        }
-                    }){
-                        Image(systemName: "20.circle.fill")
-                            .font(.title)
-                    }
-                    
-                }
-                
             }
             
             Spacer()

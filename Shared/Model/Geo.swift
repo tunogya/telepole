@@ -25,7 +25,7 @@ extension Geo {
         AMap().convertCoordinate(longitude: geo.longitude, latitude: geo.latitude) { locationsString in
             let url = "\(HOSTNAME)/geo/"
             let locations = locationsString.split(separator: ",")
-            let geo_code = Geohash.encode(latitude: Double(locations[1])!, longitude: Double(locations[0])!, length: 10)
+            let geo_code = Geohash.encode(latitude: Double(locations[1])!, longitude: Double(locations[0])!, length: 6)
             let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "geo_code": geo_code ,"_createTime": geo._createTime]]]
            
             AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
@@ -115,10 +115,10 @@ extension Geo {
     }
     
     // 获取足迹附近的足迹
-    func getNearbyGeos(geo: Geo, geo_length: Int = 6, completion: @escaping ([Geo]) -> ()) {
+    func getNearbyGeos(geo: Geo, completion: @escaping ([Geo]) -> ()) {
         let url = "\(HOSTNAME)/geo/find/"
         let parameters: [String: Any] = ["query":["$and":[["pet": ["$nin": [geo.pet.id]]],
-                                                          ["geo_code": ["$exists": geo.geo_code.prefix(geo_length)]]]]]
+                                                          ["geo_code": ["$eq": geo.geo_code]]]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (respone) in
             switch respone.result {
