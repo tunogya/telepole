@@ -15,6 +15,7 @@ struct Geo: Identifiable {
     var name: String = "佚名"
     var latitude: Double = 0
     var longitude: Double = 0
+    var geo_code: String = ""
     var _createTime: Double = Date().timeIntervalSince1970
 }
 
@@ -24,7 +25,7 @@ extension Geo {
         AMap().convertCoordinate(longitude: geo.longitude, latitude: geo.latitude) { locationsString in
             let url = "\(HOSTNAME)/geo/"
             let locations = locationsString.split(separator: ",")
-            let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "_createTime": geo._createTime]]]
+            let parameters: [String: Array<Any>] = ["data": [["latitude": locations[1], "longitude": locations[0], "name": geo.name, "pet": geo.pet.id, "geo_code": Geohash.encode(latitude: latitude, longitude: longitude, length: 12) ,"_createTime": geo._createTime]]]
            
             AF.request(url, method: .post, parameters: parameters).responseJSON { (response) in
                 switch response.result {
@@ -41,9 +42,7 @@ extension Geo {
         let url = "\(HOSTNAME)/geo/find/?limit=10"
         let parameters: [String: Any] = ["query":["pet": ["$eq": petID]]]
         
-        AF.request(url, method: .post, parameters: parameters).response{ response in
-            debugPrint(response.request as Any)
-        }.responseJSON { response in
+        AF.request(url, method: .post, parameters: parameters).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let items = JSON(value)["data"].arrayValue
@@ -63,6 +62,7 @@ extension Geo {
                         name: item["name"]["fullName"].stringValue,
                         latitude: item["latitude"].doubleValue,
                         longitude: item["longitude"].doubleValue,
+                        geo_code: item["geo_code"].stringValue,
                         _createTime: item["_createTime"].doubleValue)
                 }
                 completion(geos)
@@ -126,6 +126,7 @@ extension Geo {
                         name: item["name"]["fullName"].stringValue,
                         latitude: item["latitude"].doubleValue,
                         longitude: item["longitude"].doubleValue,
+                        geo_code: item["geo_code"].stringValue,
                         _createTime: item["_createTime"].doubleValue)
                 }
                 completion(geos)
