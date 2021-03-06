@@ -104,8 +104,8 @@ extension Pet {
     }
     
     // 投币
-    func vote(_ pet: Pet, completion: @escaping () -> ()) {
-        let parameters: [String: Any] = ["data": ["$inc": ["coins": 1]]]
+    func vote(pet: Pet, coin: Double, completion: @escaping () -> ()) {
+        let parameters: [String: Any] = ["data": ["$set": ["coins": pet.coins + coin]]]
         let url = "\(HOSTNAME)/pets/\(pet.id)"
         AF.request(url, method: .patch, parameters: parameters).responseJSON { (response) in
             switch response.result {

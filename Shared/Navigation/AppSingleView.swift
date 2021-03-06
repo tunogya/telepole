@@ -202,7 +202,7 @@ struct AppSingleView_Previews: PreviewProvider {
 }
 
 struct FindFriendsListItem: View {
-    let pet: Pet
+    @State var pet: Pet
     var body: some View {
         HStack(){
             VStack(alignment: .leading, spacing: 4){
@@ -214,6 +214,7 @@ struct FindFriendsListItem: View {
                 HStack{
                     Text(pet.name)
                         .font(.callout)
+                    
                     Text("(" + String(format: "%0.1f", pet.coins) + " 币)")
                         .font(.footnote)
                         .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
@@ -224,6 +225,37 @@ struct FindFriendsListItem: View {
                         .font(.footnote)
                         .foregroundColor(.red)
                 }
+                
+                HStack{
+                    Button(action: {
+                        Pet().vote(pet: pet, coin: 5) {
+                            self.pet.coins += 5
+                        }
+                    }){
+                        Image(systemName: "5.circle.fill")
+                            .font(.title)
+                    }
+                    
+                    Button(action: {
+                        Pet().vote(pet: pet, coin: 10) {
+                            self.pet.coins += 10
+                        }
+                    }){
+                        Image(systemName: "10.circle.fill")
+                            .font(.title)
+                    }
+                    
+                    Button(action: {
+                        Pet().vote(pet: pet, coin: 20) {
+                            self.pet.coins += 20
+                        }
+                    }){
+                        Image(systemName: "20.circle.fill")
+                            .font(.title)
+                    }
+                    
+                }
+                
             }
             
             Spacer()
