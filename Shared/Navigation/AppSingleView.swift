@@ -219,9 +219,11 @@ struct FindFriendsListItem: View {
                         .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 }
                 
-                Text("宠物已经走失，您若遇到请电话联系，谢谢！")
-                    .font(.footnote)
-                    .foregroundColor(.red)
+                if !pet.protected {
+                    Text("宠物已经走失，您若遇到请电话联系，谢谢！")
+                        .font(.footnote)
+                        .foregroundColor(.red)
+                }
             }
             
             Spacer()
@@ -305,7 +307,7 @@ struct DeleteAllGeos: View {
                 Hapitcs().simpleWarning()
             } label: {
                 Text("批量删除 \(pet.name) 的足迹")
-                    .foregroundColor(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+                    .foregroundColor(Color.red)
                     .font(.callout)
                     .bold()
             }

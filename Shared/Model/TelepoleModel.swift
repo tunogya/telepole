@@ -128,13 +128,16 @@ extension TelepoleModel {
 }
 extension TelepoleModel {
     func startLostMode() {
-        selectedPet.protected = false
         // 上传数据库
+        Pet().closedProtected(selectedPet){
+            self.selectedPet.protected = false
+        }
     }
     
     func stopLostMode(){
-        selectedPet.protected = true
-        // 上传数据库
+        Pet().openProtected(selectedPet){
+            self.selectedPet.protected = true
+        }
     }
 }
 

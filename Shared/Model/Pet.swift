@@ -74,4 +74,47 @@ extension Pet {
             }
         }
     }
+    
+    // 关闭保护
+    func closedProtected(_ pet: Pet, completion: @escaping () -> ()) {
+        let parameters: [String: Any] = ["data": ["$set": ["protected": false]]]
+        let url = "\(HOSTNAME)/pets/\(pet.id)"
+        AF.request(url, method: .patch, parameters: parameters).responseJSON { (response) in
+            switch response.result {
+            case .success(_):
+                completion()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // 开启保护
+    func openProtected(_ pet: Pet, completion: @escaping () -> ()) {
+        let parameters: [String: Any] = ["data": ["$set": ["protected": true]]]
+        let url = "\(HOSTNAME)/pets/\(pet.id)"
+        AF.request(url, method: .patch, parameters: parameters).responseJSON { (response) in
+            switch response.result {
+            case .success(_):
+                completion()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    // 投币
+    func vote(_ pet: Pet, completion: @escaping () -> ()) {
+        let parameters: [String: Any] = ["data": ["$inc": ["coins": 1]]]
+        let url = "\(HOSTNAME)/pets/\(pet.id)"
+        AF.request(url, method: .patch, parameters: parameters).responseJSON { (response) in
+            switch response.result {
+            case .success(_):
+                completion()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
 }
