@@ -126,6 +126,17 @@ extension TelepoleModel {
         myPetIDs.append(id)
     }
 }
+extension TelepoleModel {
+    func startLostMode() {
+        selectedPet.protected = false
+        // 上传数据库
+    }
+    
+    func stopLostMode(){
+        selectedPet.protected = true
+        // 上传数据库
+    }
+}
 
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {

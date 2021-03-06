@@ -13,7 +13,7 @@ struct Pet: Identifiable, Codable, Equatable {
     var name: String = ""
     var description: String = ""
     var profile_image_url: String = ""
-    var protected: Bool = false
+    var protected: Bool = true
     var verified: Bool = false
     var variety: String = ""
     var gender: String = "boy"

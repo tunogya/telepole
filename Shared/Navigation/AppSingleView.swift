@@ -14,12 +14,12 @@ struct AppSingleView: View {
     @State private var isShowPetRegisterView = false
     @State private var isShowSettingView = false
     @State private var isShowWakanda = false
+    @State private var isShowLostMode = false
     @State private var status: String = "😀"
+    @State private var taps = 0
+    @State private var pageIndex = 0
     @EnvironmentObject private var model: TelepoleModel
     @ObservedObject var locationManager = LocationManager()
-    
-    @State var taps = 0
-    @State var pageIndex = 0
     
     var friends: [Pet] {
         model.friendGeos.map { geo in
@@ -29,26 +29,44 @@ struct AppSingleView: View {
     
     var petInfo: some View {
         Button(action: {
+            isShowLostMode.toggle()
         }) {
             HStack(spacing: 0){
                 Text("🐶")
                     .frame(width: 30, height: 30, alignment: .center)
-                    .background(Color(#colorLiteral(red: 0.9787401557, green: 0.8706828952, blue: 0.06605642289, alpha: 1)))
+                    .background(Color(model.selectedPet.protected ? #colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)  :  .red))
                     .clipShape(Circle())
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text(model.selectedPet.petname)
+                    Text(model.selectedPet.name)
                         .bold()
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                     Text(String(format: "%0.1f", model.selectedPet.coins) + " 币")
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                 }
                 .font(.footnote)
-                .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                 .padding(.trailing)
             }
             .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
             .cornerRadius(44)
             .frame(height: 44)
+        }
+        .actionSheet(isPresented: $isShowLostMode) {
+            ActionSheet(
+                title: Text("宠物丢失模式"),
+                message: Text(model.selectedPet.protected ? "开启丢失模式后，你的电话号码会被公布。" : "停止丢失模式后，你的电话号码会被隐藏。"),
+                buttons: [
+                    .destructive(Text(model.selectedPet.protected ? "开启丢失模式" : "停止丢失模式"),action: {
+                        if model.selectedPet.protected{
+                            model.startLostMode()
+                        }else{
+                            model.stopLostMode()
+                        }
+                    }),
+                    .cancel(Text("取消"))
+                ]
+            )
         }
     }
     
@@ -68,8 +86,8 @@ struct AppSingleView: View {
         Button {
             isShowPetRegisterView = true
         } label: {
-            Image(systemName: "plus.circle")
-                .font(.title3)
+            Image(systemName: "plus.circle.fill")
+                .font(.title2)
                 .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                 .clipShape(Circle())
         }
@@ -186,26 +204,37 @@ struct AppSingleView_Previews: PreviewProvider {
 struct FindFriendsListItem: View {
     let pet: Pet
     var body: some View {
-        HStack{
+        HStack(){
             VStack(alignment: .leading, spacing: 4){
                 Text(pet.variety + "，" + pet.gender + "，" + pet.description)
                     .font(.footnote)
                     .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                     .lineLimit(2)
-                Text(pet.name)
-                    .font(.callout)
+                
+                HStack{
+                    Text(pet.name)
+                        .font(.callout)
+                    Text("(" + String(format: "%0.1f", pet.coins) + " 币)")
+                        .font(.footnote)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
+                }
+                
+                Text("宠物已经走失，您若遇到请电话联系，谢谢！")
+                    .font(.footnote)
+                    .foregroundColor(.red)
             }
+            
             Spacer()
-            Button {
-                guard let number = URL(string: "tel://" + pet.phone) else { return }
-                UIApplication.shared.open(number)
-            } label: {
-                VStack{
+            if !pet.protected {
+                Button {
+                    guard let number = URL(string: "tel://" + pet.phone) else { return }
+                    UIApplication.shared.open(number)
+                } label: {
                     Image(systemName: "phone.circle.fill")
                         .font(.title)
                 }
             }
-            .disabled(pet.protected)
+            
         }
         .padding(.horizontal)
         .padding(.vertical, 12)
@@ -237,7 +266,7 @@ struct FindMyPetFootItem: View {
             Spacer()
             Button {
                 isDeleted = true
-//                Hapitcs().simpleSuccess()
+                Hapitcs().simpleSuccess()
                 Hapitcs().simpleError()
                 Geo().deleteOneGeo(geo) {
                     model.updateGeos(petID: model.selectedPet.id)
@@ -246,6 +275,7 @@ struct FindMyPetFootItem: View {
                 VStack{
                     Image(systemName: "trash.circle.fill")
                         .font(.title)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5759999752, green: 0.5839999914, blue: 0.5920000076, alpha: 1)))
                 }
             }
         }
@@ -275,7 +305,7 @@ struct DeleteAllGeos: View {
                 Hapitcs().simpleWarning()
             } label: {
                 Text("批量删除 \(pet.name) 的足迹")
-                    .foregroundColor(.red)
+                    .foregroundColor(Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
                     .font(.callout)
                     .bold()
             }
