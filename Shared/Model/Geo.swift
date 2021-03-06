@@ -115,13 +115,10 @@ extension Geo {
     }
     
     // 获取我附近的宠物
-    func getNearbyPets(latitude: Double, longitude: Double, my: Pet,completion: @escaping ([Geo]) -> ()) {
+    func getNearbyPets(latitude: Double, longitude: Double, geo: Geo, geo_length: Int, completion: @escaping ([Geo]) -> ()) {
         let url = "\(HOSTNAME)/geo/find/"
-        let parameters: [String: Any] = ["query":["$and":[["latitude": ["$lte": latitude + 0.01]],
-                                                          ["latitude": ["$gte": latitude - 0.01]],
-                                                          ["longitude": ["$lte": longitude + 0.01]],
-                                                          ["longitude": ["$gte": longitude - 0.01]],
-                                                          ["pet": ["$nin": [my.id]]]]]]
+        let parameters: [String: Any] = ["query":["$and":[["pet": ["$nin": [geo.pet.id]]],
+                                                          ["geo_code": ["$eq": geo.geo_code.prefix(geo_length)]]]]]
         
         AF.request(url, method: .post, parameters: parameters).responseJSON { (respone) in
             switch respone.result {

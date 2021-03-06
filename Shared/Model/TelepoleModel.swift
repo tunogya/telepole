@@ -94,6 +94,7 @@ extension TelepoleModel {
     func clearMyPetIDs() {
         myPetIDs.removeAll()
         lastGeos.removeAll()
+        lastAddress = ""
     }
     
     func selectPet(_ pet: Pet) {
@@ -134,6 +135,7 @@ extension TelepoleModel {
         Geo().getLastGeos(petID: petID) { geos in
             guard geos.first != nil else {
                 self.lastGeos.removeAll()
+                self.lastAddress = ""
                 return
             }
             self.updateGeos(geos)
