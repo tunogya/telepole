@@ -114,8 +114,8 @@ extension Geo {
         }
     }
     
-    // 获取我附近的宠物
-    func getNearbyPets(latitude: Double, longitude: Double, geo: Geo, geo_length: Int, completion: @escaping ([Geo]) -> ()) {
+    // 获取足迹附近的足迹
+    func getNearbyGeos(geo: Geo, geo_length: Int = 6, completion: @escaping ([Geo]) -> ()) {
         let url = "\(HOSTNAME)/geo/find/"
         let parameters: [String: Any] = ["query":["$and":[["pet": ["$nin": [geo.pet.id]]],
                                                           ["geo_code": ["$eq": geo.geo_code.prefix(geo_length)]]]]]

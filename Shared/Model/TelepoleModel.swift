@@ -25,7 +25,7 @@ class TelepoleModel: ObservableObject {
         }
     }
     
-    @Published private(set) var lastGeos = [Geo()] {
+    @Published private(set) var lastGeos: [Geo] = [] {
         willSet {
             objectWillChange.send()
         }
@@ -38,6 +38,12 @@ class TelepoleModel: ObservableObject {
     }
     
     @Published private(set) var isLoading: Bool = false {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @Published private(set) var friendGeos: [Geo] = [] {
         willSet {
             objectWillChange.send()
         }
@@ -61,6 +67,7 @@ class TelepoleModel: ObservableObject {
     init() {
         selectPet(id: selectedPetID)
         loadAccount(id: userCredential)
+        
     }
 }
 
@@ -95,6 +102,7 @@ extension TelepoleModel {
         myPetIDs.removeAll()
         lastGeos.removeAll()
         lastAddress = ""
+        friendGeos.removeAll()
     }
     
     func selectPet(_ pet: Pet) {
@@ -123,10 +131,10 @@ extension TelepoleModel {
 
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {
-        lastGeos = geos
         guard let geo = geos.first else{
             return
         }
+        lastGeos = geos
         getAddress(latitude: geo.latitude, longitude: geo.longitude)
         stopLoading()
     }
@@ -140,6 +148,13 @@ extension TelepoleModel {
             }
             self.updateGeos(geos)
         }
+    }
+    
+    func updateFriendGeos(_ geos: [Geo]) {
+        guard geos.first != nil else {
+            return
+        }
+        lastGeos.append(contentsOf: geos)
     }
     
     func getAddress(latitude: Double, longitude: Double) {
@@ -194,6 +209,12 @@ extension TelepoleModel {
                 print("No placemarks!")
                 completion("没有可用的位置信息")
             }
+        }
+    }
+    
+    func searchFriendGeos(geo: Geo, geo_length: Int) {
+        Geo().getNearbyGeos(geo: geo, geo_length: 6) { geos in
+            self.updateFriendGeos(geos)
         }
     }
 }
