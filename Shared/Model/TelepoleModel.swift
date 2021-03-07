@@ -136,9 +136,6 @@ extension TelepoleModel {
 
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {
-        guard geos.first != nil else{
-            return
-        }
         myGeos = geos
         var allFriendGeos: [Geo] = []
         for myGeo in geos {
@@ -151,9 +148,9 @@ extension TelepoleModel {
     
     func updateGeos(petID: Pet.ID) {
         Geo().getMyGeos(petID: petID) { geos in
+            self.myGeos.removeAll()
+            self.friendGeos.removeAll()
             guard geos.first != nil else {
-                self.myGeos.removeAll()
-                self.friendGeos.removeAll()
                 return
             }
             self.updateGeos(geos)
@@ -161,8 +158,8 @@ extension TelepoleModel {
     }
     
     func updateFriendGeos(_ geos: [Geo]) {
+        friendGeos.removeAll()
         guard geos.first != nil else {
-            friendGeos.removeAll()
             return
         }
         friendGeos = geos

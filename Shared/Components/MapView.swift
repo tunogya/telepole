@@ -46,12 +46,15 @@ struct MapView: View {
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
                     VStack{
+//                        Text(updateTimeToCurrennTime(timeStamp: geo._createTime))
+//                            .font(Font.custom("Herculanum", size: 10))
+//                            .fontWeight(.heavy)
+//                            .foregroundColor(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
+//                            .padding()
+//                            .background(Color.white)
                         Text(geo.pet.id == model.selectedPet.id ? "🌸" : "🐕")
                             .font(.body)
-                        Text(updateTimeToCurrennTime(timeStamp: geo._createTime))
-                            .font(Font.custom("Herculanum", size: 10))
-                            .fontWeight(.heavy)
-                            .foregroundColor(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
+                            .padding()
                     }
                     .opacity(getOpacity(timeInterval: geo._createTime))
                 }
