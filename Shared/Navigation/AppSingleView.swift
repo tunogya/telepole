@@ -39,7 +39,7 @@ struct AppSingleView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text(model.selectedPet.name)
+                    Text(model.selectedPet.id.isEmpty ? "未登陆" : model.selectedPet.name)
                         .bold()
                         .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                     Text(String(format: "%0.1f", model.selectedPet.coins) + " 币")
@@ -52,6 +52,7 @@ struct AppSingleView: View {
             .cornerRadius(44)
             .frame(height: 44)
         }
+        .disabled(model.selectedPet.id.isEmpty ? true : false)
         .actionSheet(isPresented: $isShowLostMode) {
             ActionSheet(
                 title: Text("宠物丢失模式"),
