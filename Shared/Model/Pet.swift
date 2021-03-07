@@ -8,7 +8,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct Pet: Identifiable, Codable, Equatable {
+struct Pet: Identifiable, Codable, Equatable, Hashable {
     var id: String = ""
     var name: String = ""
     var description: String = ""

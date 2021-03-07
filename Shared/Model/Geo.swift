@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-struct Geo: Identifiable {
+struct Geo: Identifiable, Hashable {
     var id: String = ""
     var pet: Pet = Pet()
     var name: String = "佚名"

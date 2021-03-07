@@ -287,7 +287,7 @@ struct FindMyPetFootItem: View {
         .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
         .cornerRadius(16)
         .onAppear {
-            model.reverseGeocode(latitude: geo.latitude, longitude: geo.longitude) { (add) in
+            AMap().reverseGeocode(latitude: geo.latitude, longitude: geo.longitude) { (add) in
                 self.address = add
             }
         }

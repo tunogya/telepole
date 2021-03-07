@@ -14,12 +14,30 @@ class AMap {
     
     func convertCoordinate(longitude: Double, latitude: Double, coordsys: String="gps", completion: @escaping (String) -> ()) {
         let url = "https://restapi.amap.com/v3/assistant/coordinate/convert?key=\(key)&locations=\(longitude),\(latitude)&coordsys=\(coordsys)"
-        
         AF.request(url).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                let locations = JSON(value)["locations"].stringValue
-                completion(locations)
+                let location = JSON(value)["locations"].stringValue
+                completion(location)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
+    }
+    
+    func reverseGeocode(latitude: Double, longitude: Double, completion: @escaping (String) -> ()) {
+        let la = String(format: "%0.6f", latitude)
+        let lo = String(format: "%0.6f", longitude)
+        let url = "https://restapi.amap.com/v3/geocode/regeo?key=\(key)&location=\(lo),\(la)"
+        AF.request(url).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                var location = JSON(value)["regeocode"]["formatted_address"].stringValue
+                if location.isEmpty{
+                    location = "\(lo),\(la)"
+                }
+                completion(location)
             case .failure(let error):
                 debugPrint(error)
             }
