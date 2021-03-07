@@ -137,13 +137,9 @@ extension TelepoleModel {
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {
         myGeos = geos
-        var allFriendGeos: [Geo] = []
-        for myGeo in geos {
-            Geo().getNearbyGeos(geo: myGeo) { geos in
-                allFriendGeos.append(contentsOf: geos)
-            }
+        Geo().getNearbyGeos(geo: geos.first!) { geos in
+            self.updateFriendGeos(geos)
         }
-        self.updateFriendGeos(geos)
     }
     
     func updateGeos(petID: Pet.ID) {
@@ -158,10 +154,6 @@ extension TelepoleModel {
     }
     
     func updateFriendGeos(_ geos: [Geo]) {
-        friendGeos.removeAll()
-        guard geos.first != nil else {
-            return
-        }
         friendGeos = geos
     }
 }
