@@ -12,11 +12,10 @@ import Foundation
 struct MapView: View {
     @State private var mapRegion = MKCoordinateRegion()
     @State private var trackingMode = MapUserTrackingMode.none
-    @State private var percent: Double = 10
     @EnvironmentObject private var model: TelepoleModel
     
     func getOpacity(timeInterval: Double) -> Double {
-        let diff = (Date().timeIntervalSince1970 - timeInterval) / 86400 * percent
+        let diff = (Date().timeIntervalSince1970 - timeInterval) / 864000
         return 1 - 2 * atan(diff) / Double.pi
     }
     
@@ -46,7 +45,7 @@ struct MapView: View {
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
                     VStack(spacing: 0){
-                        Text(geo.pet.name + ", " + updateTimeToCurrennTime(timeStamp: geo._createTime))
+                        Text(geo.pet.name + ", " + updateTimeToCurrennTime(timeStamp: geo._createTime) + (geo.pet.protected ? "": ", 丢失"))
                             .font(Font.custom("Herculanum", size: 10))
                             .fontWeight(.heavy)
                             .padding(6)

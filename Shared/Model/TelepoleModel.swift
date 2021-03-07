@@ -124,12 +124,14 @@ extension TelepoleModel {
         // 上传数据库
         Pet().closedProtected(selectedPet){
             self.selectedPet.protected = false
+            self.updateGeos(petID: self.selectedPet.id)
         }
     }
     
     func stopLostMode(){
         Pet().openProtected(selectedPet){
             self.selectedPet.protected = true
+            self.updateGeos(petID: self.selectedPet.id)
         }
     }
 }
