@@ -32,7 +32,6 @@ class AMap {
         AF.request(url).responseJSON { (response) in
             switch response.result {
             case .success(let value):
-                print(value)
                 var location = JSON(value)["regeocode"]["formatted_address"].stringValue
                 if location.isEmpty{
                     location = "\(lo),\(la)"

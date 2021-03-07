@@ -166,11 +166,11 @@ struct AppSingleView: View {
                     .padding(.bottom, 12)
                     
                     if pageIndex == 0 {
-                        ForEach(model.lastGeos){ geo in
+                        ForEach(model.myGeos){ geo in
                             FindMyPetFootItem(geo: geo)
                                 .padding(.bottom, 4)
                         }
-                        if model.lastGeos.count >= 3 {
+                        if model.myGeos.count >= 3 {
                             DeleteAllGeos(pet: model.selectedPet)
                         }
                     } else {

@@ -34,15 +34,19 @@ struct MapView: View {
         .padding(4)
     }
     
+    var annotation: [Geo] {
+        model.myGeos + model.friendGeos
+    }
+    
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: model.lastGeos) { geo in
+            Map(coordinateRegion: $mapRegion, interactionModes: .all, showsUserLocation: true, userTrackingMode: $trackingMode, annotationItems: annotation) { geo in
                 MapAnnotation(
                     coordinate: CLLocationCoordinate2D(latitude: geo.latitude, longitude: geo.longitude),
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
                     VStack{
-                        Text("🐕")
+                        Text(geo.pet.id == model.selectedPet.id ? "🌸" : "🐕")
                             .font(.body)
                         Text(updateTimeToCurrennTime(timeStamp: geo._createTime))
                             .font(Font.custom("Herculanum", size: 10))

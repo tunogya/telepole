@@ -25,7 +25,7 @@ class TelepoleModel: ObservableObject {
         }
     }
     
-    @Published private(set) var lastGeos: [Geo] = [] {
+    @Published private(set) var myGeos: [Geo] = [] {
         willSet {
             objectWillChange.send()
         }
@@ -92,7 +92,7 @@ extension TelepoleModel {
 extension TelepoleModel {
     func clearMyPetIDs() {
         myPetIDs.removeAll()
-        lastGeos.removeAll()
+        myGeos.removeAll()
         friendGeos.removeAll()
     }
     
@@ -136,19 +136,23 @@ extension TelepoleModel {
 
 extension TelepoleModel {
     func updateGeos(_ geos: [Geo]) {
-        guard let geo = geos.first else{
+        guard geos.first != nil else{
             return
         }
-        lastGeos = geos
-        Geo().getNearbyGeos(geo: geo) { geos in
-            self.updateFriendGeos(geos)
+        myGeos = geos
+        var allFriendGeos: [Geo] = []
+        for myGeo in geos {
+            Geo().getNearbyGeos(geo: myGeo) { geos in
+                allFriendGeos.append(contentsOf: geos)
+            }
         }
+        self.updateFriendGeos(geos)
     }
     
     func updateGeos(petID: Pet.ID) {
         Geo().getMyGeos(petID: petID) { geos in
             guard geos.first != nil else {
-                self.lastGeos.removeAll()
+                self.myGeos.removeAll()
                 self.friendGeos.removeAll()
                 return
             }
@@ -158,6 +162,7 @@ extension TelepoleModel {
     
     func updateFriendGeos(_ geos: [Geo]) {
         guard geos.first != nil else {
+            friendGeos.removeAll()
             return
         }
         friendGeos = geos
