@@ -45,16 +45,18 @@ struct MapView: View {
                     coordinate: CLLocationCoordinate2D(latitude: geo.latitude, longitude: geo.longitude),
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
-                    VStack{
-//                        Text(updateTimeToCurrennTime(timeStamp: geo._createTime))
-//                            .font(Font.custom("Herculanum", size: 10))
-//                            .fontWeight(.heavy)
-//                            .foregroundColor(Color(#colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)))
-//                            .padding()
-//                            .background(Color.white)
-                        Text(geo.pet.id == model.selectedPet.id ? "🌸" : "🐕")
-                            .font(.body)
-                            .padding()
+                    VStack(spacing: 0){
+                        Text(geo.pet.name + ", " + updateTimeToCurrennTime(timeStamp: geo._createTime))
+                            .font(Font.custom("Herculanum", size: 10))
+                            .fontWeight(.heavy)
+                            .padding(6)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                        Text("🐶")
+                            .frame(width: 30, height: 30, alignment: .center)
+                            .background(Color(geo.pet.protected ? #colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)  :  .red))
+                            .clipShape(Circle())
+                            .frame(width: 44, height: 44, alignment: .center)
                     }
                     .opacity(getOpacity(timeInterval: geo._createTime))
                 }
