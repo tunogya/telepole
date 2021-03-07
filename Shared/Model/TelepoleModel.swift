@@ -31,12 +31,6 @@ class TelepoleModel: ObservableObject {
         }
     }
     
-    @Published private(set) var lastAddress: String = "" {
-        willSet {
-            objectWillChange.send()
-        }
-    }
-    
     @Published private(set) var isLoading: Bool = false {
         willSet {
             objectWillChange.send()
@@ -99,7 +93,6 @@ extension TelepoleModel {
     func clearMyPetIDs() {
         myPetIDs.removeAll()
         lastGeos.removeAll()
-        lastAddress = ""
         friendGeos.removeAll()
     }
     
@@ -147,7 +140,6 @@ extension TelepoleModel {
             return
         }
         lastGeos = geos
-        getAddress(latitude: geo.latitude, longitude: geo.longitude)
         Geo().getNearbyGeos(geo: geo) { geos in
             self.updateFriendGeos(geos)
         }
@@ -157,7 +149,6 @@ extension TelepoleModel {
         Geo().getMyGeos(petID: petID) { geos in
             guard geos.first != nil else {
                 self.lastGeos.removeAll()
-                self.lastAddress = ""
                 self.friendGeos.removeAll()
                 return
             }
@@ -170,15 +161,5 @@ extension TelepoleModel {
             return
         }
         friendGeos = geos
-    }
-    
-    func getAddress(latitude: Double, longitude: Double) {
-        if ( Int(latitude) == 0 && Int(longitude) == 0 ){
-            self.lastAddress = "没有可用的位置信息"
-        }
-        
-        AMap().reverseGeocode(latitude: latitude, longitude: longitude) { address in
-            self.lastAddress = address
-        }
     }
 }

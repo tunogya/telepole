@@ -20,13 +20,6 @@ struct MapView: View {
         return 1 - 2 * atan(diff) / Double.pi
     }
     
-    var time: String {
-        guard let geo = model.lastGeos.first else {
-            return ""
-        }
-        return updateTimeToCurrennTime(timeStamp: geo._createTime)
-    }
-    
     var wakandaSlogan: some View {
         HStack {
             Text("Telepole")
@@ -67,12 +60,6 @@ struct MapView: View {
                 wakandaSlogan
                 Spacer()
                 HStack(alignment: .bottom){
-                    VStack(alignment: .leading, spacing: 4){
-                        Text("我的足迹: " + time)
-                            .font(.system(size: 9.0))
-                        Text(model.lastAddress)
-                            .font(.footnote)
-                    }
                     Spacer()
                     Button(action: {
                         self.trackingMode = MapUserTrackingMode.follow
