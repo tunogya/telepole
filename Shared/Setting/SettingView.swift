@@ -16,7 +16,7 @@ struct SettingView: View {
     @EnvironmentObject private var model: TelepoleModel
     
     var isShowLoginButton: Bool {
-        if model.account.user == "" {
+        if model.account.user.isEmpty {
             return true
         }
         return false
@@ -82,7 +82,7 @@ struct SettingView: View {
                 if !isShowLoginButton {
                     Section(header: Text("数据同步")) {
                         Button(action: {
-                            if owner.id == "" {
+                            if owner.id.isEmpty {
                                 Owner().initData(Owner(pets: model.myPetIDs, user_id: model.account.id)) { o in
                                     owner = o
                                 }

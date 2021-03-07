@@ -25,7 +25,7 @@ struct Pet: Identifiable, Codable, Equatable, Hashable {
 // Pet API
 extension Pet {
     var petname: String {
-        if id == "" {
+        if id.isEmpty {
             return "暂无宠物"
         }
         return name

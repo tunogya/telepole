@@ -39,7 +39,7 @@ struct AppSingleView: View {
                     .frame(width: 44, height: 44, alignment: .center)
                 
                 VStack(alignment: .leading){
-                    Text(model.selectedPet.id.isEmpty ? "未登陆" : model.selectedPet.name)
+                    Text(model.selectedPet.petname)
                         .bold()
                         .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.5843137255, blue: 0.5921568627, alpha: 1)))
                     Text(String(format: "%0.1f", model.selectedPet.coins) + " 币")
