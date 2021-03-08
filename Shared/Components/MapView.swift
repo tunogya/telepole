@@ -44,7 +44,7 @@ struct MapView: View {
                     coordinate: CLLocationCoordinate2D(latitude: geo.latitude, longitude: geo.longitude),
                     anchorPoint: CGPoint(x: 0.5, y: 0.5)
                 ) {
-                    VStack(spacing: 0){
+                    VStack(spacing: 4){
                         Text(geo.pet.name + ", " + updateTimeToCurrennTime(timeStamp: geo._createTime) + (geo.pet.protected ? "": ", 丢失"))
                             .font(Font.custom("Herculanum", size: 10))
                             .fontWeight(.heavy)
@@ -52,10 +52,10 @@ struct MapView: View {
                             .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                             .cornerRadius(8)
                         Text("🐶")
-                            .frame(width: 30, height: 30, alignment: .center)
-                            .background(Color(geo.pet.protected ? #colorLiteral(red: 0.9789028764, green: 0.8711864352, blue: 0.06549777836, alpha: 1)  :  .red))
+                            .font(.footnote)
+                            .padding(4)
+                            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                             .clipShape(Circle())
-                            .frame(width: 44, height: 44, alignment: .center)
                     }
                     .opacity(getOpacity(timeInterval: geo._createTime))
                 }
