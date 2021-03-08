@@ -99,7 +99,7 @@ extension TelepoleModel {
     func selectPet(_ pet: Pet) {
         selectedPet = pet
         selectedPetID = pet.id
-        updateGeos(petID: pet.id)
+        updateMyGeos(petID: pet.id)
     }
     
     func selectPet(id: Pet.ID) {
@@ -124,38 +124,46 @@ extension TelepoleModel {
         // 上传数据库
         Pet().closedProtected(selectedPet){
             self.selectedPet.protected = false
-            self.updateGeos(petID: self.selectedPet.id)
+            self.updateMyGeos(petID: self.selectedPet.id)
         }
     }
     
     func stopLostMode(){
         Pet().openProtected(selectedPet){
             self.selectedPet.protected = true
-            self.updateGeos(petID: self.selectedPet.id)
+            self.updateMyGeos(petID: self.selectedPet.id)
         }
     }
 }
 
 extension TelepoleModel {
-    func updateGeos(_ geos: [Geo]) {
+    func updateMyGeos(_ geos: [Geo]) {
         myGeos = geos
-        Geo().getNearbyGeos(geo: geos.first!) { geos in
-            self.updateFriendGeos(geos)
-        }
     }
     
-    func updateGeos(petID: Pet.ID) {
+    func updateMyGeos(petID: Pet.ID) {
+        myGeos.removeAll()
+        friendGeos.removeAll()
         Geo().getMyGeos(petID: petID) { geos in
-            self.myGeos.removeAll()
-            self.friendGeos.removeAll()
-            guard geos.first != nil else {
-                return
+            self.updateMyGeos(geos)
+            for geo in geos {
+                Geo().getNearbyGeos(geo: geo) { geos in
+                    self.appendFriendGeos(geos)
+                }
             }
-            self.updateGeos(geos)
         }
     }
     
     func updateFriendGeos(_ geos: [Geo]) {
         friendGeos = geos
+    }
+    
+    func appendFriendGeos(_ geos: [Geo]) {
+        for geo in geos {
+            guard !friendGeos.contains(geo) else {
+                return
+            }
+            friendGeos.append(geo)
+        }
     }
 }

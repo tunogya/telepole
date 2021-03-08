@@ -104,11 +104,12 @@ struct AppSingleView: View {
                 }
                 let geo = Geo(pet: model.selectedPet, name: model.account.id, latitude: locationManager.lastLocation?.coordinate.latitude ?? 0, longitude: locationManager.lastLocation?.coordinate.longitude ?? 0)
                 Geo().postMyGeo(geo){
-                    model.updateGeos(petID: model.selectedPet.id)
+                    model.updateMyGeos(petID: model.selectedPet.id)
                 }
             } label:{
-                Image(systemName: "paperplane.circle.fill")
-                    .font(.title2)
+                Image("foot")
+                    .resizable()
+                    .frame(width: 25, height: 25, alignment: .center)
                     .modifier(Bounce(animCount: CGFloat(taps)))
                 Text("记录足迹")
                     .font(.body)
@@ -273,7 +274,7 @@ struct FindMyPetFootItem: View {
                 Hapitcs().simpleSuccess()
                 Hapitcs().simpleError()
                 Geo().deleteOneGeo(geo) {
-                    model.updateGeos(petID: model.selectedPet.id)
+                    model.updateMyGeos(petID: model.selectedPet.id)
                 }
             } label: {
                 VStack{
@@ -320,12 +321,12 @@ struct DeleteAllGeos: View {
                     buttons: [
                         .default(Text("仅保留三天内足迹"), action: {
                             Geo().delete3daysAwayGeo(pet) {
-                                model.updateGeos(petID: model.selectedPet.id)
+                                model.updateMyGeos(petID: model.selectedPet.id)
                             }
                         }),
                         .destructive(Text("删除历史所有足迹"),action: {
                             Geo().deleteAllGeo(pet) {
-                                model.updateGeos(petID: model.selectedPet.id)
+                                model.updateMyGeos(petID: model.selectedPet.id)
                             }
                         }),
                         .cancel(Text("取消"))
