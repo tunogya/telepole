@@ -26,7 +26,7 @@ struct PetRegisterView: View {
                     
                 // 未注册页面
                 }else if pageIndex == 1 {
-                    NewRegisterForm(isPresent: $isShow)
+                    NewRegisterForm()
                 }
             }
         }
@@ -76,51 +76,66 @@ struct HadRegisterForm: View {
 }
 
 struct NewRegisterForm: View {
-    @State var genderIndex = 0
-    @State var pet = Pet()
-    @Binding var isPresent: Bool
-    
+    @State private var genderIndex = 0
+    @State private var pet = Pet()
+    @State private var pet_id = ""
     @EnvironmentObject private var model: TelepoleModel
-    
-    
+    @State private var register_status = false
     let gender: [String] = ["boy", "girl"]
-    var is_name_valid: Bool {
-        if pet.name.isEmpty{
-            return false
-        }else{
-            return true
-        }
+    
+    var inputValid: Bool {
+        pet.name.isEmpty || pet.phone.isEmpty || pet.description.isEmpty || pet.variety.isEmpty
     }
     
     var body: some View {
-        Section(header: Text("宠物信息")) {
-            TextField("请输入宠物姓名", text: $pet.name)
-            Picker(selection: $genderIndex, label: Text("性别")) {
-                ForEach(0 ..< gender.count) {
-                    Text(self.gender[$0])
-                }
-            }.pickerStyle(SegmentedPickerStyle())
-            TextField("品种", text: $pet.variety)
-            TextField("请输入描述", text: $pet.description)
-            TextField("请输入联系电话", text: $pet.phone)
-        }
-        
-        Section {
-            // 新注册按钮
-            Button(action: {
-                // 更新gender
-                pet.gender = gender[genderIndex]
-                Pet().createPet(pet) { (pet) in
-                    if !pet.id.isEmpty{
-                        model.myPetIDs.append(pet.id)
-                        model.selectPet(pet)
-                        isPresent = false
-                    }else{
-                        debugPrint("添加失败")
+        if !register_status {
+            Section(header: Text("宠物信息")) {
+                TextField("请输入宠物姓名", text: $pet.name)
+                Picker(selection: $genderIndex, label: Text("性别")) {
+                    ForEach(0 ..< gender.count) {
+                        Text(self.gender[$0])
                     }
+                }.pickerStyle(SegmentedPickerStyle())
+                TextField("品种", text: $pet.variety)
+                TextField("请输入描述", text: $pet.description)
+                TextField("请输入联系电话", text: $pet.phone)
+            }
+            
+            Section {
+                // 新注册按钮
+                Button(action: {
+                    // 更新gender
+                    pet.gender = gender[genderIndex]
+                    Pet().createPet(pet) { (pet) in
+                        if !pet.id.isEmpty{
+                            model.myPetIDs.append(pet.id)
+                            model.selectPet(pet)
+                            pet_id = pet.id
+                            register_status = true
+                        }else{
+                            debugPrint("添加失败")
+                        }
+                    }
+                }) {
+                    Text("立即注册该宠物")
                 }
-            }) {
-                Text("立即注册该宠物")
+                .disabled(inputValid)
+            }
+        }else {
+            Text("Hello, \(pet.name) 🐶")
+                .font(.title)
+                .bold()
+            
+            Section(footer: Text("注册成功，点击复制宠物ID")) {
+                Button {
+                    UIPasteboard.general.string = pet.id
+                } label: {
+                    HStack(alignment: .center) {
+                        Image(systemName: "doc.on.clipboard")
+                        Text("\(pet_id)")
+                    }
+                    .font(.body)
+                }
             }
         }
     }
