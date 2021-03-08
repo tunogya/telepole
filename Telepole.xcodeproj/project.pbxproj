@@ -100,7 +100,6 @@
 		17054B33259867CE001DE66A /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		1718BB2A25DA1B970079C92D /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		1718BB2F25DA21940079C92D /* AppSingleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSingleView.swift; sourceTree = "<group>"; };
-		1718BB3925DAB5160079C92D /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1718BB3A25DBFCB30079C92D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1718BB4225DC081A0079C92D /* TelepoleAppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelepoleAppClip.swift; sourceTree = "<group>"; };
 		17193E1925E0ECA700C97163 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -192,18 +191,9 @@
 			path = PetRegister;
 			sourceTree = "<group>";
 		};
-		1718BB3825DAB4F10079C92D /* Playground */ = {
-			isa = PBXGroup;
-			children = (
-				1718BB3925DAB5160079C92D /* MyPlayground.playground */,
-			);
-			path = Playground;
-			sourceTree = "<group>";
-		};
 		173F05B7259324B300E662B8 = {
 			isa = PBXGroup;
 			children = (
-				1718BB3825DAB4F10079C92D /* Playground */,
 				173EF4AF2596E7FC0059E467 /* README.md */,
 				176F43EB25D5087C00BE5C00 /* Shared */,
 				173F05C2259324B300E662B8 /* Telepole */,

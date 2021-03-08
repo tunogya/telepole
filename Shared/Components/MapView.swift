@@ -49,7 +49,7 @@ struct MapView: View {
                             .font(Font.custom("Herculanum", size: 10))
                             .fontWeight(.heavy)
                             .padding(6)
-                            .background(Color.white)
+                            .background(VisualEffectBlur(blurStyle: .systemChromeMaterial))
                             .cornerRadius(8)
                         Text("🐶")
                             .frame(width: 30, height: 30, alignment: .center)
