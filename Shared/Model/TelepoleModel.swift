@@ -118,6 +118,10 @@ extension TelepoleModel {
         }
         myPetIDs.append(id)
     }
+    
+    func deleteMyPet(at offsets: IndexSet) {
+        myPetIDs.remove(atOffsets: offsets)
+    }
 }
 extension TelepoleModel {
     func startLostMode() {

@@ -60,9 +60,13 @@ struct HadRegisterForm: View {
             }) {
                 Text("提交")
             }
+            .disabled(IdInput.isEmpty)
         }
         
-        Section(header: Text("我的宠物列表")) {
+        Section(header: HStack {
+                    Text("我的宠物列表")
+                    EditButton()
+        }) {
             ForEach(model.myPetIDs, id: \.self){ id in
                 Button {
                     model.selectPet(id: id)
@@ -71,6 +75,7 @@ struct HadRegisterForm: View {
                     PetListInfo(pet_id: id)
                 }
             }
+            .onDelete(perform: model.deleteMyPet)
         }
     }
 }
