@@ -66,7 +66,7 @@ struct HadRegisterForm: View {
             ForEach(model.myPetIDs, id: \.self){ id in
                 Button {
                     model.selectPet(id: id)
-                    isPresent = false
+//                    isPresent = false
                 } label: {
                     PetListInfo(pet_id: id)
                 }
@@ -157,16 +157,19 @@ struct FormPicker: View {
 
 struct PetListInfo: View {
     var pet_id: String
+    @EnvironmentObject private var model: TelepoleModel
     @State var pet: Pet = Pet()
     
     var body: some View {
         HStack {
-            Image(systemName: "person")
-                .background(Color("AccentColor"))
             Text("\(pet.name)")
                 .font(.body)
                 .bold()
             Spacer()
+            if pet_id == model.selectedPet.id {
+                Text("🐶")
+                    .font(.body)
+            }
         }
         .onAppear(perform: {
             Pet().getPetByID(pet_id) { p in
