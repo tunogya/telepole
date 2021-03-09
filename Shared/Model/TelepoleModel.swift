@@ -142,8 +142,6 @@ extension TelepoleModel {
     }
     
     func updateMyGeos(petID: Pet.ID) {
-        myGeos.removeAll()
-        friendGeos.removeAll()
         Geo().getMyGeos(petID: petID) { geos in
             self.updateMyGeos(geos)
             for geo in geos {
