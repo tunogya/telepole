@@ -1,6 +1,9 @@
 #  Telepole
 
 ## Telepole 专注于近距离社交，只关心附近的事。
+![image](preview.PNG)
+
+
 ### 功能
 - [x] 呈现你附近的宠物；
 - [x] 进入宠物详情；
